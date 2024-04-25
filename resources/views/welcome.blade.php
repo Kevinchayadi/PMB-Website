@@ -1,1 +1,0 @@
-<h1>Saya punya power 20M</h1>
