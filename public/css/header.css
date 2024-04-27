@@ -1,10 +1,10 @@
 .header {
-    background-image: url('/picture/header\ grey\ orange-02\ 1.png');
+    background-image: url('/picture/header grey orange-02 1.png');
     background-size: cover;
 }
 
 .logo img {
-    width: 100px;
+    width: 98px;
     height: 90px;
     margin: 20px;
 }
@@ -17,4 +17,9 @@
     list-style-type: none;
     margin-right: 20px;
     margin-left: 10px;
+    color: #0084B5;
+}
+
+.right .disabled {
+    color: #F6AF00;
 }

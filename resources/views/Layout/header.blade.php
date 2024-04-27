@@ -14,12 +14,22 @@
         </div>
     </div>
     <div class="right align-self-center">
-        <ul class="d-flex">
-            <li>Home</li>
-            <li>Profil</li>
-            <li>Jadwal</li>
-            <li>Layanan</li>
-            <li>Hubungi Kami</li>
+        <ul class="d-flex h5">
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Profil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Jadwal</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Layanan</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Hubungi Kami</a>
+            </li>
         </ul>
     </div>
 </div>
