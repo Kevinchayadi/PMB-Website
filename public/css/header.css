@@ -1,21 +1,21 @@
 .header {
     background-image: url('/picture/header grey orange-02 1.png');
     background-size: cover;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.logo {
+    margin-right: 1rem;
 }
 
 .logo img {
     width: 98px;
     height: 90px;
-    margin: 20px;
-}
-
-.right {
-    padding: 0 0px 0 20px;
 }
 
 .right ul li {
     list-style-type: none;
-    margin-right: 20px;
     margin-left: 10px;
     color: #0084B5;
 }
