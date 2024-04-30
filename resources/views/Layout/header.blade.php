@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="{{ asset('css/header.css') }}">
-<div class="header navbar navbar-expand-lg">
+<div class="header navbar navbar-expand-lg px-3">
     <div class="left d-flex">
-        <div class="logo">
+        <div class="logo me-3">
             <img src="{{ asset('picture/Logo Paroki baru 2.png') }}" alt="">
         </div>
         <div class="title align-self-center">
@@ -20,19 +20,19 @@
     <div class="right align-self-center collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav h5">
             <li class="nav-item">
-                <a class="nav-link disabled" href="#">Home</a>
+                <a class="nav-link disabled text-secondary me-2" href="#">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Profil</a>
+                <a class="nav-link text-primary me-2" href="#">Profil</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Jadwal</a>
+                <a class="nav-link text-primary me-2" href="#">Jadwal</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Layanan</a>
+                <a class="nav-link text-primary me-2" href="#">Layanan</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Hubungi Kami</a>
+                <a class="nav-link text-primary" href="#">Hubungi Kami</a>
             </li>
         </ul>
     </div>

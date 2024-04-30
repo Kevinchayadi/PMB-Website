@@ -1,29 +1,9 @@
 .header {
-    background-image: url('/picture/header grey orange-02 1.png');
+    background-image: url('/picture/header-bg.png');
     background-size: cover;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    font-family: "Abhaya";
-}
-
-.logo {
-    margin-right: 1rem;
 }
 
 .logo img {
-    width: 98px;
-    height: 90px;
-}
-
-.right ul li {
-    list-style-type: none;
-    margin-left: 10px;
-}
-
-.right a {
-    color: #0084B5;
-}
-
-.right .disabled {
-    color: #F6AF00;
+    width: 6rem;
+    height: 5.6rem;
 }

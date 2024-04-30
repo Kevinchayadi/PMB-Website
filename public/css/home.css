@@ -1,0 +1,19 @@
+.banner {
+    background-image: url('/picture/banner-bg.png');
+    background-size: cover;
+}
+
+.pelayanan {
+    background-image: url('/picture/Pelayanan.png');
+    background-size: cover;
+}
+
+.agenda-paroki {
+    background-image: url('/picture/Agenda-paroki.png');
+    background-size: cover;
+}
+
+.mari-ikut-terlibat {
+    background-image: url('/picture/Mari-ikut-terlibat.png');
+    background-size: cover;
+}

@@ -2,3 +2,4 @@
 27-4-24 10.32 WIB - Header dan carousel done - D
 29-4-24 22.30 WIB - Perbaikan Header
 30-4-24 15.53 WIB - Minor Fix - D
+30-4-24 21.07 WIB - Penambahan banner, kegiatan, dan jadwal & artikel
