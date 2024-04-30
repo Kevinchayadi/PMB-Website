@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
     @include('Layout.boostrap')
+    @include('Layout.font')
 </head>
 
 <body>

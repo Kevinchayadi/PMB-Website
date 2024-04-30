@@ -6,7 +6,7 @@
         </div>
         <div class="title align-self-center">
             <div class="name">
-                <div class="h3">Gereja St. Petrus & Paulus</div>
+                <div class="h3 fw-bold">Gereja St. Petrus & Paulus</div>
             </div>
             <div class="address">
                 <div class="h5">Paroki Mangga Besar</div>

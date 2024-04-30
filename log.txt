@@ -1,3 +1,4 @@
 26-4-24 21.19 WIB - Buat header (masih belum selesai) - D
 27-4-24 10.32 WIB - Header dan carousel done - D
 29-4-24 22.30 WIB - Perbaikan Header
+30-4-24 15.53 WIB - Minor Fix - D

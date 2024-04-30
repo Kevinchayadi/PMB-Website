@@ -3,6 +3,7 @@
     background-size: cover;
     padding-left: 1rem;
     padding-right: 1rem;
+    font-family: "Abhaya";
 }
 
 .logo {
@@ -17,6 +18,9 @@
 .right ul li {
     list-style-type: none;
     margin-left: 10px;
+}
+
+.right a {
     color: #0084B5;
 }
 
