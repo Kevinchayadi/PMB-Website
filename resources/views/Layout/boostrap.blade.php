@@ -19,4 +19,13 @@
     .text-secondary {
         color: #F6AF00 !important;
     }
+
+    .text-gray {
+        color: #7A7A7A !important;
+    }
+
+    .border-gray {
+        -bs-border-opacity: 1;
+        border-color: (#7A7A7A, var(--bs-border-opacity)) !important;
+    }
 </style>
