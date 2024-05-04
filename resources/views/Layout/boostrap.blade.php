@@ -25,7 +25,7 @@
     }
 
     .border-gray {
-        -bs-border-opacity: 1;
+        -bs-border-opacity: 0.5;
         border-color: (#7A7A7A, var(--bs-border-opacity)) !important;
     }
 </style>

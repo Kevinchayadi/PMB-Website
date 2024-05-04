@@ -1,4 +1,8 @@
-.banner {
+body {
+    overflow-x: hidden;
+}
+
+.banner-top {
     background-image: url('/picture/banner-bg.png');
     background-size: cover;
 }

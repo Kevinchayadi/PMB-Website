@@ -1,6 +1,7 @@
-26-4-24 21.19 WIB - Buat header (masih belum selesai) - D
-27-4-24 10.32 WIB - Header dan carousel done - D
+26-4-24 21.19 WIB - Buat header (masih belum selesai)
+27-4-24 10.32 WIB - Header dan carousel done 
 29-4-24 22.30 WIB - Perbaikan Header
-30-4-24 15.53 WIB - Minor Fix - D
+30-4-24 15.53 WIB - Minor Fix
 30-4-24 21.07 WIB - Penambahan banner, kegiatan, dan jadwal & artikel
 3-5-24 21.28 WIB - Penambahan jadwal & artikel
+4-5-24 10.27 WIB - Penyelesaian jadwal & artikel, penambahan footer, google map API masih belom
