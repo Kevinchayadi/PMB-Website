@@ -12,10 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('acaras', function (Blueprint $table) {
-            $table->id();
+            $table->id("id_acara");
             $table->string('nama_acara', 100);
-            $table->date('Jadwal Acara');
-            $table->date('created_at')->nullable()->default(new DateTime());
+            $table->string('slug', 100)->nullable()->unique();
             $table->softDeletes();
             $table->timestamps();
         });
