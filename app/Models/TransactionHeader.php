@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class TransactionHeader extends Model
@@ -21,13 +22,13 @@ class TransactionHeader extends Model
         return $this->belongsTo(Romo::class, 'id_romo');
     }
 
-    public function seksi(): BelongsTo
+    public function seksi(): BelongsToMany
     {
-        return $this->belongsTo(Seksi::class, 'id_seksi');
+        return $this->belongsToMany( Seksi::class,'relation_transaction_seksis','id_transaction', 'id_seksi');
     }
 
-    public function transactionDetails(): HasMany
+    public function transactionDetail(): BelongsToMany
     {
-        return $this->hasMany(TransactionDetail::class, 'id_transaction');
+        return $this->belongsToMany(TransactionDetail::class,  'relation_transaction_umats','id_transaction', 'id_umat');
     }
 }

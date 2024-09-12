@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class TransactionDetail extends Model
@@ -15,7 +16,7 @@ class TransactionDetail extends Model
 
     public function transactionHeader(): BelongsTo
     {
-        return $this->belongsTo(TransactionHeader::class, 'id_transaction');
+        return $this->belongsTo(TransactionHeader::class,  'id_seksi');
     }
 
     public function acara(): BelongsTo
@@ -23,9 +24,9 @@ class TransactionDetail extends Model
         return $this->belongsTo(Acara::class, 'id_acara');
     }
 
-    public function umat(): BelongsTo
+    public function umat(): BelongsToMany
     {
-        return $this->belongsTo(Umat::class, 'id_umat');
+        return $this->belongsToMany(Umat::class,  'relation_transaction_umats','id_transaction', 'id_umat');
     }
 
     public function admin(): BelongsTo
