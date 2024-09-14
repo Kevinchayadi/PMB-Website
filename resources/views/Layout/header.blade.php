@@ -1,16 +1,16 @@
 <link rel="stylesheet" href="{{ asset('css/header.css') }}">
 <div class="header navbar navbar-expand-lg px-3">
     <div class="left row">
-        <div class="logo col-lg-4 col-3 my-auto">
+        <div class="logo col-lg-4 col-4">
             <img class="img-fluid" src="{{ asset('picture/Logo Paroki baru 2.png') }}" alt="">
         </div>
-        <div class="title align-self-center col-lg-8 col-9 row">
+        <div class="title align-self-center col-lg-7 col-8 row">
             <div class="col-lg-12 col-9">
                 <div class="name">
-                    <div class="fs-3 fw-bold">Gereja St. Petrus & Paulus</div>
+                    <div class="fs-5 fw-bold">Gereja St. Petrus & Paulus</div>
                 </div>
                 <div class="address">
-                    <div class="fs-4">Paroki Mangga Besar</div>
+                    <div class="fs-6">Paroki Mangga Besar</div>
                 </div>
             </div>
             <button class="navbar-toggler col-3 my-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -20,7 +20,7 @@
         </div>
     </div>
     <div class="right align-self-center collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav h5">
+        <ul class="navbar-nav fs-5">
             <li class="nav-item">
                 <a class="nav-link disabled text-secondary me-2" href="#">Home</a>
             </li>
