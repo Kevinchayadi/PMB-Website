@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LandingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/home', function () {
-    return view('home');
-});
+Route::redirect('/', 'home');
+Route::get('/home', [LandingController::class, 'home']);
+Route::get('/profile-pmb', [LandingController::class, 'profile']);
+Route::get('/sejarah', [LandingController::class, 'home']);
+Route::get('/doa', [LandingController::class, 'home']);
+Route::get('/fasilitas', [LandingController::class, 'home']);
+Route::get('/pastor', [LandingController::class, 'pastor']);
+Route::get('/kegiatan', [LandingController::class, 'kegiatan']);
+Route::get('/jadwal', [LandingController::class, 'jadwal']);
+Route::get('/jadwal/{slug}', [LandingController::class, 'jadwalDetail']);
 
-Route::get('/test', function () {
-    return view("home");
-});
+
+Route::get('/login', [LandingController::class, 'jadwalDetail']);
+Route::get('/register', [LandingController::class, 'jadwalDetail']);
+

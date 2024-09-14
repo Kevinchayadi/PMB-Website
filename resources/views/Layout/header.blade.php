@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="{{ asset('css/header.css') }}">
-<div class="header navbar navbar-expand-lg px-3">
+<div class="header navbar navbar-expand-md px-3">
     <div class="left row">
         <div class="logo col-lg-4 col-4">
             <img class="img-fluid" src="{{ asset('picture/Logo Paroki baru 2.png') }}" alt="">
@@ -13,14 +13,15 @@
                     <div class="fs-6">Paroki Mangga Besar</div>
                 </div>
             </div>
-            <button class="navbar-toggler col-3 my-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler col-3 my-auto" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
     </div>
     <div class="right align-self-center collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav fs-5">
+        <ul class="navbar-nav fs-6">
             <li class="nav-item">
                 <a class="nav-link disabled text-secondary me-2" href="#">Home</a>
             </li>

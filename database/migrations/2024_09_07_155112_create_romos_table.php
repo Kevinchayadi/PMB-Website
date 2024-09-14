@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('_romoes', function (Blueprint $table) {
-            $table->id();
+        Schema::create('romos', function (Blueprint $table) {
+            $table->id("id_romo");
             $table->string('nama_romo', 100);
+            $table->string('slug', 100)->nullable()->unique();
             $table->string('ttl_romo', 100);
-            $table->string('Nomor_romo', 100);
+            $table->string('nomor_hp_romo', 100);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('_romoes');
+        Schema::dropIfExists('romos');
     }
 };

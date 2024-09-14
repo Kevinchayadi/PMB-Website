@@ -21,3 +21,7 @@ body {
     background-image: url('/picture/Mari-ikut-terlibat.png');
     background-size: cover;
 }
+
+.row {
+    margin-right: 0 !important;
+}

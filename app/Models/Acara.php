@@ -6,24 +6,25 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Umat extends Model
+class Acara extends Model
 {
-    use HasFactory, Sluggable;
+    use HasFactory, Sluggable, SoftDeletes;
 
-    protected $primaryKey = 'id_umat';
-    protected $fillable = ['nama_umat', 'wilayah', 'lingkungan', 'nomohp_umat', 'alamat', 'status', 'pekerjaan'];
+    protected $primaryKey = 'id_acara';
+    protected $fillable = ['nama_acara', 'jadwal_acara','status'];
 
     public function transactionDetails(): HasMany
     {
-        return $this->hasMany(TransactionDetail::class, 'id_umat');
+        return $this->hasMany(TransactionDetail::class, 'id_acara');
     }
 
     public function sluggable(): array
     {
         return [
             'slug' => [
-                'source' => 'nama_umat'
+                'source' => 'nama_acara'
             ]
         ];
     }
