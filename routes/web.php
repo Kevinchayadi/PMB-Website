@@ -25,7 +25,6 @@ Route::get('/kegiatan', [LandingController::class, 'kegiatan']);
 Route::get('/jadwal', [LandingController::class, 'jadwal']);
 Route::get('/jadwal/{slug}', [LandingController::class, 'jadwalDetail']);
 
-
 Route::get('/login', [LandingController::class, 'jadwalDetail']);
 Route::get('/register', [LandingController::class, 'jadwalDetail']);
 

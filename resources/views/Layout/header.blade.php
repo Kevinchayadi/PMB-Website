@@ -22,8 +22,8 @@
     </div>
     <div class="right align-self-center collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav fs-6">
-            <li class="nav-item">
-                <a class="nav-link disabled text-secondary me-2" href="#">Home</a>
+            <li class="nav-item {{ request()->is('home') ? 'active' : '' }}">
+                <a class="nav-link text-primary me-2" href="{{ route('home') }}">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-primary me-2" href="#">Profil</a>

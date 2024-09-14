@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 
 @section('content')
+
     {{-- Carousel --}}
     <div id="carouselExampleAutoplaying" class="carousel slide mb-10" data-bs-ride="carousel">
         <div class="carousel-inner">
@@ -40,6 +41,8 @@
 
     {{-- Kegiatan --}}
     <div class="section-1 row ps-lg-3 mb-4 pe-lg-2 pe-0 ps-2">
+
+        {{-- Pelayanan --}}
         <div class="col-md-4 my-md-0 col-12 my-2">
             <div class="pelayanan py-5 px-3">
                 <div class="h4 text-white">Pelayanan</div>
@@ -47,6 +50,7 @@
             </div>
         </div>
 
+        {{-- Agenda Paroki --}}
         <div class="col-md-4 px-3 my-md-0 col-12 my-2">
             <div class="agenda-paroki py-5 px-3">
                 <div class="h4 text-white">Agenda Paroki</div>
@@ -54,6 +58,7 @@
             </div>
         </div>
 
+        {{-- Mari Ikut Terlibat --}}
         <div class="col-md-4 my-md-0 col-12 my-2">
             <div class="mari-ikut-terlibat py-5 px-3">
                 <div class="h4 text-white">Mari ikut terlibat</div>
@@ -65,6 +70,8 @@
     {{-- Jadwal & Artikel --}}
     <div class="section-2 row">
         <div class="left col-lg-8 col-12 mb-lg-0 mb-4 pe-0">
+
+            {{-- Jadwal misa head --}}
             <div class="px-4">
                 <div class="head-section d-flex justify-content-between">
                     <div class="align-self-center fs-5 fw-bolder">Jadwal Misa</div>
@@ -72,7 +79,11 @@
                 </div>
                 <hr>
             </div>
+
+            {{-- Content --}}
             <div class="ms-3 row me-0">
+
+                {{-- Looping --}}
                 <div class="left-content text-gray px-2 align-self-center col-lg-2 col-3 flex-start">
                     <div class="d-flex justify-content-center">
                         <div class="align-self-center d-lg-block d-none">
@@ -102,7 +113,10 @@
             </div>
         </div>
 
+        {{-- Artikel --}}
         <div class="right col-lg-4 col-12 mb-lg-0 mb-4 pe-0">
+
+            {{-- Artikel head --}}
             <div class="px-4">
                 <div class="head-section d-flex justify-content-between">
                     <div class="align-self-center fs-5 fw-bolder">Artikel</div>
@@ -110,6 +124,8 @@
                 </div>
                 <hr>
             </div>
+
+            {{-- Content --}}
             <div class="right-content mx-4">
                 <div class="head fs-5 text-gray">Apa Makna Natal Bagi Saya di saat seperti ini?</div>
                 <div class="desc fs-6">Bulan Desember merupakan bulan yang paling ditunggu oleh banyak orang</div>
@@ -123,8 +139,5 @@
         <a href= "https://youtube.com">
             <img class="object-fit-contain w-100" src="{{ asset('picture/Subscribe.png') }}" alt="">
         </a>
-        <!-- <div class="btn btn-lg btn-outline-danger text-white bg-danger">
-            <a href="" class="nav-link fw-bolder">Klik di sini</a>
-        </div> -->
     </div>
 @endsection
