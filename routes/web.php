@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::redirect('/', 'home');
-Route::get('/home', [LandingController::class, 'home']);
-Route::get('/profile-pmb', [LandingController::class, 'profile']);
+Route::get('/home', [LandingController::class, 'home'])->name('home');
+Route::get('/profile', [LandingController::class, 'profile'])->name('profile');
 Route::get('/sejarah', [LandingController::class, 'home']);
 Route::get('/doa', [LandingController::class, 'home']);
 Route::get('/fasilitas', [LandingController::class, 'home']);

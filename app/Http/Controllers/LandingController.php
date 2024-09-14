@@ -15,7 +15,7 @@ class LandingController extends Controller
 
     public function profile()
     {
-        return view('landing.profile');
+        return view('ViewPage.profile');
     }
 
     public function sejarah()

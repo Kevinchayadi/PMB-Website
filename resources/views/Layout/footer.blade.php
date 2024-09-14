@@ -1,5 +1,6 @@
-<div class="footer row justify-content-center mb-4 px-lg-2">
-    <div class="section-1 col-2">
+<div class="footer row justify-content-center mb-4 mx-auto container-fluid">
+    {{-- Informasi --}}
+    <div class="section-1 col-lg-2 col-5">
         <div class="">
             <div class="fs-5">Informasi</div>
             <div class="fs-6">
@@ -11,8 +12,11 @@
         </div>
     </div>
 
-    <div class="section-2 col-2">
+    {{-- Ikuti kami --}}
+    <div class="section-2 col-lg-2 col-5">
         <div class="fs-5">Ikuti Kami</div>
+
+        {{-- Facebook --}}
         <div class="facebook d-flex align-content-center mb-1" href="#">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#818181"
                 class="bi bi-facebook me-2" viewBox="0 0 16 16">
@@ -21,6 +25,8 @@
             </svg>
             <div class="fs-6 text-gray">Facebook</div>
         </div>
+
+        {{-- Instagram --}}
         <div class="instagram d-flex align-content-center mb-1" href="#">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#818181"
                 class="bi bi-instagram me-2" viewBox="0 0 16 16">
@@ -29,6 +35,8 @@
             </svg>
             <div class="fs-6 text-gray">Instagram</div>
         </div>
+
+        {{-- Youtube --}}
         <div class="youtube d-flex align-content-center" href="#">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#818181"
                 class="bi bi-youtube me-2" viewBox="0 0 16 16">
@@ -38,7 +46,9 @@
             <div class="fs-6 text-gray">Youtube</div>
         </div>
     </div>
-    <div class="section-3 col-lg-4 col-12 mt-2 ps-lg-0 ps-4">
+
+    {{-- Google map --}}
+    <div class="section-3 col-lg-4 col-12 mt-2">
         <iframe
             src="https://maps.google.com/maps?q=Jl.%20Raya%20Mangga%20Besar%20No.55%201,%20RT.1/RW.3,%20Tangki,%20Kec.%20Taman%20Sari,%20Kota%20Jakarta%20Barat,%20Daerah%20Khusus%20Ibukota%20Jakarta%2011170&amp;t=&amp;z=17&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
             width="100%" height="250px">
