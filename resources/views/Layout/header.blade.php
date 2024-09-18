@@ -38,7 +38,7 @@
             {{-- Profile --}}
             <li class="nav-item">
                 <a class="nav-link {{ Route::is('profile') ? 'text-secondary' : 'text-primary' }} me-2"
-                    href="/profile">Profil</a>
+                    href="/profile/profile">Profil</a>
             </li>
 
             {{-- Jadwal --}}

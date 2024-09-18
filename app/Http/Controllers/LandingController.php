@@ -20,29 +20,29 @@ class LandingController extends Controller
 
     public function sejarah()
     {
-        return view('landing.sejarah');
+        return view('ViewPage.sejarah');
     }
 
     public function Doa()
     {
-        return view('landing.Doa');
+        return view('ViewPage.Doa');
     }
 
     public function Fasilitas()
     {
-        return view('landing.fasilitas');
+        return view('ViewPage.fasilitas');
     }
 
     public function pastor()
     {
         //disini harus return data pastor...
-        return view('landing.pastor');
+        return view('ViewPage.pastor');
     }
 
     public function Kegiatan()
     {
         //disini harus return
-        return view('landing.kegiatan');
+        return view('ViewPage.kegiatan');
     }
 
     public function jadwal()
@@ -58,7 +58,7 @@ class LandingController extends Controller
             ->take(3)
             ->get();
 
-        return view('landing.jadwat', ['transactions' => $transactions]);
+        return view('ViewPage.jadwal', ['transactions' => $transactions]);
     }
 
     public function jadwalDetail($id)
