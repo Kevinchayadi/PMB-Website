@@ -25,20 +25,20 @@
 
             {{-- Fasilitas --}}
             <li class="nav-item col-lg-2 col-4">
-                <a class="nav-link {{ Route::is('layanan') ? 'text-primary text-decoration-underline decoration-secondary' : 'text-primary' }} me-2"
+                <a class="nav-link {{ Route::is('fasilitas') ? 'text-primary text-decoration-underline decoration-secondary' : 'text-primary' }} me-2"
                     href="/profile/fasilitas">Fasilitas</a>
             </li>
 
             {{-- Pastor Paroki --}}
             <li class="nav-item col-lg-2 col-4">
-                <a class="nav-link {{ Route::is('hubungi') ? 'text-primary text-decoration-underline decoration-secondary' : 'text-primary' }}"
+                <a class="nav-link {{ Route::is('pastor') ? 'text-primary text-decoration-underline decoration-secondary' : 'text-primary' }}"
                     href="/profile/pastor">Pastor
                     Paroki</a>
             </li>
 
             {{-- Kegiatan --}}
             <li class="nav-item col-lg-2 col-4">
-                <a class="nav-link {{ Route::is('hubungi') ? 'text-primary text-decoration-underline decoration-secondary' : 'text-primary' }}"
+                <a class="nav-link {{ Route::is('kegiatan') ? 'text-primary text-decoration-underline decoration-secondary' : 'text-primary' }}"
                     href="/profile/kegiatan">Kegiatan</a>
             </li>
     </div>
