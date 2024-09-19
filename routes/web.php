@@ -64,7 +64,7 @@ Route::prefix('admin')
         Route::get('/acara', [AcaraController::class, 'acaraIndex'])->name('admin.acara');
         Route::get('/add-acara', [AcaraController::class, 'addAcara'])->name('admin.addAcaraForm');
         Route::post('/add-acara', [AcaraController::class, 'storeAcara'])->name('admin.addAcara');
-        Route::get('/edit-acara'. [AcaraController::class,'updateAcara'])->name('admin.padateAcaraForm');
+        Route::get('/edit-acara'. [AcaraController::class, 'updateAcara'])->name('admin.updateAcaraForm');
         Route::put("/edit-acara", [AcaraController::class,"updatedAcara"])->name('admin.updateAcara');
         Route::delete('/delete-acara/{slug}', [AcaraController::class, 'deleteAcara'])->name('admin.deleteAcara');
 

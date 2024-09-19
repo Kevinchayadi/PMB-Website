@@ -3,7 +3,7 @@
 <div class="card" style="width: 100%;">
     <img src="{{ asset('picture/Gereja.jpg') }}" class="card-img-top" alt="...">
 </div>
-<div class="w-lg-50">
+<div class="w-lg-50 w-100 box-shadow">
     <ul class="nav d-flex fs-6">
 
         {{-- Profil Gereja --}}
