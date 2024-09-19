@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\profileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TransaksiController;
 use Illuminate\Auth\Events\Login;
@@ -23,7 +24,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 Route::redirect('/', 'home');
 Route::get('/home', [LandingController::class, 'home'])->name('home');
-Route::get('/profile/profile', [LandingController::class, 'profile'])->name('profile');
+Route::get('/profile/profile', [profileController::class, 'profile'])->name('profile');
 Route::get('/profile/sejarah', [LandingController::class, 'sejarah'])->name('sejarah');
 Route::get('profile/doa', [LandingController::class, 'doa'])->name('doa');
 Route::get('profile/fasilitas', [LandingController::class, 'fasilitas'])->name('fasilitas');
