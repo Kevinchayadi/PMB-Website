@@ -13,11 +13,6 @@ class LandingController extends Controller
         return view('landing.home');
     }
 
-    public function profile()
-    {
-        return view('ViewPage.profile');
-    }
-
     public function sejarah()
     {
         return view('ViewPage.sejarah');
