@@ -14,9 +14,7 @@ return new class extends Migration
         Schema::create('relation_transaction_umats', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_transaction');
-            $table->foreign('id_transaction')->references('id')->on('transaction_details');
             $table->unsignedBigInteger('id_umat');
-            $table->foreign('id_umat')->references('id_umat')->on('umats');
             $table->timestamps();
         });
     }

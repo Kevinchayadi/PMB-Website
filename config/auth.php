@@ -38,8 +38,40 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'umat1',
         ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admin1',
+        ],
+        // 'romo' => [
+        //     'driver' => 'session',
+        //     'provider' => 'romo1',
+        // ],
+        // 'web1' => [
+        //     'driver' => 'session',
+        //     'provider' => 'umat1',
+        // ],
+        // 'admin1' => [
+        //     'driver' => 'session',
+        //     'provider' => 'admin1',
+        // ],
+        // 'romo1' => [
+        //     'driver' => 'session',
+        //     'provider' => 'romo1',
+        // ],
+        // 'web2' => [
+        //     'driver' => 'session',
+        //     'provider' => 'umat2',
+        // ],
+        // 'admin2' => [
+        //     'driver' => 'session',
+        //     'provider' => 'admin2',
+        // ],
+        // 'romo2' => [
+        //     'driver' => 'session',
+        //     'provider' => 'romo2',
+        // ],
     ],
 
     /*
@@ -60,10 +92,42 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'umat' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\Umat::class,
         ],
+        'admin' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ],
+        // 'romo' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\Models\RomoMY::class,
+        // ],
+        // 'umat' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\Models\UmatMY::class,
+        // ],
+        // 'admin1' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\Models\AdminMY::class,
+        // ],
+        // 'romo1' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\Models\RomoMY::class,
+        // ],
+        // 'umat2' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\Models\UmatPG::class,
+        // ],
+        // 'admin2' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\Models\AdminPG::class,
+        // ],
+        // 'romo2' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\Models\RomoPG::class,
+        // ],
 
         // 'users' => [
         //     'driver' => 'database',

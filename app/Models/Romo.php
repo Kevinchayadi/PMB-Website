@@ -2,19 +2,30 @@
 
 namespace App\Models;
 
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
-class Romo extends Model
+class Romo extends Authenticatable
 {
-    use HasFactory, Sluggable, SoftDeletes;
+    use HasApiTokens, HasFactory, Notifiable, Sluggable, SoftDeletes;
 
-    protected $primaryKey = 'id_romo';
-    protected $fillable = ['nama_romo', 'al_romo', 'nomorhp_romo'];
-
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'nama_romo',
+        'ttl_romo', 
+        'nomorhp_romo',
+    ];
+    
     public function transactionHeaders(): HasMany
     {
         return $this->hasMany(TransactionHeader::class, 'id_romo');

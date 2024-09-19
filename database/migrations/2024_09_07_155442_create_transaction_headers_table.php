@@ -15,13 +15,11 @@ return new class extends Migration
             $table->id('id_transaction');
             $table->unsignedBigInteger('id_romo');
             $table->unsignedBigInteger('id_seksi');
-            $table->date('Jadwal Acara');
+            $table->unsignedBigInteger('id_doa')->nullable();
+            $table->date('jadwal_transaction');
             $table->string('status')->default('soon');
             $table->softDeletes();
             $table->timestamps();
-
-            $table->foreign('id_romo')->references('id_romo')->on('romos');
-            $table->foreign('id_seksi')->references('id_seksi')->on('seksis');
         });
     }
 
@@ -30,6 +28,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+
         Schema::dropIfExists('transaction_headers');
     }
 };

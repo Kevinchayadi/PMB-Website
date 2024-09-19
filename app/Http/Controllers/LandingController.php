@@ -47,16 +47,7 @@ class LandingController extends Controller
 
     public function jadwal()
     {
-        $transactions = TransactionHeader::with([
-            'transactiondetails' => function ($query) {
-                $query->with(['acara', 'umat']);
-            },
-        ])
-            ->whereHas('transactionDetails.acara', function ($query) {
-                $query->where('nama_acara', 'misa');
-            })
-            ->take(3)
-            ->get();
+        $transactions = TransactionHeader::with('transactionDelails')->get();
 
         return view('landing.jadwat', ['transactions' => $transactions]);
     }

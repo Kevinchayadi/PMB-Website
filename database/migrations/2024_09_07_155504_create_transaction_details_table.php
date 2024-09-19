@@ -17,14 +17,10 @@ return new class extends Migration
             $table->unsignedBigInteger('id_acara');
             $table->unsignedBigInteger('id_umat');
             $table->unsignedBigInteger('id_admin');
+            $table->text('deskripsi_transaksi')->nullable();
             $table->softDeletes();
             $table->timestamps();
 
-            $table->foreign('id_transaction')->references('id_transaction')->on('transaction_headers');
-            $table->foreign('id_acara')->references('id_acara')->on('acaras');
-            $table->foreign('id_umat')->references('id_umat')->on('umats');
-            $table->foreign('id_admin')->references('id_admin')->on('admins');
-        
         });
     }
 

@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('romos', function (Blueprint $table) {
             $table->id("id_romo");
-            $table->string('nama_romo', 100);
-            $table->string('slug', 100)->nullable()->unique();
-            $table->string('ttl_romo', 100);
-            $table->string('nomor_hp_romo', 100);
+            $table->string('nama_romo', 255);
+            $table->string('slug', 255)->nullable()->unique();
+            $table->string('ttl_romo', 255);
+            $table->string('nomorhp_romo', 255);
+            $table->timestamp('email_verified_at')->nullable();
+            $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();
         });

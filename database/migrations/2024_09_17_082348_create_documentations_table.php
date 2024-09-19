@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('acaras', function (Blueprint $table) {
-            $table->id("id_acara");
-            $table->string('nama_acara',255);
-            $table->string('slug',255)->nullable()->unique();
-            $table->string('tipe_acara',255);
-            $table->text('deskripsi_acara');
-            $table->softDeletes();
+        Schema::create('documentations', function (Blueprint $table) {
+            $table->id('id_documentation');
+            $table->string('nameDocumentation');
+            $table->unsignedBigInteger('id_acara');
             $table->timestamps();
+
+          
         });
     }
 
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('acaras');
+        Schema::dropIfExists('documentations');
     }
 };

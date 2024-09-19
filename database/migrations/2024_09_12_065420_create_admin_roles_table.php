@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('relation_transaction_seksis', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('id_transaction');
-            $table->unsignedBigInteger('id_seksi');
-            $table->timestamps();
+        Schema::create('admin_roles', function (Blueprint $table) {
+            $table->id('id_role');
+            $table->string('role');
         });
     }
 
@@ -24,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('relation_transaction_seksis');
+        Schema::dropIfExists('admin_roles');
     }
 };

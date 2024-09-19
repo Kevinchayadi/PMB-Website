@@ -15,7 +15,7 @@ class TransactionHeader extends Model
     use HasFactory, SoftDeletes;
 
     protected $primaryKey = 'id_transaction';
-    protected $fillable = ['id_romo', 'id_seksi', 'status'];
+    protected $fillable = ['id_romo', 'id_seksi','id_doa','jadwal_acara', 'status'];
 
     public function romo(): BelongsTo
     {
@@ -30,5 +30,9 @@ class TransactionHeader extends Model
     public function transactionDetail(): BelongsToMany
     {
         return $this->belongsToMany(TransactionDetail::class,  'relation_transaction_umats','id_transaction', 'id_umat');
+    }
+
+    public function doa(): BelongsTo{
+        return $this->belongsTo(Doa::class, 'id_doa');
     }
 }

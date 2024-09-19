@@ -12,7 +12,7 @@ class TransactionDetail extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['id_transaction', 'id_acara', 'id_umat', 'id_admin'];
+    protected $fillable = ['id_transaction', 'id_acara', 'id_umat', 'id_admin', 'deskripsi_transaksi'];
 
     public function transactionHeader(): BelongsTo
     {
