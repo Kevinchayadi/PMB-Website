@@ -10,7 +10,7 @@ class LandingController extends Controller
 {
     public function Home()
     {
-        return view('landing.home');
+        return view('ViewPage.home');
     }
 
     public function profile()

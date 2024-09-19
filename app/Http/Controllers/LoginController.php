@@ -20,41 +20,6 @@ class LoginController extends Controller
             'password' => ['required', 'string'],
         ]);
 
-        $user1 = DB::connection('mysql')
-            ->table('admin')
-            ->where('username', $credentials['username_admin'])
-            ->first();
-
-        $user2 = DB::connection('pgsql')
-            ->table('admin')
-            ->where('username', $credentials['username_admin'])
-            ->first();
-
-        if (!$user1 && !$user2) {
-            $user1 = DB::connection('mysql')
-                ->table('romo')
-                ->where('username', $credentials['username_admin'])
-                ->first();
-
-            $user2 = DB::connection('pgsql')
-                ->table('romo')
-                ->where('username', $credentials['username_admin'])
-                ->first();
-
-            if (
-                Auth::guard(['romo'])->attempt(
-                    [
-                        'username' => $credentials['username'],
-                        'password' => $credentials['password'],
-                    ],
-                    $request->filled('remember'),
-                )
-            ) {
-                return redirect()->route('dashboard');
-            }
-            return redirect()->route('admin/login');
-        }
-
         if (
             Auth::guard(['admin'])->attempt(
                 [
@@ -64,7 +29,7 @@ class LoginController extends Controller
                 $request->filled('remember'),
             )
         ) {
-            return redirect()->route('dashboard');
+            return redirect()->route('admin.dashboard');
         }
 
         return redirect()->route('admin/login');
@@ -72,9 +37,27 @@ class LoginController extends Controller
 
     function umatIndex()
     {
+        return view('umat.login');
     }
 
-    function umatLogin()
+    function umatLogin($request)
     {
+        $credentials = $request->validate([
+            'email' => ['required', 'string', 'email'], 
+            'password' => ['required', 'string', 'min:8'], 
+        ]);
+
+        if (
+            Auth::guard(['web'])->attempt(
+                [
+                    'username' => $credentials['username'],
+                    'password' => $credentials['password'],
+                ],
+                $request->filled('remember'),
+            )
+        ) {
+            return redirect()->route('umat.dashboard');
+        }
+        return redirect()->route('umat/login');
     }
 }
