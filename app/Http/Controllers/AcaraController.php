@@ -10,7 +10,7 @@ class AcaraController extends Controller
     public function index()
     {
         $acara = Acara::with('transactionDetail')->get();
-        return view("admin.listAcara", ['acara' => $acara]);
+        return view('admin.listAcara', ['acara' => $acara]);
     }
 
     public function add($request){
