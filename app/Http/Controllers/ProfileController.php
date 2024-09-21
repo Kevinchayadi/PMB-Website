@@ -10,4 +10,31 @@ class profileController extends Controller
     {
         return view('ViewPage.profile');
     }
+    
+    public function sejarah()
+    {
+        return view('ViewPage.sejarah');
+    }
+
+    public function Doa()
+    {
+        return view('ViewPage.Doa');
+    }
+
+    public function Fasilitas()
+    {
+        return view('ViewPage.fasilitas');
+    }
+
+    public function pastor()
+    {
+        //disini harus return data pastor...
+        return view('ViewPage.pastor');
+    }
+
+    public function Kegiatan()
+    {
+        //disini harus return
+        return view('ViewPage.kegiatan');
+    }
 }

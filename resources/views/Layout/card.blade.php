@@ -20,7 +20,7 @@
 
         {{-- Doa Paroki --}}
         <li class="nav-item">
-            <a class="nav-link {{ Route::is('jadwal') ? 'text-primary text-decoration-underline decoration-secondary' : 'text-primary' }} me-2"
+            <a class="nav-link {{ Route::is('doa') ? 'text-primary text-decoration-underline decoration-secondary' : 'text-primary' }} me-2"
                 href="/profile/doa">Doa Paroki</a>
         </li>
 

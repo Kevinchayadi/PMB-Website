@@ -25,11 +25,11 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 Route::redirect('/', 'home');
 Route::get('/home', [LandingController::class, 'home'])->name('home');
 Route::get('/profile/profile', [profileController::class, 'profile'])->name('profile');
-Route::get('/profile/sejarah', [LandingController::class, 'sejarah'])->name('sejarah');
-Route::get('profile/doa', [LandingController::class, 'doa'])->name('doa');
-Route::get('profile/fasilitas', [LandingController::class, 'fasilitas'])->name('fasilitas');
-Route::get('profile/pastor', [LandingController::class, 'pastor'])->name('pastor');
-Route::get('profile/kegiatan', [LandingController::class, 'kegiatan'])->name('kegiatan');
+Route::get('/profile/sejarah', [profileController::class, 'sejarah'])->name('sejarah');
+Route::get('/profile/doa', [profileController::class, 'doa'])->name('doa');
+Route::get('/profile/fasilitas', [profileController::class, 'fasilitas'])->name('fasilitas');
+Route::get('/profile/pastor', [profileController::class, 'pastor'])->name('pastor');
+Route::get('/profile/kegiatan', [profileController::class, 'kegiatan'])->name('kegiatan');
 Route::get('/jadwal', [LandingController::class, 'jadwal'])->name('jadwal');
 Route::get('/jadwal/{slug}', [LandingController::class, 'jadwalDetail']);
 

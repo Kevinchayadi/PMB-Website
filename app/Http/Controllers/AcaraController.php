@@ -10,13 +10,8 @@ class AcaraController extends Controller
 {
     public function acaraIndex()
     {
-<<<<<<< HEAD
-        $acara = Acara::with('transactionDetail')->get();
-        return view('admin.listAcara', ['acara' => $acara]);
-=======
         $acara = Acara::with('dokumentasi')->get(); // Load acara dengan dokumentasi
         return view('admin.acara.index', ['acara'=> $acara]);
->>>>>>> 1f13503c8900c9be664bde1d03277a0c015cb372
     }
 
     // Menampilkan form untuk menambahkan acara baru

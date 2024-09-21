@@ -16,6 +16,26 @@
         color: #0084B5 !important;
     }
 
+    .bg-primary {
+        background-color: #0084B5 !important;
+    }
+
+    .bg-secondary {
+        background-color: #F6AF00 !important;
+    }
+
+    .bg-tertiary {
+        background-color: #FF8C05 !important;
+    }
+
+    .bg-soft-blue {
+        background-color: #ACDEF4 !important;
+    }
+
+    .bg-soft-orange {
+        background-color: #FBE1A1 !important;
+    }
+
     .text-secondary {
         color: #F6AF00 !important;
     }
@@ -29,4 +49,3 @@
         border-color: (#7A7A7A, var(--bs-border-opacity)) !important;
     }
 </style>
-
