@@ -19,6 +19,11 @@ class Acara extends Model
     {
         return $this->hasMany(TransactionDetail::class, 'id_acara');
     }
+
+    public function Dokumentasi(): HasMany
+    {
+        return $this->hasMany(TransactionDetail::class, 'id_acara');
+    }
     
 
     public function sluggable(): array
