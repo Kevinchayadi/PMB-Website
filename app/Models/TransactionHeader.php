@@ -22,14 +22,14 @@ class TransactionHeader extends Model
         return $this->belongsTo(Romo::class, 'id_romo');
     }
 
-    public function seksi(): BelongsToMany
+    public function seksis(): BelongsToMany
     {
         return $this->belongsToMany( Seksi::class,'relation_transaction_seksis','id_transaction', 'id_seksi');
     }
 
-    public function transactionDetail(): BelongsToMany
+    public function transactionDetails(): HasMany
     {
-        return $this->belongsToMany(TransactionDetail::class,  'relation_transaction_umats','id_transaction', 'id_umat');
+        return $this->HasMany(TransactionDetail::class, 'id_transaction', 'id_umat');
     }
 
     public function doa(): BelongsTo{

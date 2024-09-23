@@ -16,7 +16,7 @@ class Seksi extends Model
     protected $primaryKey = 'id_seksi';
     protected $fillable = ['nama_seksi'];
 
-    public function TransactionHeader(): BelongsToMany
+    public function transactionHeaders(): BelongsToMany
     {
         return $this->belongsToMany(TransactionHeader::class,  'relation_transaction_seksis', 'id_transaction', 'id_seksi');
     }

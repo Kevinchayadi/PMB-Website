@@ -30,13 +30,18 @@ return new class extends Migration
         });
 
         Schema::table('relation_transaction_seksis', function (Blueprint $table) {
-            $table->foreign('id_transaction')->references('id_transaction')->on('transaction_headers')->onDelete('restrict');;
-            $table->foreign('id_seksi')->references('id_seksi')->on('seksis')->onDelete('restrict');;
+            $table->foreign('id_transaction')->references('id_transaction')->on('transaction_headers')->onDelete('restrict');
+            $table->foreign('id_seksi')->references('id_seksi')->on('seksis')->onDelete('restrict');
         });
 
         Schema::table('relation_transaction_umats', function (Blueprint $table) {
-            $table->foreign('id_transaction')->references('id')->on('transaction_details')->onDelete('restrict');;
-            $table->foreign('id_umat')->references('id_umat')->on('umats')->onDelete('restrict');;
+            $table->foreign('id_transaction')->references('id')->on('transaction_details')->onDelete('restrict');
+            $table->foreign('id_umat')->references('id_umat')->on('umats')->onDelete('restrict');
+        });
+
+        Schema::table('doas', function (Blueprint $table) {
+            $table->foreign('id_doa')->references('id_doa')->on('transaction_headers')->onDelete('cascade');
+            
         });
 
         Schema::table('documentations', function (Blueprint $table) {

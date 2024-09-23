@@ -21,7 +21,7 @@ class Admin extends Authenticatable
         return $this->hasMany(TransactionDetail::class, 'id_admin');
     }
 
-    public function roles(): BelongsTo{
+    public function role(): BelongsTo{
         return $this->belongsTo(Role::class, 'id_admin');
     }
 

@@ -24,9 +24,9 @@ class TransactionDetail extends Model
         return $this->belongsTo(Acara::class, 'id_acara');
     }
 
-    public function umat(): BelongsToMany
+    public function umats(): BelongsToMany
     {
-        return $this->belongsToMany(Umat::class,  'relation_transaction_umats','id_transaction', 'id_umat');
+        return $this->BelongsToMany(Umat::class,  'relation_transaction_umats','id_transaction', 'id_umat');
     }
 
     public function admin(): BelongsTo

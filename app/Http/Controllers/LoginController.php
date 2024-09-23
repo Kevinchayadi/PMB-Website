@@ -17,7 +17,7 @@ class LoginController extends Controller
     {
         $credentials = $request->validate([
             'username' => ['required', 'string'],
-            'password' => ['required', 'string'],
+            'password' => ['required', 'string', 'min:8'],
         ]);
 
         if (
@@ -31,8 +31,9 @@ class LoginController extends Controller
         ) {
             return redirect()->route('admin.dashboard');
         }
+        
+        return back()-> with('error', 'gagal login, tolong untuk dicek kembali email dan password!');
 
-        return redirect()->route('admin/login');
     }
 
     function umatIndex()
@@ -50,7 +51,7 @@ class LoginController extends Controller
         if (
             Auth::guard(['web'])->attempt(
                 [
-                    'username' => $credentials['username'],
+                    'email' => $credentials['email'],
                     'password' => $credentials['password'],
                 ],
                 $request->filled('remember'),
@@ -58,6 +59,6 @@ class LoginController extends Controller
         ) {
             return redirect()->route('umat.dashboard');
         }
-        return redirect()->route('umat/login');
+        return back()-> with('error', 'gagal login, tolong untuk dicek kembali email dan password!');
     }
 }

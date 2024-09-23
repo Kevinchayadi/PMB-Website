@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -53,11 +54,11 @@ class Umat extends  Authenticatable
 
     public function transactionDetails(): HasMany
     {
-        return $this->hasMany(TransactionDetail::class, 'id_umat');
+        return $this->HasMany(TransactionDetail::class,  'relation_transaction_umats','id_transaction', 'id_umat');
     }
 
     public function requests(): HasMany{
-        return $this->hasMany(Request::class, 'id_umat');
+        return $this->HasMany(Request::class, 'id_umat');
     }
 
     public function sluggable(): array

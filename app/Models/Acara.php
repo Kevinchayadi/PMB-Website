@@ -13,16 +13,16 @@ class Acara extends Model
     use HasFactory, Sluggable, SoftDeletes;
 
     protected $primaryKey = 'id_acara';
-    protected $fillable = ['nama_acara','deskripsi_acara'];
+    protected $fillable = ['nama_acara','deskripsi_acara','tipe_acara'];
 
     public function transactionDetails(): HasMany
     {
         return $this->hasMany(TransactionDetail::class, 'id_acara');
     }
 
-    public function Dokumentasi(): HasMany
+    public function documentations(): HasMany
     {
-        return $this->hasMany(TransactionDetail::class, 'id_acara');
+        return $this->hasMany(Documentation::class, 'id_acara');
     }
     
 
