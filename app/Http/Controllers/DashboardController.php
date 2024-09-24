@@ -19,7 +19,7 @@ class DashboardController extends Controller
             },
         ])->whereHas('transactionDetails.acara',function ($query) {
             // Tambahkan kondisi yang kamu butuhkan untuk relasi acara, misalnya
-            $query->whereIn('tipe_acara', ['public', 'private']);
+            $query->whereIn('tipe_acara', ['public','event', 'private']);
         })->orderBy('jadwal_acara')->get();
 
 

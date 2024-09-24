@@ -13,7 +13,7 @@ class AcaraController extends Controller
 {
     public function acaraIndex()
     {
-        $acara = Acara::with('dokumentasi')->get(); // Load acara dengan dokumentasi
+        $acara = Acara::with('documentations')->get(); 
         return view('admin.acara.index', ['acara'=> $acara]);
     }
 
@@ -29,8 +29,9 @@ class AcaraController extends Controller
         $request->validate([
             'nama_acara' => 'required',
             'deskripsi_acara' => 'required',
+            'tipe_acara' => 'required',
             'dokumentasi' => 'required|array|min:1|max:3',
-            'dokumentasi.*' => 'nullable|image|max:2048' // Validasi dokumentasi sebagai gambar
+            'dokumentasi.*' => 'nullable|image|max:2048' 
         ]);
 
 
@@ -38,6 +39,7 @@ class AcaraController extends Controller
             DB::beginTransaction();
             $acara = Acara::create([
                 'nama_acara' => $request->nama_acara,
+                'tipe_acara' => $request->tipe_acara,
                 'deskripsi_acara' => $request->deskripsi_acara,
             ]);
     
@@ -84,6 +86,7 @@ class AcaraController extends Controller
         $request->validate([
             'nama_acara' => 'required',
             'deskripsi_acara' => 'required',
+            'tipe_acara' => 'required',
             'dokumentasi' => 'required|array|min:1|max:3',
             'dokumentasi.*' => 'nullable|image|max:2048',
         ]);
@@ -93,12 +96,11 @@ class AcaraController extends Controller
 
             $acara->update([
                 'nama_acara' => $request->nama_acara,
+                'tipe_acara' => $request->tipe_acara,
                 'deskripsi_acara' => $request->deskripsi_acara,
             ]);
     
-            // Update atau tambah dokumentasi baru
             if($request->has('dokumentation')) {
-                // Hapus dokumentasi lama jika ada (opsional, jika ingin mengganti dokumentasi)
                 foreach ($acara->dokumentstions as $oldDokumentasi) {
                     Storage::delete('dokumentasi/' . $oldDokumentasi->nama_dokumentasi);
                     $oldDokumentasi->delete();
@@ -137,14 +139,14 @@ class AcaraController extends Controller
     {
         $acara = Acara::with('dokumentations')->where('nama_acara', $slug)->firstOrFail();
         
-        // Menghapus dokumentasi
+       
         foreach ($acara->dokumentations as $dokumentasi) {
             Storage::delete('dokumentasi/' . $dokumentasi->nama_dokumentasi);
             $dokumentasi->delete();
             
         }
 
-        // Menghapus acara
+       
         $acara->delete();
 
         return redirect()->route('admin.acara')->with('success', 'Acara dan dokumentasi berhasil dihapus');

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
+use App\Models\Role;
 use App\Models\Umat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,11 +12,26 @@ use Illuminate\Support\Facades\Hash;
 class RegisterController extends Controller
 {
     function adminIndex(){
-        return view('admin.login');
+        $role = Role::with('admin')->get();
+        return view('admin.login',['role'=>$role]);
     }
 
-    function adminRegister(request $request){
+    function adminRegister(Request $request){
+        $request->validate([
+            'username' => 'requried|string|max:255',
+            'password'=> 'rquested|string|min:8|confirmed',
+            'role'=> 'required'
+        ]);
+        $admin = Admin::create([
+            'username' => $request->username,
+            'password'=> Hash::make($request-> password) ,
+            'role'=> $request->role
+        ]);
 
+        Auth::guard('admin')->login($admin);
+
+        return redirect('admin.dashboard');
+    
     }
 
     function umatIndex(){

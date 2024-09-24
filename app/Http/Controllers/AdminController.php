@@ -25,8 +25,8 @@ class AdminController extends Controller
     {
         $request->validate([
             'username' => 'required|unique:admins',
-            'password' => 'required',
-            'id_role' => 'required'
+            'password'=> 'required|string|min:8|confirmed',
+            'role'=> 'required'
         ]);
 
         try {
@@ -35,7 +35,7 @@ class AdminController extends Controller
                 'password' => Hash::make($request->password),
                 'id_role' => $request->id_role
             ]);
-            //code...
+            
         } catch (\Throwable $th) {
             return redirect()->route('admin.admin-list')->with('error', 'Admin Gagal Ditambahkan');
         }
@@ -57,9 +57,9 @@ class AdminController extends Controller
         $admin = Admin::where('username', $slug)->firstOrFail();
 
         $request->validate([
-            'username' => 'required|unique:admins,username,' . $admin->id,
-            'password' => 'nullable',
-            'id_role' => 'required'
+            'username' => 'required|unique:admins',
+            'password'=> 'required|string|min:8',
+            'role'=> 'required'
         ]);
         try {
             $admin->slug = null;
