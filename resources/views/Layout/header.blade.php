@@ -56,7 +56,7 @@
             {{-- Hubungi kami --}}
             <li class="nav-item">
                 <a class="nav-link {{ Route::is('hubungi') ? 'text-secondary' : 'text-primary' }}"
-                    href="#">Hubungi Kami</a>
+                    href="/hubungi">Hubungi Kami</a>
             </li>
         </ul>
     </div>

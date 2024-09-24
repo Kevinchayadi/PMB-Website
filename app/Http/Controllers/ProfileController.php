@@ -23,7 +23,7 @@ class profileController extends Controller
     {
         $doa = Doa::with('transaction_headers')->get();
 
-        return view('ViewPage.Doa'.['doa' => $doa]);
+        return view('ViewPage.doa'.['doa' => $doa]);
     }
 
     public function Fasilitas()

@@ -1,20 +1,20 @@
 <link rel="stylesheet" href="{{ asset('csss/profile.css') }}">
 @extends('Layout.template')
-@section('title', 'Profile')
+@section('title', 'Fasilitas')
 @section('content')
     @include('Layout.card')
     <div class="container-fluid">
         <div class="content row mb-2">
 
             {{-- Gambar --}}
-            <div class="col-lg-4 col-6">
+            <div class="col-lg-4 col-12">
                 <div class="bg-primary p-2 rounded">
-                    <img class="img-fluid rounded" src="{{ asset('picture/Gereja.png') }}" alt="">
+                    <img class="img-fluid rounded" src="{{ asset('picture/Gereja.jpg') }}" alt="">
                 </div>
             </div>
 
             {{-- Tulisan --}}
-            <div class="col-lg-8 col-6">
+            <div class="col-lg-8 col-12">
                 {{-- Judul --}}
                 <div class="head fs-4 mb-2">Gedung Karya Pastoral</div>
 

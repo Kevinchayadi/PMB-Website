@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="{{ asset('csss/profile.css') }}">
 @extends('Layout.template')
-@section('title', 'Profile')
+@section('title', 'Doa')
 @section('content')
     @include('Layout.card')
 
