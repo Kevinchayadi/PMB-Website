@@ -8,6 +8,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\profileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\hubungiController;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -32,7 +33,7 @@ Route::get('/profile/pastor', [profileController::class, 'pastor'])->name('pasto
 Route::get('/profile/kegiatan', [profileController::class, 'kegiatan'])->name('kegiatan');
 Route::get('/jadwal', [LandingController::class, 'jadwal'])->name('jadwal');
 Route::get('/jadwal/{slug}', [LandingController::class, 'jadwalDetail']);
-Route::get('/hubungi', [hubungiController::class, 'hubungi']);
+Route::get('/hubungi', [hubungiController::class, 'hubungi'])->name('hubungi');
 
 Route::middleware('guest:web')->group(function () {
     Route::get('/login', [LoginController::class, 'umatIndex'])->name('umat.login');

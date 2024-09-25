@@ -4,10 +4,11 @@
         <div class="">
             <div class="fs-5">Informasi</div>
             <div class="fs-6">
-                <a class="nav-link text-primary mb-1" href="#">Profil</a>
-                <a class="nav-link text-primary mb-1" href="#">Jadwal</a>
-                <a class="nav-link text-primary mb-1" href="#">Layanan</a>
-                <a class="nav-link text-primary" href="#">Hubungi Kami</a>
+                <a class="nav-link text-primary mb-1" href="/home">Home</a>
+                <a class="nav-link text-primary mb-1" href="/profile">Profil</a>
+                <a class="nav-link text-primary mb-1" href="/jadwal">Jadwal</a>
+                <a class="nav-link text-primary mb-1" href="/layanan">Layanan</a>
+                <a class="nav-link text-primary" href="/hubungi">Hubungi Kami</a>
             </div>
         </div>
     </div>
