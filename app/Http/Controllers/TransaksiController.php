@@ -9,7 +9,7 @@ class TransaksiController extends Controller
 {
     public function index(){
 
-        //get acara
+        
         $jadwal_acara = TransactionHeader::with([
             'romo',         
             'seksi',        
@@ -33,7 +33,7 @@ class TransaksiController extends Controller
         })->orderBy('jadwal_acara')->get();
 
 
-        //get kegitan(yang akan dilakukan)
+        
         $jadwal_kegiatan = TransactionHeader::with([
             'romo',         
             'seksi',        

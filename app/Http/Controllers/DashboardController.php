@@ -9,7 +9,7 @@ class DashboardController extends Controller
 {
     public function index(){
 
-        //get acara
+        
         $jadwal_acara = TransactionHeader::with([
             'romo',         
             'seksi',        
@@ -18,12 +18,12 @@ class DashboardController extends Controller
                 $query->with('umats', 'acara', 'admin'); 
             },
         ])->whereHas('transactionDetails.acara',function ($query) {
-            // Tambahkan kondisi yang kamu butuhkan untuk relasi acara, misalnya
+            
             $query->whereIn('tipe_acara', ['public','event', 'private']);
         })->orderBy('jadwal_acara')->get();
 
 
-        //get kegitan(yang akan dilakukan)
+        
         $jadwal_kegiatan = TransactionHeader::with([
             'romo',         
             'seksi',        
@@ -32,7 +32,7 @@ class DashboardController extends Controller
                 $query->with('umats', 'acara', 'admin'); 
             },
         ])->whereHas('transactionDetails.acara',function ($query) {
-            // Tambahkan kondisi yang kamu butuhkan untuk relasi acara, misalnya
+            
             $query->where('tipe_acara', 'kegiatan');
         })->orderBy('jadwal_acara')->get();
 

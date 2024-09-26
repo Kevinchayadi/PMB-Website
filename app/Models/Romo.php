@@ -11,15 +11,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Romo extends Authenticatable
+class Romo extends Model
 {
     use HasApiTokens, HasFactory, Notifiable, Sluggable, SoftDeletes;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+
     protected $fillable = [
         'nama_romo',
         'ttl_romo', 

@@ -17,13 +17,13 @@ class AcaraController extends Controller
         return view('admin.acara.index', ['acara'=> $acara]);
     }
 
-    // Menampilkan form untuk menambahkan acara baru
+    
     public function addAcara()
     {
         return view('admin.acara.add');
     }
 
-    // Menyimpan acara baru dan dokumentasi
+    
     public function storeAcara(Request $request)
     {
         $request->validate([
@@ -71,14 +71,14 @@ class AcaraController extends Controller
         return redirect()->route('admin.acara')->with('success', 'Acara dan dokumentasi berhasil ditambahkan');
     }
 
-    // Menampilkan form edit untuk acara dan dokumentasi
+    
     public function updateAcara($slug)
     {
         $acara = Acara::with('dokumentasi')->where('nama_acara', $slug)->firstOrFail();
         return view('admin.acara.edit', compact('acara'));
     }
 
-    // Memperbarui acara dan dokumentasi
+    
     public function updatedAcara(Request $request, $slug)
     {
         $acara = Acara::with('documentations')->where('nama_acara', $slug)->firstOrFail();
@@ -134,7 +134,7 @@ class AcaraController extends Controller
         return redirect()->route('admin.acara')->with('success', 'Acara dan dokumentasi berhasil diperbarui');
     }
 
-    // Menghapus acara dan dokumentasi terkait
+    
     public function deleteAcara($slug)
     {
         $acara = Acara::with('dokumentations')->where('nama_acara', $slug)->firstOrFail();
