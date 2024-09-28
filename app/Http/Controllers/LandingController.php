@@ -29,13 +29,21 @@ class LandingController extends Controller
         ])->where('id_transaksi', $id)
         ->first(); 
         
-        return view('landing.jadwalDetail',['transactions' => $transaction]);
+        return view('viewPage.jadwalDetail',['transactions' => $transaction]);
+    }
+
+    public function artikel(){
+        return view('viewPage.artikel');
+    }
+
+    public function artikeldetail($id){
+        return view('viewpage.artikeldetail');
     }
 
     public function layanan()
     {
         $layanan = Acara::with("transactionDetails")->get();
-        return view('landing.layanan',['layanan' => $layanan]);
+        return view('viewPage.layanan',['layanan' => $layanan]);
     }
 
     public function formPendaftaran()

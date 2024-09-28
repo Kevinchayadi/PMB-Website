@@ -44,13 +44,13 @@
             {{-- Jadwal --}}
             <li class="nav-item">
                 <a class="nav-link {{ Route::is('jadwal') ? 'text-secondary' : 'text-primary' }} me-2"
-                    href="#">Jadwal</a>
+                    href="/jadwal">Jadwal</a>
             </li>
 
             {{-- Layanan --}}
             <li class="nav-item">
                 <a class="nav-link {{ Route::is('layanan') ? 'text-secondary' : 'text-primary' }} me-2"
-                    href="#">Layanan</a>
+                    href="/layanan">Layanan</a>
             </li>
 
             {{-- Hubungi kami --}}

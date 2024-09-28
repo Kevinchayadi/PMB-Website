@@ -75,7 +75,7 @@
             <div class="px-4">
                 <div class="head-section d-flex justify-content-between">
                     <div class="align-self-center fs-5 fw-bolder">Jadwal Misa</div>
-                    <a class="nav-link align-self-center text-primary fs-6" href="#">Lihat semua jadwal</a>
+                    <a class="nav-link align-self-center text-primary fs-6" href="/jadwal">Lihat semua jadwal</a>
                 </div>
                 <hr>
             </div>
@@ -120,7 +120,7 @@
             <div class="px-4">
                 <div class="head-section d-flex justify-content-between">
                     <div class="align-self-center fs-5 fw-bolder">Artikel</div>
-                    <a class="nav-link align-self-center text-primary fs-6" href="#">Lihat semua artikel</a>
+                    <a class="nav-link align-self-center text-primary fs-6" href="/artikel">Lihat semua artikel</a>
                 </div>
                 <hr>
             </div>
