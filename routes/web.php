@@ -9,6 +9,7 @@ use App\Http\Controllers\profileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\hubungiController;
+use App\Http\Controllers\layananController;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -35,7 +36,7 @@ Route::get('/jadwal', [LandingController::class, 'jadwal'])->name('jadwal');
 Route::get('/jadwal/{slug}', [LandingController::class, 'jadwalDetail'])->name('jadwal');
 Route::get('/artikel', [LandingController::class, 'artikel'])->name('artikel');
 Route::get('/artikel/{slug}', [LandingController::class, 'artikeldetail'])->name('artikel');
-
+Route::get('/layanan', [layananController::class, 'layanan'])->name('layanan');
 Route::get('/hubungi', [hubungiController::class, 'hubungi'])->name('hubungi');
 
 Route::middleware('guest:web')->group(function () {
