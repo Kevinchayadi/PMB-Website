@@ -36,6 +36,6 @@ class DashboardController extends Controller
             $query->where('tipe_acara', 'kegiatan');
         })->orderBy('jadwal_acara')->get();
 
-        return view("admin.dasboard",['jadwal_acara'=>$jadwal_acara ,'jadwal_kegiatan'=> $jadwal_kegiatan]);
+        return view("dasboard.dashboard",['jadwal_acara'=>$jadwal_acara ,'jadwal_kegiatan'=> $jadwal_kegiatan]);
     }
 }

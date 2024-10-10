@@ -14,13 +14,13 @@ class AcaraController extends Controller
     public function acaraIndex()
     {
         $acara = Acara::with('documentations')->get(); 
-        return view('admin.acara.index', ['acara'=> $acara]);
+        return view('dashboard.acara.index', ['acara'=> $acara]);
     }
 
     
     public function addAcara()
     {
-        return view('admin.acara.add');
+        return view('dashboard.acara.add');
     }
 
     
@@ -75,7 +75,7 @@ class AcaraController extends Controller
     public function updateAcara($slug)
     {
         $acara = Acara::with('dokumentasi')->where('nama_acara', $slug)->firstOrFail();
-        return view('admin.acara.edit', compact('acara'));
+        return view('dashboard.acara.edit', compact('acara'));
     }
 
     
@@ -149,6 +149,6 @@ class AcaraController extends Controller
        
         $acara->delete();
 
-        return redirect()->route('admin.acara')->with('success', 'Acara dan dokumentasi berhasil dihapus');
+        return redirect()->route('dashboard.acara')->with('success', 'Acara dan dokumentasi berhasil dihapus');
     }
 }

@@ -123,6 +123,15 @@ class RequestController extends Controller
 
     public function listRequest(){
         $requestList = ModelsRequest::with('umats')->get();
-        return view('admin.listRequest',["requestList"=>$requestList]);
+        return view('dashboard.request.listRequest',["requestList"=>$requestList]);
     }
+
+    public function RejectRequest($slug){
+        $requestList = ModelsRequest::with('umats')->where('slug' , $slug)->firstOrFail();
+        $requestList->delete();
+        
+        return back()->with('Rejected Success', 'Pengajuan berhasil dibatalkan!!');
+    }
+
+
 }
