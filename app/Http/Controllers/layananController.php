@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 
 class layananController extends Controller
 {
-    public function layanan(){
+    public function layanan()
+    {
         return view('viewPage.layanan');
     }
 }

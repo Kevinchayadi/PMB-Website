@@ -52,7 +52,7 @@ Route::prefix('admin')
     });
 
 Route::prefix('admin')
-    ->middleware('Auth:admin')
+    ->middleware('auth:admin')
     ->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
         Route::get('/register', [RegisterController::class, 'adminIndex'])->name('admin.register');
@@ -113,4 +113,4 @@ Route::prefix('admin')
     
     });
 
-Route::middleware('Auth:web')->group(function () {});
+Route::middleware('auth:web')->group(function () {});

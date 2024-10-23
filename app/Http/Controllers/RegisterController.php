@@ -11,30 +11,32 @@ use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
-    function adminIndex(){
+    function adminIndex()
+    {
         $role = Role::with('admin')->get();
-        return view('admin.login',['role'=>$role]);
+        return view('admin.login', ['role' => $role]);
     }
 
-    function adminRegister(Request $request){
+    function adminRegister(Request $request)
+    {
         $request->validate([
             'username' => 'requried|string|max:255',
-            'password'=> 'rquested|string|min:8|confirmed',
-            'role'=> 'required'
+            'password' => 'rquested|string|min:8|confirmed',
+            'role' => 'required',
         ]);
         $admin = Admin::create([
             'username' => $request->username,
-            'password'=> Hash::make($request-> password) ,
-            'role'=> $request->role
+            'password' => Hash::make($request->password),
+            'role' => $request->role,
         ]);
 
         Auth::guard('admin')->login($admin);
 
         return redirect('admin.dashboard');
-    
     }
 
-    function umatIndex(){
+    function umatIndex()
+    {
         return view('auth.umatRegister');
     }
 
@@ -45,10 +47,10 @@ class RegisterController extends Controller
         $request->validate([
             'nama_umat' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed', 
+            'password' => 'required|string|min:8|confirmed',
             'wilayah' => 'required|string|max:255',
             'lingkungan' => 'required|string|max:255',
-            'nomohp_umat' => 'required|string|max:15', 
+            'nomohp_umat' => 'required|string|max:15',
             'alamat' => 'required|string|max:255',
             'status' => 'required|string',
             'pekerjaan' => 'required|string|max:255',

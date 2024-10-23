@@ -14,43 +14,37 @@ class AdminController extends Controller
         return view('admin.index', ['admins' => $admins]);
     }
 
-
     public function addAdmin()
     {
         return view('admin.add');
     }
 
-
     public function storeAdmin(Request $request)
     {
         $request->validate([
             'username' => 'required|unique:admins',
-            'password'=> 'required|string|min:8|confirmed',
-            'role'=> 'required'
+            'password' => 'required|string|min:8|confirmed',
+            'role' => 'required',
         ]);
 
         try {
             Admin::create([
                 'username' => $request->username,
                 'password' => Hash::make($request->password),
-                'id_role' => $request->id_role
+                'id_role' => $request->id_role,
             ]);
-            
         } catch (\Throwable $th) {
             return redirect()->route('admin.admin-list')->with('error', 'Admin Gagal Ditambahkan');
         }
 
-
         return redirect()->route('admin.admin-list')->with('success', 'Admin Berhasil ditambahkan');
     }
-
 
     public function detailAdmin($slug)
     {
         $admin = Admin::with('roles')->where('username', $slug)->firstOrFail();
-        return view('admin.detail', ['admin'=> $admin]);
+        return view('admin.detail', ['admin' => $admin]);
     }
-
 
     public function updateAdmin(Request $request, $slug)
     {
@@ -58,8 +52,8 @@ class AdminController extends Controller
 
         $request->validate([
             'username' => 'required|unique:admins',
-            'password'=> 'required|string|min:8',
-            'role'=> 'required'
+            'password' => 'required|string|min:8',
+            'role' => 'required',
         ]);
         try {
             $admin->slug = null;
@@ -76,7 +70,6 @@ class AdminController extends Controller
         return redirect()->route('admin.admin-list')->with('success', 'Admin berhasil diUpdate!!');
     }
 
-    
     public function removeAdmin($slug)
     {
         $admin = Admin::where('username', $slug)->firstOrFail();
@@ -85,14 +78,12 @@ class AdminController extends Controller
         return redirect()->route('admin.admin-list')->with('success', 'Admin removed successfully');
     }
 
-   
     public function adminRemoved()
     {
         $admins = Admin::with('roles')->onlyTrashed()->get();
         return view('admin.removed', ['admins' => $admins]);
     }
 
-    
     public function restore($slug)
     {
         $admin = Admin::onlyTrashed()->where('username', $slug)->firstOrFail();

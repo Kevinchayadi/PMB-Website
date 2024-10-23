@@ -10,18 +10,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Doa extends Model
 {
-    use HasFactory, Sluggable ,SoftDeletes;
+    use HasFactory, Sluggable, SoftDeletes;
 
-    protected $fillable = [
-        'nama_doa',
-        'deskripsi_doa',
-        'ayat_renungan',
-        'deskripsi_renungan',
-        'ayat_tambahan'
-    ];
+    protected $fillable = ['nama_doa', 'deskripsi_doa', 'ayat_renungan', 'deskripsi_renungan', 'ayat_tambahan'];
 
-
-    public function transactionHeaders(): HasMany{
+    public function transactionHeaders(): HasMany
+    {
         return $this->hasMany(TransactionHeader::class, 'id_admin');
     }
 
@@ -29,8 +23,8 @@ class Doa extends Model
     {
         return [
             'slug' => [
-                'source' => 'nama_admin'
-            ]
+                'source' => 'nama_admin',
+            ],
         ];
     }
 }

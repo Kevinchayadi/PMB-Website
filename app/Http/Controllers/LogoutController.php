@@ -8,15 +8,15 @@ use PhpParser\Node\Stmt\TryCatch;
 
 class LogoutController extends Controller
 {
-    function adminLogout(request $request){
-        
+    function adminLogout(Request $request)
+    {
         Auth::guard('admin')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('admin.login');
-        
     }
-    function userLogout(request $request){
+    function userLogout(Request $request)
+    {
         Auth::guard('web')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();

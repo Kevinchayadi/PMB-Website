@@ -16,7 +16,7 @@ class TransactionDetail extends Model
 
     public function transactionHeader(): BelongsTo
     {
-        return $this->belongsTo(TransactionHeader::class,  'id_seksi');
+        return $this->belongsTo(TransactionHeader::class, 'id_seksi');
     }
 
     public function acara(): BelongsTo
@@ -26,7 +26,7 @@ class TransactionDetail extends Model
 
     public function umats(): BelongsToMany
     {
-        return $this->BelongsToMany(Umat::class,  'relation_transaction_umats','id_transaction', 'id_umat');
+        return $this->BelongsToMany(Umat::class, 'relation_transaction_umats', 'id_transaction', 'id_umat');
     }
 
     public function admin(): BelongsTo

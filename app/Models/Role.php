@@ -10,12 +10,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Role extends Model
 {
-    use HasFactory, Sluggable ,SoftDeletes;
+    use HasFactory, Sluggable, SoftDeletes;
 
     protected $fillable = ['nama_role'];
 
-
-    public function admins(): HasMany{
+    public function admins(): HasMany
+    {
         return $this->hasMany(Role::class, 'id_admin');
     }
 
@@ -23,8 +23,8 @@ class Role extends Model
     {
         return [
             'slug' => [
-                'source' => 'nama_admin'
-            ]
+                'source' => 'nama_admin',
+            ],
         ];
     }
 }

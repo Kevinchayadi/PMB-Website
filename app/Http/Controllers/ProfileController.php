@@ -13,7 +13,7 @@ class profileController extends Controller
     {
         return view('ViewPage.profile');
     }
-    
+
     public function sejarah()
     {
         return view('ViewPage.sejarah');
@@ -23,7 +23,7 @@ class profileController extends Controller
     {
         $doa = Doa::with('transaction_headers')->get();
 
-        return view('ViewPage.doa'.['doa' => $doa]);
+        return view('ViewPage.doa' . ['doa' => $doa]);
     }
 
     public function Fasilitas()
@@ -34,12 +34,12 @@ class profileController extends Controller
     public function pastor()
     {
         $romo = Romo::with('transaction_headers')->get();
-        return view('ViewPage.pastor',['romo'=> $romo]);
+        return view('ViewPage.pastor', ['romo' => $romo]);
     }
 
     public function Kegiatan()
     {
-        $kegiatan = Acara::with('dokumentations')->where('tipe_acara','kegiatan')->get();
-        return view('ViewPage.kegiatan',['kegiatan' => $kegiatan]);
+        $kegiatan = Acara::with('dokumentations')->where('tipe_acara', 'kegiatan')->get();
+        return view('ViewPage.kegiatan', ['kegiatan' => $kegiatan]);
     }
 }

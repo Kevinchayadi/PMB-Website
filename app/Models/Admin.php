@@ -11,17 +11,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Admin extends Authenticatable
 {
-    use HasFactory, Sluggable,SoftDeletes;
+    use HasFactory, Sluggable, SoftDeletes;
 
     protected $primaryKey = 'id_admin';
-    protected $fillable = ['username', 'password','id_role'];
+    protected $fillable = ['username', 'password', 'id_role'];
 
     public function transactionDetails(): HasMany
     {
         return $this->hasMany(TransactionDetail::class, 'id_admin');
     }
 
-    public function role(): BelongsTo{
+    public function roles(): BelongsTo
+    {
         return $this->belongsTo(Role::class, 'id_admin');
     }
 
@@ -29,8 +30,8 @@ class Admin extends Authenticatable
     {
         return [
             'slug' => [
-                'source' => 'nama_admin'
-            ]
+                'source' => 'nama_admin',
+            ],
         ];
     }
 }

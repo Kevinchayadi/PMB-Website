@@ -13,7 +13,7 @@ class Acara extends Model
     use HasFactory, Sluggable, SoftDeletes;
 
     protected $primaryKey = 'id_acara';
-    protected $fillable = ['nama_acara','deskripsi_acara','tipe_acara'];
+    protected $fillable = ['nama_acara', 'deskripsi_acara', 'tipe_acara'];
 
     public function transactionDetails(): HasMany
     {
@@ -24,14 +24,13 @@ class Acara extends Model
     {
         return $this->hasMany(Documentation::class, 'id_acara');
     }
-    
 
     public function sluggable(): array
     {
         return [
             'slug' => [
-                'source' => 'nama_acara'
-            ]
+                'source' => 'nama_acara',
+            ],
         ];
     }
 }

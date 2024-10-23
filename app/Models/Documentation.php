@@ -11,17 +11,12 @@ class Documentation extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = "documentations";
+    protected $table = 'documentations';
 
+    protected $fillable = ['nama_dokumentasi', 'id_acara'];
 
-    protected $fillable = [
-        'nama_dokumentasi',
-        'id_acara'
-    ];
-
-
-    public function acara(): BelongsTo{
+    public function acara(): BelongsTo
+    {
         return $this->belongsTo(Acara::class, 'id_acara');
     }
-
 }

@@ -13,7 +13,7 @@ class LoginController extends Controller
         return view('admin.login');
     }
 
-    function adminLogin(request $request)
+    function adminLogin(Request $request)
     {
         $credentials = $request->validate([
             'username' => ['required', 'string'],
@@ -21,7 +21,7 @@ class LoginController extends Controller
         ]);
 
         if (
-            Auth::guard(['admin'])->attempt(
+            Auth::guard('admin')->attempt(
                 [
                     'username' => $credentials['username'],
                     'password' => $credentials['password'],
@@ -31,9 +31,8 @@ class LoginController extends Controller
         ) {
             return redirect()->route('admin.dashboard');
         }
-        
-        return back()-> with('error', 'gagal login, tolong untuk dicek kembali email dan password!');
 
+        return back()->with('error', 'gagal login, tolong untuk dicek kembali email dan password!');
     }
 
     function umatIndex()
@@ -41,15 +40,15 @@ class LoginController extends Controller
         return view('umat.login');
     }
 
-    function umatLogin($request)
+    function umatLogin(Request $request)
     {
         $credentials = $request->validate([
-            'email' => ['required', 'string', 'email'], 
-            'password' => ['required', 'string', 'min:8'], 
+            'email' => ['required', 'string', 'email'],
+            'password' => ['required', 'string', 'min:8'],
         ]);
 
         if (
-            Auth::guard(['web'])->attempt(
+            Auth::guard('web')->attempt(
                 [
                     'email' => $credentials['email'],
                     'password' => $credentials['password'],
@@ -59,6 +58,6 @@ class LoginController extends Controller
         ) {
             return redirect()->route('umat.dashboard');
         }
-        return back()-> with('error', 'gagal login, tolong untuk dicek kembali email dan password!');
+        return back()->with('error', 'gagal login, tolong untuk dicek kembali email dan password!');
     }
 }

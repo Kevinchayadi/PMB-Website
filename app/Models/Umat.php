@@ -12,26 +12,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Umat extends  Authenticatable
+class Umat extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, Sluggable ,SoftDeletes;
+    use HasApiTokens, HasFactory, Notifiable, Sluggable, SoftDeletes;
 
-    protected $fillable = [
-        'nama_umat',
-        'email_umat',
-        'password', 
-        'wilayah', 
-        'lingkungan', 
-        'nomohp_umat', 
-        'alamat', 
-        'status', 
-        'pekerjaan'
-    ];
+    protected $fillable = ['nama_umat', 'email_umat', 'password', 'wilayah', 'lingkungan', 'nomohp_umat', 'alamat', 'status', 'pekerjaan'];
 
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $hidden = ['password', 'remember_token'];
 
     protected $casts = [
         'email_verified_at' => 'datetime',
@@ -39,10 +26,11 @@ class Umat extends  Authenticatable
 
     public function transactionDetails(): HasMany
     {
-        return $this->HasMany(TransactionDetail::class,  'relation_transaction_umats','id_transaction', 'id_umat');
+        return $this->HasMany(TransactionDetail::class, 'relation_transaction_umats', 'id_transaction', 'id_umat');
     }
 
-    public function requests(): HasMany{
+    public function requests(): HasMany
+    {
         return $this->HasMany(Request::class, 'id_umat');
     }
 
@@ -50,8 +38,8 @@ class Umat extends  Authenticatable
     {
         return [
             'slug' => [
-                'source' => 'nama_umat'
-            ]
+                'source' => 'nama_umat',
+            ],
         ];
     }
 }

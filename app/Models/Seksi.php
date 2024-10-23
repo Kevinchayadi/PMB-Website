@@ -18,15 +18,15 @@ class Seksi extends Model
 
     public function transactionHeaders(): BelongsToMany
     {
-        return $this->belongsToMany(TransactionHeader::class,  'relation_transaction_seksis', 'id_transaction', 'id_seksi');
+        return $this->belongsToMany(TransactionHeader::class, 'relation_transaction_seksis', 'id_transaction', 'id_seksi');
     }
 
     public function sluggable(): array
     {
         return [
             'slug' => [
-                'source' => 'nama_seksi'
-            ]
+                'source' => 'nama_seksi',
+            ],
         ];
     }
 }

@@ -11,28 +11,19 @@ class Request extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = [
-        'namaAcara',
-        'id_umat',
-        'umat_terlibat_satu',
-        'umat_terlibat_dua',
-        'nama_romo',
-        'jadwal_acara',
-        'deskripsi_pengajuan',
-        'status'
-    ];
+    protected $fillable = ['namaAcara', 'id_umat', 'umat_terlibat_satu', 'umat_terlibat_dua', 'nama_romo', 'jadwal_acara', 'deskripsi_pengajuan', 'status'];
 
-    public function umat():BelongsTo{
+    public function umat(): BelongsTo
+    {
         return $this->belongsTo(Umat::class, 'id_umat');
     }
-
 
     public function sluggable(): array
     {
         return [
             'slug' => [
-                'source' => 'nama_seksi'
-            ]
+                'source' => 'nama_seksi',
+            ],
         ];
     }
 }

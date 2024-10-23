@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Log;
@@ -13,17 +12,16 @@ class AcaraController extends Controller
 {
     public function acaraIndex()
     {
-        $acara = Acara::with('documentations')->get(); 
-        return view('dashboard.acara.index', ['acara'=> $acara]);
+        // Ambil semua acara beserta dokumentasinya
+        $acara = Acara::with('documentations')->get();
+        return view('dashboard.acara.index', ['acara' => $acara]);
     }
 
-    
     public function addAcara()
     {
         return view('dashboard.acara.add');
     }
 
-    
     public function storeAcara(Request $request)
     {
         $request->validate([
@@ -31,124 +29,124 @@ class AcaraController extends Controller
             'deskripsi_acara' => 'required',
             'tipe_acara' => 'required',
             'dokumentasi' => 'required|array|min:1|max:3',
-            'dokumentasi.*' => 'nullable|image|max:2048' 
+            'dokumentasi.*' => 'nullable|image|max:2048',
         ]);
-
 
         try {
             DB::beginTransaction();
+
+            // Simpan acara
             $acara = Acara::create([
                 'nama_acara' => $request->nama_acara,
                 'tipe_acara' => $request->tipe_acara,
                 'deskripsi_acara' => $request->deskripsi_acara,
             ]);
-    
-            if($request->hasFile('dokumentation')){
+
+            // Simpan dokumentasi
+            if ($request->hasFile('dokumentasi')) {
                 $curr = 1;
-                foreach($request->file('dokumentation') as $file){
+                foreach ($request->file('dokumentasi') as $file) {
                     $extension = $file->getClientOriginalExtension();
                     $namefile = $request->nama_acara . '_' . $curr . '.' . $extension;
                     $file->storeAs('dokumentasi', $namefile);
                     $curr++;
-    
-                   $acara->documentations()->create(
-                    ['nama_dokumentasi' => $namefile]
-                      
-                   );
+
+                    $acara->documentations()->create(['nama_dokumentasi' => $namefile]);
                 }
             }
 
             DB::commit();
-
-            
         } catch (\Throwable $th) {
             DB::rollBack();
-
             Log::error('Gagal menyimpan acara: ' . $th->getMessage());
-            return back()->with('error', 'ADD Acara Failed!');
+            return back()->with('error', 'Gagal menambahkan acara!');
         }
 
         return redirect()->route('admin.acara')->with('success', 'Acara dan dokumentasi berhasil ditambahkan');
     }
 
-    
     public function updateAcara($slug)
     {
-        $acara = Acara::with('dokumentasi')->where('nama_acara', $slug)->firstOrFail();
+        // Ambil acara berdasarkan slug beserta dokumentasinya
+        $acara = Acara::with('documentations')->where('slug', $slug)->firstOrFail();
         return view('dashboard.acara.edit', compact('acara'));
     }
 
-    
     public function updatedAcara(Request $request, $slug)
     {
-        $acara = Acara::with('documentations')->where('nama_acara', $slug)->firstOrFail();
+        $acara = Acara::with('documentations')->where('slug', $slug)->firstOrFail();
 
         $request->validate([
             'nama_acara' => 'required',
             'deskripsi_acara' => 'required',
             'tipe_acara' => 'required',
-            'dokumentasi' => 'required|array|min:1|max:3',
+            'dokumentasi' => 'nullable|array|min:1|max:3',
             'dokumentasi.*' => 'nullable|image|max:2048',
         ]);
-        
+
         try {
             DB::beginTransaction();
 
+            // Update acara
             $acara->update([
                 'nama_acara' => $request->nama_acara,
                 'tipe_acara' => $request->tipe_acara,
                 'deskripsi_acara' => $request->deskripsi_acara,
             ]);
-    
-            if($request->has('dokumentation')) {
-                foreach ($acara->dokumentstions as $oldDokumentasi) {
+
+            // Update dokumentasi jika ada file baru
+            if ($request->hasFile('dokumentasi')) {
+                // Hapus dokumentasi lama
+                foreach ($acara->documentations as $oldDokumentasi) {
                     Storage::delete('dokumentasi/' . $oldDokumentasi->nama_dokumentasi);
                     $oldDokumentasi->delete();
                 }
-                
+
+                // Simpan dokumentasi baru
                 $curr = 1;
-                foreach($request->file('dokumentation') as $file){
-                    $extension = $file->getClientOriginalExtention();
+                foreach ($request->file('dokumentasi') as $file) {
+                    $extension = $file->getClientOriginalExtension();
                     $namefile = $request->nama_acara . '_' . $curr . '.' . $extension;
                     $file->storeAs('dokumentasi', $namefile);
                     $curr++;
-    
-                    $acara->documentations()->create(
-                        ['nama_dokumentasi' => $namefile]
-                    );
-                }
 
+                    $acara->documentations()->create(['nama_dokumentasi' => $namefile]);
+                }
             }
 
             DB::commit();
-
         } catch (\Throwable $th) {
             DB::rollBack();
-
-            Log::error('Gagal melakukan update acara: '. $th->getMessage());
-            return back()->with('error', 'gagal melakukan update!');
-
-
+            Log::error('Gagal melakukan update acara: ' . $th->getMessage());
+            return back()->with('error', 'Gagal melakukan update acara!');
         }
 
         return redirect()->route('admin.acara')->with('success', 'Acara dan dokumentasi berhasil diperbarui');
     }
 
-    
     public function deleteAcara($slug)
     {
-        $acara = Acara::with('dokumentations')->where('nama_acara', $slug)->firstOrFail();
-        
-       
-        foreach ($acara->dokumentations as $dokumentasi) {
-            Storage::delete('dokumentasi/' . $dokumentasi->nama_dokumentasi);
-            $dokumentasi->delete();
-            
+        $acara = Acara::with('documentations')->where('slug', $slug)->firstOrFail();
+
+        try {
+            DB::beginTransaction();
+
+            // Hapus dokumentasi
+            foreach ($acara->documentations as $dokumentasi) {
+                Storage::delete('dokumentasi/' . $dokumentasi->nama_dokumentasi);
+                $dokumentasi->delete();
+            }
+
+            // Hapus acara
+            $acara->delete();
+
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            Log::error('Gagal menghapus acara: ' . $th->getMessage());
+            return back()->with('error', 'Gagal menghapus acara!');
         }
 
-       
-        $acara->delete();
-
-        return redirect()->route('dashboard.acara')->with('success', 'Acara dan dokumentasi berhasil dihapus');
+        return redirect()->route('admin.acara')->with('success', 'Acara dan dokumentasi berhasil dihapus');
     }
 }

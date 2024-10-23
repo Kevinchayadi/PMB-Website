@@ -15,13 +15,8 @@ class Romo extends Model
 {
     use HasApiTokens, HasFactory, Notifiable, Sluggable, SoftDeletes;
 
+    protected $fillable = ['nama_romo', 'ttl_romo', 'nomorhp_romo'];
 
-    protected $fillable = [
-        'nama_romo',
-        'ttl_romo', 
-        'nomorhp_romo',
-    ];
-    
     public function transactionHeaders(): HasMany
     {
         return $this->hasMany(TransactionHeader::class, 'id_romo');
@@ -31,8 +26,8 @@ class Romo extends Model
     {
         return [
             'slug' => [
-                'source' => 'nama_romo'
-            ]
+                'source' => 'nama_romo',
+            ],
         ];
     }
 }
