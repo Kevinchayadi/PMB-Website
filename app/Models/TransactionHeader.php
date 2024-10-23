@@ -29,7 +29,7 @@ class TransactionHeader extends Model
 
     public function transactionDetails(): HasMany
     {
-        return $this->HasMany(TransactionDetail::class, 'id_transaction', 'id_umat');
+        return $this->HasMany(TransactionDetail::class, 'id_transaction');//, 'id_umat');
     }
 
     public function doa(): BelongsTo

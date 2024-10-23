@@ -16,13 +16,13 @@ class DashboardController extends Controller
             'transactionDetails' => function ($query) {
                 $query->with('umats', 'acara', 'admin');
             },
-        ])
-            ->whereHas('transactionDetails.acara', function ($query) {
-                $query->whereIn('tipe_acara', ['public', 'event', 'private']);
-            })
-            ->orderBy('jadwal_acara')
-            ->get();
+        ])->whereHas('transactionDetails.acara',function ($query) {
+            
+            $query->whereIn('tipe_acara', ['public','event', 'private']);
+        })->orderBy('jadwal_acara')->get();
 
+
+        
         $jadwal_kegiatan = TransactionHeader::with([
             'romo',
             'seksi',
@@ -30,13 +30,11 @@ class DashboardController extends Controller
             'transactionDetails' => function ($query) {
                 $query->with('umats', 'acara', 'admin');
             },
-        ])
-            ->whereHas('transactionDetails.acara', function ($query) {
-                $query->where('tipe_acara', 'kegiatan');
-            })
-            ->orderBy('jadwal_acara')
-            ->get();
+        ])->whereHas('transactionDetails.acara',function ($query) {
+            
+            $query->where('tipe_acara', 'kegiatan');
+        })->orderBy('jadwal_acara')->get();
 
-        return view('dasboard.dashboard', ['jadwal_acara' => $jadwal_acara, 'jadwal_kegiatan' => $jadwal_kegiatan]);
+        return view("dasboard.dashboard",['jadwal_acara'=>$jadwal_acara ,'jadwal_kegiatan'=> $jadwal_kegiatan]);
     }
 }

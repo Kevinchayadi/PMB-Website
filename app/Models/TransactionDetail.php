@@ -16,7 +16,7 @@ class TransactionDetail extends Model
 
     public function transactionHeader(): BelongsTo
     {
-        return $this->belongsTo(TransactionHeader::class, 'id_seksi');
+        return $this->belongsTo(TransactionHeader::class,  'id_seksi');
     }
 
     public function acara(): BelongsTo
