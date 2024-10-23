@@ -20,7 +20,7 @@ class DashboardController extends Controller
         ])->whereHas('transactionDetails.acara',function ($query) {
             
             $query->whereIn('tipe_acara', ['public','event', 'private']);
-        })->orderBy('jadwal_acara')->get();
+        })->orderBy('jadwal_transaction')->get();
 
 
         
@@ -34,8 +34,8 @@ class DashboardController extends Controller
         ])->whereHas('transactionDetails.acara',function ($query) {
             
             $query->where('tipe_acara', 'kegiatan');
-        })->orderBy('jadwal_acara')->get();
+        })->orderBy('jadwal_transaction')->get();
 
-        return view("dasboard.dashboard",['jadwal_acara'=>$jadwal_acara ,'jadwal_kegiatan'=> $jadwal_kegiatan]);
+        return view("dashboard.dashboard",['jadwal_acara'=>$jadwal_acara ,'jadwal_kegiatan'=> $jadwal_kegiatan]);
     }
 }

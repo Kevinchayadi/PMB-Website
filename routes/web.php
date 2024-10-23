@@ -45,14 +45,16 @@ Route::middleware('guest:web')->group(function () {
 });
 
 Route::prefix('admin')
-    ->middleware('guest:admin')
+    //Comment dlu bang
+    // ->middleware('guest:admin')
     ->group(function () {
         Route::get('/login', [LoginController::class, 'adminIndex'])->name('admin.login');
-       
+        Route::post('/login', [LoginController::class, 'adminLogin']);
     });
 
 Route::prefix('admin')
-    ->middleware('Auth:admin')
+    //Comment dlu untuk buat UI
+    // ->middleware('Auth:admin')
     ->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
         Route::get('/register', [RegisterController::class, 'adminIndex'])->name('admin.register');
