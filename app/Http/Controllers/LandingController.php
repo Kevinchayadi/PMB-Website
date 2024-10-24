@@ -27,7 +27,7 @@ class LandingController extends Controller
                 $query->with(['acara', 'umat']);
             },
         ])
-            ->where('id_transaksi', $id)
+            ->where('id_transaction', $id)
             ->first();
 
         return view('viewPage.jadwalDetail', ['transactions' => $transaction]);

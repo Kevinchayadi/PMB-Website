@@ -106,7 +106,7 @@
                     </div>
                     <div class="button align-self-center text-end col-lg-3 col-12">
                         <div class="btn btn-outline-primary text-primary bg-white w-100">
-                            <a href="#" class="nav-link">Lihat Info</a>
+                            <a href="/jadwal/1" class="nav-link">Lihat Info</a>
                         </div>
                     </div>
                 </div>

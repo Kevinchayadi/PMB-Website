@@ -16,7 +16,7 @@ class Doa extends Model
 
     public function transactionHeaders(): HasMany
     {
-        return $this->hasMany(TransactionHeader::class, 'id_admin');
+        return $this->hasMany(TransactionHeader::class, 'id_doa');
     }
 
     public function sluggable(): array

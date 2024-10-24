@@ -19,11 +19,11 @@ class profileController extends Controller
         return view('ViewPage.sejarah');
     }
 
-    public function Doa()
+    public function doa()
     {
         $doa = Doa::with('transaction_headers')->get();
 
-        return view('ViewPage.doa' . ['doa' => $doa]);
+        return view('ViewPage.doa', ['doa' => $doa]);
     }
 
     public function Fasilitas()

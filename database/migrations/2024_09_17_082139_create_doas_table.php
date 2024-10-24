@@ -17,7 +17,8 @@ return new class extends Migration
             $table->text('deskripsi_doa');
             $table->string('ayat_renungan', 255)->nullable()->default('text');
             $table->text('isi_renungan');
-            $table->string('ayat_tambahan', 255)->nullable();
+            $table->string('ayat_tambahan', 255)->nullable();   
+            $table->softDeletes();
             $table->timestamps();
         });
     }
