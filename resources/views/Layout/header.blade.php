@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="{{ asset('css/header.css') }}">
-<div class="header navbar navbar-expand-md px-3">
+<div class="header navbar navbar-expand-md px-3 border-bottom">
     <div class="left row">
 
         {{-- Logo --}}
@@ -26,7 +26,8 @@
     </div>
 
     {{-- Navigation --}}
-    <div class="right align-self-center collapse navbar-collapse justify-content-end" id="navbarNav">
+    <div class="{{ Route::is('umat.login') or (Route::is('umat.register') ? 'd-none' : '') }} right align-self-center collapse navbar-collapse justify-content-end"
+        id="navbarNav">
         <ul class="navbar-nav fs-6">
 
             {{-- Home --}}

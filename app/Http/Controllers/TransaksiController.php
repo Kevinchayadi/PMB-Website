@@ -51,7 +51,7 @@ class TransaksiController extends Controller
             ->orderBy('jadwal_acara')
             ->get();
 
-        return view('admin.dasboard', ['jadwal_acara' => $jadwal_acara, 'jadwal_kegiatan' => $jadwal_kegiatan, 'jadwal_event' => $jadwal_event]);
+        return view('admin.dashboard', ['jadwal_acara' => $jadwal_acara, 'jadwal_kegiatan' => $jadwal_kegiatan, 'jadwal_event' => $jadwal_event]);
     }
 
     public function createTransaction()

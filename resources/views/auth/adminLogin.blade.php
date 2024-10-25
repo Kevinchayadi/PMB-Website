@@ -1,13 +1,17 @@
-@extends('Layout.template')
+@extends('admin.layout.template')
 @section('title', 'Admin - Login')
-<link rel="stylesheet" href="{{ asset('css/home.css') }}">
+<link rel="stylesheet" href="{{ asset('css/admin/login.css') }}">
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
+    <div class="container-fluid bg-image">
+        <div class="row justify-content-center py-5">
             <div class="col-md-6">
-                <div class="card mt-5">
-                    <div class="card-header">Login</div>
+                <div class="card rounded-3 border-3">
+                    <div class="card-header p-0 border-bottom-0 bg-white">
+                        <img class="img-fluid rounded-top mx-auto d-block" src="{{ asset('picture/Logo Paroki baru 2.png') }}"
+                            alt="">
+                        <div class="fs-5 text-center fw-bolder">Login</div>
+                    </div>
                     <div class="card-body">
                         <form method="POST" action="/admin/login">
                             @csrf
@@ -28,12 +32,15 @@
 
                             <div class="form-group mb-3">
                                 <button type="submit" class="btn btn-primary">Login</button>
+                                <button type="button" class="btn btn-primary">
+                                    <a class="nav-link" href="/admin/register">Register</a>
+                                </button>
                             </div>
+
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 @endsection
