@@ -55,8 +55,6 @@ Route::prefix('admin')
     ->middleware(['auth:admin'])
     ->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
-        Route::get('/register', [RegisterController::class, 'adminIndex'])->name('admin.register');
-        
         Route::get('/admin-list', [AdminController::class, 'index'])->name('admin.admin-list');
         Route::get('/add-admin', [AdminController::class, 'addAdmin'])->name('admin.addForm');
         Route::post('/add-admin', [AdminController::class, 'storeAdmin'])->name('admin.storeAdmin');
