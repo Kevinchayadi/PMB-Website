@@ -3,6 +3,9 @@
 
 @section('content')
     <script src="{{ asset('js/layanan.js') }}"></script>
+    <script>
+        AOS.init()
+    </script>
     <link rel="stylesheet" href="{{ asset('css/layanan.css') }}">
     <div class="container-fluid">
         <div class="content bg-primary rounded mb-2">
@@ -17,8 +20,9 @@
                     </div>
                 </div>
             </div>
-            <div class="hide p-3" id="hide">
-                <div class="head fs-5 mb-2 fw-bolder text-white">Judul Layanan</div>
+            <div class="hide p-3" id="hide" data-aos="flip-right">
+                <div class="head fs-5 mb-2 fw-bolder
+                text-white">Judul Layanan</div>
                 <div class="description fs-6 text-white">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro
                     provident
                     labore cupiditate quasi eum obcaecati non, odit delectus! Minima iure ratione culpa corrupti tempora
