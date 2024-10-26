@@ -1,24 +1,29 @@
-function show() {
-    const hideElement = document.getElementById('hide');
+function showDetail() {
     const showElement = document.getElementById('show');
+    const hideElement = document.getElementById('hide');
 
-    // Sembunyikan elemen 'show' dan tampilkan elemen 'hide'
-    showElement.style.display = 'none';
-    hideElement.style.display = 'block';
-
-    // Tambahkan kembali animasi AOS
+    // Sembunyikan elemen awal
+    showElement.classList.add('d-none');
+    
+    // Tampilkan elemen detail dengan animasi flip
+    hideElement.classList.remove('d-none');
     hideElement.setAttribute('data-aos', 'flip-right');
-    AOS.refresh(); // Refresh AOS agar animasi diterapkan
+    
 }
 
-function hide() {
-    const hideElement = document.getElementById('hide');
+// Fungsi untuk menyembunyikan detail dan kembali ke tampilan awal
+function hideDetail() {
     const showElement = document.getElementById('show');
+    const hideElement = document.getElementById('hide');
 
-    // Sembunyikan elemen 'hide' dan tampilkan elemen 'show'
-    hideElement.style.display = 'none';
-    showElement.style.display = 'block';
+    // Sembunyikan elemen detail
+    hideElement.classList.add('d-none');
+    
+    // Tampilkan elemen awal
+    showElement.classList.remove('d-none');
 }
 
-// Inisialisasi tampilan awal
-document.getElementById('hide').style.display = 'none';
+// Inisialisasi AOS
+document.addEventListener('DOMContentLoaded', () => {
+    AOS.init();
+});
