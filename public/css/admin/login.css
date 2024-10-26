@@ -1,4 +1,5 @@
 body {
-    background-image: url('/picture/Gereja.jpg');
+    background-image: url('/picture/Agenda-paroki.png');
     background-size: cover;
+    background-repeat: no-repeat;
 }
