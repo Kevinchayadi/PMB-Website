@@ -46,7 +46,7 @@
         <div class="col-md-4 my-md-0 col-12 my-2">
             <div class="pelayanan py-5 px-3">
                 <div class="h4 text-white">Pelayanan</div>
-                <p><a class="link-opacity-100 text-white" href="#">Hubungi Kami</a></p>
+                <p><a class="link-opacity-100 text-white" href="/layanan">Cek di sini</a></p>
             </div>
         </div>
 
@@ -54,7 +54,7 @@
         <div class="col-md-4 px-3 my-md-0 col-12 my-2">
             <div class="agenda-paroki py-5 px-3">
                 <div class="h4 text-white">Agenda Paroki</div>
-                <p><a class="link-opacity-100 text-white" href="#">Cek informasi terbaru di sini</a></p>
+                <p><a class="link-opacity-100 text-white" href="/jadwal">Cek informasi terbaru di sini</a></p>
             </div>
         </div>
 
@@ -62,7 +62,7 @@
         <div class="col-md-4 my-md-0 col-12 my-2">
             <div class="mari-ikut-terlibat py-5 px-3">
                 <div class="h4 text-white">Mari ikut terlibat</div>
-                <p><a class="link-opacity-100 text-white" href="#">Cek di sini</a></p>
+                <p><a class="link-opacity-100 text-white" href="/profile/kegiatan">Cek di sini</a></p>
             </div>
         </div>
     </div>
