@@ -22,7 +22,7 @@
                 </div>
             </div>
             
-            <div class="hide p-3 d-none" id="hide" data-aos="flip-right" data-aos-delay="1000">
+            <div class="hide p-3 d-none" id="hide" >
                 <div class="head fs-5 mb-2 fw-bolder text-white">Judul Layanan</div>
                 <div class="description fs-6 text-white">
                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro provident labore cupiditate quasi eum obcaecati non, 

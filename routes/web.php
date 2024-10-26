@@ -39,21 +39,20 @@ Route::get('/artikel/{slug}', [LandingController::class, 'artikeldetail'])->name
 Route::get('/layanan', [layananController::class, 'layanan'])->name('layanan');
 Route::get('/hubungi', [hubungiController::class, 'hubungi'])->name('hubungi');
 
-Route::middleware('guest:web')->group(function () {
+Route::middleware(['guest:web'])->group(function () {
     Route::get('/login', [LoginController::class, 'umatIndex'])->name('umat.login');
     Route::get('/register', [RegisterController::class, 'umatIndex'])->name('umat.register');
 });
 
 Route::prefix('admin')
-    //Comment dlu bang
-    // ->middleware('guest:admin')
+    ->middleware('guest:admin')
     ->group(function () {
         Route::get('/login', [LoginController::class, 'adminIndex'])->name('admin.login');
         Route::post('/login', [LoginController::class, 'adminLogin']);
     });
 
 Route::prefix('admin')
-    ->middleware('Auth:admin')
+    ->middleware(['auth:admin'])
     ->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
         Route::get('/register', [RegisterController::class, 'adminIndex'])->name('admin.register');
