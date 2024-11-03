@@ -12,8 +12,8 @@
 </head>
 
 <body>
-    <div class="container-fluid bg-image">
-        <div class="row justify-content-center align-content-center py-5">
+    <div class="container-fluid bg-image position-relative">
+        <div class="row justify-content-center position-absolute top-50 w-100">
             <div class="col-md-6">
                 <div class="card rounded-3 border-3">
                     <div class="card-header p-0 border-bottom-0 bg-white">

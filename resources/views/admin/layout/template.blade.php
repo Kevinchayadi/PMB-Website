@@ -12,7 +12,15 @@
 
 <body>
     @include('admin.layout.header')
-    @yield('content')
+    <div class="row">
+        <div class="col-3">
+            @include('Layout.sidebar')
+        </div>
+        <div class="col-9">
+            @yield('content')
+        </div>
+    </div>
+    @include('admin.laoyut.footer')
 </body>
 
 </html>
