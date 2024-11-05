@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="{{ asset('css/header.css') }}">
-<div class="header navbar navbar-expand-md px-3 border-bottom pe-0">
+<div class="header navbar navbar-expand-md px-3 border-bottom pe-0 fixed-top">
     <div class="left row col-lg-3 col-12">
         {{-- button --}}
         <button class="navbar-toggler col-2 h-50 my-auto mx-1" type="button" data-bs-toggle="collapse"

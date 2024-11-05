@@ -54,4 +54,9 @@
     .container-fluid {
         min-height: 50vh !important;
     }
+
+    .container {
+        margin-top: 6rem !important;
+        min-height: 50vh !important;
+    }
 </style>
