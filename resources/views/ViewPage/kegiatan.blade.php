@@ -4,7 +4,7 @@
 @section('content')
     @include('Layout.card')
 
-    <div class="container-fluid row pe-0">
+    <div class="container row pe-0">
         {{-- Kiri --}}
         <div class="left col-lg-6 col-12 pe-0">
             {{-- Gambar --}}

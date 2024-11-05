@@ -2,7 +2,7 @@
 @section('title', 'Hubungi Kami')
 
 @section('content')
-    <div class="container-fluid">
+    <div class="container">
         <div class="text-center my-2 p-2 border border-primary mx-auto w-75">
             <div class="head fs-4 fw-bolder mb-2"><u>STAY CONNECTED WITH US!</u></div>
             {{-- Youtube --}}

@@ -5,7 +5,7 @@
     @include('Layout.card')
 
     {{-- Profile Gereja --}}
-    <div class="container-fluid">
+    <div class="container">
         <div class="section-1 row mx-md-0 mx-auto mb-2">
             {{-- Gambar gereja --}}
             <div class="col-lg-5 col-12 ps-lg-0 px-0">

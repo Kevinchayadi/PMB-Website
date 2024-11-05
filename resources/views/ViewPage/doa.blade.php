@@ -4,7 +4,7 @@
 @section('content')
     @include('Layout.card')
 
-    <div class="container-fluid row mx-auto mb-2">
+    <div class="container row mx-auto mb-2">
         <div class="left col-lg-6 col-12 p-2">
             <div class="bg-primary rounded p-2">
                 {{-- Gambar --}}

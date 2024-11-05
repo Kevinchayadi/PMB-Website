@@ -2,7 +2,7 @@
 @section('title', 'Jadwal')
 
 @section('content')
-    <div class="container-fluid mb-lg-0 mb-4 px-0">
+    <div class="container mb-lg-0 mb-4 px-0">
 
         {{-- Jadwal misa head --}}
         <div class="px-4">

@@ -3,7 +3,7 @@
 @section('title', 'Fasilitas')
 @section('content')
     @include('Layout.card')
-    <div class="container-fluid">
+    <div class="container">
         <div class="content row mb-2">
 
             {{-- Gambar --}}
