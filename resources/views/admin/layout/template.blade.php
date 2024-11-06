@@ -8,19 +8,20 @@
     <title>@yield('title')</title>
     @include('Layout.boostrap')
     @include('Layout.font')
+
 </head>
 
 <body>
-    @include('admin.layout.header')
-    <div class="row">
-        <div class="col-3">
-            @include('Layout.sidebar')
+    {{-- @include('admin.layout.header') --}}
+    <div class="row ">
+        <div class="col-3 p-0">
+            @include('admin.layout.sidebar')
         </div>
-        <div class="col-9">
+        <div class="col-9 p-0">
             @yield('content')
         </div>
     </div>
-    @include('admin.laoyut.footer')
+    {{-- @include('admin.layout.footer') --}}
 </body>
 
 </html>

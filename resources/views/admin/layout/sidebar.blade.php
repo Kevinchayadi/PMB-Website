@@ -1,36 +1,31 @@
-<link rel="stylesheet" href="{{ asset('navbar.css') }}">
-<div class="container-fluid bg-secondary">
-    <div class="nav-1 fs-5 text-white p-2">
-        <a class="nav-link" href="">Dashboard</a>
+<link rel="stylesheet" href="{{ asset('css/admin/sidebare.css') }}">
+<div class="container-fluid   sidebar p-3 m-0">
+
+    <div class="d-flex flex-column align-items-center border-bottom">
+        <img class="logo p-1 col-12" src="{{ asset('picture/Logo Paroki baru 2.png') }}" alt="">
+        <div class="text-center text-white">Username</div>
     </div>
-    <div class="nav-2 fs-5 text-white p-2">
+
+    <div class=" fs-5 text-white p-2">
+        <a class="nav-link " href="">Dashboard</a>
+    </div>
+    <div class=" fs-5 text-white p-2">
         <a class="nav-link" href="">Admin</a>
     </div>
-    <div class="nav-3 fs-5 text-white p-2">
+    <div class="fs-5 text-white p-2">
         <a class="nav-link" href="">Landing</a>
     </div>
-    <div class="nav-4 fs-5 text-white p-2">
-        <a class="nav-link" href="">Profile Gereja</a>
-    </div>
-    <div class="nav-5 fs-5 text-white p-2">
-        <a class="nav-link" href="">Sejarah Gereja</a>
-    </div>
-    <div class="nav-6 fs-5 text-white p-2">
-        <a class="nav-link" href="">Doa Paroki</a>
-    </div>
-    <div class="nav-7 fs-5 text-white p-2">
-        <a class="nav-link" href="">Fasilitas</a>
-    </div>
-    <div class="nav-8 fs-5 text-white p-2">
+
+    <div class="fs-5 text-white p-2">
         <a class="nav-link" href="">Pastor Paroki</a>
     </div>
-    <div class="nav-9 fs-5 text-white p-2">
+    <div class="fs-5 text-white p-2">
         <a class="nav-link" href="">Kegiatan</a>
     </div>
-    <div class="nav-10 fs-5 text-white p-2">
+    <div class=" fs-5 text-white p-2">
         <a class="nav-link" href="">Jadwal</a>
     </div>
-    <div class="nav-11 fs-5 text-white p-2">
+    <div class=" fs-5 text-white p-2">
         <a class="nav-link" href="">Layanan</a>
     </div>
 </div>
