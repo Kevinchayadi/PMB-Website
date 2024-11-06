@@ -31,22 +31,32 @@
         </div>
 
         {{-- Banner atas --}}
-        <div class="row mx-0 h-50 mb-3 bg-dark rounded-3 shadow-lg">
-            <div class="col-lg-7 col-12 banner-img rounded-3">
-                <div class="opacity-0">
-                    Misa
+        <div class="card mx-auto mb-3 col-9 mb-3 bg-dark rounded-3 shadow-lg d-lg-block d-none">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="{{ asset('picture/Misa.jpg') }}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <div class="content align-content-center py-4 fs-1 d-lg-block d-none">
+                            <div class="text-secondary fw-bolder">Ikuti misa pekan ini</div>
+                            <div class="btn btn-secondary text-dark">
+                                <a href="" class="nav-link fs-6 hvr-shrink">Info lebih lanjut</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="content col-5 align-content-center py-4 fs-1 d-lg-block d-none">
-                <div class="text-secondary fw-bolder">Ikuti misa pekan ini</div>
-                <div class="btn btn-outline-secondary text-secondary bg-white">
-                    <a href="" class="nav-link fs-6">Info lebih lanjut</a>
-                </div>
-            </div>
-            <div class="content col-12 align-content-center fs-4 d-lg-none d-block">
-                <div class="text-secondary fw-bolder">Ikuti misa pekan ini</div>
-                <div class="btn btn-outline-secondary text-secondary bg-white">
-                    <a href="" class="nav-link fs-6">Info lebih lanjut</a>
+        </div>
+
+        <div class="card bg-dark d-lg-none d-block mb-3 bg-dark rounded-3 shadow-lg">
+            <img src="{{ asset('picture/Misa.jpg') }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <div class="content col-12 align-content-center fs-4">
+                    <div class="text-secondary fw-bolder">Ikuti misa pekan ini</div>
+                    <div class="btn btn-secondary text-dark">
+                        <a href="" class="nav-link fs-6 hvr-shrink">Info lebih lanjut</a>
+                    </div>
                 </div>
             </div>
         </div>

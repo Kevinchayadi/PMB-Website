@@ -9,13 +9,22 @@
 </script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
+
 <style>
     body {
-        font-family: "Abhaya";
+        font-family: "Aleo";
     }
 
     .text-primary {
         color: #0084B5 !important;
+    }
+
+    .btn-secondary {
+        background-color: #F6AF00 !important;
+    }
+
+    .btn-secondary:hover {
+        background-color: #f8c442 !important;
     }
 
     .bg-primary {
@@ -57,6 +66,10 @@
 
     .container {
         margin-top: 6rem !important;
-        min-height: 50vh !important;
+        min-height: 60vh !important;
+    }
+
+    .footer {
+        background-color: #a2d4e4 !important;
     }
 </style>
