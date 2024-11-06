@@ -4,10 +4,10 @@
 
 @section('content')
 
-    {{-- Carousel --}}
     <div class="container">
+        {{-- Carousel --}}
         <div id="carouselExampleAutoplaying" class="carousel slide mb-3" data-bs-ride="carousel">
-            <div class="carousel-inner">
+            <div class="carousel-inner rounded-3 shadow-lg">
                 <div class="carousel-item active">
                     <img src="{{ asset('picture/Carousel-1.png') }}" class="d-block w-100" alt="...">
                 </div>
@@ -31,37 +31,48 @@
         </div>
 
         {{-- Banner atas --}}
-        <div class="banner-top px-3 my-lg-4 mt-4 mb-2">
-            <div class="content d-lg-flex d-block justify-content-between align-content-center py-4">
-                <div class="text-white fs-4">Daftar Misa Online Melalui Website Belarasa</div>
-                <div class="btn btn-outline-primary text-primary bg-white">
-                    <a href="" class="nav-link">Daftar Sekarang</a>
+        <div class="row mx-0 h-50 mb-3 bg-dark rounded-3 shadow-lg">
+            <div class="col-lg-7 col-12 banner-img rounded-3">
+                <div class="opacity-0">
+                    Misa
+                </div>
+            </div>
+            <div class="content col-5 align-content-center py-4 fs-1 d-lg-block d-none">
+                <div class="text-secondary fw-bolder">Ikuti misa pekan ini</div>
+                <div class="btn btn-outline-secondary text-secondary bg-white">
+                    <a href="" class="nav-link fs-6">Info lebih lanjut</a>
+                </div>
+            </div>
+            <div class="content col-12 align-content-center fs-4 d-lg-none d-block">
+                <div class="text-secondary fw-bolder">Ikuti misa pekan ini</div>
+                <div class="btn btn-outline-secondary text-secondary bg-white">
+                    <a href="" class="nav-link fs-6">Info lebih lanjut</a>
                 </div>
             </div>
         </div>
 
         {{-- Kegiatan --}}
-        <div class="section-1 row ps-lg-3 mb-4 pe-lg-2 pe-0 ps-2">
+        <div class="section-1 row ps-lg-3 mb-4 pe-lg-2 pe-0 ps-2 justify-content-center">
 
             {{-- Pelayanan --}}
-            <div class="col-md-4 my-md-0 col-12 my-2">
-                <div class="pelayanan py-5 px-3">
+            <div class="col-md-3 my-md-0 col-12 my-2 mx-2 px-0 shadow-lg">
+                <div class="pelayanan py-5 px-3 rounded-3">
                     <div class="h4 text-white">Pelayanan</div>
                     <p><a class="link-opacity-100 text-white" href="/layanan">Cek di sini</a></p>
                 </div>
             </div>
 
             {{-- Agenda Paroki --}}
-            <div class="col-md-4 px-3 my-md-0 col-12 my-2">
-                <div class="agenda-paroki py-5 px-3">
+            <div class="col-md-3 my-md-0 col-12 my-2 mx-2 px-0 shadow-lg">
+                <div class="agenda-paroki py-5 px-3 rounded-3">
                     <div class="h4 text-white">Agenda Paroki</div>
                     <p><a class="link-opacity-100 text-white" href="/jadwal">Cek informasi terbaru di sini</a></p>
                 </div>
             </div>
 
             {{-- Mari Ikut Terlibat --}}
-            <div class="col-md-4 my-md-0 col-12 my-2">
-                <div class="mari-ikut-terlibat py-5 px-3">
+            <div class="col-md-3 my-md-0 col-12 my-2 mx-2 px-0 shadow-lg">
+                <div class="mari-ikut-terlibat py-5 px-3 rounded-3">
                     <div class="h4 text-white">Mari ikut terlibat</div>
                     <p><a class="link-opacity-100 text-white" href="/profile/kegiatan">Cek di sini</a></p>
                 </div>
@@ -101,8 +112,8 @@
                     <div class="right-content pe-2 border-start border-gray col-lg-10 col-9 row">
                         <div class="text align-self-center col-lg-9 col-12">
                             <div class="head fs-5">Hari Raya Penampakan Tuhan</div>
-                            <div class="desc fs-6">Bacaan: Yes. 60:1-6; Mzm. 72:1-2,7-8,10-11,12-13; Ef. 3:2-3a,5-6; Mat.
-                                2:1-12</div>
+                            <div class="desc fs-6">Bacaan: <br>Yes. 60:1-6; <br>Mzm. 72:1-2,7-8,10-11,12-13; <br>Ef.
+                                3:2-3a,5-6; <br>Mat.2:1-12</div>
                             <div class="h6 text-gray">Minggu, 2 Januari 2022 pkl 07.30 WIB</div>
                         </div>
                         <div class="button align-self-center text-end col-lg-3 col-12">
@@ -136,9 +147,10 @@
         </div>
 
         {{-- Banner bawah --}}
-        <div class="banner-bottom my-4">
+        <div class="banner-bottom my-4 rounded-3 shadow-lg">
             <a href= "https://youtube.com">
-                <img class="object-fit-contain w-100" src="{{ asset('picture/Subscribe.png') }}" alt="">
+                <img class="object-fit-contain w-100 rounded-3" src="{{ asset('picture/Subscribe.png') }}"
+                    alt="">
             </a>
         </div>
     </div>
