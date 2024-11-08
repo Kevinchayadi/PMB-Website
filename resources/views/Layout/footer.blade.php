@@ -5,7 +5,7 @@
 
         <div class="ps-2 row justify-content-center">
             {{-- Facebook --}}
-            <a class="facebook col-lg-2 col-4 mb-1 nav-link" href="https://facebook.com">
+            <a class="facebook col-lg-2 col-4 mb-1 nav-link d-flex justify-content-center" href="https://facebook.com">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#fff"
                     class="bi bi-facebook me-2" viewBox="0 0 16 16">
                     <path
@@ -14,7 +14,8 @@
             </a>
 
             {{-- Instagram --}}
-            <a class="instagram col-lg-2 col-4  align-content-center mb-1 nav-link" href="https://instagram.com">
+            <a class="instagram col-lg-2 col-4 mb-1 nav-link d-flex justify-content-center"
+                href="https://instagram.com">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#fff"
                     class="bi bi-instagram me-2" viewBox="0 0 16 16">
                     <path
@@ -23,7 +24,8 @@
             </a>
 
             {{-- Youtube --}}
-            <a class="youtube col-lg-2 col-4  align-content-center nav-link" href="https://youtube.com">
+            <a class="youtube col-lg-2 col-4  align-content-center nav-link d-flex justify-content-center"
+                href="https://youtube.com">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#fff"
                     class="bi bi-youtube me-2" viewBox="0 0 16 16">
                     <path
@@ -32,7 +34,8 @@
             </a>
 
             {{-- Browser --}}
-            <a class="browser col-lg-2 col-4  align-content-center nav-link" href="https://google.com">
+            <a class="browser col-lg-2 col-4  align-content-center nav-link d-flex justify-content-center"
+                href="https://google.com">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#fff"
                     class="bi bi-globe me-2" viewBox="0 0 16 16">
                     <path
@@ -41,7 +44,8 @@
             </a>
 
             {{-- Email --}}
-            <a class="email col-lg-2 col-4  align-content-center nav-link" href="https://google.com">
+            <a class="email col-lg-2 col-4  align-content-center nav-link d-flex justify-content-center"
+                href="https://google.com">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#fff"
                     class="bi bi-envelope" viewBox="0 0 16 16">
                     <path

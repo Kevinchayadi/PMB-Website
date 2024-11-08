@@ -1,16 +1,16 @@
 <link rel="stylesheet" href="{{ asset('css/card.css') }}">
 
-<div class="container">
+<div class="content">
     <div class="card" style="width: 100%;">
         <img src="{{ asset('picture/Gereja.jpg') }}" class="card-img-top" alt="...">
     </div>
-    <div class="w-lg-50 w-100 box-shadow">
-        <ul class="nav d-flex fs-6">
+    <div class="w-100 box-shadow">
+        <ul class="nav fs-6 w-100 h-auto overflow-x-auto d-flex flex-nowrap justify-content-center">
 
             {{-- Profil Gereja --}}
-            <li class="nav-item">
-                <a class="nav-link {{ Route::is('profile') ? 'text-decoration-underline decoration-secondary' : 'text-primary' }} me-2"
-                    href="/profile/profile">Profil Gereja</a>
+            <li class="nav-item ms-3">
+                <a class="nav-link {{ Route::is('visiMisi') ? 'text-decoration-underline decoration-secondary' : 'text-primary' }} me-2"
+                    href="/profile/visiMisi">Visi & Misi Gereja</a>
             </li>
 
             {{-- Sejarah Gereja --}}

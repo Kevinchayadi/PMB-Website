@@ -1,10 +1,8 @@
 <link rel="stylesheet" href="{{ asset('csss/profile.css') }}">
-@extends('Layout.template')
+@extends('Layout.profileTemplate')
 @section('title', 'Doa')
 @section('content')
-    @include('Layout.card')
-
-    <div class="container row mx-auto mb-2">
+    <div class="row mx-auto mb-2">
         <div class="left col-lg-6 col-12 p-2">
             <div class="bg-primary rounded p-2">
                 {{-- Gambar --}}

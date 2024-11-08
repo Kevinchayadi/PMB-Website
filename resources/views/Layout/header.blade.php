@@ -44,8 +44,8 @@
 
                 {{-- Profile --}}
                 <li class="nav-item">
-                    <a class="nav-link {{ Route::is('profile') ? 'text-secondary' : 'text-primary' }} me-2"
-                        href="/profile/profile">Profil</a>
+                    <a class="nav-link {{ (Route::is('visiMisi') or Route::is('sejarah') or Route::is('doa') or Route::is('fasilitas') or Route::is('pastor') or Route::is('kegiatan')) ? 'text-secondary' : 'text-primary' }} me-2"
+                        href="/profile/visiMisi">Profil</a>
                 </li>
 
                 {{-- Jadwal --}}

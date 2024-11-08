@@ -6,7 +6,7 @@
 
     <div class="container">
         {{-- Carousel --}}
-        <div id="carouselExampleAutoplaying" class="carousel slide mb-3" data-bs-ride="carousel">
+        <div id="carouselExampleAutoplaying" class="carousel slide mb-3 w-75 mx-auto" data-bs-ride="carousel">
             <div class="carousel-inner rounded-3 shadow-lg">
                 <div class="carousel-item active">
                     <img src="{{ asset('picture/Carousel-1.png') }}" class="d-block w-100" alt="...">
@@ -157,7 +157,7 @@
         </div>
 
         {{-- Banner bawah --}}
-        <div class="banner-bottom my-4 rounded-3 shadow-lg">
+        <div class="banner-bottom my-4 rounded-3 shadow-lg w-75 mx-auto">
             <a href= "https://youtube.com">
                 <img class="object-fit-contain w-100 rounded-3" src="{{ asset('picture/Subscribe.png') }}"
                     alt="">
