@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="{{ asset('csss/profile.css') }}">
+<link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 @extends('Layout.profileTemplate')
 @section('title', 'Sejarah')
 @section('content')
