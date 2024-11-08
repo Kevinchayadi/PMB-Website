@@ -3,7 +3,7 @@
 @section('title', 'Profile')
 @section('content')
     {{-- Visi dan Misi --}}
-    <div class="row mb-3">
+    <div class="row mb-3 mx-auto">
         <div class="left col-lg-6 col-12 p-2">
             <div class="bg-primary rounded-3 shadow-lg p-2" data-bs-toggle="collapse" data-bs-target="#collapse-visi"
                 aria-expanded="false" aria-controls="collapse">
