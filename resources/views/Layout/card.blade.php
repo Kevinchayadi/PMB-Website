@@ -5,11 +5,11 @@
         <img src="{{ asset('picture/Gereja.jpg') }}" class="card-img-top" alt="...">
     </div>
     <div class="w-100 box-shadow">
-        <ul class="nav fs-6 w-100 h-auto overflow-x-auto d-flex flex-nowrap justify-content-center">
+        <ul class="nav fs-6 w-auto overflow-x-auto d-flex flex-nowrap justify-content-center">
 
             {{-- Profil Gereja --}}
             <li class="nav-item ms-3">
-                <a class="nav-link {{ Route::is('visiMisi') ? 'text-decoration-underline decoration-secondary' : 'text-primary' }} me-2"
+                <a class="nav-link {{ Route::is('visiMisi') ? 'text-primary text-decoration-underline decoration-secondary' : 'text-primary' }} me-2"
                     href="/profile/visiMisi">Visi & Misi Gereja</a>
             </li>
 
