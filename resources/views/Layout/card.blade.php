@@ -1,11 +1,11 @@
 <link rel="stylesheet" href="{{ asset('css/card.css') }}">
 
 <div class="content">
-    <div class="card" style="width: 100%;">
+    <div class="card">
         <img src="{{ asset('picture/Gereja.jpg') }}" class="card-img-top" alt="...">
     </div>
     <div class="w-100 box-shadow">
-        <ul class="nav fs-6 w-auto overflow-x-auto d-flex flex-nowrap justify-content-center">
+        <ul class="nav fs-6 w-auto overflow-x-auto d-relative flex-nowrap justify-content-center">
 
             {{-- Profil Gereja --}}
             <li class="nav-item ms-3">

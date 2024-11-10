@@ -73,4 +73,8 @@
     .footer {
         background-color: #a2d4e4 !important;
     }
+
+    .row {
+        margin-right: 0 !important;
+    }
 </style>
