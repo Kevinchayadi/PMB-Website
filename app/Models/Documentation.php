@@ -13,7 +13,7 @@ class Documentation extends Model
 
     protected $table = 'documentations';
 
-    protected $fillable = ['nama_dokumentasi', 'id_acara'];
+    protected $fillable = ['nameDocumentation', 'id_acara'];
 
     public function acara(): BelongsTo
     {

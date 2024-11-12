@@ -12,7 +12,7 @@ class Doa extends Model
 {
     use HasFactory, Sluggable, SoftDeletes;
 
-    protected $fillable = ['nama_doa', 'deskripsi_doa', 'ayat_renungan', 'deskripsi_renungan', 'ayat_tambahan'];
+    protected $fillable = ['nama_doa', 'deskripsi_doa', 'ayat_renungan', 'isi_renungan', 'ayat_tambahan'];
 
     public function transactionHeaders(): HasMany
     {

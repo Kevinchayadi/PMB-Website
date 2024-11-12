@@ -1,0 +1,30 @@
+halaman admin:
+dashboard
+table list admin
+halaman add admin
+halaman edit admin
+halaman delete admin
+
+List pelayanan:
+list pelayanan
+add
+delete
+
+request(
+)
+
+
+
+
+transaction(list, bisa dibuat, edit status, pembatalan...):
+-misa
+-sakramen baptis
+-sakramen tobat
+-komuni pertama
+-krisma
+-pernikahan
+-pengurapan
+
+
+
+
