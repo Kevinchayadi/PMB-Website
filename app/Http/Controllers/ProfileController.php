@@ -9,9 +9,9 @@ use Illuminate\Http\Request;
 
 class profileController extends Controller
 {
-    public function profile()
+    public function visiMisi()
     {
-        return view('ViewPage.profile');
+        return view('ViewPage.visimisi');
     }
 
     public function sejarah()

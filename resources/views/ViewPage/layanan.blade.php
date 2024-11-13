@@ -7,7 +7,7 @@
         AOS.init()
     </script>
     <link rel="stylesheet" href="{{ asset('css/layanan.css') }}">
-    <div class="container-fluid">
+    <div class="container">
 
         <div class="content bg-primary rounded mb-2" d>
             <div class="show" id="show">
@@ -21,11 +21,12 @@
                     </div>
                 </div>
             </div>
-            
-            <div class="hide p-3 d-none" id="hide" >
+
+            <div class="hide p-3 d-none" id="hide">
                 <div class="head fs-5 mb-2 fw-bolder text-white">Judul Layanan</div>
                 <div class="description fs-6 text-white">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro provident labore cupiditate quasi eum obcaecati non, 
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro provident labore cupiditate quasi eum
+                    obcaecati non,
                     odit delectus! Minima iure ratione culpa corrupti tempora maiores non quae laudantium in optio.
                 </div>
                 <div class="bottom d-flex justify-content-between">
@@ -37,7 +38,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
 
         <div class="content bg-primary rounded mb-2">
@@ -73,5 +74,5 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
-      </script>
+    </script>
 @endsection

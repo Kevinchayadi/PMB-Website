@@ -2,7 +2,7 @@
 @section('title', 'Artikel')
 
 @section('content')
-    <div class="container-fluid">
+    <div class="container">
         <div class="artikel mb-lg-0 mb-4 pe-0">
 
             {{-- Artikel head --}}

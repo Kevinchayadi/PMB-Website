@@ -2,7 +2,7 @@
 @section('title', 'Nama jadwal')
 
 @section('content')
-    <div class="container-fluid">
+    <div class="container">
         {{-- Judul --}}
         <div class="head fs-4 fw-bolder mb-2">LOREM LOREM</div>
 

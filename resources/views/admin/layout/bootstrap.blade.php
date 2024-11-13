@@ -60,21 +60,5 @@
         border-color: (#7A7A7A, var(--bs-border-opacity)) !important;
     }
 
-    .container-fluid {
-        min-height: 50vh !important;
-        margin-top: 6rem !important;
-    }
 
-    .container {
-        margin-top: 6rem !important;
-        min-height: 60vh !important;
-    }
-
-    .footer {
-        background-color: #a2d4e4 !important;
-    }
-
-    .row {
-        margin-right: 0 !important;
-    }
 </style>

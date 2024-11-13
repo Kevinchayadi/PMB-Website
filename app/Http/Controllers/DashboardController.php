@@ -17,12 +17,12 @@ class DashboardController extends Controller
                 $query->with('umats', 'acara', 'admin');
             },
         ])->whereHas('transactionDetails.acara',function ($query) {
-            
+
             $query->whereIn('tipe_acara', ['public','event', 'private']);
-        })->orderBy('jadwal_acara')->get();
+        })->orderBy('jadwal_transaction')->get();
 
 
-        
+
         $jadwal_kegiatan = TransactionHeader::with([
             'romo',
             'seksi',
@@ -31,10 +31,10 @@ class DashboardController extends Controller
                 $query->with('umats', 'acara', 'admin');
             },
         ])->whereHas('transactionDetails.acara',function ($query) {
-            
-            $query->where('tipe_acara', 'kegiatan');
-        })->orderBy('jadwal_acara')->get();
 
-        return view("admin.dashboard",['jadwal_acara'=>$jadwal_acara ,'jadwal_kegiatan'=> $jadwal_kegiatan]);
+            $query->where('tipe_acara', 'kegiatan');
+        })->orderBy('jadwal_transaction')->get();
+
+        return view("admin.viewPage.dashboard",['jadwal_acara'=>$jadwal_acara ,'jadwal_kegiatan'=> $jadwal_kegiatan]);
     }
 }

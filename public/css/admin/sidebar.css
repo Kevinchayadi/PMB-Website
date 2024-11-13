@@ -1,0 +1,77 @@
+html, body{
+
+    margin: 0;
+    padding: 0;
+}
+.bordered {
+    border: rgb(228, 252, 255) 1px solid;
+}
+.main{
+    background: #f6fefd;
+    min-height: 100vh;
+}
+
+.sidebar{
+    position: fixed;
+    height: 100vh;
+    width: 25%;
+    background-color: #0084B5 !important;
+    color: dimgray;
+    overflow-y: auto;
+
+}
+
+.sidebar a{
+    font-size: 16px !important;
+
+}
+
+/* Posisi default chevron menghadap ke kanan */
+.sidebar .nav-link .chevron-icon {
+    transform: rotate(-90deg);
+    stroke: 5px;
+    transition: transform 0.3s ease;
+}
+
+/* Chevron berputar ke bawah saat collapse terbuka */
+.sidebar .nav-link[aria-expanded="true"] .chevron-icon {
+    transform: rotate(0deg); /* Rotasi ke bawah (90 derajat) saat collapse terbuka */
+}
+
+
+
+
+.nav-link:hover{
+    color: #F6AF00 !important;
+}
+.active{
+    color: #F6AF00 !important;
+}
+.logo{
+    width: 70%;
+}
+@media (min-width: 991px) {
+    .sidebar {
+        position: fixed;
+    height: 100vh;
+    width: 16.67%;
+    background-color: #0084B5 !important;
+    color: dimgray;
+    overflow-y: auto;
+    }
+}
+
+@media (max-width: 991px) {
+    .sidebar {
+        width: 25%;
+        position: fixed;
+        height: 100vh;
+        /* width: 16.67%; */
+        background-color: #0084B5 !important;
+        color: dimgray;
+        overflow-y: auto;
+    }
+    .sidebar a{
+        font-size: 8px !important;
+    }
+}

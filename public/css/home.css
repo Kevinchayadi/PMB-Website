@@ -2,8 +2,8 @@ body {
     overflow-x: hidden;
 }
 
-.banner-top {
-    background-image: url('/picture/banner-bg.png');
+.banner-img {
+    background-image: url('/picture/Misa.jpg');
     background-size: cover;
 }
 
@@ -20,8 +20,4 @@ body {
 .mari-ikut-terlibat {
     background-image: url('/picture/Mari-ikut-terlibat.png');
     background-size: cover;
-}
-
-.row {
-    margin-right: 0 !important;
 }

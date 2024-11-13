@@ -1,7 +1,7 @@
 @extends('Layout.template')
 @section('title', 'Judul Artikel')
 @section('content')
-    <div class="container-fluid">
+    <div class="container">
         <div class="head fs-4 fw-bolder mb-2">LOREM LOREM</div>
 
         <div class="image mb-4">

@@ -26,7 +26,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 Route::redirect('/', 'home');
 Route::get('/home', [LandingController::class, 'home'])->name('home');
-Route::get('/profile/profile', [profileController::class, 'profile'])->name('profile');
+Route::get('/profile/visiMisi', [profileController::class, 'visiMisi'])->name('visiMisi');
 Route::get('/profile/sejarah', [profileController::class, 'sejarah'])->name('sejarah');
 Route::get('/profile/doa', [profileController::class, 'doa'])->name('doa');
 Route::get('/profile/fasilitas', [profileController::class, 'fasilitas'])->name('fasilitas');
@@ -52,7 +52,7 @@ Route::prefix('admin')
     });
 
 Route::prefix('admin')
-    ->middleware(['auth:admin'])
+    // ->middleware(['auth:admin'])
     ->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
         Route::get('/admin-list', [AdminController::class, 'index'])->name('admin.admin-list');
@@ -108,7 +108,7 @@ Route::prefix('admin')
         Route::put('/update-pernikahan/{slug}', [TransaksiController::class,'updatedPernikahan'])->name('admin.updated.Pernikahan');
         Route::put('/update-pengurapan-sakit/{slug}', [TransaksiController::class,'updatedPengurapan'])->name('admin.updated.Pengurapan');
 
-    
+
     });
 
 Route::middleware('auth:web')->group(function () {});
