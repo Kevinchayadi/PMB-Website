@@ -45,7 +45,7 @@ Route::middleware(['guest:web'])->group(function () {
 });
 
 Route::prefix('admin')
-    ->middleware('guest:admin')
+    ->middleware(['guest:admin'])
     ->group(function () {
         Route::get('/login', [LoginController::class, 'adminIndex'])->name('admin.login');
         Route::post('/login', [LoginController::class, 'adminLogin']);
