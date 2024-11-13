@@ -11,12 +11,12 @@ class AdminController extends Controller
     public function index()
     {
         $admins = Admin::with('roles')->get();
-        return view('admin.viewPage.admin', ['admins' => $admins]);
+        return view('admin.viewPage.adminlist', ['admins' => $admins]);
     }
 
     public function addAdmin()
     {
-        return view('admin.add');
+        return view('admin.viewPage.adminAdd');
     }
 
     public function storeAdmin(Request $request)

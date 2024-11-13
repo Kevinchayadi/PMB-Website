@@ -8,7 +8,7 @@
 
     <ul class="fs-5 list-unstyled ">
     <li class= pt-3 pb-1">
-        <a class="nav-link text-white {{ Request::is('admin/dashboard') ? 'active' : '' }}" href="">
+        <a class="nav-link text-white {{ Request::is('admin/dashboard') ? 'active' : '' }}" href="admin/dashboard">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-chevron-right me-2 chevron-icon" viewBox="0 0 16 16">
                 <path fill-rule="evenodd"
@@ -18,7 +18,7 @@
         </a>
     </li>
     <li class= py-1">
-        <a class="nav-link text-white" href="">
+        <a class="nav-link text-white" href="/admin/admin-list">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-chevron-right me-2 chevron-icon" viewBox="0 0 16 16">
                 <path fill-rule="evenodd"
