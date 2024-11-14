@@ -133,11 +133,27 @@ class RequestController extends Controller
         return redirect()->route('home')->with('success', 'Pengajuan baptis berhasil dikirim!');
     }
 
-    public function listRequest()
+    public function pendingListRequest()
     {
         $requestList = ModelsRequest::with('umats')->get();
-        return view('dashboard.request.listRequest', ['requestList' => $requestList]);
+        return view('admin.viewPage.pendingRequest', ['requestList' => $requestList]);
     }
+    public function processListRequest()
+    {
+        $requestList = ModelsRequest::with('umats')->get();
+        return view('admin.viewPage.processRequest', ['requestList' => $requestList]);
+    }
+    public function acceptedListRequest()
+    {
+        $requestList = ModelsRequest::with('umats')->get();
+        return view('admin.viewPage.acceptedRequest', ['requestList' => $requestList]);
+    }
+    public function detailRequest()
+    {
+        $requestList = ModelsRequest::with('umats')->get();
+        return view('admin.viewPage.detailRequest', ['requestList' => $requestList]);
+    }
+
 
     public function RejectRequest($slug)
     {
@@ -146,4 +162,6 @@ class RequestController extends Controller
 
         return back()->with('Rejected Success', 'Pengajuan berhasil dibatalkan!!');
     }
+
+
 }

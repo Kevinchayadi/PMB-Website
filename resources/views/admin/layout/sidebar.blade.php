@@ -8,7 +8,7 @@
 
     <ul class="fs-5 list-unstyled ">
     <li class= pt-3 pb-1">
-        <a class="nav-link text-white {{ Request::is('admin/dashboard') ? 'active' : '' }}" href="admin/dashboard">
+        <a class="nav-link text-white {{ Request::is('admin/dashboard') ? 'active' : '' }}" href="/admin/dashboard">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-chevron-right me-2 chevron-icon" viewBox="0 0 16 16">
                 <path fill-rule="evenodd"
@@ -29,16 +29,6 @@
     </li>
 
     <li class= py-1">
-        <a class="nav-link text-white" href="/admin/layanan">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                class="bi bi-chevron-right me-2 chevron-icon" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1 0-.708"  hidden/>
-            </svg>
-            Layanan
-        </a>
-    </li>
-    <li class= py-1">
         <a class="nav-link text-white d-flex align-items-center" data-bs-toggle="collapse" href="#collapseRequest" role="button"
             aria-expanded="false" aria-controls="collapseRequest">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -50,9 +40,9 @@
         </a>
         <div class="collapse" id="collapseRequest">
             <ul class="list-unstyled ps-5">
-                <li class="py-1"><a class="nav-link text-white" href="">Pending</a></li>
-                <li class="py-1"><a class="nav-link text-white" href="">In Process</a></li>
-                <li class="py-1"><a class="nav-link text-white" href="">Accepted</a></li>
+                <li class="py-1"><a class="nav-link text-white" href="/admin/Request-Pending">Pending</a></li>
+                <li class="py-1"><a class="nav-link text-white" href="/admin/Request-Processed">In Process</a></li>
+                <li class="py-1"><a class="nav-link text-white" href="/admin/Request-Accepted">Accepted</a></li>
             </ul>
         </div>
     </li>
@@ -70,12 +60,9 @@
         </a>
         <div class="collapse" id="collapsePelayanan">
             <ul class="list-unstyled ps-5">
-                <li class="py-1"><a class="nav-link text-white" href="">sakramen baptis</a></li>
-                <li class="py-1"><a class="nav-link text-white" href="">Sakramen Tobat</a></li>
-                <li class="py-1"><a class="nav-link text-white" href="">Komuni Pertama</a></li>
-                <li class="py-1"><a class="nav-link text-white" href="">Krisma</a></li>
-                <li class="py-1"><a class="nav-link text-white" href="">Pernikahan</a></li>
-                <li class="py-1"><a class="nav-link text-white" href="">pengurapan</a></li>
+                <li class="py-1"><a class="nav-link text-white" href="">Create New</a></li>
+                <li class="py-1"><a class="nav-link text-white" href="">Scheduled</a></li>
+                <li class="py-1"><a class="nav-link text-white" href="">Passed</a></li>
             </ul>
         </div>
     </li>
@@ -95,9 +82,11 @@
         </a>
         <div class="collapse " id="collapseUserPage">
             <ul class="list-unstyled ps-5">
-                <li class="py-1"><a class="nav-link text-white" href="">home</a></li>
+                <li class="py-1"><a class="nav-link text-white" href="">Highlight</a></li>
+                <li class="py-1"><a class="nav-link text-white" href="">layanan</a></li>
                 <li class="py-1"><a class="nav-link text-white" href="">Doa Paroki</a></li>
                 <li class="py-1"><a class="nav-link text-white" href="">pastor</a></li>
+                <li class="py-1"><a class="nav-link text-white" href="">Article</a></li>
                 <li class="py-1"><a class="nav-link text-white" href="">Kegiatan</a></li>
             </ul>
         </div>

@@ -10,6 +10,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\hubungiController;
 use App\Http\Controllers\layananController;
+use App\Http\Controllers\RequestController;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -107,6 +108,11 @@ Route::prefix('admin')
         Route::put('/update-krisma/{slug}', [TransaksiController::class,'updatedKrisma'])->name('admin.updated.Krisma');
         Route::put('/update-pernikahan/{slug}', [TransaksiController::class,'updatedPernikahan'])->name('admin.updated.Pernikahan');
         Route::put('/update-pengurapan-sakit/{slug}', [TransaksiController::class,'updatedPengurapan'])->name('admin.updated.Pengurapan');
+
+        Route::get('/Request-Pending', [RequestController::class,'pendingListRequest'])->name('admin.request.pending');
+        Route::get('/Request-Processed', [RequestController::class,'processListRequest'])->name('admin.update.Misa');
+        Route::get('/Request-Accepted', [RequestController::class,'acceptedListRequest'])->name('admin.update.Misa');
+        Route::get('/Request-detail/{id}', [RequestController::class,'pendingListRequest'])->name('admin.update.Misa');
 
 
     });
