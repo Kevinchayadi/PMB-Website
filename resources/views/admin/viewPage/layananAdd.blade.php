@@ -1,5 +1,5 @@
 @extends('admin.layout.template')
-@section('title', 'Admin - Form')
+@section('title', 'layanan - Form')
 
 @section('content')
 <div>
@@ -12,7 +12,7 @@
                     <div class="card bg-primary shadow-lg rounded-4">
                         <div class="card-body text-white">
 
-                            <h2 class="card-title text-center mb-4 fw-bolder">Create New Admin</h2>
+                            <h2 class="card-title text-center mb-4 fw-bolder">Create New Layanan</h2>
                             <form action="" method="POST">
                                 @csrf <!-- Laravel CSRF Token -->
 
@@ -40,7 +40,7 @@
                                 <!-- Tombol Submit -->
                                 <div class="d-grid">
                                     <button type="submit" class="btn btn-success">Submit</button>
-                                    <a class=" btn btn-danger rounded-none mt-2" href="/admin/admin-list"> cancel</a>
+                                    <a class=" btn btn-danger rounded-none mt-2" href="/admin/layanan"> cancel</a>
                                 </div>
                             </form>
                         </div>

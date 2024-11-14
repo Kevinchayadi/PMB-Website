@@ -66,12 +66,12 @@ Route::prefix('admin')
 
 
 
-        Route::get('/acara', [AcaraController::class, 'acaraIndex'])->name('admin.acara');
-        Route::get('/add-acara', [AcaraController::class, 'addAcara'])->name('admin.addAcaraForm');
-        Route::post('/add-acara', [AcaraController::class, 'storeAcara'])->name('admin.addAcara');
-        Route::get('/edit-acara/{slug}', [AcaraController::class,'updateAcara'])->name('admin.updateAcaraForm');
-        Route::put('/edit-acara/{slug}', [AcaraController::class,'updatedAcara'])->name('admin.updateAcara');
-        Route::delete('/delete-acara/{slug}', [AcaraController::class, 'deleteAcara'])->name('admin.deleteAcara');
+        Route::get('/layanan', [AcaraController::class, 'acaraIndex'])->name('admin.acara');
+        Route::get('/add-layanan', [AcaraController::class, 'addAcara'])->name('admin.addAcaraForm');
+        Route::post('/add-layanan', [AcaraController::class, 'storeAcara'])->name('admin.addAcara');
+        Route::get('/edit-layanan/{slug}', [AcaraController::class,'updateAcara'])->name('admin.updateAcaraForm');
+        Route::put('/edit-layanan/{slug}', [AcaraController::class,'updatedAcara'])->name('admin.updateAcara');
+        Route::delete('/delete-layanan/{slug}', [AcaraController::class, 'deleteAcara'])->name('admin.deleteAcara');
 
 
 

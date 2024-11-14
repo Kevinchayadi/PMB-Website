@@ -14,12 +14,12 @@ class AcaraController extends Controller
     {
         // Ambil semua acara beserta dokumentasinya
         $acara = Acara::with('documentations')->get();
-        return view('dashboard.acara.index', ['acara' => $acara]);
+        return view('admin.viewPage.layananList', ['acara' => $acara]);
     }
 
     public function addAcara()
     {
-        return view('dashboard.acara.add');
+        return view('admin.viewPage.layananAdd');
     }
 
     public function storeAcara(Request $request)
