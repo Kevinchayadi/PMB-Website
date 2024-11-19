@@ -10,11 +10,10 @@
 </div>
 
 <div class="px-4">
-    <!-- Pagination and Search -->
+    
     <div class="d-flex justify-content-between align-items-center mb-4 p-3 bg-light rounded shadow-sm">
-        <!-- Button to Add New Admin --
 
-        <!-- Search Input Field -->
+        
         <div class="d-flex align-items-center">
             <input type="text" id="searchInput" class="form-control w-50" placeholder="Search Admin..." aria-label="Search Admin">
             <button class="btn btn-outline-primary ms-2" type="button">
@@ -24,7 +23,6 @@
     </div>
 
 
-    <!-- Table -->
     <div class="rounded overflow-hidden shadow-sm">
         <table class="table table-hover table-striped mb-0 text-center">
             <thead class="table-primary">

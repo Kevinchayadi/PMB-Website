@@ -10,15 +10,20 @@
 
 <div class="px-4">
     <!-- Pagination and Search -->
-    <div class="px-4 py-2 my-3 mx-1 card-3d">
-        <h2>nama Event</h2>
-        <div class="d-flex justify-content-between">
-            <p>deskripsi event</p>
-            <div>
-                <a href="">Update</a>
-                <a href="">cancle</a>
-            </div>
-        </div>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+       <a href="/admin/add-layanan" class="btn btn-primary ">Add New Layanan</a>
+        <nav>
+            <ul class="pagination mb-0" id="pagination">
+                <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+        </nav>
+
+        <input type="text" id="searchInput" class="form-control w-25" placeholder="Search...">
+
     </div>
 
     <!-- Table -->
@@ -38,8 +43,8 @@
                     <td>Mark</td>
                     <td>Otto</td>
                     <td>
-                        <button class="btn btn-sm btn-outline-primary">Edit</button>
-                        <button class="btn btn-sm btn-outline-danger">Delete</button>
+                        <button class="btn btn-sm btn-outline-primary">detail</button>
+                        
                     </td>
                 </tr>
                 <tr>
@@ -47,8 +52,7 @@
                     <td>Jacob</td>
                     <td>Thornton</td>
                     <td>
-                        <button class="btn btn-sm btn-outline-primary">Edit</button>
-                        <button class="btn btn-sm btn-outline-danger">Delete</button>
+                        <button class="btn btn-sm btn-outline-primary">detail</button>
                     </td>
                 </tr>
                 <tr>
@@ -56,8 +60,7 @@
                     <td>Larry</td>
                     <td>The Bird</td>
                     <td>
-                        <button class="btn btn-sm btn-outline-primary">Edit</button>
-                        <button class="btn btn-sm btn-outline-danger">Delete</button>
+                        <button class="btn btn-sm btn-outline-primary">detail</button>
                     </td>
                 </tr>
             </tbody>

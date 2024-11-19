@@ -18,21 +18,21 @@
 
                                 <!-- Nama -->
                                 <div class="mb-3">
-                                    <label for="name" class="form-label">Nama</label>
+                                    <label for="name" class="form-label">username</label>
                                     <input type="text" class="form-control" id="name" name="name"
                                         placeholder="Masukkan nama Anda" required>
                                 </div>
 
                                 <!-- Email -->
                                 <div class="mb-3">
-                                    <label for="email" class="form-label">Email</label>
+                                    <label for="email" class="form-label">Password</label>
                                     <input type="email" class="form-control" id="email" name="email"
                                         placeholder="Masukkan email Anda" required>
                                 </div>
 
                                 <!-- Password -->
                                 <div class="mb-3">
-                                    <label for="password" class="form-label">Password</label>
+                                    <label for="password" class="form-label">Role</label>
                                     <input type="password" class="form-control" id="password" name="password"
                                         placeholder="Masukkan password" required>
                                 </div>
