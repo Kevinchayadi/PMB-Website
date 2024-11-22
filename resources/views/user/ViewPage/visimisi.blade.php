@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
-@extends('Layout.profileTemplate')
+@extends('user.Layout.profileTemplate')
 @section('title', 'Profile')
 @section('content')
     {{-- Visi dan Misi --}}

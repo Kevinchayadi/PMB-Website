@@ -8,6 +8,6 @@ class layananController extends Controller
 {
     public function layanan()
     {
-        return view('viewPage.layanan');
+        return view('user.ViewPage.layanan');
     }
 }

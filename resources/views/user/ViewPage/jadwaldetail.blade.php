@@ -1,4 +1,4 @@
-@extends('Layout.template')
+@extends('user.Layout.template')
 @section('title', 'Nama jadwal')
 
 @section('content')

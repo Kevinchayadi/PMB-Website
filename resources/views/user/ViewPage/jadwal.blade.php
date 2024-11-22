@@ -1,9 +1,8 @@
-@extends('Layout.template')
+@extends('user.Layout.template')
 @section('title', 'Jadwal')
 
 @section('content')
     <div class="container mb-lg-0 mb-4 px-0">
-
         {{-- Jadwal misa head --}}
         <div class="px-4">
             <div class="head-section d-flex justify-content-between">

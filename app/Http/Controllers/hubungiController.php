@@ -8,6 +8,6 @@ class hubungiController extends Controller
 {
     public function hubungi()
     {
-        return view('ViewPage.hubungi');
+        return view('user.ViewPage.hubungi');
     }
 }

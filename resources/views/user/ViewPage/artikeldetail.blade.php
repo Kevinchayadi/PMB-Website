@@ -1,4 +1,4 @@
-@extends('Layout.template')
+@extends('user.Layout.template')
 @section('title', 'Judul Artikel')
 @section('content')
     <div class="container">

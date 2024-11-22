@@ -1,4 +1,4 @@
-@extends('Layout.template')
+@extends('user.Layout.template')
 @section('title', 'Home')
 <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 

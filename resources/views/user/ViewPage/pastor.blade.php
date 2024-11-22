@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
-@extends('Layout.profileTemplate')
+@extends('user.Layout.profileTemplate')
 @section('title', 'Pastor')
 @section('content')
     <div class="row mx-auto mb-2">

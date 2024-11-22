@@ -1,5 +1,4 @@
-<link rel="stylesheet" href="{{ asset('csss/profile.css') }}">
-@extends('Layout.profileTemplate')
+@extends('user.Layout.profileTemplate')
 @section('title', 'Kegiatan')
 @section('content')
     <div class="row mx-auto mb-2">
