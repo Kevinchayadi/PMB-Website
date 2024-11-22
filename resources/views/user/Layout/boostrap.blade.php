@@ -61,7 +61,7 @@
     }
 
     .container-fluid {
-        min-height: 50vh !important;
+        min-height: 60vh !important;
         margin-top: 6rem !important;
     }
 
@@ -75,6 +75,10 @@
     }
 
     .row {
+        margin-right: 0 !important;
+    }
+
+    .modal {
         margin-right: 0 !important;
     }
 </style>

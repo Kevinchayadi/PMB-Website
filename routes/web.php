@@ -27,6 +27,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 Route::redirect('/', 'home');
 Route::get('/home', [LandingController::class, 'home'])->name('home');
+Route::get('/dashboard', [LandingController::class, 'Dashboard'])->name('dashboard');
 Route::get('/profile/visiMisi', [profileController::class, 'visiMisi'])->name('visiMisi');
 Route::get('/profile/sejarah', [profileController::class, 'sejarah'])->name('sejarah');
 Route::get('/profile/doa', [profileController::class, 'doa'])->name('doa');

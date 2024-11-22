@@ -13,6 +13,10 @@ class LandingController extends Controller
         return view('user.ViewPage.home');
     }
 
+    public function Dashboard(){
+        return view('user.ViewPage.dashboard');
+    }
+
     public function jadwal()
     {
         $transactions = TransactionHeader::with('transactionDelails')->get();
@@ -30,17 +34,17 @@ class LandingController extends Controller
             ->where('id_transaction', $id)
             ->first();
 
-        return view('user.viewPage.jadwalDetail', ['transactions' => $transaction]);
+        return view('user.ViewPage.jadwalDetail', ['transactions' => $transaction]);
     }
 
     public function artikel()
     {
-        return view('user.viewPage.artikel');
+        return view('user.ViewPage.artikel');
     }
 
     public function artikeldetail($id)
     {
-        return view('viewpage.artikeldetail');
+        return view('user.Viewpage.artikeldetail');
     }
 
     public function layanan()
