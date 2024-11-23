@@ -3,7 +3,6 @@
 <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 
 @section('content')
-
     <div class="container">
         {{-- Carousel --}}
         <div id="carouselExampleAutoplaying" class="carousel slide mb-3 w-75 mx-auto" data-bs-ride="carousel">

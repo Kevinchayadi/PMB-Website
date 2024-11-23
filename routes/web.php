@@ -11,6 +11,7 @@ use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\hubungiController;
 use App\Http\Controllers\layananController;
 use App\Http\Controllers\RequestController;
+use App\Http\Controllers\UmatController;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -72,7 +73,7 @@ Route::prefix('admin')
         Route::get('/layanan', [AcaraController::class, 'acaraIndex'])->name('admin.acara');
         Route::get('/add-layanan', [AcaraController::class, 'addAcara'])->name('admin.addAcaraForm');
         Route::post('/add-layanan', [AcaraController::class, 'storeAcara'])->name('admin.addAcara');
-        Route::get('/edit-layanan/{slug}', [AcaraController::class,'updateAcara'])->name('admin.updateAcaraForm');
+        Route::get('/edit-layanan/{slug}', [AcaraController::class, 'updateAcara'])->name('admin.updateAcaraForm');
         Route::put('/edit-layanan/{slug}', [AcaraController::class,'updatedAcara'])->name('admin.updateAcara');
         Route::delete('/delete-layanan/{slug}', [AcaraController::class, 'deleteAcara'])->name('admin.deleteAcara');
 
@@ -116,6 +117,7 @@ Route::prefix('admin')
         Route::get('/Request-Accepted', [RequestController::class,'acceptedListRequest'])->name('admin.update.Misa');
         Route::get('/Request-detail/{id}', [RequestController::class,'pendingListRequest'])->name('admin.update.Misa');
 
+        Route::get('/highlight', [UmatController::class, 'highlight'])->name('admin.highlight');
 
     });
 

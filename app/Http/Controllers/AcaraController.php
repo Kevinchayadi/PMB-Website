@@ -14,12 +14,12 @@ class AcaraController extends Controller
     {
         // Ambil semua acara beserta dokumentasinya
         $acara = Acara::with('documentations')->get();
-        return view('admin.viewPage.layananList', ['acara' => $acara]);
+        return view('admin.viewPage.landingpage.acara.layanan', ['acara' => $acara]);
     }
 
     public function addAcara()
     {
-        return view('admin.viewPage.layananAdd');
+        return view('admin.viewPage.landingpage.acara.addLayanan');
     }
 
     public function storeAcara(Request $request)
@@ -68,8 +68,9 @@ class AcaraController extends Controller
     public function updateAcara($slug)
     {
         // Ambil acara berdasarkan slug beserta dokumentasinya
-        $acara = Acara::with('documentations')->where('slug', $slug)->firstOrFail();
-        return view('dashboard.acara.edit', compact('acara'));
+        //$acara = Acara::with('documentations')->where('slug', $slug)->firstOrFail();
+        return view('admin.viewPage.landingpage.acara.updateLayanan');
+        //, compact('acara'));
     }
 
     public function updatedAcara(Request $request, $slug)
@@ -121,7 +122,7 @@ class AcaraController extends Controller
             return back()->with('error', 'Gagal melakukan update acara!');
         }
 
-        return redirect()->route('admin.acara')->with('success', 'Acara dan dokumentasi berhasil diperbarui');
+        return redirect()->route('admin.viewPage.landingpage.acara.layanan')->with('success', 'Acara dan dokumentasi berhasil diperbarui');
     }
 
     public function deleteAcara($slug)
@@ -147,6 +148,6 @@ class AcaraController extends Controller
             return back()->with('error', 'Gagal menghapus acara!');
         }
 
-        return redirect()->route('admin.acara')->with('success', 'Acara dan dokumentasi berhasil dihapus');
+        return redirect()->route('admin.viewPage.landingpage.acara.layanan')->with('success', 'Acara dan dokumentasi berhasil dihapus');
     }
 }
