@@ -37,7 +37,7 @@ class LoginController extends Controller
 
     function umatIndex()
     {
-        return view('umat.login');
+        return view('auth.umatLogin');
     }
 
     function umatLogin(Request $request)
@@ -56,7 +56,7 @@ class LoginController extends Controller
                 $request->filled('remember'),
             )
         ) {
-            return redirect()->route('umat.dashboard');
+            return redirect()->route('user.viewPage.dashboard');
         }
         return back()->with('error', 'gagal login, tolong untuk dicek kembali email dan password!');
     }

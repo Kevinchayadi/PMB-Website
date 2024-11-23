@@ -43,6 +43,7 @@ Route::get('/hubungi', [hubungiController::class, 'hubungi'])->name('hubungi');
 
 Route::middleware(['guest:web'])->group(function () {
     Route::get('/login', [LoginController::class, 'umatIndex'])->name('umat.login');
+    Route::post('/login', [LoginController::class, 'umatLogin'])->name('umat.login');
     Route::get('/register', [RegisterController::class, 'umatIndex'])->name('umat.register');
 });
 

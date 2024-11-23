@@ -1,5 +1,7 @@
-body {
-    background-image: url('/picture/Agenda-paroki.png');
-    background-size: cover;
-    background-repeat: no-repeat;
+.divider:after,
+.divider:before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
 }
