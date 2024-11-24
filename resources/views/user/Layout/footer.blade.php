@@ -1,6 +1,7 @@
-<div class="footer row justify-content-center mx-auto border-top py-2 shadow-sm h-50">
+<div
+    class="footer row justify-content-center mx-auto border-top py-2 shadow-sm h-25 pb-0 {{ Route::is('hubungi') ? 'd-none' : '' }}">
     {{-- Ikuti kami --}}
-    <div class=" {{ Route::is('hubungi') ? 'd-none' : '' }} section-2 col-lg-2 col-6 p-2 h-25 ">
+    <div class="section-2 col-lg-2 col-6 p-2 h-25 ">
         <div class="fs-5 text-center text-white">Ikuti Kami</div>
 
         <div class="ps-2 row justify-content-center">
@@ -60,7 +61,7 @@
         <div class="fs-5 text-center text-white">Lokasi Gereja</div>
         <iframe
             src="https://maps.google.com/maps?q=Jl.%20Raya%20Mangga%20Besar%20No.55%201,%20RT.1/RW.3,%20Tangki,%20Kec.%20Taman%20Sari,%20Kota%20Jakarta%20Barat,%20Daerah%20Khusus%20Ibukota%20Jakarta%2011170&amp;t=&amp;z=17&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
-            width="100%" height="200px" class="rounded-3 shadow-lg">
+            width="100%" height="100px" class="rounded-3 shadow-lg">
         </iframe>
     </div>
 </div>
