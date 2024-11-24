@@ -16,6 +16,7 @@ class AdminController extends Controller
 
     public function addAdmin()
     {
+
         return view('admin.viewPage.adminAdd');
     }
 
@@ -43,7 +44,7 @@ class AdminController extends Controller
     public function detailAdmin($slug)
     {
         $admin = Admin::with('roles')->where('username', $slug)->firstOrFail();
-        return view('admin.detail', ['admin' => $admin]);
+        return view('admin.viewPage.adminUpdate', ['admin' => $admin]);
     }
 
     public function updateAdmin(Request $request, $slug)

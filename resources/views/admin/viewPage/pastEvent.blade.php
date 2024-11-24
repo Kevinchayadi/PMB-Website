@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="d-flex justify-content-end  align-items-center my-3  text-center">
-    <h1 class="mb-0 fw-bold  p-2 text-white bg-primary shadow rounded-start-2">Layanan List</h1>
+    <h1 class="mb-0 fw-bold  p-2 text-white bg-primary shadow rounded-start-2">Event List</h1>
 
 </div>
 
@@ -44,7 +44,7 @@
                     <td>Otto</td>
                     <td>
                         <button class="btn btn-sm btn-outline-primary">detail</button>
-                        
+
                     </td>
                 </tr>
                 <tr>

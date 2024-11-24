@@ -40,8 +40,8 @@
                     <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1z"/>
                 </svg>
             </div>
-            <h3 class="fw-bold ">User</h3>
-            <p class="fs-5">100 Registered</p>
+            <h3 class="fw-bold ">Request</h3>
+            <p class="fs-5">100 Request</p>
         </div>
     </div>
     <div class=" col-md-4   py-2 px-2">
@@ -53,8 +53,8 @@
                     <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1z"/>
                 </svg>
             </div>
-            <h3 class="fw-bold ">User</h3>
-            <p class="fs-5">100 Registered</p>
+            <h3 class="fw-bold ">Registered event</h3>
+            <p class="fs-5">10 event</p>
         </div>
     </div>
 </div>

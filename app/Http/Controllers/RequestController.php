@@ -135,23 +135,32 @@ class RequestController extends Controller
 
     public function pendingListRequest()
     {
-        $requestList = ModelsRequest::with('umats')->get();
+        $requestList = ModelsRequest::with('umats')->where('status','pending')->get();
         return view('admin.viewPage.pendingRequest', ['requestList' => $requestList]);
     }
     public function processListRequest()
     {
-        $requestList = ModelsRequest::with('umats')->get();
+        $requestList = ModelsRequest::with('umats')->where('status','process')->get();
         return view('admin.viewPage.processRequest', ['requestList' => $requestList]);
     }
     public function acceptedListRequest()
     {
-        $requestList = ModelsRequest::with('umats')->get();
+        $requestList = ModelsRequest::with('umats')->where('status','accepted')->get();
         return view('admin.viewPage.acceptedRequest', ['requestList' => $requestList]);
     }
-    public function detailRequest()
+    public function detailRequest($slug)
     {
-        $requestList = ModelsRequest::with('umats')->get();
-        return view('admin.viewPage.detailRequest', ['requestList' => $requestList]);
+        $data = ModelsRequest::with('umats')->where('nama_acara','$slug')->firstOrfail();
+        if($data){
+            if($data->nama_acara == 'baptis') return view('admin.viewPage.detail.baptis', ['requestList' => $data]);
+            if($data->nama_acara == 'komuniPertama') return view('admin.viewPage.detail.baptis', ['requestList' => $data]);
+            if($data->nama_acara == 'krisma') return view('admin.viewPage.detail.krisma', ['requestList' => $data]);
+            if($data->nama_acara == 'pengurapan') return view('admin.viewPage.detail.pengurapan', ['requestList' => $data]);
+            if($data->nama_acara == 'pernikahan') return view('admin.viewPage.detail.pernikahan', ['requestList' => $data]);
+            if($data->nama_acara == 'tobat') return view('admin.viewPage.detail.tobat', ['requestList' => $data]);
+        }
+        return back()->with('error', 'something wrong happened!!');
+
     }
 
 

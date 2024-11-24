@@ -79,7 +79,7 @@ Route::prefix('admin')
 
 
 
-        Route::get('/transactions', [TransaksiController::class, 'index'])->name('admin.transaksi');
+        Route::get('/event', [TransaksiController::class, 'index'])->name('admin.transaksi');
         Route::get('/add-misa', [TransaksiController::class,'addMisa'])->name('admin.Add.Misa');
         Route::get('/add-sakramen-baptis', [TransaksiController::class,'addSakramenBaptis'])->name('admin.Add.SakramenBaptis');
         Route::get('/add-sakramen-Tobat',[TransaksiController::class,'addSakramenTobat'])->name('admin.add.SakramenTobat');
