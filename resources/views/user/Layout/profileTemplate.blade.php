@@ -13,7 +13,7 @@
 
 <body>
     @include('user.Layout.header')
-    <div class="upper border-bottom sticky-top bg-white">
+    <div class="upper border-bottom sticky-top bg-white shadow-sm">
         <div class="w-100 box-shadow">
             <ul class="nav fs-6 w-auto overflow-x-auto d-relative flex-nowrap justify-content-center">
 

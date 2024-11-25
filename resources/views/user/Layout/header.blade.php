@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="{{ asset('css/header.css') }}">
-<div class="header navbar navbar-expand-md px-3 border-bottom pe-0 fixed-top shadow-sm">
+<div
+    class="header navbar navbar-expand-md px-3 pe-0 fixed-top {{ (Route::is('visiMisi') or Route::is('sejarah') or Route::is('doa') or Route::is('fasilitas') or Route::is('pastor') or Route::is('kegiatan')) ? '' : 'shadow-sm border-bottom' }}">
     <div class="left row col-lg-3 col-12">
         {{-- button --}}
         <button class="navbar-toggler col-2 h-50 my-auto mx-1" type="button" data-bs-toggle="collapse"
