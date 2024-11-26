@@ -86,4 +86,8 @@
     .sticky-top {
         top: 80;
     }
+
+    .btn-primary {
+        background-color: #0084B5 !important;
+    }
 </style>
