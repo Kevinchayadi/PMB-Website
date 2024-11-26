@@ -56,7 +56,7 @@ Route::prefix('admin')
     });
 
 Route::prefix('admin')
-    // ->middleware(['auth:admin'])
+    ->middleware(['auth:admin'])
     ->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
         Route::get('/admin-list', [AdminController::class, 'index'])->name('admin.admin-list');
@@ -79,7 +79,7 @@ Route::prefix('admin')
 
 
 
-        Route::get('/event', [TransaksiController::class, 'index'])->name('admin.transaksi');
+        Route::get('/scheduledEvent', [TransaksiController::class, 'index'])->name('admin.transaksi');
         Route::get('/add-misa', [TransaksiController::class,'addMisa'])->name('admin.Add.Misa');
         Route::get('/add-sakramen-baptis', [TransaksiController::class,'addSakramenBaptis'])->name('admin.Add.SakramenBaptis');
         Route::get('/add-sakramen-Tobat',[TransaksiController::class,'addSakramenTobat'])->name('admin.add.SakramenTobat');

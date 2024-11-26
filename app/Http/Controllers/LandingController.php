@@ -10,6 +10,7 @@ class LandingController extends Controller
 {
     public function Home()
     {
+        
         return view('user.ViewPage.home');
     }
 

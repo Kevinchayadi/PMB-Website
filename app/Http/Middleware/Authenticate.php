@@ -12,6 +12,22 @@ class Authenticate extends Middleware
      */
     protected function redirectTo(Request $request): ?string
     {
-        return $request->expectsJson() ? null : route('home');
+        if ($request->expectsJson()) {
+            return null;
+        }
+
+        // Periksa guard aktif berdasarkan middleware yang digunakan
+        $routeMiddleware = $request->route()->middleware();
+
+        if (in_array('auth:admin', $routeMiddleware)) {
+            return route('admin.login');
+        }
+
+        if (in_array('auth:web', $routeMiddleware)) {
+            return route('home');
+        }
+
+        // Default fallback jika tidak ada guard yang cocok
+        return route('home');
     }
 }
