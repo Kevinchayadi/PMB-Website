@@ -1,5 +1,5 @@
 @extends('admin.layout.template')
-@section('title', 'layanan - Form')
+@section('title', 'Doa - Form')
 
 @section('content')
     <div>
@@ -12,22 +12,22 @@
                     <div class="card bg-primary shadow-lg rounded-4">
                         <div class="card-body text-white">
 
-                            <h2 class="card-title text-center mb-4 fw-bolder">Create New Layanan</h2>
-                            <form action="/admin/add-layanan" method="POST">
+                            <h2 class="card-title text-center mb-4 fw-bolder">Create New Doa</h2>
+                            <form action="/admin/add-doa" method="POST">
                                 @csrf <!-- Laravel CSRF Token -->
 
                                 <!-- Nama -->
                                 <div class="mb-3">
-                                    <label for="name" class="form-label">Nama Layanan</label>
+                                    <label for="name" class="form-label">Nama Doa</label>
                                     <input type="text" class="form-control" id="name" name="name"
-                                        placeholder="Masukkan nama layanan" required>
+                                        placeholder="Masukkan nama doa" required>
                                 </div>
 
                                 <!-- Deskripsi -->
                                 <div class="mb-3">
-                                    <label for="desc" class="form-label">Deskripsi Layanan</label>
+                                    <label for="desc" class="form-label">Deskripsi Doa</label>
                                     <input type="text" class="form-control" id="desc" name="desc"
-                                        placeholder="Masukkan deskripsi layanan" required>
+                                        placeholder="Masukkan deskripsi doa" required>
                                 </div>
 
                                 <!-- gambar -->
@@ -40,7 +40,7 @@
                                 <!-- Tombol Submit -->
                                 <div class="d-grid">
                                     <button type="submit" class="btn btn-success">Submit</button>
-                                    <a class=" btn btn-danger rounded-none mt-2" href="/admin/layanan"> cancel</a>
+                                    <a class=" btn btn-danger rounded-none mt-2" href="/admin/doa">Cancel</a>
                                 </div>
                             </form>
                         </div>
