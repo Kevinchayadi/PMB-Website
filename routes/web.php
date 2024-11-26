@@ -12,6 +12,10 @@ use App\Http\Controllers\hubungiController;
 use App\Http\Controllers\layananController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\UmatController;
+use App\Http\Controllers\doaController;
+use App\Http\Controllers\pastorController;
+use App\Http\Controllers\artikelController;
+use App\Http\Controllers\kegiatanController;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -68,8 +72,6 @@ Route::prefix('admin')
         Route::get('/removed-admin-list', [AdminController::class, 'adminRemoved'])->name('admin.removedList');
         Route::get('/restore/{slug}', [AdminController::class, 'restore'])->name('admin.restored');
 
-
-
         Route::get('/layanan', [AcaraController::class, 'acaraIndex'])->name('admin.acara');
         Route::get('/add-layanan', [AcaraController::class, 'addAcara'])->name('admin.addAcaraForm');
         Route::post('/add-layanan', [AcaraController::class, 'storeAcara'])->name('admin.addAcara');
@@ -77,7 +79,33 @@ Route::prefix('admin')
         Route::put('/edit-layanan/{slug}', [AcaraController::class,'updatedAcara'])->name('admin.updateAcara');
         Route::delete('/delete-layanan/{slug}', [AcaraController::class, 'deleteAcara'])->name('admin.deleteAcara');
 
+        Route::get('/doa', [doaController::class, 'doaIndex'])->name('admin.doa');
+        Route::get('/add-doa', [doaController::class, 'addDoa'])->name('admin.addDoaForm');
+        Route::post('/add-doa', [doaController::class, 'storeDoa'])->name('admin.addDoa');
+        Route::get('/edit-doa/{slug}', [doaController::class, 'updateDoa'])->name('admin.updateDoaForm');
+        Route::put('/edit-doa/{slug}', [doaController::class,'updatedDoa'])->name('admin.updateDoa');
+        Route::delete('/delete-doa/{slug}', [doaController::class, 'deleteDoa'])->name('admin.deleteDoa');
 
+        Route::get('/pastor', [pastorController::class, 'pastorIndex'])->name('admin.pastor');
+        Route::get('/add-pastor', [pastorController::class, 'addPastor'])->name('admin.addPastorForm');
+        Route::post('/add-pastor', [pastorController::class, 'storePastor'])->name('admin.addPastor');
+        Route::get('/edit-pastor/{slug}', [pastorController::class, 'updatePastor'])->name('admin.updatePastorForm');
+        Route::put('/edit-pastor/{slug}', [pastorController::class,'updatedPastor'])->name('admin.updatePastor');
+        Route::delete('/delete-pastor/{slug}', [pastorController::class, 'deletePastor'])->name('admin.deletePastor');
+
+        Route::get('/artikel', [artikelController::class, 'artikelIndex'])->name('admin.artikel');
+        Route::get('/add-artikel', [artikelController::class, 'addArtikel'])->name('admin.addArtikelForm');
+        Route::post('/add-artikel', [artikelController::class, 'storeArtikel'])->name('admin.addArtikel');
+        Route::get('/edit-artikel/{slug}', [artikelController::class, 'updateArtikel'])->name('admin.updateArtikelForm');
+        Route::put('/edit-artikel/{slug}', [artikelController::class,'updatedArtikel'])->name('admin.updateArtikel');
+        Route::delete('/delete-artikel/{slug}', [artikelController::class, 'deleteArtikel'])->name('admin.deleteArtikel');
+
+        Route::get('/kegiatan', [kegiatanController::class, 'kegiatanIndex'])->name('admin.kegiatan');
+        Route::get('/add-kegiatan', [kegiatanController::class, 'addKegiatan'])->name('admin.addKegiatanForm');
+        Route::post('/add-kegiatan', [kegiatanController::class, 'storekegiatan'])->name('admin.addKegiatan');
+        Route::get('/edit-kegiatan/{slug}', [kegiatanController::class, 'updateKegiatan'])->name('admin.updateKegiatanForm');
+        Route::put('/edit-kegiatan/{slug}', [kegiatanController::class,'updatedKegiatan'])->name('admin.updateKegiatan');
+        Route::delete('/delete-kegiatan/{slug}', [kegiatanController::class, 'deleteKegiatan'])->name('admin.deleteKegiatan');
 
         Route::get('/scheduledEvent', [TransaksiController::class, 'index'])->name('admin.transaksi');
         Route::get('/add-misa', [TransaksiController::class,'addMisa'])->name('admin.Add.Misa');

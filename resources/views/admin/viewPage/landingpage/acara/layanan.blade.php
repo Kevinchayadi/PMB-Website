@@ -10,7 +10,6 @@
     <div class="px-4">
         <!-- Pagination and Search -->
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <a href="/admin/add-layanan" class="btn btn-primary ">Add New Layanan</a>
             <nav>
                 <ul class="pagination mb-0" id="pagination">
                     <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>

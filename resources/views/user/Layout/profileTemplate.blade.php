@@ -67,11 +67,11 @@
                 @include('user.Layout.rightpage')
             </div>
         </div>
-        <footer>
-            @include('user.Layout.footer')
-        </footer>
-        <script src="{{ asset('js/scroll.js') }}"></script>
     </div>
+    <script src="{{ asset('js/scroll.js') }}"></script>
 </body>
+<footer>
+    @include('user.Layout.footer')
+</footer>
 
 </html>

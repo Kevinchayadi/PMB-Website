@@ -22,9 +22,10 @@
                 aria-labelledby="doaabcde" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="doaabcde">Layanan A</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <div class="modal-header bg-primary">
+                            <h1 class="modal-title fs-5 text-white" id="doaabcde">Layanan A</h1>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et architecto accusantium officiis
@@ -48,25 +49,39 @@
                 aria-labelledby="form-a" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="form-a">Daftar Layanan A</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <div class="modal-header bg-primary">
+                            <h1 class="modal-title fs-5 text-white" id="form-a">Daftar Layanan A</h1>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <form>
                                 <div class="mb-3">
-                                    <label for="InputName" class="form-label">Nama Lengkap</label>
-                                    <input type="text" class="form-control" id="InputName">
+                                    <label for="Terlibat-1" class="form-label">Nama Terlibat 1</label>
+                                    <input type="text" class="form-control" id="Terlibat-1"
+                                        placeholder="Contoh: John Smith" required>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="InputEmail" class="form-label">Alamat Email</label>
-                                    <input type="email" class="form-control" id="InputEmail">
+                                    <label for="Terlibat-2" class="form-label">Nama Terlibat 2</label>
+                                    <input type="text" class="form-control" id="Terlibat-2"
+                                        placeholder="Contoh: John Smith">
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="InputNumber" class="form-label">Nomor Telepon</label>
-                                    <input type="number" class="form-control" id="InputNumber">
+                                    <label for="Romo" class="form-label">Nama Romo</label>
+                                    <input type="text" class="form-control" id="Romo"
+                                        placeholder="Contoh: John Smith">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="Jadwal" class="form-label">Jadwal Acara</label>
+                                    <input type="date" class="form-control" id="Jadwal">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="Description" class="form-label">Catatan</label>
+                                    <textarea class="form-control" id="Description" rows="3" placeholder="Contoh: Tolong segera diproses nya"></textarea>
                                 </div>
 
                                 <button type="submit" class="btn btn-primary">Submit</button>
