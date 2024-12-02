@@ -1,35 +1,36 @@
 @extends('admin.layout.template')
-@section('title', 'Admin - Detail')
+@section('title', 'Request - Detail')
 
 @section('content')
 <div class="container-fluid">
     <div class="min-vh-100 d-flex flex-column align-items-center justify-content-center">
         <div class="row w-100 justify-content-center">
             <div class="col-10 col-md-8">
-                <div class="card bg-primary shadow-lg rounded-4">
-                    <div class="card-body text-white">
+                <!-- Card with white background and 3D effect -->
+                <div class="card bg-white shadow-lg rounded-4 border-0">
+                    <div class="card-body text-dark">
                         <h2 class="card-title text-center mb-4 fw-bolder">Detail Admin</h2>
                         
-                        <!-- Detail Data -->
-                        <div class="mb-3">
-                            <label class="form-label">Username:</label>
-                            <p class="form-control bg-light text-dark">{{ $admin->name }}</p>
+                        <!-- Detail Data with label and info in the same line -->
+                        <div class="mb-3 d-flex justify-content-between align-items-center">
+                            <label class="form-label w-25">Username:</label>
+                            <p class="form-control bg-light text-dark fw-bold w-75 mb-0">{{ $admin->name }}</p>
                         </div>
                         
-                        <div class="mb-3">
-                            <label class="form-label">Password:</label>
-                            <p class="form-control bg-light text-dark">******</p>
+                        <div class="mb-3 d-flex justify-content-between align-items-center">
+                            <label class="form-label w-25">Password:</label>
+                            <p class="form-control bg-light text-dark fw-bold w-75 mb-0">******</p>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Role:</label>
-                            <p class="form-control bg-light text-dark">{{ $admin->role }}</p>
+                        <div class="mb-3 d-flex justify-content-between align-items-center">
+                            <label class="form-label w-25">Role:</label>
+                            <p class="form-control bg-light text-dark fw-bold w-75 mb-0">{{ $admin->role }}</p>
                         </div>
 
-                        <!-- Tombol Aksi -->
-                        <div class="d-grid">
-                            <a class="btn btn-success mt-2" href="/admin/edit-admin/{{ $admin->id }}">Edit</a>
-                            <a class="btn btn-danger mt-2" href="/admin/admin-list">Kembali</a>
+                        <!-- Action Buttons: Reject and Accept -->
+                        <div class="d-grid gap-2 d-md-block">
+                            <a class="btn btn-danger mt-2" href="/admin/reject-admin/{{ $admin->id }}">Reject</a>
+                            <a class="btn btn-success mt-2" href="/admin/accept-admin/{{ $admin->id }}">Accept</a>
                         </div>
                     </div>
                 </div>

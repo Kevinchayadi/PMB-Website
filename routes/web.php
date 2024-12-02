@@ -43,7 +43,7 @@ Route::get('/jadwal', [LandingController::class, 'jadwal'])->name('jadwal');
 Route::get('/jadwal/{slug}', [LandingController::class, 'jadwalDetail'])->name('jadwal');
 Route::get('/artikel', [LandingController::class, 'artikel'])->name('artikel');
 Route::get('/artikel/{slug}', [LandingController::class, 'artikeldetail'])->name('artikel');
-Route::get('/layanan', [layananController::class, 'layanan'])->name('layanan');
+Route::get('/layanan', [LandingController::class, 'layanan'])->name('layanan');
 Route::get('/hubungi', [hubungiController::class, 'hubungi'])->name('hubungi');
 
 Route::middleware(['guest:web'])->group(function () {

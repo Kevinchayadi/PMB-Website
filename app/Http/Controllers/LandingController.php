@@ -3,18 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\Acara;
+use App\Models\Hightlight;
 use Illuminate\Http\Request;
 use App\Models\TransactionHeader;
+use Illuminate\Support\Facades\Auth;
 
 class LandingController extends Controller
 {
     public function Home()
     {
-        
-        return view('user.ViewPage.home');
+        $hightlight = Hightlight::get();
+        return view('user.ViewPage.home',compact('hightlight'));
     }
 
     public function Dashboard(){
+        $transaction = TransactionHeader::with(['romo', 'seksi', 'doa', 'transactionDetails' => function ($query) {
+            $query->with('umats', 'acara', 'admin')->where('user_id', Auth::guard('web')->user()->id);
+        }])->where('status', 'coming');
         return view('user.ViewPage.dashboard');
     }
 
@@ -51,7 +56,7 @@ class LandingController extends Controller
     public function layanan()
     {
         $layanan = Acara::with('transactionDetails')->get();
-        return view('viewPage.layanan', ['layanan' => $layanan]);
+        return view('user.Viewpage.layanan', ['layanan' => $layanan]);
     }
 
     public function formPendaftaran()
