@@ -43,7 +43,7 @@ Route::get('/jadwal', [LandingController::class, 'jadwal'])->name('jadwal');
 Route::get('/jadwal/{slug}', [LandingController::class, 'jadwalDetail'])->name('jadwal');
 Route::get('/artikel', [LandingController::class, 'artikel'])->name('artikel');
 Route::get('/artikel/{slug}', [LandingController::class, 'artikeldetail'])->name('artikel');
-Route::get('/layanan', [layananController::class, 'layanan'])->name('layanan');
+Route::get('/layanan', [LandingController::class, 'layanan'])->name('layanan');
 Route::get('/hubungi', [hubungiController::class, 'hubungi'])->name('hubungi');
 
 Route::middleware(['guest:web'])->group(function () {
@@ -79,7 +79,7 @@ Route::prefix('admin')
         Route::put('/edit-layanan/{slug}', [AcaraController::class,'updatedAcara'])->name('admin.updateAcara');
         Route::delete('/delete-layanan/{slug}', [AcaraController::class, 'deleteAcara'])->name('admin.deleteAcara');
 
-        Route::get('/doa', [doaController::class, 'doaIndex'])->name('admin.doa');
+        Route::get('/doa', [doaController::class, 'doaIn    dex'])->name('admin.doa');
         Route::get('/add-doa', [doaController::class, 'addDoa'])->name('admin.addDoaForm');
         Route::post('/add-doa', [doaController::class, 'storeDoa'])->name('admin.addDoa');
         Route::get('/edit-doa/{slug}', [doaController::class, 'updateDoa'])->name('admin.updateDoaForm');
