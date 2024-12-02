@@ -62,6 +62,7 @@ class LandingController extends Controller
     {
         $layanan = Acara::with('transactionDetails')->get();
         return view('user.Viewpage.layanan', ['layanan' => $layanan]);
+        return view('user.Viewpage.layanan', ['layanan' => $layanan]);
     }
 
     public function formPendaftaran()

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nama_acara',255);
             $table->string('slug',255)->nullable()->unique();
             $table->string('tipe_acara',255);
-            $table->text('deskripsi_acara');
+            $table->text('deskripsi_acara')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
