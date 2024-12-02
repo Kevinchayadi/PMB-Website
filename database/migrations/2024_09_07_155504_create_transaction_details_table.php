@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_umat')->nullable();
             $table->unsignedBigInteger('id_admin');
             $table->text('deskripsi_transaksi')->nullable();
+            $table->decimal('pendapatan',15,2)->nullable();
             $table->softDeletes();
             $table->timestamps();
 
