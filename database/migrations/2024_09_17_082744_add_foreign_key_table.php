@@ -39,10 +39,10 @@ return new class extends Migration
             $table->foreign('id_umat')->references('id_umat')->on('umats')->onDelete('restrict');
         });
 
-        Schema::table('doas', function (Blueprint $table) {
-            $table->foreign('id_doa')->references('id_doa')->on('transaction_headers')->onDelete('cascade');
+        // Schema::table('doas', function (Blueprint $table) {
+        //     $table->foreign('id_doa')->references('id_doa')->on('transaction_headers')->onDelete('cascade');
             
-        });
+        // });
 
         Schema::table('documentations', function (Blueprint $table) {
             $table->foreign('id_acara')->references('id_acara')->on('acaras')->onDelete('cascade');
