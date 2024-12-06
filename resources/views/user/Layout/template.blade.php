@@ -8,6 +8,7 @@
     <title>@yield('title')</title>
     @include('user.Layout.bootstrap')
     @include('user.Layout.font')
+    <link rel="stylesheet" href="{{ asset('css/hover.css') }}">
 </head>
 
 <body>

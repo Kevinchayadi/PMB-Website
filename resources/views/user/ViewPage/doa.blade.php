@@ -1,8 +1,9 @@
+<link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 @extends('user.Layout.profileTemplate')
 @section('title', 'Doa')
 @section('content')
     <div class="row mx-auto mb-2">
-        <div class="col-lg-6 col-12 p-2">
+        <div class="col-lg-6 col-12 p-2 hvr-sink">
             <div class="bg-primary rounded p-2" data-bs-toggle="modal" data-bs-target="#doaabcde">
                 {{-- Gambar --}}
                 <img class="img-fluid rounded-3 mb-2" src="{{ asset('picture/Gereja.jpg') }}" alt="">
@@ -35,7 +36,7 @@
             </div>
         </div>
 
-        <div class="col-lg-6 col-12 p-2">
+        <div class="col-lg-6 col-12 p-2 hvr-sink">
             <div class="bg-secondary rounded p-2" data-bs-toggle="modal" data-bs-target="#doaabcdef">
                 {{-- Gambar --}}
                 <img class="img-fluid rounded-3 mb-2" src="{{ asset('picture/Gereja.jpg') }}" alt="">

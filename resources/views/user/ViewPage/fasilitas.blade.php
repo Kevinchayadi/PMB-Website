@@ -1,8 +1,9 @@
+<link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 @extends('user.Layout.profileTemplate')
 @section('title', 'Fasilitas')
 @section('content')
     <div class="row mb-2 mx-auto">
-        <div class="col-lg-6 col-12 p-2">
+        <div class="col-lg-6 col-12 p-2 hvr-shrink">
             <div class="rounded-3 bg-primary shadow-lg p-2" data-bs-toggle="modal" data-bs-target="#fasilitas-a">
                 <img src="{{ asset('picture/Gereja.jpg') }}" alt="" class="img-fluid rounded">
                 <div class="modal fade" id="fasilitas-a" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -39,7 +40,7 @@
             </div>
         </div>
 
-        <div class="col-lg-6 col-12 p-2">
+        <div class="col-lg-6 col-12 p-2 hvr-shrink">
             <div class="rounded-3 bg-primary shadow-lg p-2" data-bs-toggle="modal" data-bs-target="#fasilitas-b">
                 <img src="{{ asset('picture/Gereja.jpg') }}" alt="" class="img-fluid rounded">
                 <div class="modal fade" id="fasilitas-b" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"

@@ -3,7 +3,7 @@
 @section('title', 'Pastor')
 @section('content')
     <div class="row mx-auto mb-2">
-        <div class="col-lg-6 col-12 p-2">
+        <div class="col-lg-6 col-12 p-2 hvr-shrink">
             <div class="bg-primary rounded-3 shadow-lg p-2" data-bs-toggle="modal" data-bs-target="#pastor-a">
                 <img src="{{ asset('picture/Gereja.jpg') }}" alt="" class="img-fluid rounded-3">
                 <div class="fs-6">

@@ -48,7 +48,7 @@
                                 <h5 class="card-title">Special title treatment</h5>
                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.
                                 </p>
-                                <a href="#" class="nav-link text-primary">Selengkapnya</a>
+                                <a href="#" class="nav-link text-primary hvr-shrink">Selengkapnya</a>
                             </div>
                         </div>
                     </div>
@@ -58,7 +58,7 @@
                                 <h5 class="card-title">Special title treatment</h5>
                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.
                                 </p>
-                                <a href="#" class="nav-link text-primary">Selengkapnya</a>
+                                <a href="#" class="nav-link text-primary hvr-shrink">Selengkapnya</a>
                             </div>
                         </div>
                     </div>
