@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="container-fluid row">
-        <div class="col-6">
+        <div class="col-6 hvr-grow">
             <div class="text-center my-2 p-2 border border-primary rounded-3 shadow-lg mx-auto w-75 h-75">
                 <div class="head fs-4 fw-bolder mb-2"><u>OUR SOCIAL MEDIA</u></div>
                 {{-- Youtube --}}
@@ -56,7 +56,7 @@
             </div>
         </div>
 
-        <div class="col-6">
+        <div class="col-6 hvr-grow">
             <div class="text-center my-2 p-2 border border-primary rounded-3 shadow-lg mx-auto w-75 h-75">
                 <div class="head fs-4 fw-bolder mb-2"><u>OUR LOCATION</u></div>
                 <div class="my-2 mx-2 h-25 px-0">

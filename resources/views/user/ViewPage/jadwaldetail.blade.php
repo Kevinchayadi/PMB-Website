@@ -53,7 +53,8 @@
             <div class="tempat fs-6">Di Gereja Santo Petrus dan Paulus</div>
 
             {{-- Tombol daftar --}}
-            <div class="mt-3 btn btn-primary" data-bs-toggle="modal" data-bs-target="#kegiatan-a">Ikut Kegiatan Ini</div>
+            <div class="mt-3 btn btn-primary hvr-shrink" data-bs-toggle="modal" data-bs-target="#kegiatan-a">Ikut Kegiatan
+                Ini</div>
 
             <div class="modal fade" id="kegiatan-a" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                 aria-labelledby="kegiatan-a" aria-hidden="true">
@@ -80,7 +81,7 @@
                                     <input type="number" class="form-control" id="InputNumber">
                                 </div>
 
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary hvr-shrink">Submit</button>
                             </form>
                         </div>
                     </div>
@@ -98,7 +99,7 @@
                                 <h5 class="card-title">Special title treatment</h5>
                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.
                                 </p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <a href="#" class="btn btn-primary hvr-shrink">Selengkapnya</a>
                             </div>
                         </div>
                     </div>
@@ -108,7 +109,7 @@
                                 <h5 class="card-title">Special title treatment</h5>
                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.
                                 </p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <a href="#" class="btn btn-primary hvr-shrink">Selengkapnya</a>
                             </div>
                         </div>
                     </div>

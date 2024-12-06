@@ -4,7 +4,7 @@
 @section('content')
     {{-- Visi dan Misi --}}
     <div class="row mb-3 mx-auto">
-        <div class="left col-lg-6 col-12 p-2">
+        <div class="left col-lg-6 col-12 p-2 hvr-sink">
             <div class="bg-primary rounded-3 shadow-lg p-2" data-bs-toggle="collapse" data-bs-target="#collapse-visi"
                 aria-expanded="false" aria-controls="collapse">
                 <img src="{{ asset('picture/Gereja.jpg') }}" alt="" class="img-thumbnail">
@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <div class="right col-lg-6 col-12 p-2">
+        <div class="right col-lg-6 col-12 p-2 hvr-sink">
             <div class="bg-secondary rounded-3 shadow-lg p-2" data-bs-toggle="collapse" data-bs-target="#collapse-misi"
                 aria-expanded="false" aria-controls="collapse">
                 <img src="{{ asset('picture/Gereja.jpg') }}" alt="" class="img-thumbnail">

@@ -28,7 +28,7 @@
                 <div class="event">
                     Misa Akhir Tahun Paroki Mangga Besar
                 </div>
-                <a class="nav-link text-primary" href="/jadwal/1">Lihat Info Lebih Lanjut</a>
+                <a class="nav-link text-primary hvr-shrink" href="/jadwal/1">Lihat Info Lebih Lanjut</a>
             </div>
         </div>
 
@@ -63,7 +63,7 @@
                 <div class="event">
                     Kerja Bakti Paroki Mangga Besar
                 </div>
-                <a class="nav-link text-primary" href="/jadwal/1">Lihat Info Lebih Lanjut</a>
+                <a class="nav-link text-primary hvr-shrink" href="/jadwal/1">Lihat Info Lebih Lanjut</a>
             </div>
         </div>
 

@@ -48,7 +48,7 @@
                         <div class="h6 text-gray">Minggu, 2 Januari 2022 pkl 07.30 WIB</div>
                     </div>
                     <div class="button align-self-center text-end col-lg-3 col-12">
-                        <div class="btn btn-outline-primary text-primary bg-white w-100">
+                        <div class="btn text-primary bg-white w-100 hvr-border-fade">
                             <a href="/jadwal/1" class="nav-link">Lihat Info</a>
                         </div>
                     </div>

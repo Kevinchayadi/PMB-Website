@@ -1,5 +1,5 @@
 <div
-    class="footer row justify-content-center mx-auto border-top py-2 shadow-sm h-25 pb-0 {{ Route::is('hubungi') ? 'd-none' : '' }}">
+    class="footer row justify-content-center mx-auto border-top py-2 shadow-sm h-25 pb-0 {{ (Route::is('hubungi') or Route::is('dashboard')) ? 'd-none' : '' }}">
     {{-- Ikuti kami --}}
     <div class="section-2 col-lg-2 col-6 p-2 h-25 ">
         <div class="fs-5 text-center text-white">Ikuti Kami</div>

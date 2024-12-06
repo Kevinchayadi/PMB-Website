@@ -30,7 +30,7 @@
         </div>
 
         {{-- Banner atas --}}
-        <div class="card mx-auto col-12 mb-3 bg-dark rounded-3 shadow-lg d-lg-block d-none">
+        <div class="card mx-auto col-12 mb-3 bg-dark rounded-3 shadow-lg d-lg-block d-none hvr-shrink">
             <div class="row g-0">
                 <div class="col-md-4">
                     <img src="{{ asset('picture/Misa.jpg') }}" class="img-fluid rounded-start" alt="...">
@@ -40,7 +40,7 @@
                         <div class="content align-content-center py-4 fs-1 d-lg-block d-none">
                             <div class="text-secondary fw-bolder">Ikuti misa pekan ini</div>
                             <div class="btn btn-secondary text-dark">
-                                <a href="" class="nav-link fs-6 hvr-shrink">Info lebih lanjut</a>
+                                <a href="" class="nav-link fs-6">Info lebih lanjut</a>
                             </div>
                         </div>
                     </div>
@@ -95,7 +95,7 @@
                         <div class="h6 text-gray">Minggu, 2 Januari 2022 pkl 07.30 WIB</div>
                     </div>
                     <div class="button align-self-center text-end col-lg-3 col-12">
-                        <div class="btn btn-outline-primary text-primary bg-white w-100">
+                        <div class="btn text-primary bg-white w-100 hvr-border-fade">
                             <a href="/jadwal/1" class="nav-link">Lihat Info</a>
                         </div>
                     </div>
@@ -123,7 +123,7 @@
                         <div class="h6 text-gray">Minggu, 2 Januari 2022 pkl 07.30 WIB</div>
                     </div>
                     <div class="button align-self-center text-end col-lg-3 col-12">
-                        <div class="btn btn-outline-primary text-primary bg-white w-100">
+                        <div class="btn text-primary bg-white w-100 hvr-border-fade">
                             <a href="/jadwal/1" class="nav-link">Lihat Info</a>
                         </div>
                     </div>
@@ -151,7 +151,7 @@
                         <div class="h6 text-gray">Minggu, 2 Januari 2022 pkl 07.30 WIB</div>
                     </div>
                     <div class="button align-self-center text-end col-lg-3 col-12">
-                        <div class="btn btn-outline-primary text-primary bg-white w-100">
+                        <div class="btn text-primary bg-white w-100 hvr-border-fade">
                             <a href="/jadwal/1" class="nav-link">Lihat Info</a>
                         </div>
                     </div>
@@ -170,7 +170,7 @@
 
             {{-- Content --}}
             <div class="row px-2">
-                <div class="col-4 px-2 mb-2">
+                <div class="col-4 px-2 mb-2 hvr-shrink">
                     <div class="card">
                         <img src="{{ asset('picture/Gereja.jpg') }}" class="card-img-top px-0" alt="...">
                         <div class="card-body">
@@ -181,7 +181,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-4 px-2 mb-2">
+                <div class="col-4 px-2 mb-2 hvr-shrink">
                     <div class="card">
                         <img src="{{ asset('picture/Gereja.jpg') }}" class="card-img-top px-0" alt="...">
                         <div class="card-body">
@@ -192,7 +192,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-4 px-2 mb-2">
+                <div class="col-4 px-2 mb-2 hvr-shrink">
                     <div class="card">
                         <img src="{{ asset('picture/Gereja.jpg') }}" class="card-img-top px-0" alt="...">
                         <div class="card-body">
@@ -203,7 +203,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-4 px-2 mb-2">
+                <div class="col-4 px-2 mb-2 hvr-shrink">
                     <div class="card">
                         <img src="{{ asset('picture/Gereja.jpg') }}" class="card-img-top px-0" alt="...">
                         <div class="card-body">
@@ -214,7 +214,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-4 px-2 mb-2">
+                <div class="col-4 px-2 mb-2 hvr-shrink">
                     <div class="card">
                         <img src="{{ asset('picture/Gereja.jpg') }}" class="card-img-top px-0" alt="...">
                         <div class="card-body">
@@ -225,7 +225,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-4 px-2 mb-2">
+                <div class="col-4 px-2 mb-2 hvr-shrink">
                     <div class="card">
                         <img src="{{ asset('picture/Gereja.jpg') }}" class="card-img-top px-0" alt="...">
                         <div class="card-body">

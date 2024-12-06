@@ -12,7 +12,6 @@ class AcaraController extends Controller
 {
     public function acaraIndex()
     {
-        // Ambil semua acara beserta dokumentasinya
         $acara = Acara::with('documentations')->get();
         return view('admin.viewPage.landingpage.acara.layanan', ['acara' => $acara]);
     }

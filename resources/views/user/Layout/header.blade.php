@@ -39,7 +39,7 @@
                     </li>
 
                     {{-- Dashboard --}}
-                    <li class="nav-item">
+                    <li class="nav-item hvr-float">
                         <a class="nav-link {{ Route::is('dashboard') ? 'text-secondary' : 'text-primary' }} me-2"
                             href="/dashboard">Dashboard</a>
                     </li>
@@ -47,31 +47,31 @@
 
                 {{-- Home --}}
                 <li class="nav-item">
-                    <a class="nav-link {{ Route::is('home') ? 'text-secondary' : 'text-primary' }} me-2"
+                    <a class="nav-link {{ Route::is('home') ? 'text-secondary' : 'text-primary hvr-float' }} me-2"
                         href="/home">Home</a>
                 </li>
 
                 {{-- Profile --}}
                 <li class="nav-item">
-                    <a class="nav-link {{ (Route::is('visiMisi') or Route::is('sejarah') or Route::is('doa') or Route::is('fasilitas') or Route::is('pastor') or Route::is('kegiatan')) ? 'text-secondary' : 'text-primary' }} me-2"
+                    <a class="nav-link {{ (Route::is('visiMisi') or Route::is('sejarah') or Route::is('doa') or Route::is('fasilitas') or Route::is('pastor') or Route::is('kegiatan')) ? 'text-secondary' : 'text-primary hvr-float' }} me-2"
                         href="/profile/visiMisi">Profil</a>
                 </li>
 
                 {{-- Jadwal --}}
                 <li class="nav-item">
-                    <a class="nav-link {{ Route::is('jadwal') ? 'text-secondary' : 'text-primary' }} me-2"
+                    <a class="nav-link {{ Route::is('jadwal') ? 'text-secondary' : 'text-primary hvr-float' }} me-2"
                         href="/jadwal">Jadwal</a>
                 </li>
 
                 {{-- Layanan --}}
                 <li class="nav-item">
-                    <a class="nav-link {{ Route::is('layanan') ? 'text-secondary' : 'text-primary' }} me-2"
+                    <a class="nav-link {{ Route::is('layanan') ? 'text-secondary' : 'text-primary hvr-float' }} me-2"
                         href="/layanan">Layanan</a>
                 </li>
 
                 {{-- Hubungi kami --}}
                 <li class="nav-item">
-                    <a class="nav-link {{ Route::is('hubungi') ? 'text-secondary' : 'text-primary' }}"
+                    <a class="nav-link {{ Route::is('hubungi') ? 'text-secondary' : 'text-primary hvr-float' }}"
                         href="/hubungi">Hubungi Kami</a>
                 </li>
 
