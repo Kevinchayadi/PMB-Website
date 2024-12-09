@@ -27,7 +27,7 @@
             <div class="ms-3 row me-0">
 
                 {{-- Looping --}}
-                <div class="left-content text-gray px-2 align-self-center col-lg-2 col-3 flex-start">
+                <div class="left-content text-gray px-2 align-self-center col-lg-2 col-4 flex-start">
                     <div class="d-flex justify-content-center">
                         <div class="align-self-center d-lg-block d-none">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#7A7A7A"
@@ -40,7 +40,7 @@
                     </div>
                     <div class="h5 text-center">Januari</div>
                 </div>
-                <div class="right-content pe-2 border-start border-gray col-lg-10 col-9 row">
+                <div class="right-content pe-2 border-start border-gray col-lg-10 col-8 row">
                     <div class="text align-self-center col-lg-9 col-12">
                         <div class="head fs-5">Hari Raya Penampakan Tuhan</div>
                         <div class="desc fs-6">Bacaan: Yes. 60:1-6; Mzm. 72:1-2,7-8,10-11,12-13; Ef. 3:2-3a,5-6; Mat.

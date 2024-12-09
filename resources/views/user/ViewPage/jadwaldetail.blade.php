@@ -9,12 +9,12 @@
                 voluptatibus consequatur itaque, laboriosam illum non quas ea reprehenderit suscipit culpa corporis
                 similique, reiciendis excepturi ut consequuntur ullam.</div>
         </div>
-        <div class="mid col-lg-9 col-12">
+        <div class="mid col-lg-9 col-12 ps-4">
             {{-- Judul --}}
             <div class="head fs-4 fw-bolder mb-2">LOREM LOREM</div>
 
             {{-- Carousel --}}
-            <div id="carouselExampleAutoplaying" class="carousel slide mb-10 w-75" data-bs-ride="carousel">
+            <div id="carouselExampleAutoplaying" class="carousel slide mb-10 w-100 mx-auto" data-bs-ride="carousel">
                 <div class="carousel-inner rounded-3 shadow-lg">
                     <div class="carousel-item active ">
                         <img src="{{ asset('picture/Carousel-1.png') }}" class="d-block w-100" alt="...">
@@ -89,28 +89,28 @@
             </div>
 
             <div class="total fs-6 text-secondary mb-2">Sudah 60 orang yang mendaftar</div>
+        </div>
 
-            <div class="other mb-2">
-                <div class="title fs-5 fw-bolder">Lihat Jadwal Lainnya...</div>
-                <div class="row">
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Special title treatment</h5>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.
-                                </p>
-                                <a href="#" class="btn btn-primary hvr-shrink">Selengkapnya</a>
-                            </div>
+        <div class="other mb-2 mx-2">
+            <div class="title fs-5 fw-bolder">Lihat Jadwal Lainnya...</div>
+            <div class="row">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Special title treatment</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                            </p>
+                            <a href="#" class="btn btn-primary hvr-shrink">Selengkapnya</a>
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Special title treatment</h5>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.
-                                </p>
-                                <a href="#" class="btn btn-primary hvr-shrink">Selengkapnya</a>
-                            </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Special title treatment</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                            </p>
+                            <a href="#" class="btn btn-primary hvr-shrink">Selengkapnya</a>
                         </div>
                     </div>
                 </div>

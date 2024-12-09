@@ -54,7 +54,8 @@ class LandingController extends Controller
 
     public function artikeldetail($id)
     {
-        $artikel= Articel::where('id', $id)->firstOrFail();
+        $artikel= Articel::where('id', $id)
+        ->firstOrFail();
         return view('user.Viewpage.artikeldetail', compact('artikel'));
     }
 

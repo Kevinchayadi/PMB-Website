@@ -75,10 +75,12 @@
                         href="/hubungi">Hubungi Kami</a>
                 </li>
 
-                {{-- logout --}}
-                <li class="nav-item d-lg-none d-block">
-                    <a class="nav-link text-primary" href="/#">Keluar</a>
-                </li>
+                @if (Auth::check())
+                    {{-- logout --}}
+                    <li class="nav-item d-lg-none d-block">
+                        <a class="nav-link text-primary" href="/#">Keluar</a>
+                    </li>
+                @endif
             </ul>
         </div>
     </div>
