@@ -21,7 +21,7 @@ class profileController extends Controller
 
     public function doa()
     {
-        $doa = Doa::with('transaction_headers')->get();
+        $doa = Doa::with('transactionHeaders')->get();
 
         return view('user.ViewPage.doa', ['doa' => $doa]);
     }
@@ -33,7 +33,7 @@ class profileController extends Controller
 
     public function pastor()
     {
-        $romo = Romo::with('transaction_headers')->get();
+        $romo = Romo::with('transactionHeaders')->get();
         return view('user.ViewPage.pastor', ['romo' => $romo]);
     }
 

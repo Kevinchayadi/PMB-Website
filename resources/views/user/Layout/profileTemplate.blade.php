@@ -9,48 +9,49 @@
     @include('user.Layout.bootstrap')
     @include('user.Layout.font')
     <link rel="stylesheet" href="{{ asset('css/card.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/hover.css') }}">
 </head>
 
 <body>
     @include('user.Layout.header')
     <div class="upper border-bottom sticky-top bg-white shadow-sm">
-        <div class="w-100 box-shadow">
-            <ul class="nav fs-6 w-auto overflow-x-auto d-relative flex-nowrap justify-content-center">
+        <div class="w-100 box-shadow overflow-auto">
+            <ul class="nav fs-6 w-auto d-relative flex-nowrap justify-content-lg-center justify-content-start">
 
                 {{-- Profil Gereja --}}
                 <li class="nav-item ms-3">
-                    <a class="nav-link {{ Route::is('visiMisi') ? 'text-primary text-decoration-underline decoration-secondary' : 'text-primary' }} me-2"
+                    <a class="nav-link {{ Route::is('visiMisi') ? 'text-primary text-decoration-underline decoration-secondary' : 'text-primary hvr-float' }} me-2"
                         href="/profile/visiMisi">Visi & Misi Gereja</a>
                 </li>
 
                 {{-- Sejarah Gereja --}}
                 <li class="nav-item">
-                    <a class="nav-link {{ Route::is('sejarah') ? 'text-primary text-decoration-underline decoration-secondary' : 'text-primary' }} me-2"
+                    <a class="nav-link {{ Route::is('sejarah') ? 'text-primary text-decoration-underline decoration-secondary' : 'text-primary hvr-float' }} me-2"
                         href="/profile/sejarah">Sejarah Gereja</a>
                 </li>
 
                 {{-- Doa Paroki --}}
                 <li class="nav-item">
-                    <a class="nav-link {{ Route::is('doa') ? 'text-primary text-decoration-underline decoration-secondary' : 'text-primary' }} me-2"
+                    <a class="nav-link {{ Route::is('doa') ? 'text-primary text-decoration-underline decoration-secondary' : 'text-primary hvr-float' }} me-2"
                         href="/profile/doa">Doa Paroki</a>
                 </li>
 
                 {{-- Fasilitas --}}
                 <li class="nav-item">
-                    <a class="nav-link {{ Route::is('fasilitas') ? 'text-primary text-decoration-underline decoration-secondary' : 'text-primary' }} me-2"
+                    <a class="nav-link {{ Route::is('fasilitas') ? 'text-primary text-decoration-underline decoration-secondary' : 'text-primary hvr-float' }} me-2"
                         href="/profile/fasilitas">Fasilitas</a>
                 </li>
 
                 {{-- Pastor Paroki --}}
                 <li class="nav-item">
-                    <a class="nav-link {{ Route::is('pastor') ? 'text-primary text-decoration-underline decoration-secondary' : 'text-primary' }}"
+                    <a class="nav-link {{ Route::is('pastor') ? 'text-primary text-decoration-underline decoration-secondary' : 'text-primary hvr-float' }}"
                         href="/profile/pastor">Pastor
                         Paroki</a>
                 </li>
 
                 {{-- Kegiatan --}}
                 <li class="nav-item">
-                    <a class="nav-link {{ Route::is('kegiatan') ? 'text-primary text-decoration-underline decoration-secondary' : 'text-primary' }}"
+                    <a class="nav-link {{ Route::is('kegiatan') ? 'text-primary text-decoration-underline decoration-secondary' : 'text-primary hvr-float' }}"
                         href="/profile/kegiatan">Kegiatan</a>
                 </li>
         </div>

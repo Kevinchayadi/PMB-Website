@@ -14,11 +14,12 @@ class DashboardController extends Controller
         $umat = Umat::count();
         $jadwal_acara = TransactionHeader::with(['romo', 'seksi', 'doa', 'transactionDetails' => function ($query) {
             $query->with('umats', 'acara', 'admin');
-        }])->where('status', 'coming');
+        }])->where('status', 'coming')->get();
         $pending = ModelsRequest::where('status', 'pending')->count();
         $process = ModelsRequest::where('status', 'process')->count();
         $accepted = ModelsRequest::where('status', 'accepted')->count();
+        $countEvent = $jadwal_acara->count();
 
-        return view("admin.viewPage.dashboard",['umat'=>$umat ,'event'=>$jadwal_acara, 'pending'=>$pending, 'accepted'=>$accepted, 'process'=>$process]);
+        return view("admin.viewPage.dashboard",['umat'=>$umat ,'event'=>$jadwal_acara, 'pending'=>$pending, 'accepted'=>$accepted, 'process'=>$process, 'countEvent'=>$countEvent]);
     }
 }

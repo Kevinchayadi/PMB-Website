@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('additionalLink');
             $table->unsignedBigInteger('id_admin');
             $table->foreign('id_admin')->references('id_admin')->on('admins');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

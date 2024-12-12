@@ -29,7 +29,7 @@
                 <div class="right-content mx-4">
                     <div class="head fs-5 text-gray">Apa Makna Natal Bagi Saya di saat seperti ini?</div>
                     <div class="desc fs-6">Bulan Desember merupakan bulan yang paling ditunggu oleh banyak orang</div>
-                    <a class="nav-link text-primary" href="/artikel/1">Selengkapnya</a>
+                    <a class="nav-link text-primary hvr-shrink" href="/artikel/1">Selengkapnya</a>
                 </div>
             </div>
         </div>

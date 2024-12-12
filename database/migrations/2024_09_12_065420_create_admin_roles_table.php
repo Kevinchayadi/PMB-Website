@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('admin_roles', function (Blueprint $table) {
             $table->id('id_role');
             $table->string('role');
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 

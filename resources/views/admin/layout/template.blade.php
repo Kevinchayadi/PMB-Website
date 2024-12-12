@@ -23,7 +23,6 @@
         </div>
 
     </div>
-    {{-- @include('admin.layout.footer') --}}
 </body>
 
 </html>

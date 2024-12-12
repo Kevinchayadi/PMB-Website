@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_transaction');
             $table->unsignedBigInteger('id_umat');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

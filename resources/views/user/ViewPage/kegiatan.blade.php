@@ -1,9 +1,10 @@
+<link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 @extends('user.Layout.profileTemplate')
 @section('title', 'Kegiatan')
 @section('content')
     <div class="row mx-auto mb-2">
         {{-- Kiri --}}
-        <div class="left col-lg-6 col-12">
+        <div class="left col-lg-6 col-12 hvr-shrink">
             {{-- Gambar --}}
             <div class="content bg-primary rounded p-2 mb-2" data-bs-toggle="collapse" data-bs-target="#kegiatan-a">
                 <img class="img-fluid rounded-3 mb-1" src="{{ asset('picture/Gereja.jpg') }}" alt="">
@@ -18,7 +19,7 @@
         </div>
 
         {{-- Kanan --}}
-        <div class="right col-lg-6 col-12">
+        <div class="right col-lg-6 col-12 hvr-shrink">
             {{-- Gambar --}}
             <div class="content bg-primary rounded p-2 mb-2" data-bs-toggle="collapse" data-bs-target="#kegiatan-b">
                 <img class="img-fluid rounded mb-1" src="{{ asset('picture/Gereja.jpg') }}" alt="">

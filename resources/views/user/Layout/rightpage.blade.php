@@ -9,7 +9,7 @@
             sapiente.
         </div>
 
-        <a class="nav-link text-primary" href="/artikel/1">Cek disini</a>
+        <a class="nav-link text-primary hvr-shrink" href="/artikel/1">Cek disini</a>
 
     </div>
 </div>

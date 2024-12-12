@@ -16,14 +16,15 @@ class LandingController extends Controller
     public function Home()
     {
         $highlight = Hightlight::get();
+        // dd($highlight);
         return view('user.ViewPage.home', compact('highlight'));
     }
 
     public function Dashboard(){
         $jadwal_acara = TransactionHeader::with(['romo', 'seksi', 'doa', 'transactionDetails' => function ($query) {
             $query->with('umats', 'acara', 'admin')->where('umat_id', Auth::guard('web')->user()->umat_id);
-        }])->where('status', 'coming')
-        ->firstOrFail();
+        }])->where('status', 'coming');
+        // ->firstOrFail();
         return view('user.ViewPage.dashboard');
     }
 
@@ -54,7 +55,8 @@ class LandingController extends Controller
 
     public function artikeldetail($id)
     {
-        $artikel= Articel::where('id', $id)->firstOrFail();
+        $artikel= Articel::where('id', $id)
+        ->firstOrFail();
         return view('user.Viewpage.artikeldetail', compact('artikel'));
     }
 

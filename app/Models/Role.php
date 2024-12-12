@@ -11,8 +11,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Role extends Model
 {
     use HasFactory, Sluggable, SoftDeletes;
-
-    protected $fillable = ['nama_role'];
+    protected $primaryKey = 'id_role';
+    protected $table = 'admin_roles';
+    protected $fillable = ['role'];
 
     public function admins(): HasMany
     {

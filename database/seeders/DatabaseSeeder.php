@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Acara;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,11 +14,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        $this->call(umat_seeder::class);
+        $this->call(admin_seeder::class);
+        $this->call(romo_seeder::class);
+        $this->call(acara_seeder::class);
+        $this->call(doa_seeder::class);
+        $this->call(hightlight_seeder::class);
+        $this->call(article_seeder::class);
+        $this->call(dokumentasi_seeder::class);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+
+       
     }
 }

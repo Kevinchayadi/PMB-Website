@@ -1,15 +1,9 @@
 @extends('user.Layout.template')
 @section('title', 'Layanan')
-
 @section('content')
-    {{-- <script src="{{ asset('js/layanan.js') }}"></script>
-    <script>
-        AOS.init()
-    </script> --}}
-    <link rel="stylesheet" href="{{ asset('css/layanan.css') }}">
     <div class="container-fluid row mx-auto">
         <div class="col-lg-4 col-12 p-2">
-            <div class="bg-primary rounded p-2" data-bs-toggle="modal" data-bs-target="#doaabcde">
+            <div class="bg-primary rounded p-2 hvr-shrink" data-bs-toggle="modal" data-bs-target="#doaabcde">
                 {{-- Gambar --}}
                 <img class="img-fluid rounded-3 mb-2" src="{{ asset('picture/Gereja.jpg') }}" alt="">
 
@@ -39,7 +33,7 @@
                         </div>
 
                         <div class="modal-btn text-center mb-2">
-                            <a class="btn btn-outline-primary text-primary bg-white" data-bs-toggle="modal"
+                            <a class="btn text-primary bg-white hvr-border-fade" data-bs-toggle="modal"
                                 data-bs-target="#form-a">Daftar Sekarang</a>
                         </div>
                     </div>
@@ -84,7 +78,7 @@
                                     <textarea class="form-control" id="Description" rows="3" placeholder="Contoh: Tolong segera diproses nya"></textarea>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary hvr-shrink">Submit</button>
                             </form>
                         </div>
                     </div>

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('id_documentation');
             $table->string('nameDocumentation');
             $table->unsignedBigInteger('id_acara');
+            $table->softDeletes();
             $table->timestamps();
 
           

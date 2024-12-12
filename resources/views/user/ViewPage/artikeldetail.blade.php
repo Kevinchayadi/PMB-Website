@@ -38,35 +38,31 @@
                 reiciendis
                 eveniet quod quisquam veniam a tempora?
             </div>
-
-            <div class="other mb-2">
-                <div class="title fs-5 fw-bolder">Lihat Berita Lainnya...</div>
-                <div class="row">
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Special title treatment</h5>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.
-                                </p>
-                                <a href="#" class="nav-link text-primary">Selengkapnya</a>
-                            </div>
+        </div>
+        <div class="other mb-2 mx-2">
+            <div class="title fs-5 fw-bolder">Lihat Berita Lainnya...</div>
+            <div class="row">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Special title treatment</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                            </p>
+                            <a href="#" class="nav-link text-primary hvr-shrink">Selengkapnya</a>
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Special title treatment</h5>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.
-                                </p>
-                                <a href="#" class="nav-link text-primary">Selengkapnya</a>
-                            </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Special title treatment</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                            </p>
+                            <a href="#" class="nav-link text-primary hvr-shrink">Selengkapnya</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container">
-
     </div>
 @endsection()

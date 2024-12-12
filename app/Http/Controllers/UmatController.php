@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hightlight;
 use App\Models\Umat;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
 class UmatController extends Controller
 {
-    public function highlight()
-    {
-        return view('admin.viewPage.landingpage.highlight');
+    public function highlight(){
+        $highlight=Hightlight::get();
+        // dd($highlight);
+        return view('admin.viewPage.landingpage.highlight', compact('highlight'));
     }
     public function excelForm(){
         return view('umatsInput');

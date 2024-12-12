@@ -2942,6 +2942,7 @@
         },
         {
             "name": "phpoffice/phpspreadsheet",
+<<<<<<< HEAD
             "version": "1.29.5",
             "source": {
                 "type": "git",
@@ -2952,6 +2953,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/PHPOffice/PhpSpreadsheet/zipball/727cb704d5479fe4ddc291497ee471c4ec08f1b6",
                 "reference": "727cb704d5479fe4ddc291497ee471c4ec08f1b6",
+=======
+            "version": "1.29.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHPOffice/PhpSpreadsheet.git",
+                "reference": "08597725b84570cd6f32bf0ea92e75a803ef28c2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHPOffice/PhpSpreadsheet/zipball/08597725b84570cd6f32bf0ea92e75a803ef28c2",
+                "reference": "08597725b84570cd6f32bf0ea92e75a803ef28c2",
+>>>>>>> 95e0ad6207b7f2cb0e7838ca4f022c14c79178bd
                 "shasum": ""
             },
             "require": {
@@ -2979,7 +2992,11 @@
             },
             "require-dev": {
                 "dealerdirect/phpcodesniffer-composer-installer": "dev-main",
+<<<<<<< HEAD
                 "dompdf/dompdf": "^1.0 || ^2.0",
+=======
+                "dompdf/dompdf": "^1.0 || ^2.0 || ^3.0",
+>>>>>>> 95e0ad6207b7f2cb0e7838ca4f022c14c79178bd
                 "friendsofphp/php-cs-fixer": "^3.2",
                 "mitoteam/jpgraph": "^10.3",
                 "mpdf/mpdf": "^8.1.1",
@@ -3041,9 +3058,15 @@
             ],
             "support": {
                 "issues": "https://github.com/PHPOffice/PhpSpreadsheet/issues",
+<<<<<<< HEAD
                 "source": "https://github.com/PHPOffice/PhpSpreadsheet/tree/1.29.5"
             },
             "time": "2024-11-22T05:57:44+00:00"
+=======
+                "source": "https://github.com/PHPOffice/PhpSpreadsheet/tree/1.29.6"
+            },
+            "time": "2024-12-08T05:49:00+00:00"
+>>>>>>> 95e0ad6207b7f2cb0e7838ca4f022c14c79178bd
         },
         {
             "name": "phpoption/phpoption",
@@ -8779,12 +8802,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.1"
     },
-    "platform-dev": {},
+    "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }

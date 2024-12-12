@@ -2,7 +2,30 @@
 @section('title', 'Dashboard')
 @section('content')
     <div class="container-fluid row mx-auto">
-        <div class="col-6 mb-3">
+        <div class="col-12 d-lg-none d-block mb-3 p-2">
+            <div class="content rounded-3 bg-soft-blue p-3 shadow">
+                <div class="title fs-4 fw-bolder mb-3 border-bottom">Profile</div>
+                <form>
+                    <div class="mb-3">
+                        <label for="Terlibat-1" class="form-label">Nama Lengkap</label>
+                        <input type="text" class="form-control" id="Terlibat-1" placeholder="Contoh: John Smith" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="Terlibat-2" class="form-label">Nomor Telepon</label>
+                        <input type="number" class="form-control" id="Terlibat-2" placeholder="081237171">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="Romo" class="form-label">Email</label>
+                        <input type="text" class="form-control" disabled id="Romo" placeholder="email@lorem.co.id">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-lg-6 col-12 mb-3">
             <div class="title fs-4 fw-bolder mb-3 border-bottom">Upcoming Event</div>
 
             <div class="content h-75 overflow-y-auto">
@@ -30,7 +53,7 @@
             </div>
 
         </div>
-        <div class="col-6 mb-3 p-2">
+        <div class="col-6 d-lg-block d-none mb-3 p-2">
             <div class="content rounded-3 bg-soft-blue p-3 shadow">
                 <div class="title fs-4 fw-bolder mb-3 border-bottom">Profile</div>
                 <form>
@@ -54,7 +77,7 @@
                 </form>
             </div>
         </div>
-        <div class="col-6 mb-3">
+        <div class="col-lg-6 col-12 mb-3">
             <div class="title fs-5 fw-bolder">Requested Event</div>
             <table class="table table-hover">
                 <thead>
@@ -90,7 +113,7 @@
                 </ul>
             </nav>
         </div>
-        <div class="col-6 mb-3">
+        <div class="col-lg-6 col-12 mb-3">
             <div class="title fs-5 fw-bolder">Joined Event</div>
             <table class="table table-hover">
                 <thead>
@@ -120,7 +143,7 @@
                 </ul>
             </nav>
         </div>
-        <div class="col-6 mb-3">
+        <div class="col-lg-6 col-12 mb-3">
             <div class="title fs-5 fw-bolder">History</div>
             <table class="table table-hover">
                 <thead>

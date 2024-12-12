@@ -1,70 +1,32 @@
 
 @extends('admin.layout.template')
-@section('title', 'Layanan - List')
+@section('title', 'Pass - Event - List')
 
 @section('content')
+<link rel="stylesheet" href="{{ asset('css/admin/event.css') }}">
 <div class="d-flex justify-content-end  align-items-center my-3  text-center">
-    <h1 class="mb-0 fw-bold  p-2 text-white bg-primary shadow rounded-start-2">Event List</h1>
+    <h1 class="mb-0 fw-bold  p-2 text-white bg-primary shadow rounded-start-2">Layanan List</h1>
 
 </div>
 
 <div class="px-4">
-    <!-- Pagination and Search -->
-    <div class="d-flex justify-content-between align-items-center mb-3">
-       <a href="/admin/add-layanan" class="btn btn-primary ">Add New Layanan</a>
-        <nav>
-            <ul class="pagination mb-0" id="pagination">
-                <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul>
-        </nav>
+    @if($event->count() > 0)
+        @foreach($event as $data)
+        <div class="px-4 py-2 my-3 mx-1 card-3d">
+            <h2>{{ $data->transaction_details->acara->nama_acara }}t</h2>
+            <div class="d-flex justify-content-between">
+                <p>{{ $data->jadwal_transaction }} </p>
+                <p>{{ $data->transaction_details->deskripsi_transaksi }}</p>
+                <div>
+                    <a href="/admin/updateEvent/{{ $data->id_transaction }}">Update</a>
+                    <a href="admin/deleteEvent/{{ $data->id_transaction }}">cancle</a>
+                </div>
+            </div>
+        </div>
+        @endforeach
+    @else
+        <p>Data layanan masih kosong!</p>
+    @endif
 
-        <input type="text" id="searchInput" class="form-control w-25" placeholder="Search...">
-
-    </div>
-
-    <!-- Table -->
-    <div class="rounded overflow-hidden shadow-sm">
-        <table class="table table-hover table-striped mb-0 text-center">
-            <thead class="table-primary">
-                <tr>
-                    <th scope="col">No.</th>
-                    <th scope="col">nama layanan</th>
-                    <th scope="col">deskripsi</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>
-                        <button class="btn btn-sm btn-outline-primary">detail</button>
-
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>
-                        <button class="btn btn-sm btn-outline-primary">detail</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>The Bird</td>
-                    <td>
-                        <button class="btn btn-sm btn-outline-primary">detail</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
 </div>
 @endsection
