@@ -1,22 +1,22 @@
 @extends('admin.layout.template')
-@section('title', 'Admin - Form')
+@section('title', 'Edit Transaksi')
 
 @section('content')
     <style>
         .select2-container .select2-selection {
-    background-color: #fff !important;
-    color: #000 !important;
-}
+            background-color: #fff !important;
+            color: #000 !important;
+        }
 
-.select2-container--default .select2-results__option {
-    background-color: #fff !important;
-    color: #000 !important;
-}
+        .select2-container--default .select2-results__option {
+            background-color: #fff !important;
+            color: #000 !important;
+        }
 
-.select2-container--default .select2-results__option--highlighted {
-    background-color: #007bff !important; /* Warna biru Bootstrap */
-    color: #fff !important;
-}
+        .select2-container--default .select2-results__option--highlighted {
+            background-color: #007bff !important; /* Warna biru Bootstrap */
+            color: #fff !important;
+        }
     </style>
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -30,19 +30,22 @@
                     <div class="card bg-primary shadow-lg rounded-4">
                         <div class="card-body text-white">
 
-                            <h2 class="card-title text-center mb-4 fw-bolder">Create New Admin</h2>
+                            <h2 class="card-title text-center mb-4 fw-bolder">Edit Transaksi</h2>
 
                             <!-- Form Start -->
-                            <form action="/admin/add-admin" method="POST">
-                                @csrf <!-- Laravel CSRF Token -->
+                            <form action="{{ route('admin.updateTransaction', $transaction->id) }}" method="POST">
+                                @csrf
+                                @method('PUT') <!-- Metode PUT untuk update -->
 
                                 <!-- Dropdown Romo -->
                                 <div class="mb-3">
                                     <label for="id_romo" class="form-label">Romo</label>
                                     <select class="form-control" id="id_romo" name="id_romo" required>
-                                        <option value="" class="form-control">Pilih Romo</option>
+                                        <option value="">Pilih Romo</option>
                                         @foreach($romos as $romo)
-                                            <option value="{{ $romo->id }}">{{ $romo->nama_romo }}</option>
+                                            <option value="{{ $romo->id }}" {{ $transaction->id_romo == $romo->id ? 'selected' : '' }}>
+                                                {{ $romo->nama_romo }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -53,7 +56,9 @@
                                     <select class="form-control" id="id_acara" name="id_acara" required>
                                         <option value="">Pilih Acara</option>
                                         @foreach($acaras as $acara)
-                                            <option value="{{ $acara->id }}">{{ $acara->name }}</option>
+                                            <option value="{{ $acara->id }}" {{ $transaction->id_acara == $acara->id ? 'selected' : '' }}>
+                                                {{ $acara->name }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -62,9 +67,10 @@
                                 <div class="mb-3">
                                     <label for="id_seksi" class="form-label">Seksi</label>
                                     <select class="form-control select2" id="id_seksi" name="id_seksi[]" multiple="multiple" required>
-                                        <option value="">Pilih Seksi</option>
                                         @foreach($seksis as $seksi)
-                                            <option value="{{ $seksi->id }}">{{ $seksi->name }}</option>
+                                            <option value="{{ $seksi->id }}" {{ in_array($seksi->id, $transaction->seksis->pluck('id')->toArray()) ? 'selected' : '' }}>
+                                                {{ $seksi->name }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -75,7 +81,9 @@
                                     <select class="form-control" id="id_doa" name="id_doa" required>
                                         <option value="">Pilih Doa</option>
                                         @foreach($doas as $doa)
-                                            <option value="{{ $doa->id }}">{{ $doa->name }}</option>
+                                            <option value="{{ $doa->id }}" {{ $transaction->id_doa == $doa->id ? 'selected' : '' }}>
+                                                {{ $doa->name }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -83,16 +91,17 @@
                                 <!-- Tanggal -->
                                 <div class="mb-3">
                                     <label for="jadwal_transaction" class="form-label">Jadwal Transaksi</label>
-                                    <input type="date" class="form-control" id="jadwal_transaction" name="jadwal_transaction" required>
+                                    <input type="date" class="form-control" id="jadwal_transaction" name="jadwal_transaction" value="{{ $transaction->jadwal_transaction }}" required>
                                 </div>
 
                                 <!-- Dropdown Umat (Nullable, Multiple Select2) -->
                                 <div class="mb-3">
                                     <label for="id_umat" class="form-label">Umat</label>
                                     <select class="form-control select2" id="id_umat" name="id_umat[]" multiple="multiple">
-                                        <option value="">Pilih Umat (Optional)</option>
                                         @foreach($umats as $umat)
-                                            <option value="{{ $umat->id_umat }}">{{ $umat->nama_umat }}</option>
+                                            <option value="{{ $umat->id_umat }}" {{ in_array($umat->id_umat, $transaction->umats->pluck('id_umat')->toArray()) ? 'selected' : '' }}>
+                                                {{ $umat->nama_umat }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -100,12 +109,12 @@
                                 <!-- Deskripsi Acara -->
                                 <div class="mb-3">
                                     <label for="deskripsi_transaksi" class="form-label">Deskripsi Acara</label>
-                                    <textarea class="form-control" id="deskripsi_transaksi" name="deskripsi_transaksi" rows="4" placeholder="Masukkan Deskripsi Acara (Optional)"></textarea>
+                                    <textarea class="form-control" id="deskripsi_transaksi" name="deskripsi_transaksi" rows="4" required>{{ $transaction->deskripsi_transaksi }}</textarea>
                                 </div>
 
                                 <!-- Tombol Submit -->
                                 <div class="d-grid">
-                                    <button type="submit" class="btn btn-success">Submit</button>
+                                    <button type="submit" class="btn btn-success">Update</button>
                                     <a class="btn btn-danger rounded-none mt-2" href="/admin/admin-list">Cancel</a>
                                 </div>
                             </form>

@@ -60,7 +60,7 @@
 
         <!-- Pelayanan dengan Collapse -->
         <li class="py-1">
-            <a class="nav-link text-white d-flex align-items-center {{ (Request::is('admin/New-Event') or Request::is('admin/Passed-Event') or Request::is('admin/Scheduled-Event')) ? 'active' : '' }}"
+            <a class="nav-link text-white d-flex align-items-center {{ (Request::is('admin/createEvent') or Request::is('admin/passEvent') or Request::is('admin/scheduledEvent')) ? 'active' : '' }}"
                 data-bs-toggle="collapse" href="#collapsePelayanan" role="button" aria-expanded="false"
                 aria-controls="collapsePelayanan">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -74,13 +74,13 @@
                 <ul class="list-unstyled ps-5">
                     <li class="py-1"><a
                             class="nav-link text-white {{ Request::is('admin/New-Event') ? 'active' : '' }}"
-                            href="">Create New</a></li>
+                            href="/admin/createEvent">Create New</a></li>
                     <li class="py-1"><a
                             class="nav-link text-white {{ Request::is('admin/Scheduled-Event') ? 'active' : '' }}"
-                            href="">Scheduled</a></li>
+                            href="/admin/scheduledEvent">Scheduled</a></li>
                     <li class="py-1"><a
                             class="nav-link text-white {{ Request::is('admin/Passed-Event') ? 'active' : '' }}"
-                            href="">Passed</a></li>
+                            href="/admin/passEvent">Passed</a></li>
                 </ul>
             </div>
         </li>

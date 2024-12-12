@@ -15,8 +15,8 @@ use Laravel\Sanctum\HasApiTokens;
 class Umat extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, Sluggable, SoftDeletes;
-
-    protected $fillable = ['nama_umat', 'email_umat', 'password', 'wilayah', 'lingkungan', 'nomohp_umat', 'alamat', 'status', 'pekerjaan'];
+    protected $primaryKey = 'id_umat';
+    protected $fillable = ['nama_umat','nama_baptis', 'email_umat', 'password', 'wilayah', 'lingkungan', 'nomohp_umat', 'alamat', 'status', 'pekerjaan'];
 
     protected $hidden = ['password', 'remember_token'];
 

@@ -79,7 +79,7 @@ Route::prefix('admin')
         Route::put('/edit-layanan/{slug}', [AcaraController::class,'updatedAcara'])->name('admin.updateAcara');
         Route::delete('/delete-layanan/{slug}', [AcaraController::class, 'deleteAcara'])->name('admin.deleteAcara');
 
-        Route::get('/doa', [doaController::class, 'doaIn    dex'])->name('admin.doa');
+        Route::get('/doa', [doaController::class, 'doaIndex'])->name('admin.doa');
         Route::get('/add-doa', [doaController::class, 'addDoa'])->name('admin.addDoaForm');
         Route::post('/add-doa', [doaController::class, 'storeDoa'])->name('admin.addDoa');
         Route::get('/edit-doa/{slug}', [doaController::class, 'updateDoa'])->name('admin.updateDoaForm');
@@ -108,6 +108,7 @@ Route::prefix('admin')
         // Route::delete('/delete-kegiatan/{slug}', [kegiatanController::class, 'deleteKegiatan'])->name('admin.deleteKegiatan');
 
         Route::get('/scheduledEvent', [TransaksiController::class, 'index'])->name('admin.transaksi');
+        Route::get('/passEvent', [TransaksiController::class, 'index2'])->name('admin.transaksiSelsai');
         Route::get('/createEvent', [TransaksiController::class, 'createTransaction'])->name('admin.create.transaksi');
         Route::post('/createEvent', [TransaksiController::class, 'storeTransaction'])->name('admin.store.transaksi');
         Route::get('/updateEvent/{id}', [TransaksiController::class, 'updateTransaction'])->name('admin.update.transaksi');
@@ -149,12 +150,12 @@ Route::prefix('admin')
         // Route::put('/update-pernikahan/{slug}', [TransaksiController::class,'updatedPernikahan'])->name('admin.updated.Pernikahan');
         // Route::put('/update-pengurapan-sakit/{slug}', [TransaksiController::class,'updatedPengurapan'])->name('admin.updated.Pengurapan');
 
-        // Route::get('/Request-Pending', [RequestController::class,'pendingListRequest'])->name('admin.request.pending');
-        // Route::get('/Request-Processed', [RequestController::class,'processListRequest'])->name('admin.update.Misa');
-        // Route::get('/Request-Accepted', [RequestController::class,'acceptedListRequest'])->name('admin.update.Misa');
-        // Route::get('/Request-detail/{id}', [RequestController::class,'pendingListRequest'])->name('admin.update.Misa');
+        Route::get('/Request-Pending', [RequestController::class,'pendingListRequest'])->name('admin.request.pending');
+        Route::get('/Request-Processed', [RequestController::class,'processListRequest'])->name('admin.update.Misa');
+        Route::get('/Request-Accepted', [RequestController::class,'acceptedListRequest'])->name('admin.update.Misa');
+        Route::get('/Request-detail/{id}', [RequestController::class,'pendingListRequest'])->name('admin.update.Misa');
 
-        // Route::get('/highlight', [UmatController::class, 'highlight'])->name('admin.highlight');
+        Route::get('/highlight', [UmatController::class, 'highlight'])->name('admin.highlight');
 
     });
 

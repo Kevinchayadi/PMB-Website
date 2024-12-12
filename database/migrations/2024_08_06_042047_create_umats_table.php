@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('umats', function (Blueprint $table) {
             $table->id("id_umat");
             $table->string('nama_umat', 255);
+            $table->string('nama_baptis', 255);
             $table->string('slug', 255)->nullable()->unique();
             $table->string('email_umat')->unique();
             $table->string('password');

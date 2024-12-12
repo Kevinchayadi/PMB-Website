@@ -14,7 +14,7 @@ use Laravel\Sanctum\HasApiTokens;
 class Romo extends Model
 {
     use HasApiTokens, HasFactory, Notifiable, Sluggable, SoftDeletes;
-
+    protected $primaryKey = 'id_romo';
     protected $fillable = ['nama_romo', 'ttl_romo', 'nomorhp_romo'];
 
     public function transactionHeaders(): HasMany

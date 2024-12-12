@@ -16,6 +16,7 @@ class LandingController extends Controller
     public function Home()
     {
         $highlight = Hightlight::get();
+        // dd($highlight);
         return view('user.ViewPage.home', compact('highlight'));
     }
 
