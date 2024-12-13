@@ -9,6 +9,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel;
 
 class umat_seeder extends Seeder
@@ -39,19 +40,19 @@ class umat_seeder extends Seeder
     //     $this->command->info('Umat data has been seeded successfully!');
 
     //     // Export data ke Excel
-        Excel::store(new UmatExport, 'excelData/umat6.xlsx');
+        // Excel::store(new UmatExport, 'excelData/umat6.xlsx');
     // }
 
         // Tentukan path file Excel
-        $filePath = storage_path('/app/public/excelData/umat2.xlsx'); // Pastikan path file sesuai
+        $filePath = storage_path('app/public/excelData/umat2.xlsx'); 
+        Log::info('File path: ' . $filePath);
 
-        // Ambil data dari Excel sebagai array
-        $excelData = Excel::toArray([], $filePath)[0]; // [0] untuk mengambil sheet pertama
+        $excelData = Excel::toArray([], $filePath)[0];
 
-        // Loop untuk memasukkan data ke dalam tabel 'umats'
+       
         foreach ($excelData as $index => $row) {
 
-            // Memasukkan data ke dalam tabel 'umats'
+           
             Umat::create([
                 'nama_umat' => $row[1],
                 'nama_baptis' => $row[2],
