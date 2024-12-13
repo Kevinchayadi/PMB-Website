@@ -22,9 +22,9 @@
             <thead class="table-primary">
                 <tr>
                     <th scope="col">No.</th>
-                    <th scope="col">ID Admin</th>
+                    
                     <th scope="col">Username</th>
-                    <th scope="col">Password</th>
+                    
                     <th scope="col">Role</th>
                     <th scope="col">Action</th>
                 </tr>
@@ -33,9 +33,9 @@
                 <?php $__currentLoopData = $admins; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $admin): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
                         <th scope="row"><?php echo e($index + 1); ?></th>
-                        <td><?php echo e($admin->id); ?></td>
+                        
                         <td><?php echo e($admin->username); ?></td>
-                        <td><?php echo e($admin->password); ?></td>
+                        
                         <td><?php echo e($admin->roles->role); ?></td>
                         <td>
                             <button class="btn btn-sm btn-outline-primary">Edit</button>

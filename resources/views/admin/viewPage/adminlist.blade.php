@@ -24,9 +24,9 @@
             <thead class="table-primary">
                 <tr>
                     <th scope="col">No.</th>
-                    <th scope="col">ID Admin</th>
+                    {{-- <th scope="col">ID Admin</th> --}}
                     <th scope="col">Username</th>
-                    <th scope="col">Password</th>
+                    {{-- <th scope="col">Password</th> --}}
                     <th scope="col">Role</th>
                     <th scope="col">Action</th>
                 </tr>
@@ -35,9 +35,9 @@
                 @foreach($admins as $index => $admin)
                     <tr>
                         <th scope="row">{{ $index + 1 }}</th>
-                        <td>{{ $admin->id }}</td>
+                        {{-- <td>{{ $admin->id }}</td> --}}
                         <td>{{ $admin->username }}</td>
-                        <td>{{ $admin->password }}</td>
+                        {{-- <td>{{ $admin->password }}</td> --}}
                         <td>{{ $admin->roles->role }}</td>
                         <td>
                             <button class="btn btn-sm btn-outline-primary">Edit</button>

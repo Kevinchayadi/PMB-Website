@@ -87,7 +87,13 @@ class TransaksiController extends Controller
             'id_admin' => 'required|integer|exists:admins,id',       // Validasi id_admin
             'deskripsi_transaksi' => 'required|string|max:255',      // Validasi deskripsi_transaksi
         ]);
-    
+        
+        $existingTransaction = TransactionHeader::where('jadwal_transaction', $input['jadwal_transaction'])->first();
+
+        if ($existingTransaction) {
+            return redirect()->back()->withInput()->withErrors(['jadwal_transaction' => 'Transaksi dengan jadwal yang sama sudah ada.'])->withInput();
+        }
+
         try {
             DB::beginTransaction();
     
