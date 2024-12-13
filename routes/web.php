@@ -5,7 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\profileController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\hubungiController;
@@ -15,6 +15,7 @@ use App\Http\Controllers\UmatController;
 use App\Http\Controllers\doaController;
 use App\Http\Controllers\pastorController;
 use App\Http\Controllers\artikelController;
+use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\kegiatanController;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
@@ -33,12 +34,12 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 Route::redirect('/', 'home');
 Route::get('/home', [LandingController::class, 'home'])->name('home');
 Route::get('/dashboard', [LandingController::class, 'Dashboard'])->name('dashboard');
-Route::get('/profile/visiMisi', [profileController::class, 'visiMisi'])->name('visiMisi');
-Route::get('/profile/sejarah', [profileController::class, 'sejarah'])->name('sejarah');
-Route::get('/profile/doa', [profileController::class, 'doa'])->name('doa');
-Route::get('/profile/fasilitas', [profileController::class, 'fasilitas'])->name('fasilitas');
-Route::get('/profile/pastor', [profileController::class, 'pastor'])->name('pastor');
-Route::get('/profile/kegiatan', [profileController::class, 'kegiatan'])->name('kegiatan');
+Route::get('/profile/visiMisi', [ProfileController::class, 'visiMisi'])->name('visiMisi');
+Route::get('/profile/sejarah', [ProfileController::class, 'sejarah'])->name('sejarah');
+Route::get('/profile/doa', [ProfileController::class, 'doa'])->name('doa');
+Route::get('/profile/fasilitas', [ProfileController::class, 'fasilitas'])->name('fasilitas');
+Route::get('/profile/pastor', [ProfileController::class, 'pastor'])->name('pastor');
+Route::get('/profile/kegiatan', [ProfileController::class, 'kegiatan'])->name('kegiatan');
 Route::get('/jadwal', [LandingController::class, 'jadwal'])->name('jadwal');
 Route::get('/jadwal/{slug}', [LandingController::class, 'jadwalDetail'])->name('jadwal');
 Route::get('/artikel', [LandingController::class, 'artikel'])->name('artikel');
@@ -112,7 +113,7 @@ Route::prefix('admin')
         Route::get('/createEvent', [TransaksiController::class, 'createTransaction'])->name('admin.create.transaksi');
         Route::post('/createEvent', [TransaksiController::class, 'storeTransaction'])->name('admin.store.transaksi');
         Route::get('/updateEvent/{id}', [TransaksiController::class, 'updateTransaction'])->name('admin.update.transaksi');
-        Route::post('/createEvent', [TransaksiController::class, 'updatedTransaction'])->name('admin.updated.transaksi');
+        Route::put('/updateEvent/{id}', [TransaksiController::class, 'updatedTransaction'])->name('admin.updateTransaction');
         Route::delete('/deleteEvent/{id}', [TransaksiController::class, 'deleteTransaction'])->name('admin.delete.transaksi');
 
 
@@ -156,6 +157,10 @@ Route::prefix('admin')
         Route::get('/Request-detail/{id}', [RequestController::class,'pendingListRequest'])->name('admin.update.Misa');
 
         Route::get('/highlight', [UmatController::class, 'highlight'])->name('admin.highlight');
+
+        Route::get('export/umat', [ExcelController::class, 'exportUmat'])->name('export.umat');
+        Route::get('export/event/{status}', [ExcelController::class, 'exportEvent'])->name('export.event');
+        Route::get('export/request/{status}', [ExcelController::class, 'exportRequest'])->name('export.request');
 
     });
 

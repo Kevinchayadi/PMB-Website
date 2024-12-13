@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -10,15 +11,16 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $admins = Admin::with('roles')->get();
-        // dd($admins);
+        $admins = Admin::with('roles')->latest()->paginate(20
+        )->withQueryString();
+
         return view('admin.viewPage.adminlist', ['admins' => $admins]);
     }
 
     public function addAdmin()
     {
-
-        return view('admin.viewPage.adminAdd');
+        $roles = Role::get();
+        return view('admin.viewPage.adminAdd', compact('roles'));
     }
 
     public function storeAdmin(Request $request)
@@ -44,8 +46,10 @@ class AdminController extends Controller
 
     public function detailAdmin($slug)
     {
-        $admin = Admin::with('roles')->where('username', $slug)->firstOrFail();
-        return view('admin.viewPage.adminUpdate', ['admin' => $admin]);
+        $roles = Role::get();
+        $admin = Admin::with('roles')->where('username', $slug)->first();
+        return view('admin.viewPage.adminUpdate', ['admin' => $admin, 'roles' => $roles]);
+        
     }
 
     public function updateAdmin(Request $request, $slug)

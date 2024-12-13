@@ -7,18 +7,15 @@
             background-color: #fff !important;
             color: #000 !important;
         }
-
-        .select2-container--default .select2-results__option {
-            background-color: #fff !important;
-            color: #000 !important;
-        }
+ 
 
         .select2-container--default .select2-results__option--highlighted {
-            background-color: #007bff !important; /* Warna biru Bootstrap */
+            background-color: #007bff !important;
+            /* Warna biru Bootstrap */
             color: #fff !important;
         }
     </style>
-    
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
@@ -42,8 +39,9 @@
                                     <label for="id_romo" class="form-label">Romo</label>
                                     <select class="form-control" id="id_romo" name="id_romo" required>
                                         <option value="">Pilih Romo</option>
-                                        @foreach($romos as $romo)
-                                            <option value="{{ $romo->id }}" {{ $transaction->id_romo == $romo->id ? 'selected' : '' }}>
+                                        @foreach ($romos as $romo)
+                                            <option value="{{ $romo->id }}"
+                                                {{ $transaction->id_romo == $romo->id ? 'selected' : '' }}>
                                                 {{ $romo->nama_romo }}
                                             </option>
                                         @endforeach
@@ -55,8 +53,9 @@
                                     <label for="id_acara" class="form-label">Acara</label>
                                     <select class="form-control" id="id_acara" name="id_acara" required>
                                         <option value="">Pilih Acara</option>
-                                        @foreach($acaras as $acara)
-                                            <option value="{{ $acara->id }}" {{ $transaction->id_acara == $acara->id ? 'selected' : '' }}>
+                                        @foreach ($acaras as $acara)
+                                            <option value="{{ $acara->id }}"
+                                                {{ $transaction->id_acara == $acara->id ? 'selected' : '' }}>
                                                 {{ $acara->name }}
                                             </option>
                                         @endforeach
@@ -66,9 +65,11 @@
                                 <!-- Dropdown Seksi (Multiple Select2) -->
                                 <div class="mb-3">
                                     <label for="id_seksi" class="form-label">Seksi</label>
-                                    <select class="form-control select2" id="id_seksi" name="id_seksi[]" multiple="multiple" required>
-                                        @foreach($seksis as $seksi)
-                                            <option value="{{ $seksi->id }}" {{ in_array($seksi->id, $transaction->seksis->pluck('id')->toArray()) ? 'selected' : '' }}>
+                                    <select class="form-control select2" id="id_seksi" name="id_seksi[]"
+                                        multiple="multiple" required>
+                                        @foreach ($seksis as $seksi)
+                                            <option value="{{ $seksi->id }}"
+                                                {{ in_array($seksi->id, $transaction->seksis->pluck('id')->toArray()) ? 'selected' : '' }}>
                                                 {{ $seksi->name }}
                                             </option>
                                         @endforeach
@@ -80,8 +81,9 @@
                                     <label for="id_doa" class="form-label">Doa</label>
                                     <select class="form-control" id="id_doa" name="id_doa" required>
                                         <option value="">Pilih Doa</option>
-                                        @foreach($doas as $doa)
-                                            <option value="{{ $doa->id }}" {{ $transaction->id_doa == $doa->id ? 'selected' : '' }}>
+                                        @foreach ($doas as $doa)
+                                            <option value="{{ $doa->id }}"
+                                                {{ $transaction->id_doa == $doa->id ? 'selected' : '' }}>
                                                 {{ $doa->name }}
                                             </option>
                                         @endforeach
@@ -91,15 +93,18 @@
                                 <!-- Tanggal -->
                                 <div class="mb-3">
                                     <label for="jadwal_transaction" class="form-label">Jadwal Transaksi</label>
-                                    <input type="date" class="form-control" id="jadwal_transaction" name="jadwal_transaction" value="{{ $transaction->jadwal_transaction }}" required>
+                                    <input type="date" class="form-control" id="jadwal_transaction"
+                                        name="jadwal_transaction" value="{{ $transaction->jadwal_transaction }}" required>
                                 </div>
 
                                 <!-- Dropdown Umat (Nullable, Multiple Select2) -->
                                 <div class="mb-3">
                                     <label for="id_umat" class="form-label">Umat</label>
-                                    <select class="form-control select2" id="id_umat" name="id_umat[]" multiple="multiple">
-                                        @foreach($umats as $umat)
-                                            <option value="{{ $umat->id_umat }}" {{ in_array($umat->id_umat, $transaction->umats->pluck('id_umat')->toArray()) ? 'selected' : '' }}>
+                                    <select class="form-control select2" id="id_umat" name="id_umat[]"
+                                        multiple="multiple">
+                                        @foreach ($umats as $umat)
+                                            <option value="{{ $umat->id_umat }}"
+                                                {{ in_array($umat->id_umat, $transaction->umats->pluck('id_umat')->toArray()) ? 'selected' : '' }}>
                                                 {{ $umat->nama_umat }}
                                             </option>
                                         @endforeach
@@ -130,10 +135,50 @@
     <!-- Init Select2 -->
     <script>
         $(document).ready(function() {
-            // Initialize Select2 for the multiple select dropdowns
+            // Inisialisasi Select2 untuk multiple select
             $('.select2').select2({
-                placeholder: "Pilih opsi",
-                allowClear: true
+                placeholder: "Pilih Data(optional)",
+                allowClear: true,
+                tags: true,
+                tokenSeparators: [',', ' ']
+            });
+            $('.select2').each(function() {
+                var selectedValues = $(this).val(); // Ambil nilai opsi yang dipilih (array)
+                selectedValues.forEach(function(value) {
+                    $(this).find('option[value="' + value + '"]').prop('disabled', true);
+                }.bind(this));
+
+                // Refresh Select2 agar perubahan terlihat
+                $(this).trigger('change');
+            });
+
+            // Ketika opsi dipilih (select)
+            $('.select2').on('select2:select', function(e) {
+                var selectedValue = e.params.data.id; // Ambil ID dari opsi yang dipilih
+
+                // Menonaktifkan opsi yang sudah dipilih
+                $(this).find('option[value="' + selectedValue + '"]').prop('disabled', true);
+
+                // Refresh Select2 agar perubahan terlihat
+                $(this).trigger('change');
+            });
+
+            // Ketika opsi dibatalkan (unselect)
+            $('.select2').on('select2:unselect', function(e) {
+                var unselectedValue = e.params.data.id; // Ambil ID dari opsi yang dibatalkan
+
+                // Mengaktifkan kembali opsi yang di-unselect
+                $(this).find('option[value="' + unselectedValue + '"]').prop('disabled', false);
+
+                // Refresh Select2 agar perubahan terlihat
+                $(this).trigger('change');
+            });
+            $('.select2').on('select2:clear', function() {
+                // Mengaktifkan kembali semua opsi
+                $(this).find('option').prop('disabled', false);
+
+                // Refresh Select2 agar perubahan terlihat
+                $(this).trigger('change');
             });
         });
     </script>

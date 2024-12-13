@@ -7,7 +7,7 @@ use App\Models\Doa;
 use App\Models\Romo;
 use Illuminate\Http\Request;
 
-class profileController extends Controller
+class ProfileController extends Controller
 {
     public function visiMisi()
     {

@@ -23,7 +23,7 @@ class Admin extends Authenticatable
 
     public function roles(): BelongsTo
     {
-        return $this->belongsTo(Role::class, 'id_admin');
+        return $this->belongsTo(Role::class, 'id_role','id_role');
     }
 
     public function sluggable(): array

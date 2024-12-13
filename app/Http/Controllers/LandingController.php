@@ -57,14 +57,14 @@ class LandingController extends Controller
     {
         $artikel= Articel::where('id', $id)
         ->firstOrFail();
-        return view('user.Viewpage.artikeldetail', compact('artikel'));
+        return view('user.ViewPage.artikeldetail', compact('artikel'));
     }
 
     public function layanan()
     {
         $layanan = Acara::with('transactionDetails')->get();
-        return view('user.Viewpage.layanan', ['layanan' => $layanan]);
-        return view('user.Viewpage.layanan', ['layanan' => $layanan]);
+        return view('user.ViewPage.layanan', ['layanan' => $layanan]);
+
     }
 
     public function formPendaftaran()
