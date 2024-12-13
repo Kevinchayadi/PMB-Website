@@ -5,7 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\profileController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\hubungiController;
