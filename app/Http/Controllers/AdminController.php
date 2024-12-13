@@ -10,8 +10,9 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $admins = Admin::with('roles')->get();
-        // dd($admins);
+        $admins = Admin::with('roles')->latest()->paginate(20
+        )->withQueryString();
+
         return view('admin.viewPage.adminlist', ['admins' => $admins]);
     }
 

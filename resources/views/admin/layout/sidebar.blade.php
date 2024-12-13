@@ -33,7 +33,7 @@
 
         <li class="py-1">
             <a class="nav-link text-white d-flex align-items-center {{ (Request::is('admin/Request-Pending') or Request::is('admin/Request-Processed') or Request::is('admin/Request-Accepted') or Request::is('admin/Request-detail')) ? 'active' : '' }}"
-                data-bs-toggle="collapse" href="#collapseRequest" role="button" aria-expanded="false"
+                data-bs-toggle="collapse" href="#collapseRequest" role="button" aria-expanded="{{ (Request::is('admin/Request-Pending') or Request::is('admin/Request-Processed') or Request::is('admin/Request-Accepted') or Request::is('admin/Request-detail')) ? 'true' : 'false' }}"
                 aria-controls="collapseRequest">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-chevron-right me-2 chevron-icon" viewBox="0 0 16 16">
@@ -42,7 +42,7 @@
                 </svg>
                 Request
             </a>
-            <div class="collapse" id="collapseRequest">
+            <div class="collapse {{ (Request::is('admin/Request-Pending') or Request::is('admin/Request-Processed') or Request::is('admin/Request-Accepted') or Request::is('admin/Request-detail')) ? 'show' : '' }}" id="collapseRequest">
                 <ul class="list-unstyled ps-5">
                     <li class="py-1"><a
                             class="nav-link text-white {{ Request::is('admin/Request-Pending') ? 'active' : '' }}"
@@ -61,7 +61,7 @@
         <!-- Pelayanan dengan Collapse -->
         <li class="py-1">
             <a class="nav-link text-white d-flex align-items-center {{ (Request::is('admin/createEvent') or Request::is('admin/passEvent') or Request::is('admin/scheduledEvent')) ? 'active' : '' }}"
-                data-bs-toggle="collapse" href="#collapsePelayanan" role="button" aria-expanded="false"
+                data-bs-toggle="collapse" href="#collapsePelayanan" role="button" aria-expanded="{{ (Request::is('admin/createEvent') or Request::is('admin/passEvent') or Request::is('admin/scheduledEvent')) ? 'true' : 'false' }}"
                 aria-controls="collapsePelayanan">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-chevron-right me-2 chevron-icon" viewBox="0 0 16 16">
@@ -70,16 +70,16 @@
                 </svg>
                 Event
             </a>
-            <div class="collapse" id="collapsePelayanan">
+            <div class="collapse {{ (Request::is('admin/createEvent') or Request::is('admin/passEvent') or Request::is('admin/scheduledEvent')) ? 'show' : '' }}" id="collapsePelayanan">
                 <ul class="list-unstyled ps-5">
                     <li class="py-1"><a
-                            class="nav-link text-white {{ Request::is('admin/New-Event') ? 'active' : '' }}"
+                            class="nav-link text-white {{ Request::is('admin/createEvent') ? 'active' : '' }}"
                             href="/admin/createEvent">Create New</a></li>
                     <li class="py-1"><a
-                            class="nav-link text-white {{ Request::is('admin/Scheduled-Event') ? 'active' : '' }}"
+                            class="nav-link text-white {{ Request::is('admin/scheduledEvent') ? 'active' : '' }}"
                             href="/admin/scheduledEvent">Scheduled</a></li>
                     <li class="py-1"><a
-                            class="nav-link text-white {{ Request::is('admin/Passed-Event') ? 'active' : '' }}"
+                            class="nav-link text-white {{ Request::is('admin/passEvent') ? 'active' : '' }}"
                             href="/admin/passEvent">Passed</a></li>
                 </ul>
             </div>

@@ -10,15 +10,7 @@
     <!-- Pagination and Search -->
     <div class="d-flex justify-content-between align-items-center mb-3">
        <a href="/admin/add-admin" class="btn btn-primary ">Add New Admin</a>
-        <nav>
-            <ul class="pagination mb-0" id="pagination">
-                <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul>
-        </nav>
+        
 
         <input type="text" id="searchInput" class="form-control w-25" placeholder="Search...">
 
@@ -38,42 +30,67 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Admin</td>
-                    <td>
-                        <button class="btn btn-sm btn-outline-primary">Edit</button>
-                        <button class="btn btn-sm btn-outline-danger">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td>Admin</td>
-                    <td>
-                        <button class="btn btn-sm btn-outline-primary">Edit</button>
-                        <button class="btn btn-sm btn-outline-danger">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>The Bird</td>
-                    <td>@twitter</td>
-                    <td>Admin</td>
-                    <td>
-                        <button class="btn btn-sm btn-outline-primary">Edit</button>
-                        <button class="btn btn-sm btn-outline-danger">Delete</button>
-                    </td>
-                </tr>
+                <?php $__currentLoopData = $admins; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $admin): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <tr>
+                        <th scope="row"><?php echo e($index + 1); ?></th>
+                        <td><?php echo e($admin->id); ?></td>
+                        <td><?php echo e($admin->username); ?></td>
+                        <td><?php echo e($admin->password); ?></td>
+                        <td><?php echo e($admin->roles->role); ?></td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-primary">Edit</button>
+                            <button class="btn btn-sm btn-outline-danger">Delete</button>
+                        </td>
+                    </tr>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </tbody>
         </table>
     </div>
+    
+    <!-- Pagination -->
+    <?php if($admins->total() > 0): ?>
+    <div class="mt-1 text-center">
+        <small class="text-muted">
+            Show <?php echo e($admins->firstItem()); ?> until <?php echo e($admins->lastItem()); ?> from <?php echo e($admins->total()); ?> data admin
+        </small>
+    </div>
+    <nav class="mt-2">
+        <ul class="pagination justify-content-center mb-0" id="pagination">
+            <!-- Previous Button -->
+            <?php if($admins->onFirstPage()): ?>
+                <li class="page-item disabled">
+                    <a class="page-link" href="#"><</a>
+                </li>
+            <?php else: ?>
+                <li class="page-item">
+                    <a class="page-link" href="<?php echo e($admins->previousPageUrl()); ?>"><</a>
+                </li>
+            <?php endif; ?>
+
+            <!-- Page Numbers -->
+            <?php for($i = 1; $i <= $admins->lastPage(); $i++): ?>
+                <li class="page-item <?php echo e($admins->currentPage() == $i ? 'active' : ''); ?>">
+                    <a class="page-link" href="<?php echo e($admins->url($i)); ?>"><?php echo e($i); ?></a>
+                </li>
+            <?php endfor; ?>
+
+            <!-- Next Button -->
+            <?php if($admins->hasMorePages()): ?>
+                <li class="page-item">
+                    <a class="page-link" href="<?php echo e($admins->nextPageUrl()); ?>">></a>
+                </li>
+            <?php else: ?>
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">></a>
+                </li>
+            <?php endif; ?>
+        </ul>
+    </nav>
+    
+<?php endif; ?>
+
+
+    
 </div>
 <?php $__env->stopSection(); ?>
 

@@ -12,15 +12,7 @@
     <!-- Pagination and Search -->
     <div class="d-flex justify-content-between align-items-center mb-3">
        <a href="/admin/add-admin" class="btn btn-primary ">Add New Admin</a>
-        <nav>
-            <ul class="pagination mb-0" id="pagination">
-                <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul>
-        </nav>
+        
 
         <input type="text" id="searchInput" class="form-control w-25" placeholder="Search...">
 
@@ -40,41 +32,66 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Admin</td>
-                    <td>
-                        <button class="btn btn-sm btn-outline-primary">Edit</button>
-                        <button class="btn btn-sm btn-outline-danger">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td>Admin</td>
-                    <td>
-                        <button class="btn btn-sm btn-outline-primary">Edit</button>
-                        <button class="btn btn-sm btn-outline-danger">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>The Bird</td>
-                    <td>@twitter</td>
-                    <td>Admin</td>
-                    <td>
-                        <button class="btn btn-sm btn-outline-primary">Edit</button>
-                        <button class="btn btn-sm btn-outline-danger">Delete</button>
-                    </td>
-                </tr>
+                @foreach($admins as $index => $admin)
+                    <tr>
+                        <th scope="row">{{ $index + 1 }}</th>
+                        <td>{{ $admin->id }}</td>
+                        <td>{{ $admin->username }}</td>
+                        <td>{{ $admin->password }}</td>
+                        <td>{{ $admin->roles->role }}</td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-primary">Edit</button>
+                            <button class="btn btn-sm btn-outline-danger">Delete</button>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
+    
+    <!-- Pagination -->
+    @if ($admins->total() > 0)
+    <div class="mt-1 text-center">
+        <small class="text-muted">
+            Show {{ $admins->firstItem() }} until {{ $admins->lastItem() }} from {{ $admins->total() }} data admin
+        </small>
+    </div>
+    <nav class="mt-2">
+        <ul class="pagination justify-content-center mb-0" id="pagination">
+            <!-- Previous Button -->
+            @if ($admins->onFirstPage())
+                <li class="page-item disabled">
+                    <a class="page-link" href="#"><</a>
+                </li>
+            @else
+                <li class="page-item">
+                    <a class="page-link" href="{{ $admins->previousPageUrl() }}"><</a>
+                </li>
+            @endif
+
+            <!-- Page Numbers -->
+            @for ($i = 1; $i <= $admins->lastPage(); $i++)
+                <li class="page-item {{ $admins->currentPage() == $i ? 'active' : '' }}">
+                    <a class="page-link" href="{{ $admins->url($i) }}">{{ $i }}</a>
+                </li>
+            @endfor
+
+            <!-- Next Button -->
+            @if ($admins->hasMorePages())
+                <li class="page-item">
+                    <a class="page-link" href="{{ $admins->nextPageUrl() }}">></a>
+                </li>
+            @else
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">></a>
+                </li>
+            @endif
+        </ul>
+    </nav>
+    
+@endif
+
+
+    
 </div>
 @endsection
