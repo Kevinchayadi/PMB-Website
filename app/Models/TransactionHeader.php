@@ -15,7 +15,7 @@ class TransactionHeader extends Model
     use HasFactory, SoftDeletes;
 
     protected $primaryKey = 'id_transaction';
-    protected $fillable = ['id_romo', 'id_seksi', 'id_doa', 'jadwal_transaction', 'status'];
+    protected $fillable = ['judul','id_romo', 'id_seksi', 'id_doa', 'jadwal_transaction', 'status'];
 
     public function romo(): BelongsTo
     {

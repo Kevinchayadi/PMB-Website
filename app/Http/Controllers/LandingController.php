@@ -30,7 +30,10 @@ class LandingController extends Controller
 
     public function jadwal()
     {
-        $transactions = TransactionHeader::with('transactionDelails')->get();
+        $transactions = TransactionHeader::with(['romo', 'seksi', 'doa', 'transactionDetails' => function ($query) {
+            $query->with('umats', 'acara', 'admin')->where('umat_id', Auth::guard('web')->user()->umat_id);
+        }])->where('status', 'coming')->get();
+        
         return view('user.ViewPage.jadwal', ['transactions' => $transactions]);
     }
 

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('transaction_headers', function (Blueprint $table) {
             $table->id('id_transaction');
+            $table->string('judul');
             $table->unsignedBigInteger('id_romo');
             $table->unsignedBigInteger('id_seksi');
             $table->unsignedBigInteger('id_doa')->nullable();

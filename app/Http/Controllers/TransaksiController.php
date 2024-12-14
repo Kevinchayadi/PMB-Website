@@ -75,6 +75,7 @@ class TransaksiController extends Controller
     public function updatedTransaction(Request $request, $id)
     {
         $input = $request->validate([
+            'judul' => 'required|string',
             'id_romo' => 'required|integer|exists:romos,id',         // Validasi id_romo
             'id_seksi' => 'required|integer|exists:seksis,id',       // Validasi id_seksi
             'id_doa' => 'required|integer|exists:doas,id',           // Validasi id_doa

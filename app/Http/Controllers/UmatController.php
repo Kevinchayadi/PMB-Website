@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Hightlight;
 use App\Models\Umat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
 class UmatController extends Controller
@@ -14,44 +15,103 @@ class UmatController extends Controller
         // dd($highlight);
         return view('admin.viewPage.landingpage.highlight', compact('highlight'));
     }
-    public function excelForm(){
-        return view('umatsInput');
-    }
-    public function createUserExcel(Request $request)
-    {
-        // Validasi file yang di-upload
-        $request->validate([
-            'file' => 'required|mimes:xlsx,xls,csv|max:2048',
-        ]);
+    
+    
 
-        // Ambil file dari request
-        $file = $request->file('file');
+public function highlightUpdate(Request $request)
+{
+    // Melakukan validasi pada request
+    $validated = $request->validate([
+        // Validasi untuk highlight1, highlight2, highlight3 (gambar)
+        'highlight1' => 'required|image|mimes:jpg,jpeg,png,gif,svg|max:2048',
+        'highlight2' => 'required|image|mimes:jpg,jpeg,png,gif,svg|max:2048',
+        'highlight3' => 'required|image|mimes:jpg,jpeg,png,gif,svg|max:2048',
 
-        // Load file Excel
-        $data = Excel::toArray([], $file);
+        // Validasi untuk event dan promosi (gambar)
+        'event' => 'required|image|mimes:jpg,jpeg,png,gif,svg|max:2048',
+        'promosi' => 'required|image|mimes:jpg,jpeg,png,gif,svg|max:2048',
+    ]);
 
-        // Asumsikan sheet pertama yang berisi data umat
-        $rows = $data[0];
+    // Path untuk gambar highlight, event, dan promosi
+    $highlight1ImagePath = null;
+    $highlight2ImagePath = null;
+    $highlight3ImagePath = null;
+    $eventImagePath = null;
+    $promosiImagePath = null;
 
-        // Loop untuk menyimpan data satu per satu ke database
-        foreach ($rows as $row) {
-            // Pastikan setiap kolom sudah ada di dalam data
-            if (!empty($row['nama_umat']) && !empty($row['email_umat']) && !empty($row['password'])) {
-                Umat::create([
-                    'nama_umat' => $row['nama_umat'],
-                    'email_umat' => $row['email_umat'],
-                    'password' => bcrypt($row['password']), // Password harus di-hash
-                    'wilayah' => $row['wilayah'],
-                    'lingkungan' => $row['lingkungan'],
-                    'nomohp_umat' => $row['nomohp_umat'],
-                    'alamat' => $row['alamat'],
-                    'status' => $row['status'],
-                    'pekerjaan' => $row['pekerjaan'],
-                ]);
-            }
+    // Menyimpan gambar highlight1 jika ada
+    if ($request->hasFile('highlight1')) {
+        $highlight1Image = $request->file('highlight1');
+        $highlight1ImageName = 'highlight1.jpg'; // Nama file untuk highlight1
+
+        // Cek jika file lama ada dan hapus
+        if (Storage::exists('public/img/highlight/' . $highlight1ImageName)) {
+            Storage::delete('public/img/highlight/' . $highlight1ImageName);
         }
 
-        // Setelah data berhasil diimpor, beri feedback ke user
-        return redirect()->back()->with('success', 'Data berhasil diimport!');
+        // Simpan gambar baru
+        $highlight1ImagePath = $highlight1Image->storeAs('img/highlight', $highlight1ImageName, 'public');
     }
+
+    // Menyimpan gambar highlight2 jika ada
+    if ($request->hasFile('highlight2')) {
+        $highlight2Image = $request->file('highlight2');
+        $highlight2ImageName = 'highlight2.jpg'; // Nama file untuk highlight2
+
+        // Cek jika file lama ada dan hapus
+        if (Storage::exists('public/img/highlight/' . $highlight2ImageName)) {
+            Storage::delete('public/img/highlight/' . $highlight2ImageName);
+        }
+
+        // Simpan gambar baru
+        $highlight2ImagePath = $highlight2Image->storeAs('img/highlight', $highlight2ImageName, 'public');
+    }
+
+    // Menyimpan gambar highlight3 jika ada
+    if ($request->hasFile('highlight3')) {
+        $highlight3Image = $request->file('highlight3');
+        $highlight3ImageName = 'highlight3.jpg'; // Nama file untuk highlight3
+
+        // Cek jika file lama ada dan hapus
+        if (Storage::exists('public/img/highlight/' . $highlight3ImageName)) {
+            Storage::delete('public/img/highlight/' . $highlight3ImageName);
+        }
+
+        // Simpan gambar baru
+        $highlight3ImagePath = $highlight3Image->storeAs('img/highlight', $highlight3ImageName, 'public');
+    }
+
+    // Menyimpan gambar event jika ada
+    if ($request->hasFile('event')) {
+        $eventImage = $request->file('event');
+        $eventImageName = 'event.jpg'; // Nama file untuk event
+
+        // Cek jika file lama ada dan hapus
+        if (Storage::exists('public/img/event/' . $eventImageName)) {
+            Storage::delete('public/img/event/' . $eventImageName);
+        }
+
+        // Simpan gambar baru
+        $eventImagePath = $eventImage->storeAs('img/event', $eventImageName, 'public');
+    }
+
+    // Menyimpan gambar promosi jika ada
+    if ($request->hasFile('promosi')) {
+        $promosiImage = $request->file('promosi');
+        $promosiImageName = 'promosi.jpg'; // Nama file untuk promosi
+
+        // Cek jika file lama ada dan hapus
+        if (Storage::exists('public/img/promosi/' . $promosiImageName)) {
+            Storage::delete('public/img/promosi/' . $promosiImageName);
+        }
+
+        // Simpan gambar baru
+        $promosiImagePath = $promosiImage->storeAs('img/promosi', $promosiImageName, 'public');
+    }
+
+    // Menyimpan flash data ke session dan mengarahkan kembali ke halaman sebelumnya
+    return back()->with('success', 'Highlight images updated successfully!');
+}
+
+
 }

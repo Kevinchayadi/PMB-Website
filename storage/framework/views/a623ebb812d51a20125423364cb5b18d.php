@@ -38,8 +38,8 @@
                         
                         <td><?php echo e($admin->roles->role); ?></td>
                         <td>
-                            <button class="btn btn-sm btn-outline-primary">Edit</button>
-                            <button class="btn btn-sm btn-outline-danger">Delete</button>
+                            <a href="/admin/admin-detail/<?php echo e($admin->username); ?>" class="btn btn-sm btn-outline-primary">Edit</a>
+                            <a href="/admin/remove-admin/<?php echo e($admin->username); ?>" class="btn btn-sm btn-outline-danger">Delete</a>
                         </td>
                     </tr>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
