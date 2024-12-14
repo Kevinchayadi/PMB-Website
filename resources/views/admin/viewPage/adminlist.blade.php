@@ -40,8 +40,8 @@
                         {{-- <td>{{ $admin->password }}</td> --}}
                         <td>{{ $admin->roles->role }}</td>
                         <td>
-                            <a href="/admin/admin-detail/{{admin->id_admin}}" ="btn btn-sm btn-outline-primary">Edit</a>
-                            <a href="/admin/remove-admin/{{admin->id_admin}}" ="btn btn-sm btn-outline-danger">Delete</a>
+                            <a href="/admin/admin-detail/{{$admin->username}}" class="btn btn-sm btn-outline-primary">Edit</a>
+                            <a href="/admin/remove-admin/{{$admin->username}}" class="btn btn-sm btn-outline-danger">Delete</a>
                         </td>
                     </tr>
                 @endforeach

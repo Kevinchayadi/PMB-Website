@@ -9,17 +9,17 @@
             <div class="row">
                 <div class="col-4">
                     <img src="{{ asset('picture/Carousel-1.png') }}" class="img-fluid rounded-3 shadow-lg mb-2" alt="...">
-                    <div class="btn btn-primary rounded-3 d-flex justify-content-center">Change Image</div>
+                    <input type="file" id="hightlight1" name="hightlight1" class="btn btn-primary rounded-3 d-flex justify-content-center">Change Image</input>
                 </div>
                 <div class="col-4">
                     <img src="{{ asset('picture/Carousel-2.jpg') }}" class="img-fluid rounded-3 shadow-lg mb-2"
                         alt="...">
-                    <div class="btn btn-primary rounded-3 d-flex justify-content-center">Change Image</div>
+                    <input type="file" id="hightlight2" name="hightlight2" class="btn btn-primary rounded-3 d-flex justify-content-center">Change Image</input>
                 </div>
                 <div class="col-4">
                     <img src="{{ asset('picture/Carousel-3.png') }}" class="img-fluid rounded-3 shadow-lg mb-2"
                         alt="...">
-                    <div class="btn btn-primary rounded-3 d-flex justify-content-center">Change Image</div>
+                    <input type="file" id="hightlight3" name="hightlight3" class="btn btn-primary rounded-3 d-flex justify-content-center">Change Image</input>
                 </div>
             </div>
         </div>
@@ -31,7 +31,7 @@
                 <div class="row g-0">
                     <div class="col-md-4">
                         <img src="{{ asset('picture/Misa.jpg') }}" class="img-fluid rounded-start mb-2" alt="...">
-                        <div class="btn btn-primary rounded-3 d-flex justify-content-center">Change Image</div>
+                        <input type="file" id="event" name="event" class="btn btn-primary rounded-3 d-flex justify-content-center">Change Image</input>
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -39,10 +39,10 @@
                                 <input type="text" class="text-secondary form-control"
                                     placeholder="Ikuti misa pekan ini">
                                 <div class="dropdown">
-                                    <div class="btn btn-secondary text-dark dropdown-toggle" data-bs-toggle="dropdown"
+                                    <input type="file" id="promosi" name="promosi" class="btn btn-secondary text-dark dropdown-toggle" data-bs-toggle="dropdown"
                                         aria-expanded="false">
                                         Navigate to
-                                    </div>
+                                    </input>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="#">Action</a></li>
                                         <li><a class="dropdown-item" href="#">Another action</a></li>

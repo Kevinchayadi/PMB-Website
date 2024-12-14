@@ -48,6 +48,7 @@ class AdminController extends Controller
     {
         $roles = Role::get();
         $admin = Admin::with('roles')->where('username', $slug)->first();
+        // dd($admin);
         return view('admin.viewPage.adminUpdate', ['admin' => $admin, 'roles' => $roles]);
         
     }

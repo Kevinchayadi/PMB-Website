@@ -14,44 +14,48 @@ class UmatController extends Controller
         // dd($highlight);
         return view('admin.viewPage.landingpage.highlight', compact('highlight'));
     }
-    public function excelForm(){
-        return view('umatsInput');
+    
+    public function highlightUpdate(Request $request)
+{
+    // Melakukan validasi pada request
+    $validated = $request->validate([
+        // Validasi untuk highlight1, highlight2, highlight3
+        'highlight1' => 'required|image|mimes:jpg,jpeg,png,gif,svg|max:2048',
+        'highlight2' => 'required|image|mimes:jpg,jpeg,png,gif,svg|max:2048',
+        'highlight3' => 'required|image|mimes:jpg,jpeg,png,gif,svg|max:2048',
+
+        // Validasi untuk event dan promosi dalam bentuk gambar
+        'event' => 'required|image|mimes:jpg,jpeg,png,gif,svg|max:2048',
+        'promosi' => 'required|image|mimes:jpg,jpeg,png,gif,svg|max:2048',
+    ]);
+
+    // Jika validasi berhasil, kamu bisa melanjutkan proses berikutnya
+    // Misalnya menyimpan data atau memproses gambar
+
+    // Contoh menyimpan gambar jika ada
+    $eventImagePath = null;
+    $promosiImagePath = null;
+
+    if ($request->hasFile('event')) {
+        $eventImage = $request->file('event');
+        // Menyimpan gambar ke folder 'public/img'
+        $eventImagePath = $eventImage->store('img/event', 'public');
     }
-    public function createUserExcel(Request $request)
-    {
-        // Validasi file yang di-upload
-        $request->validate([
-            'file' => 'required|mimes:xlsx,xls,csv|max:2048',
-        ]);
 
-        // Ambil file dari request
-        $file = $request->file('file');
-
-        // Load file Excel
-        $data = Excel::toArray([], $file);
-
-        // Asumsikan sheet pertama yang berisi data umat
-        $rows = $data[0];
-
-        // Loop untuk menyimpan data satu per satu ke database
-        foreach ($rows as $row) {
-            // Pastikan setiap kolom sudah ada di dalam data
-            if (!empty($row['nama_umat']) && !empty($row['email_umat']) && !empty($row['password'])) {
-                Umat::create([
-                    'nama_umat' => $row['nama_umat'],
-                    'email_umat' => $row['email_umat'],
-                    'password' => bcrypt($row['password']), // Password harus di-hash
-                    'wilayah' => $row['wilayah'],
-                    'lingkungan' => $row['lingkungan'],
-                    'nomohp_umat' => $row['nomohp_umat'],
-                    'alamat' => $row['alamat'],
-                    'status' => $row['status'],
-                    'pekerjaan' => $row['pekerjaan'],
-                ]);
-            }
-        }
-
-        // Setelah data berhasil diimpor, beri feedback ke user
-        return redirect()->back()->with('success', 'Data berhasil diimport!');
+    if ($request->hasFile('promosi')) {
+        $promosiImage = $request->file('promosi');
+        // Menyimpan gambar ke folder 'public/img'
+        $promosiImagePath = $promosiImage->store('img/promosi', 'public');
     }
+
+    // Lakukan proses lain yang diperlukan, misalnya menyimpan data ke database
+
+    return response()->json([
+        'message' => 'Highlight updated successfully',
+        'data' => $validated,
+        'event_image' => $eventImagePath, // Menyertakan path gambar event
+        'promosi_image' => $promosiImagePath, // Menyertakan path gambar promosi
+    ]);
+}
+
 }

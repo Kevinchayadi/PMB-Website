@@ -20,7 +20,7 @@
                                 <div class="mb-3">
                                     <label for="name" class="form-label">username</label>
                                     <input type="text" class="form-control" id="name" name="name"
-                                        placeholder="Masukkan nama Anda" value="{{admin->username}}" required>
+                                        placeholder="Masukkan nama Anda" value="{{$admin->username}}" required>
                                 </div>
 
                                 <!-- Email -->
