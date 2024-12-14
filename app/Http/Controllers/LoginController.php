@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Umat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
@@ -34,6 +36,40 @@ class LoginController extends Controller
 
         return back()->with('error', 'gagal login, tolong untuk dicek kembali email dan password!');
     }
+
+    function socialitePage()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function googleLogin()
+    {
+        try {
+            $googleUser = Socialite::driver('google')->user();
+    
+            // Update or create user record based on google_id
+            $user = Umat::updateOrCreate(
+                ['google_id' => $googleUser->getId()],
+                [
+                    'name' => $googleUser->getName(),
+                    'email' => $googleUser->getEmail(),
+                    'google_token' => $googleUser->token,
+                    'google_refresh_token' => $googleUser->refreshToken,
+                ]
+            );
+    
+            // Login the user
+            Auth::guard('web')->login($user);
+    
+            // Redirect to dashboard or other page
+            return redirect('/dashboard');
+            
+        } catch (\Exception $e) {
+            // Log exception or handle error gracefully
+            return redirect()->route('login')->with('error', 'There was an error during the login process.');
+        }
+    }
+    
 
     function umatIndex()
     {

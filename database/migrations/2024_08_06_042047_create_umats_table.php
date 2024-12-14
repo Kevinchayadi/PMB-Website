@@ -13,8 +13,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('umats', function (Blueprint $table) {
-            $table->id("id_umat");
-            $table->string('nama_umat', 255);
+            $table->id("id_umat")->nullable();
+            $table->string('google_id')->nullable();
+            $table->string('google_token')->nullable();
+            $table->string('google_refresh_token');
             $table->string('nama_baptis', 255);
             $table->string('slug', 255)->nullable()->unique();
             $table->string('email_umat')->unique();
