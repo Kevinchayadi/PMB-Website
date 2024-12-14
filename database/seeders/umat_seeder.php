@@ -44,12 +44,8 @@ class umat_seeder extends Seeder
     // }
 
         // Tentukan path file Excel
-<<<<<<< HEAD
-        $filePath = storage_path('app\public\excelData\umat2.xlsx'); // Pastikan path file sesuai
-=======
         $filePath = storage_path('app/public/excelData/umat2.xlsx'); 
         Log::info('File path: ' . $filePath);
->>>>>>> 82e68a8a89491e8547433edb90ec62a99a8b3d03
 
         $excelData = Excel::toArray([], $filePath)[0];
 
