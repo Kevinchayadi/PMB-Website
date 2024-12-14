@@ -21,14 +21,14 @@
                 {{-- Profil Gereja --}}
                 <li class="nav-item ms-3">
                     <a class="nav-link {{ Route::is('visiMisi') ? 'text-primary text-decoration-underline decoration-secondary' : 'text-primary hvr-float' }} me-2"
-                        href="/profile/visiMisi">Visi & Misi Gereja</a>
+                        href="/profile/visiMisi">Visi Misi & Sejarah Gereja</a>
                 </li>
 
-                {{-- Sejarah Gereja --}}
+                {{-- Sejarah Gereja
                 <li class="nav-item">
                     <a class="nav-link {{ Route::is('sejarah') ? 'text-primary text-decoration-underline decoration-secondary' : 'text-primary hvr-float' }} me-2"
                         href="/profile/sejarah">Sejarah Gereja</a>
-                </li>
+                </li> --}}
 
                 {{-- Doa Paroki --}}
                 <li class="nav-item">
