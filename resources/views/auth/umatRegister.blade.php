@@ -13,7 +13,7 @@
 
 <body>
     <div class="container-fluid row justify-content-center">
-        <div class="col-6">
+        <div class="col-lg-6 col-12">
             <div class="title fs-5 fw-bolder text-center">Let's Make An Account</div>
             <div class="card border-0 p-4">
                 <div class="image card-img-top">
@@ -44,7 +44,7 @@
             </div>
         @endif
 
-        <div class="col-6">
+        <div class="col-lg-6 col-12">
             <a href="#" class="nav-link d-flex justify-content-center">
                 <div class="fs-5 fw-bolder me-2 align-self-center">Sign In With</div>
                 <div class="google badge text-bg-primary rounded-circle p-2 align-self-center">
