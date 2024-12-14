@@ -15,7 +15,10 @@ return new class extends Migration
             $table->id("id_romo");
             $table->string('nama_romo', 255);
             $table->string('slug', 255)->nullable()->unique();
-            $table->string('ttl_romo', 255)->nullable();
+            $table->date('DOB_romo')->nullable();
+            $table->string('tempat_lahir', 255)->nullable();
+            $table->string('jabatan', 255)->nullable();
+            $table->text('Pengalaman')->nullable();
             $table->string('nomorhp_romo', 255)->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();

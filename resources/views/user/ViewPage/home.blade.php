@@ -5,16 +5,17 @@
 @section('content')
     <div class="container">
         {{-- Carousel --}}
+
         <div id="carouselExampleAutoplaying" class="carousel slide w-100 mx-auto mb-3" data-bs-ride="carousel">
             <div class="carousel-inner rounded-3 shadow-lg">
                 <div class="carousel-item active">
-                    <img src="{{ asset('picture/Carousel-1.png') }}" class="d-block w-100" alt="...">
+                    <img src="{{ $highlight[0]->path }}" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="{{ asset('picture/Carousel-2.jpg') }}" class="d-block w-100" alt="...">
+                    <img src="{{ $highlight[1]->path }}" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="{{ asset('picture/Carousel-3.png') }}" class="d-block w-100" alt="...">
+                    <img src="{{ $highlight[2]->path }}" class="d-block w-100" alt="...">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
@@ -33,7 +34,7 @@
         <div class="card mx-auto col-12 mb-3 bg-dark rounded-3 shadow-lg d-lg-block d-none hvr-shrink">
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img src="{{ asset('picture/Misa.jpg') }}" class="img-fluid rounded-start" alt="...">
+                    <img src="{{ $highlight[3]->path }}" class="img-fluid rounded-start" alt="...">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
@@ -251,8 +252,7 @@
             {{-- Banner bawah --}}
             <div class="banner-bottom my-4 rounded-3 shadow-lg w-100 mx-auto">
                 <a href= "https://youtube.com">
-                    <img class="object-fit-contain w-100 rounded-3" src="{{ asset('picture/Subscribe.png') }}"
-                        alt="">
+                    <img class="object-fit-contain w-100 rounded-3" src="{{ $highlight[4]->path }}" alt="">
                 </a>
             </div>
         </div>
