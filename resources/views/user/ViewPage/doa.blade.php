@@ -7,7 +7,7 @@
             <div class="col-lg-6 col-12 p-2">
                 <div class="bg-primary rounded p-2 hvr-shrink" data-bs-toggle="modal"
                     data-bs-target="#{{ str_replace(' ', '-', $doas->nama_doa) }}">
-
+                    <img src="{{ asset('picture/Gereja.jpg') }}" alt="" class="img-fluid rounded">
                     {{-- Doa --}}
                     <div class="fs-6">
                         <div class="w-50 mx-auto fw-bolder text-center text-white">{{ $doas->nama_doa }}</div>
@@ -16,7 +16,7 @@
                 <div class="modal fade" id="{{ str_replace(' ', '-', $doas->nama_doa) }}" data-bs-backdrop="static"
                     data-bs-keyboard="false" tabindex="-1" aria-labelledby="{{ str_replace(' ', '-', $doas->nama_doa) }}"
                     aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
                         <div class="modal-content">
                             <div class="modal-header d-block bg-primary fw-bolder">
                                 <div class="d-flex w-100">

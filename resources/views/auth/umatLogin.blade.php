@@ -12,14 +12,14 @@
 </head>
 
 <body>
-    <div class="container-fluid row justify-content-center mt-3">
-        <div class="col-6">
+    <div class="container-fluid row justify-content-center">
+        <div class="col-lg-6 col-12">
             <div class="title fs-5 fw-bolder text-center">Let's Log In You To PMB Web</div>
-            <div class="image h-100 p-4">
+            <div class="image h-50 p-4">
                 <img class="img-fluid h-100 rounded-3 shadow-lg" src="{{ asset('picture/Gereja.jpg') }}" alt="">
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-lg-6 col-12">
             <div class="card border-0">
                 <div class="card-header p-0 border-bottom-0 bg-white">
                     <a href="#" class="nav-link d-flex justify-content-center">

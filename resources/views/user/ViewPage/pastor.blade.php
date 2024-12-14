@@ -17,12 +17,12 @@
                     aria-labelledby="{{ str_replace([' ', '.', ','], '-', $romos->nama_romo) }}" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                         <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5"
+                            <div class="modal-header bg-primary">
+                                <h1 class="modal-title fs-5 text-white"
                                     id="{{ str_replace([' ', '.', ','], '-', $romos->nama_romo) }}">
                                     {{ $romos->nama_romo }}
                                 </h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -48,11 +48,11 @@
                                     <div class="content">
                                         <div class="row">
                                             <div class="col-lg-2 col-3">Nama</div>
-                                            <div class="col-lg-10 col-9">: Loremmmmm</div>
+                                            <div class="col-lg-10 col-9">: {{ $romos->nama_romo }}</div>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-2 col-3">Tempat Tanggal Lahir</div>
-                                            <div class="col-lg-10 col-9">: Loremmmmm</div>
+                                            <div class="col-lg-10 col-9">: {{ $romos->ttl_romo }}</div>
                                         </div>
                                     </div>
                                 </div>

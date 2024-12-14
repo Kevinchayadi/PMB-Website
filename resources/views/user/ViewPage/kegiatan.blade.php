@@ -3,34 +3,26 @@
 @section('title', 'Kegiatan')
 @section('content')
     <div class="row mx-auto mb-2">
-        {{-- Kiri --}}
-        <div class="left col-lg-6 col-12 hvr-shrink">
-            {{-- Gambar --}}
-            <div class="content bg-primary rounded p-2 mb-2" data-bs-toggle="collapse" data-bs-target="#kegiatan-a">
-                <img class="img-fluid rounded-3 mb-1" src="{{ asset('picture/Gereja.jpg') }}" alt="">
-                <div class="fs-6 text-center text-white fw-bolder">Kegiatan A</div>
-                <div class="collapse text-white" id="kegiatan-a">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, dignissimos sunt inventore
-                    totam praesentium porro rerum. Ipsa error quos vero mollitia laborum? Quaerat veniam error
-                    porro
-                    ea, eligendi quia et!
+        {{-- {{ dd($kegiatan) }} --}}
+        @if ($kegiatan->count() > 0)
+            @foreach ($kegiatan as $kegiatans)
+                <div class="col-lg-6 col-12 hvr-shrink">
+                    {{-- Gambar --}}
+                    <div class="content bg-primary rounded p-2 mb-2" data-bs-toggle="collapse"
+                        data-bs-target="#{{ str_replace(' ', '-', $kegiatans->nama_acara) }}">
+                        <img class="img-fluid rounded-3 mb-1" src="{{ asset('picture/Gereja.jpg') }}" alt="">
+                        <div class="fs-6 text-center text-white fw-bolder">Kegiatan A</div>
+                        <div class="collapse text-white" id="kegiatan-a">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, dignissimos sunt inventore
+                            totam praesentium porro rerum. Ipsa error quos vero mollitia laborum? Quaerat veniam error
+                            porro
+                            ea, eligendi quia et!
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        {{-- Kanan --}}
-        <div class="right col-lg-6 col-12 hvr-shrink">
-            {{-- Gambar --}}
-            <div class="content bg-primary rounded p-2 mb-2" data-bs-toggle="collapse" data-bs-target="#kegiatan-b">
-                <img class="img-fluid rounded mb-1" src="{{ asset('picture/Gereja.jpg') }}" alt="">
-                <div class="fs-6 text-center text-white fw-bolder">Kegiatan B</div>
-                <div class="collapse text-white" id="kegiatan-b">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, dignissimos sunt inventore
-                    totam praesentium porro rerum. Ipsa error quos vero mollitia laborum? Quaerat veniam error
-                    porro
-                    ea, eligendi quia et!
-                </div>
-            </div>
-        </div>
+            @endforeach
+        @else
+            <div class="fs-5 text-center fw-bolder">Belum ada kegiatan</div>
+        @endif
     </div>
 @endsection
