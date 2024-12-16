@@ -1,0 +1,132 @@
+[33mb650065[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m env exp
+[33m492acfc[m env exp
+[33mb3f1645[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Merge branch 'main' of https://github.com/Kevinchayadi/PMB-Website
+[33m2e7ec63[m update google login
+[33m56e0264[m fe
+[33maed0e25[m Merge branch 'main' of https://github.com/Kevinchayadi/PMB-Website
+[33m677d391[m fe
+[33m187ae92[m transaction changes
+[33m8135de7[m merge
+[33m1a72fbc[m seeder
+[33m4fbf368[m fe
+[33m6dd31ca[m merge
+[33m0bd739e[m fe
+[33mdab2e0d[m excel export dan perbaikan admin page
+[33m0039f64[m merge
+[33m82e68a8[m perbaikan untuk event admin
+[33mf8fd105[m fix bug artikel
+[33mc88b183[m fix bug profile
+[33mabd2c28[m Merge branch 'main' of https://github.com/Kevinchayadi/PMB-Website
+[33m440c04f[m fix bug, penambahan pagination admin dan perbaikan untuk collapse sidebar
+[33m68f6acc[m Merge branch 'main' of https://github.com/Kevinchayadi/PMB-Website
+[33m83ea1d1[m admin FE fixing
+[33mb98694f[m ubah umat seeder
+[33mb0e7140[m Include storage folder
+[33mdb48fdc[m merge
+[33mf2afd35[m perubahan
+[33m95e0ad6[m tambah dashboard admin
+[33mf1a1a0b[m update baru migrate, seeder dll
+[33mcd4fda1[m remove unuse
+[33m24a6fd6[m Userpage Dashboard
+[33mf2046eb[m Responsive for userpage
+[33m0c7557b[m Merge branch 'main' of https://github.com/Kevinchayadi/PMB-Website
+[33mc8e7c3f[m fix error
+[33mf0f2ee8[m adding some hover!!
+[33ma2109dd[m 'merge'
+[33mc093724[m merging dan penambahan code doa
+[33mff60c0e[m penambahan migration dan controller pastor
+[33mfd1c175[m controller artikel,transaksi
+[33m0b5d48a[m penambahan detail
+[33m93430cf[m Merge branch 'main' of https://github.com/Kevinchayadi/PMB-Website
+[33m31eeb11[m penambahan migration
+[33mfe48253[m admin-userpage modification
+[33m45f0d55[m layanan modification
+[33mc1b20dd[m profile modification
+[33m4d9e8d2[m user page modification
+[33m6c353ba[m perubahan code admin
+[33mebcbe19[m landing page admin
+[33mc3133c0[m login register modification
+[33m7046946[m user page modification + dashboard
+[33m5e4b83d[m Path Fix
+[33m44c18e7[m penambahan dashboaard
+[33m10bbd0e[m layout event
+[33mf436cb6[m penambahan layanan
+[33me56c78d[m add admin layout
+[33m20fe80a[m Merge branch 'main' of https://github.com/Kevinchayadi/PMB-Website
+[33m10bc378[m Menyimpan perubahan di web.php sebelum pull
+[33m4d97d8c[m pembuatan admin list'
+[33m89144d9[m all profile section modification
+[33m9954c47[m footer modification
+[33m40839c2[m scroll position done and sejarah modification
+[33m55935b9[m currposition scroll added (not completed)
+[33mb1cea81[m landing page and profile modification
+[33m395b110[m perbaikan sidebar Admin
+[33m678e1c1[m layout modification
+[33m6bdebf5[m homepage modification
+[33mabf7fba[m additional modification profile
+[33mdeec6aa[m modification user viewpage
+[33mf4e53f7[m home and footer modification
+[33m8be59ff[m header modification
+[33mf3ec1d3[m dashboard initialized and sidebar
+[33m5823eb3[m home
+[33mef68c48[m Merge branch 'main' of https://github.com/Kevinchayadi/PMB-Website
+[33meb756c9[m ga ada updat
+[33m0e4b458[m admin login
+[33m7b35359[m gagal aos!
+[33m243ad4a[m animation
+[33m5762419[m Login  Admin
+[33md86d243[m Login Admin
+[33mb6865cd[m Perbaikan UI dan back end
+[33m7abe5b3[m merging
+[33m23f2d38[m (merapikan)
+[33mcaf4275[m Memperbaiki kodingan back-end yang error untuk desain UI admin (ada yang di comment di bagian web.php --> tolong dicek lagi bang)
+[33m617e0f7[m lanjut pembuatan layanan
+[33m8afc699[m controller yang berubah
+[33m2de5402[m Pembuatan Layanan
+[33ma436a0d[m Pembuatan halaman jadwal, artikel, penambahan route dan controller
+[33mb333957[m merapikan code controller dan models
+[33m2527bd8[m pembuatan halaman hubungi kami dan perbaikan footer
+[33m3c8e5e4[m Pembuatan pastor paroki dan perbaikan halaman profile
+[33m3be62c2[m penambahan controller untuk transaksi dan request
+[33mb4b815c[m Pembuatan fasilitas, kegiatan
+[33m2637e4a[m update profile, acara,dashboard controller
+[33m414af5f[m Pembuatan profile, sejarah, doa
+[33mc67f2a8[m Merge branch
+[33m5166f33[m perubahan controller acara
+[33m1f13503[m merge route
+[33me0591bc[m penambahan controller
+[33m6c359f2[m Modif card
+[33m4d8f2ef[m merge web
+[33m86d228e[m penambahan controller dan route!
+[33m1f00ee6[m modifikasi card
+[33mbd1df18[m merge data
+[33mbdfcd08[m perbaikan migration dan model, serta penambahan route untuk tiap dashboard!
+[33m97862b5[m card dan routing
+[33m61e23f5[m Card dan routing
+[33m52b25f3[m Pembuatan card
+[33m54fbeca[m Pembuatan elemen card pada halaman profile serta perbaikan footer
+[33m6ce56a3[m Penambahan halaman profile
+[33m14b325f[m Pemindahan footer ke blade terpisah
+[33mcaaa76d[m Perbaikan halaman home
+[33m75930c2[m Test
+[33m22c4071[m last update
+[33m58ba839[m perubahan env-example
+[33m22be518[m Merge branch 'main' of https://github.com/Kevinchayadi/PMB-Website
+[33m6eb5b97[m penambahan migration dan setingan multi database!!
+[33mf881d79[m test
+[33m51b2f57[m perubahan css
+[33m378ecc8[m update front David dan setingan .env
+[33m3f30fbf[m Resolve merge conflict in composer.lock
+[33m28061a2[m creat migration!
+[33m2745e7b[m Penambahan migration
+[33ma44f5da[m Adding Footer
+[33m2ecc0b9[m Adding Jadwal & Artikel Section
+[33mc30dbf6[m Add banner and other stuff
+[33m85620a4[m Header Minor Fix
+[33ma284237[m 29.4.24
+[33mf028686[m 27/4/24
+[33m9fa4932[m Header
+[33m6176b94[m Initialize layout template
+[33m4a42977[m "Tes"
+[33m01dbbb9[m template awal
+[33m11c589a[m template website
