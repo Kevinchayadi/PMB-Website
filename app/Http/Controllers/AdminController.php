@@ -9,9 +9,16 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $admins = Admin::with('roles')->latest()->paginate(20
+        $search = $request->input('search');
+        
+        $admins = Admin::with('roles')->when($search, function ($query, $search) {
+            $query->where('username', 'like', '%' . $search . '%')
+                  ->orWhereHas('roles', function ($query) use ($search) {
+                      $query->where('role', 'like', '%' . $search . '%');
+                  });
+        })->latest()->paginate(20
         )->withQueryString();
 
         return view('admin.viewPage.adminlist', ['admins' => $admins]);
@@ -28,8 +35,9 @@ class AdminController extends Controller
         $request->validate([
             'username' => 'required|unique:admins',
             'password' => 'required|string|min:8|confirmed',
-            'role' => 'required',
+            'id_role' => 'required',
         ]);
+        // dd($request);
 
         try {
             Admin::create([
@@ -46,6 +54,7 @@ class AdminController extends Controller
 
     public function detailAdmin($slug)
     {
+        
         $roles = Role::get();
         $admin = Admin::with('roles')->where('username', $slug)->first();
         // dd($admin);
@@ -55,11 +64,12 @@ class AdminController extends Controller
 
     public function updateAdmin(Request $request, $slug)
     {
+        // dd($slug);
         $admin = Admin::where('username', $slug)->firstOrFail();
 
         $request->validate([
             'username' => 'required|unique:admins',
-            'password' => 'required|string|min:8',
+            'password' => 'nullable|string|min:8|confirmed',
             'role' => 'required',
         ]);
         try {
@@ -68,7 +78,7 @@ class AdminController extends Controller
             if ($request->password) {
                 $admin->password = Hash::make($request->password);
             }
-            $admin->id_role = $request->id_role;
+            $admin->id_role = $request->role;
             $admin->save();
         } catch (\Throwable $th) {
             return redirect()->route('admin.admin-list')->with('Error', 'Admin gagal diUpdate!!');

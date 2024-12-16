@@ -46,14 +46,14 @@
                 <ul class="list-unstyled ps-5">
                     <li class="py-1"><a
                             class="nav-link text-white {{ Request::is('admin/Request-Pending') ? 'active' : '' }}"
-                            href="/admin/Request-Pending">Pending</a></li>
+                            href="/admin/Request-Pending">Pending Request</a></li>
                     <li class="py-1"><a
                             class="nav-link text-white {{ Request::is('admin/Request-Processed') ? 'active' : '' }}"
-                            href="/admin/Request-Processed">In Process</a>
+                            href="/admin/Request-Processed">In Process Request</a>
                     </li>
                     <li class="py-1"><a
                             class="nav-link text-white {{ Request::is('admin/Request-Accepted') ? 'active' : '' }}"
-                            href="/admin/Request-Accepted">Accepted</a></li>
+                            href="/admin/Request-Accepted">Accepted Request</a></li>
                 </ul>
             </div>
         </li>
@@ -74,21 +74,21 @@
                 <ul class="list-unstyled ps-5">
                     <li class="py-1"><a
                             class="nav-link text-white {{ Request::is('admin/createEvent') ? 'active' : '' }}"
-                            href="/admin/createEvent">Create New</a></li>
+                            href="/admin/createEvent">Create New Event</a></li>
                     <li class="py-1"><a
                             class="nav-link text-white {{ Request::is('admin/scheduledEvent') ? 'active' : '' }}"
-                            href="/admin/scheduledEvent">Scheduled</a></li>
+                            href="/admin/scheduledEvent">Scheduled Event</a></li>
                     <li class="py-1"><a
                             class="nav-link text-white {{ Request::is('admin/passEvent') ? 'active' : '' }}"
-                            href="/admin/passEvent">Passed</a></li>
+                            href="/admin/passEvent">Passed Event</a></li>
                 </ul>
             </div>
         </li>
 
         <!-- User Page dengan Collapse -->
         <li class="py-1">
-            <a class="nav-link text-white d-flex align-items-center {{ (Request::is('admin/New-Event') or Request::is('admin/Passed-Event') or Request::is('admin/Scheduled-Event')) ? 'active' : '' }}"
-                data-bs-toggle="collapse" href="#collapseUserPage" role="button" aria-expanded="false"
+            <a class="nav-link text-white d-flex align-items-center {{ (Request::is('admin/highlight') or Request::is('admin/layanan') or Request::is('admin/doa') or Request::is('admin/pastor') or Request::is('admin/artikel') or Request::is('admin/kegiatan')) ? 'active' : '' }}"
+                data-bs-toggle="collapse" href="#collapseUserPage" role="button" aria-expanded="{{ (Request::is('admin/highlight') or Request::is('admin/layanan') or Request::is('admin/doa') or Request::is('admin/pastor') or Request::is('admin/artikel') or Request::is('admin/kegiatan')) ? 'true' : 'false' }}"
                 aria-controls="collapseUserPage">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-chevron-right me-2 chevron-icon" viewBox="0 0 16 16">
@@ -97,28 +97,18 @@
                 </svg>
                 User Page
             </a>
-            <div class="collapse" id="collapseUserPage">
+            <div class="collapse {{ (Request::is('admin/highlight') or Request::is('admin/layanan') or Request::is('admin/doa') or Request::is('admin/pastor') or Request::is('admin/artikel') or Request::is('admin/kegiatan')) ? 'show' : '' }}" id="collapseUserPage">
                 <ul class="list-unstyled ps-5">
-                    <li class="py-1"><a
-                            class="nav-link text-white {{ Request::is('admin/highlight') ? 'active' : '' }}"
-                            href="/admin/highlight">Highlight</a></li>
-                    <li class="py-1"><a class="nav-link text-white {{ Request::is('admin/doa') ? 'active' : '' }}"
-                            href="/admin/layanan">Layanan</a></li>
-                    <li class="py-1"><a
-                            class="nav-link text-white {{ Request::is('admin/pastor') ? 'active' : '' }}"
-                            href="/admin/doa">Doa Paroki</a></li>
-                    <li class="py-1"><a
-                            class="nav-link text-white {{ Request::is('admin/pastor') ? 'active' : '' }}"
-                            href="/admin/pastor">Pastor</a></li>
-                    <li class="py-1"><a
-                            class="nav-link text-white {{ Request::is('admin/artikel') ? 'active' : '' }}"
-                            href="/admin/artikel">Artikel</a></li>
-                    <li class="py-1"><a
-                            class="nav-link text-white {{ Request::is('admin/kegiatan') ? 'active' : '' }}"
-                            href="/admin/kegiatan">Kegiatan</a></li>
+                    <li class="py-1"><a class="nav-link text-white {{ Request::is('admin/highlight') ? 'active' : '' }}" href="/admin/highlight">Highlight</a></li>
+                    <li class="py-1"><a class="nav-link text-white {{ Request::is('admin/layanan') ? 'active' : '' }}" href="/admin/layanan">Layanan</a></li>
+                    <li class="py-1"><a class="nav-link text-white {{ Request::is('admin/doa') ? 'active' : '' }}" href="/admin/doa">Doa Paroki</a></li>
+                    <li class="py-1"><a class="nav-link text-white {{ Request::is('admin/pastor') ? 'active' : '' }}" href="/admin/pastor">Pastor</a></li>
+                    <li class="py-1"><a class="nav-link text-white {{ Request::is('admin/artikel') ? 'active' : '' }}" href="/admin/artikel">Artikel</a></li>
+                    <li class="py-1"><a class="nav-link text-white {{ Request::is('admin/kegiatan') ? 'active' : '' }}" href="/admin/kegiatan">Kegiatan</a></li>
                 </ul>
             </div>
         </li>
+        
     </ul>
 
 

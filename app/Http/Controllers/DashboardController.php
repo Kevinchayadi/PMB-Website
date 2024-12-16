@@ -18,8 +18,11 @@ class DashboardController extends Controller
         $pending = ModelsRequest::where('status', 'pending')->count();
         $process = ModelsRequest::where('status', 'process')->count();
         $accepted = ModelsRequest::where('status', 'accepted')->count();
-        $countEvent = $jadwal_acara->count();
+        $countScheduledEvent = $jadwal_acara->count();
+        $countPassEvent = TransactionHeader::with(['romo', 'seksi', 'doa', 'transactionDetails' => function ($query) {
+            $query->with('umats', 'acara', 'admin');
+        }])->where('status', 'pass')->count();
 
-        return view("admin.viewPage.dashboard",['umat'=>$umat ,'event'=>$jadwal_acara, 'pending'=>$pending, 'accepted'=>$accepted, 'process'=>$process, 'countEvent'=>$countEvent]);
+        return view("admin.viewPage.dashboard",['umat'=>$umat ,'event'=>$jadwal_acara, 'pending'=>$pending, 'accepted'=>$accepted, 'process'=>$process, 'countSheduledEvent'=>$countScheduledEvent, 'CountPassEvent'=>$countPassEvent]);
     }
 }

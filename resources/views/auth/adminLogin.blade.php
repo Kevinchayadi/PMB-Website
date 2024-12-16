@@ -22,9 +22,9 @@
         <div class="col-6">
             <div class="card border-0">
                 <div class="card-header p-0 border-bottom-0 bg-white">
-                    <a href="#" class="nav-link d-flex justify-content-center">
+                    <a href="/auth/redirect" class="nav-link d-flex justify-content-center">
                         <div class="fs-5 fw-bolder me-2 align-self-center">Login with</div>
-                        <div class="google badge text-bg-primary rounded-circle p-2 align-self-center">
+                        <div class="google badge text-bg-primary rounded-circle p-2 align-self-center" >
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#fff"
                                 class="bi bi-google" viewBox="0 0 16 16">
                                 <path

@@ -164,10 +164,10 @@ Route::prefix('admin')
 
     });
 
-    use Laravel\Socialite\Facades\Socialite;
+    // use Laravel\Socialite\Facades\Socialite;
  
     Route::get('/auth/redirect', [LoginController::class, 'socialitePage']);
      
-    Route::get('/auth/google/callback', [LoginController::class, 'googleLogin']);
+    Route::get('/Auth/google/callback', [LoginController::class, 'googleLogin']);
 
 Route::middleware('auth:web')->group(function () {});

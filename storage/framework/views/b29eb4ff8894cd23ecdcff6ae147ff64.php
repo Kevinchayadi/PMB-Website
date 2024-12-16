@@ -80,6 +80,10 @@
                     <li class="nav-item d-lg-none d-block">
                         <a class="nav-link text-primary" href="/#">Keluar</a>
                     </li>
+                <?php else: ?>
+                    <li class="nav-item d-lg-none d-block">
+                        <a class="nav-link text-primary" href="/login">Login</a>
+                    </li>
                 <?php endif; ?>
             </ul>
         </div>
@@ -107,6 +111,12 @@
                 </div>
 
             </div>
+        </div>
+    <?php else: ?>
+        <div class="col-3 d-lg-block d-none text-end">
+            <li class="hvr-float">
+                <a class="nav-link text-primary" href="/login">Login</a>
+            </li>
         </div>
     <?php endif; ?>
 </div>

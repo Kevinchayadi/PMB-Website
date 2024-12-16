@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id('id_transaction');
             $table->string('judul');
             $table->unsignedBigInteger('id_romo');
-            $table->unsignedBigInteger('id_seksi');
+            $table->unsignedBigInteger('id_seksi')->nullable();
             $table->unsignedBigInteger('id_doa')->nullable();
-            $table->date('jadwal_transaction');
-            $table->string('status')->default('soon');
+            $table->datetime('jadwal_transaction');
+            $table->string('status')->default('coming');
             $table->softDeletes();
             $table->timestamps();
         });

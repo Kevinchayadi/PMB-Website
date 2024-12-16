@@ -10,9 +10,9 @@
         <h1 class="fw-bold text-black">Dashboard</h1>
         <p class="text-center"><?php echo e(\Carbon\Carbon::now()->isoFormat('dddd, D MMMM YYYY')); ?></p>
     </div>
-    <div class="row d-flex justify-content-between m-1">
+    <div class="row d-flex justify-content-between m-1  ">
         <div class=" col-md-4 py-2 px-2">
-            <div class=" text-center text-white card bg-primary p-3">
+            <div class=" text-center text-white card bg-primary p-3 h-100">
                 <div class="mb-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
                         class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -28,7 +28,7 @@
         </div>
 
         <div class="  col-md-4   py-2 px-2">
-            <div class=" text-center text-white  card bg-primary p-3">
+            <div class=" text-center text-white  card bg-primary p-3 h-100">
                 <div class="mb-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
                         class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -39,11 +39,37 @@
                     </svg>
                 </div>
                 <h3 class="fw-bold ">Request</h3>
-                <p class="fs-5"><?php echo e($countEvent); ?> Request</p>
+                <div class="row d-flex align-items-stretch">
+                    <div class="col-4">
+                        <a href="/admin/Request-Pending" class="text-decoration-none text-dark">
+                            <div class="text-white">
+                                <h5 class="fs-6">Pending Request</h5>
+                                <p class="fs-5"><?php echo e($pending); ?></p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-4">
+                        <a href="/admin/Request-Processed" class="text-decoration-none text-dark">
+                            <div class="text-white">
+                                <h5 class="fs-6">In-Process Request</h5>
+                                <p class="fs-5"><?php echo e($process); ?></p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-4">
+                        <a href="/admin/Request-Accepted" class="text-decoration-none text-dark">
+                            <div class="text-white">
+                                <h5 class="fs-6">Accepted Request</h5>
+                                <p class="fs-5"><?php echo e($accepted); ?></p>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
             </div>
         </div>
         <div class="col-md-4 py-2 px-2">
-            <div class=" text-center text-white card bg-primary p-3">
+            <div class=" text-center text-white card bg-primary p-3 h-100">
                 <div class="mb-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
                         class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -53,8 +79,26 @@
                         <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1z" />
                     </svg>
                 </div>
-                <h3 class="fw-bold ">Registered event</h3>
-                <p class="fs-5"><?php echo e($pending); ?> event</p>
+                <h3 class="fw-bold ">event</h3>
+                <div class="row d-flex align-items-stretch">
+                    <div class="col-6">
+                        <a href="/admin/scheduledEvent" class="text-decoration-none text-dark">
+                            <div class="text-white">
+                                <h5 class="fs-6">Scheduled Event</h5>
+                                <p class="fs-5"><?php echo e($countSheduledEvent); ?></p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6">
+                        <a href="/admin/passEvent" class="text-decoration-none text-dark">
+                            <div class="text-white">
+                                <h5 class="fs-6">Passed Event</h5>
+                                <p class="fs-5"><?php echo e($CountPassEvent); ?></p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
             </div>
         </div>
     </div>

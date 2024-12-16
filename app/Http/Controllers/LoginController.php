@@ -46,6 +46,7 @@ class LoginController extends Controller
     {
         try {
             $googleUser = Socialite::driver('google')->user();
+            // dd();
     
             // Update or create user record based on google_id
             $user = Umat::updateOrCreate(

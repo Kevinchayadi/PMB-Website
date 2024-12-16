@@ -62,7 +62,6 @@
 
     .container-fluid {
         margin-top: 6rem;
-        height: 100vh !important;
         min-height: 100vh !important;
     }
 
