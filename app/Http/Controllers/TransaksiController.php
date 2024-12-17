@@ -17,19 +17,38 @@ class TransaksiController extends Controller
 {
     public function index()
     {
-        $jadwal_acara = TransactionHeader::with(['romo', 'seksi', 'doa', 'transactionDetails' => function ($query) {
-            $query->with('umats', 'acara', 'admin');
-        }])->where('status', 'coming')->get();
+        $jadwal_acara = TransactionHeader::with([
+            'romo',
+            'seksis',
+            'doa',
+            'transactionDetails' => function ($query) {
+                $query->with('umats', 'acara', 'admin');
+            },
+        ])
+            ->where('status', 'coming')
+            ->get();
+        // $jadwal_acara = TransactionHeader::with('romo', 'seksis', 'doa')->where('status', 'coming')->get();
+        // dd($jadwal_acara->map(function ($transactionHeader) {
+        //     return $transactionHeader->transactionDetails->acara->nama_acara;
+        // }));
 
+            // dd($jadwal_acara->all());
         return view('admin.viewPage.eventList', ['event' => $jadwal_acara]);
     }
     public function index2()
     {
-        $jadwal_acara = TransactionHeader::with(['romo', 'seksi', 'doa', 'transactionDetails' => function ($query) {
-            $query->with('umats', 'acara', 'admin');
-        }])->where('status', 'done');
+        $jadwal_acara = TransactionHeader::with([
+            'romo',
+            'seksis',
+            'doa',
+            'transactionDetails' => function ($query) {
+                $query->with('umats', 'acara', 'admin');
+            },
+        ])
+            ->where('status', 'passed')
+            ->get();
 
-        return view('admin.viewPage.eventList', ['event'=>$jadwal_acara]);
+        return view('admin.viewPage.passEvent', ['event' => $jadwal_acara]);
     }
 
     public function createTransaction()
@@ -39,124 +58,232 @@ class TransaksiController extends Controller
         $seksis = Seksi::get();
         $doas = Doa::get();
         $umats = Umat::get();
-        return view('admin.viewPage.createEvent',compact('romos', 'acaras', 'seksis','doas','umats'));
+        return view('admin.viewPage.createEvent', compact('romos', 'acaras', 'seksis', 'doas', 'umats'));
     }
+
     public function storeTransaction(Request $request)
     {
-        $request->validate([
-'id_seksi' => 'nullable|integer|exists:seksis,id_seksi',
-'id_umat' => 'nullable|array',
-
-        ]);
+       $request->validate([
+            'id_seksi' => 'nullable|array',
+            'id_umat' => 'nullable|array',
+       ]);
         $input = $request->validate([
-            'id_romo' => 'nullable|integer|exists:romos,id_romo',         // Pastikan id_romo ada di tabel romos dan berupa integer
-                   // Pastikan id_seksi ada di tabel seksis dan berupa integer
-            'id_doa' => 'required|integer|exists:doas,id_doa',           // Pastikan id_doa ada di tabel doas dan berupa integer
-            'jadwal_transaction' => 'required|date|after_or_equal:today', // Pastikan jadwal_transaction adalah tanggal yang valid da
+             // id_umat adalah array
+             'judul' => 'nullable|string',
+            'id_romo' => 'nullable|integer|exists:romos,id_romo',
+            'id_doa' => 'required|integer|exists:doas,id_doa',
+            'jadwal_transaction' => 'required|date|after_or_equal:today',
         ]);
-        $input2 = $request->validate([
-            'id_acara' => 'required|integer|exists:acaras,id_acara',            // Pastikan id_acara ada di tabel acaras dan berupa integer
-             // Pastikan id_umat ada di tabel umats dan berupa integer
-            'id_admin' => 'nullable|integer|exists:admins,id-admin',             // Pastikan id_admin ada di tabel admins dan berupa integer
-            'deskripsi_transaksi' => 'nullable|string|max:255',            // Pastikan deskripsi_transaksi tidak kosong, berupa string, dan maksimal 255 karakter
+        $input2= $request->validate([
+            'id_acara' => 'required|integer|exists:acaras,id_acara',
+            'id_admin' => 'nullable|integer|exists:admins,id_admin',
+            'deskripsi_transaksi' => 'nullable|string|max:255',
         ]);
-        // dd($request->all());
-        if (!isset($input['judul'])) {
-            $input['judul'] = "tidak ada judul";
-        }
-
+    
+        // Atur default 'judul' jika tidak ada
+        $input['judul'] = $input['judul'] ?? 'tidak ada judul';
+    
+        // Parsing tanggal transaksi dan menentukan rentang waktu
         $jadwalTransaction = Carbon::parse($input['jadwal_transaction']);
-        $startRange = $jadwalTransaction->copy()->subHours(4); // 4 jam sebelumnya
+        $startRange = $jadwalTransaction->copy()->subHours(4);
         $endRange = $jadwalTransaction->copy()->addHours(4);
+        $input['jadwal_transaction'] = $jadwalTransaction->format('Y-m-d H:i:s');
 
-        $input['jadwal_transaction'] =  $jadwalTransaction->copy()->format('Y-m-d H:i:s');
-        // dd($endRange);
-
+        //cek jadwal transaction
+        $acara = $input2['id_acara'];
+        $checkTransaction = TransactionHeader::whereBetween('jadwal_transaction', [$startRange, $endRange])->whereHas('TransactionDetails', function($query) use($acara){
+            $query->where('id_acara',$acara);
+        })->where('status','coming')->get();
+        if($checkTransaction->isNotEmpty()){
+            return redirect()->back()->withErrors(['error' => 'Jadwal acara yang dipilih sudah tersedia.']);
+        }
+    
+        // Cek ketersediaan Romo
         if (!$input['id_romo']) {
-            // Jika id_romo tidak dipilih, cari Romo yang tidak memiliki jadwal pada tanggal tertentu
-            $input['id_romo'] = Romo::whereDoesntHave('transactionHeaders', function ($query) use ($startRange, $endRange) {
+            $romoAvailable = Romo::whereDoesntHave('transactionHeaders', function ($query) use ($startRange, $endRange) {
                 $query->whereBetween('jadwal_transaction', [$startRange, $endRange]);
             })->first();
-        
-            if (!$input['id_romo']) {
-                // Jika tidak ada Romo yang tersedia, berikan pesan error
-                return response()->json(['error' => 'Tidak ada Romo yang tersedia pada tanggal ini.'], 400);
+    
+            if (!$romoAvailable) {
+                return redirect()->back()->withErrors(['error' => 'Tidak ada Romo yang tersedia pada tanggal ini.']);
             }
+    
+            $input['id_romo'] = $romoAvailable->id_romo;
         } else {
-            // Jika id_romo dipilih, periksa apakah Romo sudah memiliki jadwal pada hari dan waktu yang sama
             $romo = Romo::whereHas('transactionHeaders', function ($query) use ($startRange, $endRange) {
-                $query->whereBetween('jadwal_transaction', [$startRange, $endRange]);
+                $query->whereBetween('jadwal_transaction', [$startRange, $endRange])->where('status','coming');
             })->find($input['id_romo']);
-        
+    
             if ($romo) {
-                // Jika Romo memiliki jadwal pada hari dan waktu yang sama, kembalikan pesan error
-                return response()->json(['error' => 'Romo yang dipilih sudah memiliki jadwal pada waktu ini.'], 400);
+                return redirect()->back()->withErrors(['error' => 'Romo yang dipilih sudah memiliki jadwal pada waktu ini.']);
             }
         }
-        
+    
         // try {
             DB::beginTransaction();
-            dd($request->all());
+    
+            // Buat header transaksi
             $header = TransactionHeader::create($input);
-            $input2['id_transaction'] = $header->id_transaction;
-            TransactionDetail::create($input2);
+    
+            // Menambahkan relasi many-to-many dengan umat
+            if (isset($request->id_seksi)) {
+                $header->seksis()->sync($request->id_seksi); // Sinkronisasi seksi yang dipilih
+            }
+            
+    
+            // Buat detail transaksi
+            $input2 = array_merge($input2,['id_transaction' => $header->id_transaction]);
+            $detail = TransactionDetail::create($input2);
+            if (isset($request->id_umat)) {
+                $detail->umats()->sync($request->id_umat); // Sinkronisasi umat yang dipilih
+            }
+            // Menambahkan relasi many-to-many dengan seksi
+            
+    
             DB::commit();
-            //code...
+    
             return redirect()->route('admin.transaksi')->with('success', 'Transaksi berhasil ditambahkan!');
         // } catch (\Throwable $th) {
-        //     //throw $th;
         //     DB::rollBack();
         //     return redirect()->back()->withInput()->withErrors('Terjadi kesalahan saat menyimpan data');
         // }
     }
+    
     public function updateTransaction($id)
     {
+        $romos = Romo::get();
+        $acaras = Acara::get();
+        $seksis = Seksi::get();
+        $doas = Doa::get();
+        $umats = Umat::get();
+
+        $event = TransactionHeader::with([
+            'romo',
+            'seksis',
+            'doa',
+            'transactionDetails' => function ($query) {
+                $query->with('umats', 'acara', 'admin');
+            },
+        ])->find($id);
+        $event->jadwal_transaction = Carbon::parse($event->jadwal_transaction);
+        return view('admin.viewPage.UpdateEvent', compact('romos', 'acaras', 'seksis', 'doas', 'umats','event'));
     }
     public function updatedTransaction(Request $request, $id)
     {
+        // dd($request->all());
+        // Validasi input data
+        $request->validate([
+            'id_seksi' => 'nullable|array',
+            'id_umat' => 'nullable|array',
+        ]);
+    
         $input = $request->validate([
-            'judul' => 'required|string',
-            'id_romo' => 'required|integer|exists:romos,id',         // Validasi id_romo
-            'id_seksi' => 'required|integer|exists:seksis,id',       // Validasi id_seksi
-            'id_doa' => 'required|integer|exists:doas,id',           // Validasi id_doa
-            'jadwal_transaction' => 'required|date|after_or_equal:today', // Validasi jadwal_transaction
+            'judul' => 'nullable|string',
+            'id_romo' => 'nullable|integer|exists:romos,id_romo',
+            'id_doa' => 'required|integer|exists:doas,id_doa',
+            'jadwal_transaction' => 'required|date|after_or_equal:today',
         ]);
     
         $input2 = $request->validate([
-            'id_acara' => 'required|integer|exists:acaras,id',       // Validasi id_acara
-            'id_umat' => 'required|integer|exists:umats,id',         // Validasi id_umat
-            'id_admin' => 'required|integer|exists:admins,id',       // Validasi id_admin
-            'deskripsi_transaksi' => 'required|string|max:255',      // Validasi deskripsi_transaksi
+            'id_acara' => 'required|integer|exists:acaras,id_acara',
+            'id_admin' => 'nullable|integer|exists:admins,id_admin',
+            'deskripsi_transaksi' => 'nullable|string|max:255',
         ]);
-        
-        $existingTransaction = TransactionHeader::where('jadwal_transaction', $input['jadwal_transaction'])->first();
-
-        if ($existingTransaction) {
-            return redirect()->back()->withInput()->withErrors(['jadwal_transaction' => 'Transaksi dengan jadwal yang sama sudah ada.'])->withInput();
-        }
-
-        try {
-            DB::beginTransaction();
     
-            // Update data di tabel TransactionHeader
+        // Atur default 'judul' jika tidak ada
+        $input['judul'] = $input['judul'] ?? 'tidak ada judul';
+    
+        // Parsing tanggal transaksi dan menentukan rentang waktu
+        $jadwalTransaction = Carbon::parse($input['jadwal_transaction']);
+        $startRange = $jadwalTransaction->copy()->subHours(4);
+        $endRange = $jadwalTransaction->copy()->addHours(4);
+        $input['jadwal_transaction'] = $jadwalTransaction->format('Y-m-d H:i:s');
+    
+        // Cek jadwal transaksi
+        $acara = $input2['id_acara'];
+        $checkTransaction = TransactionHeader::whereBetween('jadwal_transaction', [$startRange, $endRange])
+            ->whereHas('TransactionDetails', function ($query) use ($acara) {
+                $query->where('id_acara', $acara);
+            })
+            ->where('id_transaction', '!=', $id)  // Tidak mengecek untuk transaksi yang sedang diupdate
+            ->get();
+    
+        if ($checkTransaction->isNotEmpty()) {
+            return redirect()->back()->withErrors(['error' => 'Jadwal acara yang dipilih sudah tersedia.']);
+        }
+    
+        // Cek ketersediaan Romo
+        if (!$input['id_romo']) {
+            $romoAvailable = Romo::whereDoesntHave('transactionHeaders', function ($query) use ($startRange, $endRange) {
+                $query->whereBetween('jadwal_transaction', [$startRange, $endRange]);
+            })->first();
+    
+            if (!$romoAvailable) {
+                return redirect()->back()->withErrors(['error' => 'Tidak ada Romo yang tersedia pada tanggal ini.']);
+            }
+    
+            $input['id_romo'] = $romoAvailable->id_romo;
+        } else {
+            $romo = Romo::whereHas('transactionHeaders', function ($query) use ($startRange, $endRange, $id) {
+                $query->whereBetween('jadwal_transaction', [$startRange, $endRange])->where('id_transaction', '!=', $id);
+            })->find($input['id_romo']);
+    
+            if ($romo) {
+                return redirect()->back()->withErrors(['error' => 'Romo yang dipilih sudah memiliki jadwal pada waktu ini.']);
+            }
+        }
+    
+        // Begin Transaction untuk update
+        DB::beginTransaction();
+        
+        try {
+            // Update header transaksi
             $header = TransactionHeader::findOrFail($id);
             $header->update($input);
     
-            // Update data di tabel TransactionDetail
-            $detail = TransactionDetail::where('id_transaction', $header->id_transaction)->firstOrFail();
-            $detail->update($input2);
+            // Menambahkan relasi many-to-many dengan seksi jika ada perubahan
+            if (isset($request->id_seksi)) {
+                $header->seksis()->sync($request->id_seksi); // Sinkronisasi seksi yang dipilih
+            }
     
+            // Update detail transaksi
+            $input2 = array_merge($input2, ['id_transaction' => $header->id_transaction]);
+            $detail = TransactionDetail::where('id_transaction', $id)->first();
+            if ($detail) {
+                $detail->update($input2);  // Update detail transaksi
+            } else {
+                // Jika detail transaksi tidak ditemukan, buat detail transaksi baru
+                $detail = TransactionDetail::create($input2);
+            }
+    
+            // Sinkronisasi umat jika ada perubahan
+            if (isset($request->id_umat)) {
+                $detail->umats()->sync($request->id_umat); // Sinkronisasi umat yang dipilih
+            }
+    
+            // Commit perubahan jika semuanya berhasil
             DB::commit();
     
-            // Redirect ke halaman daftar transaksi dengan pesan sukses
             return redirect()->route('admin.transaksi')->with('success', 'Transaksi berhasil diperbarui!');
+    
         } catch (\Throwable $th) {
+            // Rollback jika terjadi error
             DB::rollBack();
-            // Kembalikan ke halaman sebelumnya dengan pesan error
             return redirect()->back()->withInput()->withErrors('Terjadi kesalahan saat memperbarui data');
         }
     }
     public function deleteTransaction($id)
     {
+        $transaction = TransactionHeader::where('status', 'coming')->find($id);
+        $transaction->delete();
+        return redirect()->route('admin.transaksi')->with('success', 'Transaksi berhasil di Delete!');
+    }
+    public function moveTransaction($id)
+    {
+        // dd('test');
+        $transaction = TransactionHeader::where('status', 'coming')->find($id);
+        $transaction->update(['status'=>'passed']);
+        // dd($transaction->status);
+        return redirect()->route('admin.transaksi')->with('success', 'Transaksi berhasil di Selesaikan!');
     }
 }

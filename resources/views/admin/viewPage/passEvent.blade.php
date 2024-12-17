@@ -1,17 +1,10 @@
 @extends('admin.layout.template')
-@section('title', 'Event - List')
+@section('title', 'Passed - Event - List')
 
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/admin/event.css') }}">
-
-    @if(session()->has('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
-
     <div class="d-flex justify-content-start  align-items-center mb-3  text-center">
-        <h1 class="mb-0 fw-bold  p-2 text-white bg-primary shadow rounded-end-2">Scheduled Event</h1>
+        <h1 class="mb-0 fw-bold  p-2 text-white bg-primary shadow rounded-end-2">Passed Event</h1>
 
     </div>
 
@@ -38,20 +31,7 @@
                             <td>{{ $data->transactionDetails->deskripsi_transaksi }}</td> <!-- Deskripsi -->
                             <td>
                                 <!-- Update Button -->
-                                <a href="/admin/updateEvent/{{$data->id_transaction}}" class="btn btn-sm btn-outline-primary">Update</a>
-                                <a href="/admin/selesaiEvent/{{$data->id_transaction}}" onclick="return confirm('Apakah Anda yakin ingin menyelesaikan event ini?');" class="btn btn-sm btn-outline-success">Selesai</a>
-    
-                                <!-- Delete Button with confirmation -->
-                                <form action="{{ route('admin.delete.transaksi', $data->id_transaction) }}" method="POST" class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-outline-danger"
-                                            onclick="return confirm('Apakah Anda yakin ingin menghapus event ini?');">
-                                        Delete
-                                    </button>
-                                </form>
-    
-                                <!-- Selesai Button -->
+                                <a href="#" class="btn btn-sm btn-outline-primary">Detail</a>
                             </td>
                         </tr>
                     @endforeach

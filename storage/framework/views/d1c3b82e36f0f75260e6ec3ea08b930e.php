@@ -2,26 +2,61 @@
 
 <?php $__env->startSection('content'); ?>
     <link rel="stylesheet" href="<?php echo e(asset('css/admin/event.css')); ?>">
-    <div class="d-flex justify-content-end  align-items-center my-3  text-center">
-        <h1 class="mb-0 fw-bold  p-2 text-white bg-primary shadow rounded-start-2">Layanan List</h1>
+
+    <?php if(session()->has('success')): ?>
+    <div class="alert alert-success">
+        <?php echo e(session('success')); ?>
+
+    </div>
+<?php endif; ?>
+
+    <div class="d-flex justify-content-start  align-items-center mb-3  text-center">
+        <h1 class="mb-0 fw-bold  p-2 text-white bg-primary shadow rounded-end-2">Scheduled Event</h1>
 
     </div>
 
-    <div class="px-4">
+    <div class="rounded overflow-hidden shadow-sm mx-5">
         <?php if($event->count() > 0): ?>
-            <?php $__currentLoopData = $event; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <div class="px-4 py-2 my-3 mx-1 card-3d">
-                    <h2><?php echo e($data->transaction_details->acara->nama_acara); ?>t</h2>
-                    <div class="d-flex justify-content-between">
-                        <p><?php echo e($data->jadwal_transaction); ?> </p>
-                        <p><?php echo e($data->transaction_details->deskripsi_transaksi); ?></p>
-                        <div>
-                            <a href="/admin/updateEvent/<?php echo e($data->id_transaction); ?>">Update</a>
-                            <a href="admin/deleteEvent/<?php echo e($data->id_transaction); ?>">Cancel</a>
-                        </div>
-                    </div>
-                </div>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            <table class="table table-hover table-striped mb-0 text-center">
+                <thead class="table-primary">
+                    <tr>
+                        <th scope="col">No.</th>
+                        <th scope="col">Nama Event</th>
+                        <th scope="col">Nama Acara</th>
+                        <th scope="col">Jadwal</th>
+                        <th scope="col">Deskripsi</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $__currentLoopData = $event; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <tr>
+                            <th scope="row"><?php echo e($index + 1); ?></th>
+                            <td><?php echo e($data->judul); ?></td> <!-- Nama data -->
+                            <td><?php echo e($data->transactionDetails->acara->nama_acara); ?></td> <!-- Nama Acara -->
+                            <td><?php echo e($data->jadwal_transaction); ?></td> <!-- Jadwal -->
+                            <td><?php echo e($data->transactionDetails->deskripsi_transaksi); ?></td> <!-- Deskripsi -->
+                            <td>
+                                <!-- Update Button -->
+                                <a href="/admin/updateEvent/<?php echo e($data->id_transaction); ?>" class="btn btn-sm btn-outline-primary">Update</a>
+                                <a href="/admin/selesaiEvent/<?php echo e($data->id_transaction); ?>" onclick="return confirm('Apakah Anda yakin ingin menyelesaikan event ini?');" class="btn btn-sm btn-outline-success">Selesai</a>
+    
+                                <!-- Delete Button with confirmation -->
+                                <form action="<?php echo e(route('admin.delete.transaksi', $data->id_transaction)); ?>" method="POST" class="d-inline">
+                                    <?php echo csrf_field(); ?>
+                                    <?php echo method_field('DELETE'); ?>
+                                    <button type="submit" class="btn btn-sm btn-outline-danger"
+                                            onclick="return confirm('Apakah Anda yakin ingin menghapus event ini?');">
+                                        Delete
+                                    </button>
+                                </form>
+    
+                                <!-- Selesai Button -->
+                            </td>
+                        </tr>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </tbody>
+            </table>
         <?php else: ?>
             <p>Data layanan masih kosong!</p>
         <?php endif; ?>

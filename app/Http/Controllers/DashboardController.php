@@ -12,7 +12,7 @@ class DashboardController extends Controller
     public function index()
     {
         $umat = Umat::count();
-        $jadwal_acara = TransactionHeader::with(['romo', 'seksi', 'doa', 'transactionDetails' => function ($query) {
+        $jadwal_acara = TransactionHeader::with(['romo', 'seksis', 'doa', 'transactionDetails' => function ($query) {
             $query->with('umats', 'acara', 'admin');
         }])->where('status', 'coming')->get();
         $pending = ModelsRequest::where('status', 'pending')->count();

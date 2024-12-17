@@ -115,6 +115,7 @@ Route::prefix('admin')
         Route::get('/updateEvent/{id}', [TransaksiController::class, 'updateTransaction'])->name('admin.update.transaksi');
         Route::put('/updateEvent/{id}', [TransaksiController::class, 'updatedTransaction'])->name('admin.updateTransaction');
         Route::delete('/deleteEvent/{id}', [TransaksiController::class, 'deleteTransaction'])->name('admin.delete.transaksi');
+        Route::get('/selesaiEvent/{id}', [TransaksiController::class, 'moveTransaction'])->name('admin.selesai.transaksi');
 
 
 

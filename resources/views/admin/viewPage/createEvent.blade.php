@@ -61,6 +61,19 @@
                             <!-- Form Start -->
                             <form action="/admin/createEvent" method="POST">
                                 @csrf <!-- Laravel CSRF Token -->
+                                <div class="mb-3">
+                                    <label for="judul" class="form-label">Judul <span
+                                        class="text-danger">*</span></label>
+                                    <input type="text" class="form-control @error('judul') is-invalid @enderror"
+                                           id="judul" name="judul" value="{{ old('judul') }}" placeholder="Masukkan Judul Acara" required>
+                                    @error('judul')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <!-- Admin (Hidden) Field -->
+                                {{-- <input type="hidden" name="id_admin" value="{{ Auth::guard('admin')->user()->id }}"> --}}
+                                <input type="hidden" name="id_admin" value="1">
 
                                 <!-- Dropdown Romo -->
                                 <div class="mb-3">
