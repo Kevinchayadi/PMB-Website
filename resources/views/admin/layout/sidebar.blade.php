@@ -33,7 +33,8 @@
 
         <li class="py-1">
             <a class="nav-link text-white d-flex align-items-center {{ (Request::is('admin/Request-Pending') or Request::is('admin/Request-Processed') or Request::is('admin/Request-Accepted') or Request::is('admin/Request-detail')) ? 'active' : '' }}"
-                data-bs-toggle="collapse" href="#collapseRequest" role="button" aria-expanded="{{ (Request::is('admin/Request-Pending') or Request::is('admin/Request-Processed') or Request::is('admin/Request-Accepted') or Request::is('admin/Request-detail')) ? 'true' : 'false' }}"
+                data-bs-toggle="collapse" href="#collapseRequest" role="button"
+                aria-expanded="{{ (Request::is('admin/Request-Pending') or Request::is('admin/Request-Processed') or Request::is('admin/Request-Accepted') or Request::is('admin/Request-detail')) ? 'true' : 'false' }}"
                 aria-controls="collapseRequest">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-chevron-right me-2 chevron-icon" viewBox="0 0 16 16">
@@ -42,7 +43,8 @@
                 </svg>
                 Request
             </a>
-            <div class="collapse {{ (Request::is('admin/Request-Pending') or Request::is('admin/Request-Processed') or Request::is('admin/Request-Accepted') or Request::is('admin/Request-detail')) ? 'show' : '' }}" id="collapseRequest">
+            <div class="collapse {{ (Request::is('admin/Request-Pending') or Request::is('admin/Request-Processed') or Request::is('admin/Request-Accepted') or Request::is('admin/Request-detail')) ? 'show' : '' }}"
+                id="collapseRequest">
                 <ul class="list-unstyled ps-5">
                     <li class="py-1"><a
                             class="nav-link text-white {{ Request::is('admin/Request-Pending') ? 'active' : '' }}"
@@ -61,7 +63,8 @@
         <!-- Pelayanan dengan Collapse -->
         <li class="py-1">
             <a class="nav-link text-white d-flex align-items-center {{ (Request::is('admin/createEvent') or Request::is('admin/passEvent') or Request::is('admin/scheduledEvent')) ? 'active' : '' }}"
-                data-bs-toggle="collapse" href="#collapsePelayanan" role="button" aria-expanded="{{ (Request::is('admin/createEvent') or Request::is('admin/passEvent') or Request::is('admin/scheduledEvent')) ? 'true' : 'false' }}"
+                data-bs-toggle="collapse" href="#collapsePelayanan" role="button"
+                aria-expanded="{{ (Request::is('admin/createEvent') or Request::is('admin/passEvent') or Request::is('admin/scheduledEvent')) ? 'true' : 'false' }}"
                 aria-controls="collapsePelayanan">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-chevron-right me-2 chevron-icon" viewBox="0 0 16 16">
@@ -70,7 +73,8 @@
                 </svg>
                 Event
             </a>
-            <div class="collapse {{ (Request::is('admin/createEvent') or Request::is('admin/passEvent') or Request::is('admin/scheduledEvent')) ? 'show' : '' }}" id="collapsePelayanan">
+            <div class="collapse {{ (Request::is('admin/createEvent') or Request::is('admin/passEvent') or Request::is('admin/scheduledEvent')) ? 'show' : '' }}"
+                id="collapsePelayanan">
                 <ul class="list-unstyled ps-5">
                     <li class="py-1"><a
                             class="nav-link text-white {{ Request::is('admin/createEvent') ? 'active' : '' }}"
@@ -88,7 +92,8 @@
         <!-- User Page dengan Collapse -->
         <li class="py-1">
             <a class="nav-link text-white d-flex align-items-center {{ (Request::is('admin/highlight') or Request::is('admin/layanan') or Request::is('admin/doa') or Request::is('admin/pastor') or Request::is('admin/artikel') or Request::is('admin/kegiatan')) ? 'active' : '' }}"
-                data-bs-toggle="collapse" href="#collapseUserPage" role="button" aria-expanded="{{ (Request::is('admin/highlight') or Request::is('admin/layanan') or Request::is('admin/doa') or Request::is('admin/pastor') or Request::is('admin/artikel') or Request::is('admin/kegiatan')) ? 'true' : 'false' }}"
+                data-bs-toggle="collapse" href="#collapseUserPage" role="button"
+                aria-expanded="{{ (Request::is('admin/highlight') or Request::is('admin/layanan') or Request::is('admin/doa') or Request::is('admin/pastor') or Request::is('admin/artikel') or Request::is('admin/kegiatan')) ? 'true' : 'false' }}"
                 aria-controls="collapseUserPage">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-chevron-right me-2 chevron-icon" viewBox="0 0 16 16">
@@ -97,18 +102,30 @@
                 </svg>
                 User Page
             </a>
-            <div class="collapse {{ (Request::is('admin/highlight') or Request::is('admin/layanan') or Request::is('admin/doa') or Request::is('admin/pastor') or Request::is('admin/artikel') or Request::is('admin/kegiatan')) ? 'show' : '' }}" id="collapseUserPage">
+            <div class="collapse {{ (Request::is('admin/highlight') or Request::is('admin/layanan') or Request::is('admin/doa') or Request::is('admin/pastor') or Request::is('admin/artikel') or Request::is('admin/kegiatan')) ? 'show' : '' }}"
+                id="collapseUserPage">
                 <ul class="list-unstyled ps-5">
-                    <li class="py-1"><a class="nav-link text-white {{ Request::is('admin/highlight') ? 'active' : '' }}" href="/admin/highlight">Highlight</a></li>
-                    <li class="py-1"><a class="nav-link text-white {{ Request::is('admin/layanan') ? 'active' : '' }}" href="/admin/layanan">Layanan</a></li>
-                    <li class="py-1"><a class="nav-link text-white {{ Request::is('admin/doa') ? 'active' : '' }}" href="/admin/doa">Doa Paroki</a></li>
-                    <li class="py-1"><a class="nav-link text-white {{ Request::is('admin/pastor') ? 'active' : '' }}" href="/admin/pastor">Pastor</a></li>
-                    <li class="py-1"><a class="nav-link text-white {{ Request::is('admin/artikel') ? 'active' : '' }}" href="/admin/artikel">Artikel</a></li>
-                    <li class="py-1"><a class="nav-link text-white {{ Request::is('admin/kegiatan') ? 'active' : '' }}" href="/admin/kegiatan">Kegiatan</a></li>
+                    <li class="py-1"><a
+                            class="nav-link text-white {{ Request::is('admin/highlight') ? 'active' : '' }}"
+                            href="/admin/highlight">Highlight</a></li>
+                    <li class="py-1"><a
+                            class="nav-link text-white {{ Request::is('admin/layanan') ? 'active' : '' }}"
+                            href="/admin/layanan">Layanan</a></li>
+                    <li class="py-1"><a class="nav-link text-white {{ Request::is('admin/doa') ? 'active' : '' }}"
+                            href="/admin/doa">Doa Paroki</a></li>
+                    <li class="py-1"><a
+                            class="nav-link text-white {{ Request::is('admin/pastor') ? 'active' : '' }}"
+                            href="/admin/pastor">Pastor</a></li>
+                    <li class="py-1"><a
+                            class="nav-link text-white {{ Request::is('admin/artikel') ? 'active' : '' }}"
+                            href="/admin/artikel">Artikel</a></li>
+                    <li class="py-1"><a
+                            class="nav-link text-white {{ Request::is('admin/kegiatan') ? 'active' : '' }}"
+                            href="/admin/kegiatan">Kegiatan</a></li>
                 </ul>
             </div>
         </li>
-        
+
     </ul>
 
 

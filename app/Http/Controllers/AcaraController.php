@@ -67,7 +67,7 @@ class AcaraController extends Controller
     public function updateAcara($slug)
     {
         //Ambil acara berdasarkan slug beserta dokumentasinya
-        $acara = Acara::with('documentations')->where('slug', $slug)->firstOrFail();
+        $acara = Acara::with('documentations')->where('slug', $slug);
         return view('admin.viewPage.landingpage.acara.updateLayanan', compact('acara'));
     }
 

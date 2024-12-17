@@ -1,55 +1,49 @@
 @extends('user.Layout.template')
 @section('title', 'Layanan')
 @section('content')
-    <div class="container-fluid row mx-auto justify-content-center">
+    <div class="container-fluid row mx-auto">
         @if ($layanan->count() > 0)
             @foreach ($layanan as $layanans)
                 <div class="col-lg-4 col-12 p-2">
-                    <div class="bg-primary rounded p-2 hvr-shrink" data-bs-toggle="modal" data-bs-target="#doaabcde">
+                    <div class="bg-primary rounded p-2 hvr-shrink" data-bs-toggle="modal"
+                        data-bs-target="#{{ $layanans->slug }}">
                         {{-- Gambar --}}
                         <img class="img-fluid rounded-3 mb-2" src="{{ asset('picture/Gereja.jpg') }}" alt="">
 
                         {{-- Description --}}
                         <div class="fs-6">
-                            <div class="w-50 mx-auto fw-bolder text-center text-white">Layanan A</div>
+                            <div class="w-50 mx-auto fw-bolder text-center text-white">{{ $layanans->nama_acara }}</div>
                         </div>
                     </div>
-                    <div class="modal fade" id="doaabcde" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                        aria-labelledby="doaabcde" aria-hidden="true">
+                    <div class="modal fade" id="{{ $layanans->slug }}" data-bs-backdrop="static" data-bs-keyboard="false"
+                        tabindex="-1" aria-labelledby="{{ $layanans->slug }}" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                             <div class="modal-content">
                                 <div class="modal-header bg-primary">
-                                    <h1 class="modal-title fs-5 text-white" id="doaabcde">Layanan A</h1>
+                                    <h1 class="modal-title fs-5 text-white" id="{{ $layanans->slug }}">
+                                        {{ $layanans->nama_acara }}</h1>
                                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et architecto accusantium
-                                    officiis
-                                    tempore
-                                    consequatur porro qui magnam reiciendis alias, quibusdam ullam cumque enim earum!
-                                    Deleniti
-                                    cupiditate quaerat totam repellendus officiis.
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab commodi et est saepe optio
-                                    quaerat
-                                    quisquam eaque tenetur hic placeat eius ut beatae, at sunt quidem? Quisquam expedita
-                                    necessitatibus
-                                    quidem.
+                                    {{ $layanans->deskripsi_acara }}
                                 </div>
 
                                 <div class="modal-btn text-center mb-2">
                                     <a class="btn text-primary bg-white hvr-border-fade" data-bs-toggle="modal"
-                                        data-bs-target="#form-a">Daftar Sekarang</a>
+                                        data-bs-target="#daftar-{{ $layanans->slug }}">Daftar Sekarang</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="modal fade" id="form-a" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                        aria-labelledby="form-a" aria-hidden="true">
+                    <div class="modal fade" id="daftar-{{ $layanans->slug }}" data-bs-backdrop="static"
+                        data-bs-keyboard="false" tabindex="-1" aria-labelledby="daftar-{{ $layanans->slug }}"
+                        aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                             <div class="modal-content">
                                 <div class="modal-header bg-primary">
-                                    <h1 class="modal-title fs-5 text-white" id="form-a">Daftar Layanan A</h1>
+                                    <h1 class="modal-title fs-5 text-white" id="form-a">Daftar
+                                        {{ $layanans->nama_acara }}</h1>
                                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>

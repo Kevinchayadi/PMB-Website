@@ -22,7 +22,7 @@
                 </div>
             @endforeach
         @else
-            <div class="fs-5 text-center fw-bolder">Belum ada kegiatan</div>
+            <div class="fs-5 text-center fw-bolder">Tidak ada kegiatan</div>
         @endif
     </div>
 @endsection

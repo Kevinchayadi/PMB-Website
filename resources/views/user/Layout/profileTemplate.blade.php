@@ -56,23 +56,19 @@
                 </li>
         </div>
     </div>
-    <div class="container-fluid px-0">
-        <div class="bottom row mx-auto h-100">
-            <div class="col-2 border-end d-lg-block d-none">
-                @include('user.Layout.leftpage')
-            </div>
-            <div class="col-lg-8 col-12 mt-3">
-                @yield('content')
-            </div>
-            <div class="col-2 border-start d-lg-block d-none">
-                @include('user.Layout.rightpage')
-            </div>
+    <div class="container-fluid px-0 bottom row mx-auto">
+        <div class="col-2 border-end d-lg-block d-none">
+            @include('user.Layout.leftpage')
+        </div>
+        <div class="col-lg-8 col-12 mt-2">
+            @yield('content')
+        </div>
+        <div class="col-2 border-start d-lg-block d-none">
+            @include('user.Layout.rightpage')
         </div>
     </div>
+    @include('user.Layout.footer')
     <script src="{{ asset('js/scroll.js') }}"></script>
 </body>
-<footer>
-    @include('user.Layout.footer')
-</footer>
 
 </html>

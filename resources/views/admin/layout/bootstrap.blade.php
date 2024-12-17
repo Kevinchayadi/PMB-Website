@@ -60,5 +60,7 @@
         border-color: (#7A7A7A, var(--bs-border-opacity)) !important;
     }
 
-
+    .btn-primary {
+        background-color: #0084B5 !important;
+    }
 </style>

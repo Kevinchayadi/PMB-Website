@@ -58,7 +58,7 @@
                 </tbody>
             </table>
         @else
-            <p>Data layanan masih kosong!</p>
+            <div class="text-center fw-bolder fs-5">Data Event Masih Kosong!</div>
         @endif
 
     </div>
