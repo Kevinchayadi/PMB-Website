@@ -35,11 +35,18 @@
 
                             <td>
                                 <button class="btn btn-sm btn-outline-primary"><a
-                                        href="/admin/edit-layanan/{{ $acaras->id_acara }}"
+                                        href="/admin/edit-layanan/{{ $acaras->slug }}"
                                         class="nav-link">Edit</a></button>
-                                <button class="btn btn-sm btn-outline-danger"><a
-                                        href="/admin/delete-layanan/{{ $acaras->id_acara }}"
-                                        class="nav-link">Delete</a></button>
+                                <form action="/admin/delete-layanan/{{ $acaras->slug }}" method="POST"
+                                    class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-outline-danger"
+                                        onclick="return confirm('Apakah Anda yakin ingin menghapus layanan ini?');">
+                                        Delete
+                                    </button>
+                                </form>
+
                             </td>
                         </tr>
                     @endforeach

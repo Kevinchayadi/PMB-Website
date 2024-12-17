@@ -13,7 +13,7 @@ class Acara extends Model
     use HasFactory, Sluggable, SoftDeletes;
 
     protected $primaryKey = 'id_acara';
-    protected $fillable = ['nama_acara', 'deskripsi_acara', 'tipe_acara'];
+    protected $fillable = ['nama_acara', 'deskripsi_acara', 'tipe_acara', 'path'];
 
     public function transactionDetails(): HasMany
     {

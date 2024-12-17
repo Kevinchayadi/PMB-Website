@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('acaras', function (Blueprint $table) {
             $table->id("id_acara");
+            $table->string('path');
             $table->string('nama_acara',255);
             $table->string('slug',255)->nullable()->unique();
             $table->string('tipe_acara',255);

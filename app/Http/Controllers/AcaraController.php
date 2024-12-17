@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Log;
 use App\Models\Acara;
+use App\Models\Doa;
 use Illuminate\Http\Request;
 use App\Models\Documentation;
 use Illuminate\Support\Facades\DB;
@@ -23,36 +24,29 @@ class AcaraController extends Controller
 
     public function storeAcara(Request $request)
     {
-        $request->validate([
+        // dd($request);
+        $input = $request->validate([
             'nama_acara' => 'required',
             'deskripsi_acara' => 'required',
             'tipe_acara' => 'required',
-            'dokumentasi' => 'required|array|min:1|max:3',
-            'dokumentasi.*' => 'nullable|image|max:2048',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-
+        
         try {
             DB::beginTransaction();
+            $foto = str_replace([' ', '.'], '-', $input['nama_acara']);
+            if ($request->hasFile('foto')) {
+                // dd($request);
+            $file = $request->file('foto');
 
+            $fileName = $foto . '.' . $file->getClientOriginalExtension();
+
+            $filePath = $file->storeAs('acara', $fileName, 'public');
+
+            $input['path'] = $filePath;
+        }
             // Simpan acara
-            $acara = Acara::create([
-                'nama_acara' => $request->nama_acara,
-                'tipe_acara' => $request->tipe_acara,
-                'deskripsi_acara' => $request->deskripsi_acara,
-            ]);
-
-            // Simpan dokumentasi
-            if ($request->hasFile('dokumentasi')) {
-                $curr = 1;
-                foreach ($request->file('dokumentasi') as $file) {
-                    $extension = $file->getClientOriginalExtension();
-                    $namefile = $request->nama_acara . '_' . $curr . '.' . $extension;
-                    $file->storeAs('dokumentasi', $namefile);
-                    $curr++;
-
-                    $acara->documentations()->create(['nama_dokumentasi' => $namefile]);
-                }
-            }
+            Acara::create($input);
 
             DB::commit();
         } catch (\Throwable $th) {
@@ -67,60 +61,53 @@ class AcaraController extends Controller
     public function updateAcara($slug)
     {
         //Ambil acara berdasarkan slug beserta dokumentasinya
-        $acara = Acara::with('documentations')->where('slug', $slug);
+        $acara = Acara::with('documentations')->where('slug', $slug)->first();
+        // dd($acara);
         return view('admin.viewPage.landingpage.acara.updateLayanan', compact('acara'));
     }
 
     public function updatedAcara(Request $request, $slug)
     {
         $acara = Acara::with('documentations')->where('slug', $slug)->firstOrFail();
-
-        $request->validate([
+        
+        $input = $request->validate([
             'nama_acara' => 'required',
             'deskripsi_acara' => 'required',
             'tipe_acara' => 'required',
-            'dokumentasi' => 'nullable|array|min:1|max:3',
-            'dokumentasi.*' => 'nullable|image|max:2048',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
+        // dd($request->all());
 
-        try {
+        // try {
             DB::beginTransaction();
+            $foto= str_replace([' ', '.'], '-', $input['nama_acara']);
 
-            // Update acara
-            $acara->update([
-                'nama_acara' => $request->nama_acara,
-                'tipe_acara' => $request->tipe_acara,
-                'deskripsi_acara' => $request->deskripsi_acara,
-            ]);
 
-            // Update dokumentasi jika ada file baru
-            if ($request->hasFile('dokumentasi')) {
-                // Hapus dokumentasi lama
-                foreach ($acara->documentations as $oldDokumentasi) {
-                    Storage::delete('dokumentasi/' . $oldDokumentasi->nama_dokumentasi);
-                    $oldDokumentasi->delete();
-                }
-
-                // Simpan dokumentasi baru
-                $curr = 1;
-                foreach ($request->file('dokumentasi') as $file) {
-                    $extension = $file->getClientOriginalExtension();
-                    $namefile = $request->nama_acara . '_' . $curr . '.' . $extension;
-                    $file->storeAs('dokumentasi', $namefile);
-                    $curr++;
-
-                    $acara->documentations()->create(['nama_dokumentasi' => $namefile]);
-                }
+        if ($request->hasFile('foto')) {
+            if ($acara->path) {
+                Storage::disk('public')->delete($acara->path);
             }
 
-            DB::commit();
-        } catch (\Throwable $th) {
-            DB::rollBack();
-            Log::error('Gagal melakukan update acara: ' . $th->getMessage());
-            return back()->with('error', 'Gagal melakukan update acara!');
-        }
+            $file = $request->file('foto');
 
-        return redirect()->route('admin.viewPage.landingpage.acara.layanan')->with('success', 'Acara dan dokumentasi berhasil diperbarui');
+            $fileName = $foto . '.' . $file->getClientOriginalExtension();
+
+            $filePath = $file->storeAs('acara', $fileName, 'public');
+
+            $input['path'] = $filePath;
+            
+        }
+            // Update acara
+            $acara->update($input);
+            DB::commit();
+            return redirect()->route('admin.acara')->with('success', 'Acara dan dokumentasi berhasil diubah!');
+        // } catch (\Throwable $th) {
+        //     DB::rollBack();
+        //     Log::error('Gagal melakukan update acara: ' . $th->getMessage());
+        //     return back()->with('error', 'Gagal melakukan update acara!');
+        // }
+
+       
     }
 
     public function deleteAcara($slug)
@@ -146,6 +133,6 @@ class AcaraController extends Controller
             return back()->with('error', 'Gagal menghapus acara!');
         }
 
-        return redirect()->route('admin.viewPage.landingpage.acara.layanan')->with('success', 'Acara dan dokumentasi berhasil dihapus');
+        return redirect()->route('admin.acara')->with('success', 'Acara dan dokumentasi berhasil dihapus');
     }
 }

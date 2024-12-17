@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('id_doa');
             $table->string('nama_doa', 255)->nullable()->default('text');
             $table->text('deskripsi_doa');
+            $table->string('path');
             $table->string('ayat_renungan', 255)->nullable()->default('text');
             $table->text('isi_renungan');
             $table->string('ayat_tambahan', 255)->nullable();   

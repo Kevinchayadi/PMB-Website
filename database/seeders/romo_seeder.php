@@ -21,6 +21,7 @@ class romo_seeder extends Seeder
             'jabatan' => 'Pastor Paroki',
             'Pengalaman' => 'Pengalaman pelayanan di beberapa paroki di Yogyakarta dan Jakarta, aktif dalam kegiatan sosial dan pendidikan.',
             'nomorhp_romo' => '081234567890',
+            'path' => 'ch-triyudo-prastowo-sj.jpg',
         ]);
 
         Romo::create([
@@ -31,6 +32,7 @@ class romo_seeder extends Seeder
             'jabatan' => 'Romo Tamu',
             'Pengalaman' => 'Pengalaman pelayanan di beberapa paroki di Sumatera dan Jawa, ahli dalam bidang pengajaran iman.',
             'nomorhp_romo' => '082345678901',
+            'path' => 'chris-purba-sj-romo-tamu.jpg',
         ]);
 
         Romo::create([
@@ -41,6 +43,7 @@ class romo_seeder extends Seeder
             'jabatan' => 'Pastor Paroki',
             'Pengalaman' => 'Aktif dalam pelayanan di paroki Jakarta dan pelayanan muda-mudi. Berfokus pada pembinaan iman remaja.',
             'nomorhp_romo' => '083456789012',
+            'path' => 'mikael-irwan-susiananta-sj.jpg',
         ]);
 
         Romo::create([
@@ -51,6 +54,7 @@ class romo_seeder extends Seeder
             'jabatan' => 'Pastor Paroki',
             'Pengalaman' => 'Berpengalaman dalam pelayanan di berbagai paroki, khususnya dalam bidang liturgi dan pembinaan komunitas.',
             'nomorhp_romo' => '085123456789',
+            'path' => 'agustinus-purwantoro-sj.jpg',
         ]);
 
         // Additional example Romos with realistic names and information
@@ -63,6 +67,7 @@ class romo_seeder extends Seeder
             'jabatan' => 'Bishop',
             'Pengalaman' => 'Pengalaman panjang dalam pelayanan gereja, pendampingan umat, dan pengembangan komunitas gereja.',
             'nomorhp_romo' => '087654321987',
+            'path' => 'santo-yohanes-paulus-ii.jpg',
         ]);
 
         Romo::create([
@@ -73,6 +78,7 @@ class romo_seeder extends Seeder
             'jabatan' => 'Pastor di Paroki St. Antonius',
             'Pengalaman' => 'Telah melayani di beberapa paroki, terlibat aktif dalam pendidikan iman dan kegiatan sosial gereja.',
             'nomorhp_romo' => '081234567891',
+            'path' => 'franciscus-xaverius-sj.jpg',
         ]);
 
         Romo::create([
@@ -83,6 +89,7 @@ class romo_seeder extends Seeder
             'jabatan' => 'Pastor Pembantu Paroki',
             'Pengalaman' => 'Menjadi bagian dalam pelayanan di gereja besar dan memimpin berbagai kegiatan rohani di kawasan Timur Indonesia.',
             'nomorhp_romo' => '089876543210',
+            'path' => 'kornelius-sj.jpg',
         ]);
     }
 

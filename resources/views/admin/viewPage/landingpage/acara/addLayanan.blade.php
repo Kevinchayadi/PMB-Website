@@ -2,9 +2,15 @@
 @section('title', 'Layanan - Form')
 
 @section('content')
-    <div>
-
-    </div>
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
     <div class="container-fluid">
         <div class=" min-vh-100 d-flex flex-column align-items-center justify-content-center ">
             <div class="row w-100 justify-content-center">
@@ -13,35 +19,41 @@
                         <div class="card-body text-white">
 
                             <h2 class="card-title text-center mb-4 fw-bolder">Create New Layanan</h2>
-                            <form action="/admin/add-layanan" method="POST">
+                            <form action="/admin/add-layanan" method="POST" enctype="multipart/form-data">
                                 @csrf <!-- Laravel CSRF Token -->
 
                                 <!-- Nama -->
                                 <div class="mb-3">
-                                    <label for="name" class="form-label">Judul Layanan</label>
-                                    <input type="text" class="form-control" id="name" name="name"
+                                    <label for="nama_acara" class="form-label">Judul Layanan</label>
+                                    <input type="text" class="form-control" id="nama_acara" name="nama_acara"
                                         placeholder="Masukkan judul layanan" required>
                                 </div>
 
                                 <!-- Type -->
                                 <div class="mb-3">
-                                    <label for="type" class="form-label">Tipe Layanan (Liturgi/Sakramen)</label>
-                                    <input type="text" class="form-control" id="type" name="type"
+                                    <label for="tipe_acara" class="form-label">Tipe Layanan (Liturgi/Sakramen)</label>
+                                    <input type="text" class="form-control" id="tipe_acara" name="tipe_acara"
                                         placeholder="Masukkan tipe layanan" required></textarea>
                                 </div>
 
                                 <!-- Deskripsi -->
                                 <div class="mb-3">
-                                    <label for="desc" class="form-label">Deskripsi Layanan</label>
-                                    <textarea class="form-control" id="desc" name="desc" placeholder="Masukkan deskripsi layanan" rows="20"
+                                    <label for="deskripsi_acara" class="form-label">Deskripsi Layanan</label>
+                                    <textarea class="form-control" id="deskripsi_acara" name="deskripsi_acara" placeholder="Masukkan deskripsi layanan" rows="20"
                                         required></textarea>
                                 </div>
 
                                 <!-- gambar -->
                                 <div class="mb-3">
-                                    <label for="file" class="form-label">Gambar</label>
-                                    <input type="file" class="form-control" id="file" name="file"
-                                        placeholder="Masukkan gambar" required>
+                                    <label for="foto" class="form-label">Gambar</label>
+                                    
+                                    <!-- Menampilkan gambar yang ada -->
+                                
+                                        <img src="{{ asset('picture/Gereja.jpg') }}" alt="Gambar Default" class="img-fluid rounded-3 mb-2" id="current-image">
+                                    
+
+                                    <!-- Input file untuk mengganti gambar -->
+                                    <input type="file" class="form-control" id="foto" name="foto" placeholder="Edit gambar" onchange="previewImage(event)">
                                 </div>
 
                                 <!-- Tombol Submit -->
@@ -57,4 +69,5 @@
         </div>
 
     </div>
+    <script src="{{ asset('js/preview.js') }}"></script>
 @endsection

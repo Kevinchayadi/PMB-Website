@@ -13,7 +13,7 @@ class Articel extends Model
         'title',
         'body',
         'additionalLink',
-        'id_admin'
+        'id_admin', 'path'
     ];
 
     public function sluggable(): array

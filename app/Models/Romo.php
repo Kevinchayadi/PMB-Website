@@ -15,7 +15,7 @@ class Romo extends Model
 {
     use HasApiTokens, HasFactory, Notifiable, Sluggable, SoftDeletes;
     protected $primaryKey = 'id_romo';
-    protected $fillable = ['nama_romo', 'ttl_romo', 'nomorhp_romo'];
+    protected $fillable = ['nama_romo', 'DOB_romo','tempat_lahir','jabatan','pengalaman','nomorhp_romo', 'path'];
 
     public function transactionHeaders(): HasMany
     {

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Doa;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class doaController extends Controller
 {
@@ -20,8 +22,21 @@ class doaController extends Controller
             'deskripsi_doa' => 'required',
             'ayat_renungan'=> 'required',
             'isi_renungan' => 'required',
-            'ayat_tambahan'=> 'string'
+            'ayat_tambahan'=> 'string',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+        $foto = str_replace([' ', '.'], '-', $input['nama_doa']);
+
+        if ($request->hasFile('foto')) {
+            $file = $request->file('foto');
+
+            $fileName = $foto . '-' . Carbon::now()->timestamp . '.' . $file->getClientOriginalExtension();
+
+            $filePath = $file->storeAs('romos', $fileName, 'public');
+
+            $input['path'] = $filePath;
+        }
+
         Doa::create($input);
         return redirect()->route('admin.doa')->with('success', 'Data Doa Berhasil Ditambahkan!');
 
@@ -32,21 +47,34 @@ class doaController extends Controller
     }
     public function updatedDoa(Request $request, $id){
         $doa = Doa::find($id);
-        $request->validate([
+        $input = $request->validate([
             'nama_doa' => 'required',
             'deskripsi_doa' => 'required',
             'ayat_renungan'=> 'required',
             'isi_renungan' => 'required',
-            'ayat_tambahan'=> 'string'
+            'ayat_tambahan'=> 'string',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+        $foto= str_replace([' ', '.'], '-', $input['nama_doa']);
+
+        $doa = Doa::findOrFail($id);
+
+        if ($request->hasFile('foto')) {
+            if ($doa->path) {
+                Storage::disk('public')->delete($doa->path);
+            }
+
+            $file = $request->file('foto');
+
+            $fileName = $foto. '-' . Carbon::now()->timestamp . '.' . $file->getClientOriginalExtension();
+
+            $filePath = $file->storeAs('doas', $fileName, 'public');
+
+            $input['path'] = $filePath;
+        }
+
         try {
-         $doa->update([
-             'nama_doa' => $request->nama_doa,
-             'deskripsi_doa' => $request->deskripsi_doa,
-             'ayat_renungan'=> $request->ayat_renungan,
-             'isi_renungan' => $request->isi_renungan,
-             'ayat_tambahan'=> $request->ayat_tambahan,
-         ]);
+        $doa->update($input);
         } catch (\Throwable $th) {
          //throw $th;  
              return redirect()->route('admin.doa')->with('error', 'Data Doa Gagal Diubah!');

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('Pengalaman')->nullable();
             $table->string('nomorhp_romo', 255)->nullable();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('path');
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();

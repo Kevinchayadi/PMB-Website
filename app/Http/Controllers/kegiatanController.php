@@ -13,7 +13,7 @@ class kegiatanController extends Controller
         return view('admin.viewPage.landingpage.kegiatan.addKegiatan');
     }
     public function storeKegiatan(){
-
+        
     }
     public function updateKegiatan(){
         return view('admin.viewPage.landingpage.kegiatan.updateKegiatan');
