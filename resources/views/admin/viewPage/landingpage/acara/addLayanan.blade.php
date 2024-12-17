@@ -1,5 +1,5 @@
 @extends('admin.layout.template')
-@section('title', 'Artikel - Form')
+@section('title', 'Layanan - Form')
 
 @section('content')
     <div>
@@ -12,21 +12,28 @@
                     <div class="card bg-primary shadow-lg rounded-4">
                         <div class="card-body text-white">
 
-                            <h2 class="card-title text-center mb-4 fw-bolder">Create New Artikel</h2>
+                            <h2 class="card-title text-center mb-4 fw-bolder">Create New Layanan</h2>
                             <form action="/admin/add-layanan" method="POST">
                                 @csrf <!-- Laravel CSRF Token -->
 
                                 <!-- Nama -->
                                 <div class="mb-3">
-                                    <label for="name" class="form-label">Judul Artikel</label>
+                                    <label for="name" class="form-label">Judul Layanan</label>
                                     <input type="text" class="form-control" id="name" name="name"
-                                        placeholder="Masukkan judul artikel" required>
+                                        placeholder="Masukkan judul layanan" required>
+                                </div>
+
+                                <!-- Type -->
+                                <div class="mb-3">
+                                    <label for="type" class="form-label">Tipe Layanan (Liturgi/Sakramen)</label>
+                                    <input type="text" class="form-control" id="type" name="type"
+                                        placeholder="Masukkan tipe layanan" required></textarea>
                                 </div>
 
                                 <!-- Deskripsi -->
                                 <div class="mb-3">
-                                    <label for="desc" class="form-label">Deskripsi Artikel</label>
-                                    <textarea class="form-control" id="desc" name="desc" placeholder="Masukkan deskripsi Artikel" rows="20"
+                                    <label for="desc" class="form-label">Deskripsi Layanan</label>
+                                    <textarea class="form-control" id="desc" name="desc" placeholder="Masukkan deskripsi layanan" rows="20"
                                         required></textarea>
                                 </div>
 
@@ -37,17 +44,10 @@
                                         placeholder="Masukkan gambar" required>
                                 </div>
 
-                                {{-- additional link --}}
-                                <div class="mb-3">
-                                    <label for="link" class="form-label">Link Artikel (Opsional)</label>
-                                    <input type="text" class="form-control" id="link" name="link"
-                                        placeholder="Masukkan link artikel">
-                                </div>
-
                                 <!-- Tombol Submit -->
                                 <div class="d-grid">
                                     <button type="submit" class="btn btn-success">Submit</button>
-                                    <a class=" btn btn-danger rounded-none mt-2" href="/admin/artikel"> cancel</a>
+                                    <a class=" btn btn-danger rounded-none mt-2" href="/admin/layanan"> cancel</a>
                                 </div>
                             </form>
                         </div>

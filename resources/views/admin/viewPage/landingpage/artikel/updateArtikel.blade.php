@@ -35,6 +35,13 @@
                                         placeholder="Masukkan gambar" required>
                                 </div>
 
+                                {{-- additional link --}}
+                                <div class="mb-3">
+                                    <label for="link" class="form-label">Link Artikel (Opsional)</label>
+                                    <input type="text" class="form-control" id="link" name="link"
+                                        placeholder="Masukkan link artikel">
+                                </div>
+
                                 <!-- Tombol Submit -->
                                 <div class="d-grid">
                                     <button type="submit" class="btn btn-success">Update</button>

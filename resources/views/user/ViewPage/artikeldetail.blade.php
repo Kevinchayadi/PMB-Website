@@ -15,11 +15,7 @@
                 </div>
                 <div class="ref d-flex">
                     <div class="title fw-bolder">Sumber: </div>
-                    @if ($artikel->additional_link ?? '')
-                        <p>-x</p>
-                    @else
-                        <a href="{{ $artikel->additional_link }}" class="nav-link"></a>
-                    @endif
+                    <a href="{{ empty($artikel->additional_link) ? '-' : $artikel->additional_link }}" class="nav-link"></a>
                 </div>
             </div>
 

@@ -30,40 +30,35 @@
                                     <img src="{{ asset('picture/Gereja.jpg') }}" alt=""
                                         class="img-fluid rounded-3 shadow-lg">
                                 </div>
-                                <div class="description">
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et architecto accusantium
-                                    officiis
-                                    tempore
-                                    consequatur porro qui magnam reiciendis alias, quibusdam ullam cumque enim earum!
-                                    Deleniti
-                                    cupiditate quaerat totam repellendus officiis.
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab commodi et est saepe optio
-                                    quaerat
-                                    quisquam eaque tenetur hic placeat eius ut beatae, at sunt quidem? Quisquam expedita
-                                    necessitatibus
-                                    quidem.
-                                </div>
                                 <div class="biodata mb-2">
                                     <div class="head fs-5 fw-bolder">Biodata</div>
                                     <div class="content">
                                         <div class="row">
-                                            <div class="col-lg-2 col-3">Nama</div>
-                                            <div class="col-lg-10 col-9">: {{ $romos->nama_romo }}</div>
+                                            <div class="col-lg-4 col-3">Nama</div>
+                                            <div class="col-lg-8 col-9">: {{ $romos->nama_romo }}</div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-2 col-3">Tempat Tanggal Lahir</div>
-                                            <div class="col-lg-10 col-9">: {{ $romos->ttl_romo }}</div>
+                                            <div class="col-lg-4 col-3">Tempat Tanggal Lahir</div>
+                                            <div class="col-lg-8 col-9">: {{ $romos->tempat_lahir }},
+                                                {{ \Carbon\Carbon::parse($romos->DOB_romo)->translatedFormat('d F Y') }}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-3">Nomor Telepon</div>
+                                            <div class="col-lg-8 col-9">: {{ $romos->nomorhp_romo }}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-3">Jabatan</div>
+                                            <div class="col-lg-8 col-9">: {{ $romos->jabatan }}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="pengalaman mb-2">
                                     <div class="head fs-5 fw-bolder">Pengalaman</div>
                                     <div class="content">
-                                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                                        elit. Ipsum nemo delectus
-                                        assumenda labore sequi mollitia, praesentium aliquam autem voluptates doloremque
-                                        dolore saepe cupiditate,
-                                        libero sint quaerat cumque ut eligendi voluptate.</div>
+                                        {{ $romos->Pengalaman }}
+                                    </div>
                                 </div>
                             </div>
                         </div>

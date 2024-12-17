@@ -101,12 +101,12 @@ Route::prefix('admin')
         Route::put('/edit-artikel/{slug}', [artikelController::class,'updatedArtikel'])->name('admin.updateArtikel');
         Route::delete('/delete-artikel/{slug}', [artikelController::class, 'deleteArtikel'])->name('admin.deleteArtikel');
 
-        // Route::get('/kegiatan', [kegiatanController::class, 'kegiatanIndex'])->name('admin.kegiatan');
-        // Route::get('/add-kegiatan', [kegiatanController::class, 'addKegiatan'])->name('admin.addKegiatanForm');
-        // Route::post('/add-kegiatan', [kegiatanController::class, 'storekegiatan'])->name('admin.addKegiatan');
-        // Route::get('/edit-kegiatan/{slug}', [kegiatanController::class, 'updateKegiatan'])->name('admin.updateKegiatanForm');
-        // Route::put('/edit-kegiatan/{slug}', [kegiatanController::class,'updatedKegiatan'])->name('admin.updateKegiatan');
-        // Route::delete('/delete-kegiatan/{slug}', [kegiatanController::class, 'deleteKegiatan'])->name('admin.deleteKegiatan');
+        Route::get('/kegiatan', [kegiatanController::class, 'kegiatanIndex'])->name('admin.kegiatan');
+        Route::get('/add-kegiatan', [kegiatanController::class, 'addKegiatan'])->name('admin.addKegiatanForm');
+        Route::post('/add-kegiatan', [kegiatanController::class, 'storekegiatan'])->name('admin.addKegiatan');
+        Route::get('/edit-kegiatan/{slug}', [kegiatanController::class, 'updateKegiatan'])->name('admin.updateKegiatanForm');
+        Route::put('/edit-kegiatan/{slug}', [kegiatanController::class,'updatedKegiatan'])->name('admin.updateKegiatan');
+        Route::delete('/delete-kegiatan/{slug}', [kegiatanController::class, 'deleteKegiatan'])->name('admin.deleteKegiatan');
 
         Route::get('/scheduledEvent', [TransaksiController::class, 'index'])->name('admin.transaksi');
         Route::get('/passEvent', [TransaksiController::class, 'index2'])->name('admin.transaksiSelsai');
@@ -157,6 +157,7 @@ Route::prefix('admin')
         Route::get('/Request-detail/{id}', [RequestController::class,'pendingListRequest'])->name('admin.update.Misa');
 
         Route::get('/highlight', [UmatController::class, 'highlight'])->name('admin.highlight');
+        Route::post('/highlight', [UmatController::class, 'highlightupdate'])->name('admin.highlightupdate');
 
         Route::get('export/umat', [ExcelController::class, 'exportUmat'])->name('export.umat');
         Route::get('export/event/{status}', [ExcelController::class, 'exportEvent'])->name('export.event');

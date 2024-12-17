@@ -3,9 +3,8 @@
 
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/admin/event.css') }}">
-    <div class="d-flex justify-content-end  align-items-center my-3  text-center">
-        <h1 class="mb-0 fw-bold  p-2 text-white bg-primary shadow rounded-start-2">Layanan List</h1>
-
+    <div class="d-flex justify-content-start align-items-center mb-3 text-center">
+        <h1 class="mb-0 fw-bold  p-2 text-white bg-primary shadow rounded-end-2">Scheduled Event</h1>
     </div>
 
     <div class="px-4">
@@ -24,7 +23,7 @@
                 </div>
             @endforeach
         @else
-            <p>Data layanan masih kosong!</p>
+            <div class="text-center fw-bolder fs-5">Data Event Masih Kosong!</div>
         @endif
 
     </div>

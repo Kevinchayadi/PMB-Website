@@ -29,7 +29,7 @@ class TransaksiController extends Controller
             $query->with('umats', 'acara', 'admin');
         }])->where('status', 'done');
 
-        return view('admin.viewPage.eventList', ['event'=>$jadwal_acara]);
+        return view('admin.viewPage.pastEvent', ['event'=>$jadwal_acara]);
     }
 
     public function createTransaction()
