@@ -52,24 +52,20 @@
                 </li>
         </div>
     </div>
-    <div class="container-fluid px-0">
-        <div class="bottom row mx-auto h-100">
-            <div class="col-2 border-end d-lg-block d-none">
-                <?php echo $__env->make('user.Layout.leftpage', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-            </div>
-            <div class="col-lg-8 col-12 mt-3">
-                <?php echo $__env->yieldContent('content'); ?>
-            </div>
-            <div class="col-2 border-start d-lg-block d-none">
-                <?php echo $__env->make('user.Layout.rightpage', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-            </div>
+    <div class="container-fluid px-0 bottom row mx-auto">
+        <div class="col-2 border-end d-lg-block d-none">
+            <?php echo $__env->make('user.Layout.leftpage', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+        </div>
+        <div class="col-lg-8 col-12 mt-2">
+            <?php echo $__env->yieldContent('content'); ?>
+        </div>
+        <div class="col-2 border-start d-lg-block d-none">
+            <?php echo $__env->make('user.Layout.rightpage', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         </div>
     </div>
+    <?php echo $__env->make('user.Layout.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <script src="<?php echo e(asset('js/scroll.js')); ?>"></script>
 </body>
-<footer>
-    <?php echo $__env->make('user.Layout.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-</footer>
 
 </html>
 <?php /**PATH D:\laragon\www\PMB-Website\resources\views/user/Layout/profileTemplate.blade.php ENDPATH**/ ?>

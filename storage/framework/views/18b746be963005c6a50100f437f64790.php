@@ -5,24 +5,24 @@
     <div class="container">
         
 
-        <div id="carouselExampleAutoplaying" class="carousel slide w-100 mx-auto mb-3" data-bs-ride="carousel">
+        <div id="carouselforhighlight" class="carousel slide w-100 mx-auto mb-3" data-bs-ride="carousel">
             <div class="carousel-inner rounded-3 shadow-lg">
                 <div class="carousel-item active">
-                    <img src="<?php echo e($highlight[0]->path); ?>" class="d-block w-100" alt="...">
+                    <img src="<?php echo e($highlight[0]->path); ?>" class="d-block w-100" alt="Highlight-Image-1">
                 </div>
                 <div class="carousel-item">
-                    <img src="<?php echo e($highlight[1]->path); ?>" class="d-block w-100" alt="...">
+                    <img src="<?php echo e($highlight[1]->path); ?>" class="d-block w-100" alt="Highlight-Image-2">
                 </div>
                 <div class="carousel-item">
-                    <img src="<?php echo e($highlight[2]->path); ?>" class="d-block w-100" alt="...">
+                    <img src="<?php echo e($highlight[2]->path); ?>" class="d-block w-100" alt="Highlight-Image-3">
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselforhighlight"
                 data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselforhighlight"
                 data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
@@ -33,14 +33,14 @@
         <div class="card mx-auto col-12 mb-3 bg-dark rounded-3 shadow-lg d-lg-block d-none hvr-shrink">
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img src="<?php echo e($highlight[3]->path); ?>" class="img-fluid rounded-start" alt="...">
+                    <img src="<?php echo e($highlight[4]->path); ?>" class="img-fluid rounded-start" alt="...">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
                         <div class="content align-content-center py-4 fs-1 d-lg-block d-none">
                             <div class="text-secondary fw-bolder">Ikuti misa pekan ini</div>
                             <div class="btn btn-secondary text-dark">
-                                <a href="" class="nav-link fs-6">Info lebih lanjut</a>
+                                <a href="/jadwal/1" class="nav-link fs-6">Info lebih lanjut</a>
                             </div>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                 <div class="content col-12 align-content-center fs-4">
                     <div class="text-secondary fw-bolder">Ikuti misa pekan ini</div>
                     <div class="btn btn-secondary text-dark">
-                        <a href="" class="nav-link fs-6 hvr-shrink">Info lebih lanjut</a>
+                        <a href="/jadwal/1" class="nav-link fs-6 hvr-shrink">Info lebih lanjut</a>
                     </div>
                 </div>
             </div>
@@ -251,7 +251,7 @@
             
             <div class="banner-bottom my-4 rounded-3 shadow-lg w-100 mx-auto">
                 <a href= "https://youtube.com">
-                    <img class="object-fit-contain w-100 rounded-3" src="<?php echo e($highlight[4]->path); ?>" alt="">
+                    <img class="object-fit-contain w-100 rounded-3" src="<?php echo e($highlight[3]->path); ?>" alt="">
                 </a>
             </div>
         </div>

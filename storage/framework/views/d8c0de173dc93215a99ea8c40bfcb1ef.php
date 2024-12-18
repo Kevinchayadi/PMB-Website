@@ -15,6 +15,8 @@
             </form>
             <a href="/admin/add-pastor" class="btn btn-primary ">Add New Pastor</a>
         </div>
+
+        <!-- Table -->
         <div class="rounded overflow-hidden shadow-sm">
             <table class="table table-hover table-striped mb-0 text-center">
                 <thead class="table-primary">
@@ -26,22 +28,27 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Pastor A</td>
-                        <td>Lorem Ipsum sjslslasalks ....</td>
-
-                        <td>
-                            <button class="btn btn-sm btn-outline-primary"><a href="/admin/edit-pastor/1"
-                                    class="nav-link">Edit</a></button>
-                            <button class="btn btn-sm btn-outline-danger"><a href="/admin/delete-pastor/1"
-                                    class="nav-link">Delete</a></button>
-                        </td>
-                    </tr>
+                    <?php $__empty_1 = true; $__currentLoopData = $pastor; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $romo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                        <tr>
+                            <th scope="row"><?php echo e($index + 1); ?></th>
+                            <td><?php echo e($romo->nama_romo); ?></td>
+                            <td><?php echo e($romo->jabatan); ?></td>
+                            <td>
+                                <a href="/admin/edit-pastor/<?php echo e($romo->id_romo); ?>" class="btn btn-sm btn-outline-primary">Edit</a>
+                                <a href="/admin/delete-pastor/<?php echo e($romo->id_romo); ?>" class="btn btn-sm btn-outline-danger"
+                                    onclick="return confirm('Are you sure you want to delete this pastor?');">Delete</a>
+                            </td>
+                        </tr>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                        <tr>
+                            <td colspan="4" class="text-center">No data available.</td>
+                        </tr>
+                    <?php endif; ?>
                 </tbody>
             </table>
         </div>
     </div>
+    
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('admin.layout.template', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\laragon\www\PMB-Website\resources\views/admin/viewPage/landingpage/pastor/Pastor.blade.php ENDPATH**/ ?>

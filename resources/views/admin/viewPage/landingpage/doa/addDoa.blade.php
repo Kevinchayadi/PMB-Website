@@ -32,9 +32,14 @@
 
                                 <!-- gambar -->
                                 <div class="mb-3">
-                                    <label for="file" class="form-label">Gambar</label>
-                                    <input type="file" class="form-control" id="file" name="file"
-                                        placeholder="Masukkan gambar" required>
+                                    <label for="foto" class="form-label">Gambar</label>
+                                    <div>
+                                        <img id="current-image" 
+                                            src="{{ asset('picture/Gereja.jpg') }}" 
+                                            alt="Gambar Doa" 
+                                            class="img-fluid rounded-3 mb-2">
+                                    </div>
+                                    <input type="file" class="form-control" id="foto" name="foto" onchange="previewImage(event)">
                                 </div>
 
                                 <!-- Tombol Submit -->
@@ -50,4 +55,5 @@
         </div>
 
     </div>
+    <script src="{{ asset('js/preview.js') }}"></script>
 @endsection

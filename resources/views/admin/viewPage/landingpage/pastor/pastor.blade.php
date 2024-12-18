@@ -16,6 +16,8 @@
             </form>
             <a href="/admin/add-pastor" class="btn btn-primary ">Add New Pastor</a>
         </div>
+
+        <!-- Table -->
         <div class="rounded overflow-hidden shadow-sm">
             <table class="table table-hover table-striped mb-0 text-center">
                 <thead class="table-primary">
@@ -27,20 +29,25 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Pastor A</td>
-                        <td>Lorem Ipsum sjslslasalks ....</td>
-
-                        <td>
-                            <button class="btn btn-sm btn-outline-primary"><a href="/admin/edit-pastor/1"
-                                    class="nav-link">Edit</a></button>
-                            <button class="btn btn-sm btn-outline-danger"><a href="/admin/delete-pastor/1"
-                                    class="nav-link">Delete</a></button>
-                        </td>
-                    </tr>
+                    @forelse ($pastor as $index => $romo)
+                        <tr>
+                            <th scope="row">{{ $index + 1 }}</th>
+                            <td>{{ $romo->nama_romo }}</td>
+                            <td>{{ $romo->jabatan }}</td>
+                            <td>
+                                <a href="/admin/edit-pastor/{{ $romo->id_romo }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                                <a href="/admin/delete-pastor/{{ $romo->id_romo }}" class="btn btn-sm btn-outline-danger"
+                                    onclick="return confirm('Are you sure you want to delete this pastor?');">Delete</a>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="4" class="text-center">No data available.</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
     </div>
+    
 @endsection

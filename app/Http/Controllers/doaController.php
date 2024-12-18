@@ -58,23 +58,31 @@ class doaController extends Controller
         $foto= str_replace([' ', '.'], '-', $input['nama_doa']);
 
         $doa = Doa::findOrFail($id);
-
+        
         if ($request->hasFile('foto')) {
             if ($doa->path) {
-                Storage::disk('public')->delete($doa->path);
+                // dd($doa->path, Storage::disk('public')->exists('/'.$doa->path));
+                if (Storage::disk('public')->exists($doa->path)) {
+                    // dd($doa->path);
+                    Storage::disk('public')->delete($doa->path);
+                }
             }
 
             $file = $request->file('foto');
 
             $fileName = $foto. '-' . Carbon::now()->timestamp . '.' . $file->getClientOriginalExtension();
+            // dd($fileName);
 
             $filePath = $file->storeAs('doas', $fileName, 'public');
 
             $input['path'] = $filePath;
-        }
 
+        }
+        
         try {
-        $doa->update($input);
+            $doa->update($input);
+            
+            return redirect()->route('admin.doa')->with('success', 'Data Doa Berhasil Diubah!');
         } catch (\Throwable $th) {
          //throw $th;  
              return redirect()->route('admin.doa')->with('error', 'Data Doa Gagal Diubah!');

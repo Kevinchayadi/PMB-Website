@@ -7,7 +7,8 @@
             <div class="col-lg-6 col-12 p-2">
                 <div class="bg-primary rounded p-2 hvr-shrink" data-bs-toggle="modal"
                     data-bs-target="#<?php echo e(str_replace(' ', '-', $doas->nama_doa)); ?>">
-                    <img src="<?php echo e(asset('picture/Gereja.jpg')); ?>" alt="" class="img-fluid rounded">
+                    <img src="<?php echo e($doas->path); ?>" alt="<?php echo e(str_replace(' ', '-', $doas->nama_doa)); ?>"
+                        class="img-fluid rounded">
                     
                     <div class="fs-6">
                         <div class="w-50 mx-auto fw-bolder text-center text-white"><?php echo e($doas->nama_doa); ?></div>

@@ -18,100 +18,113 @@ class UmatController extends Controller
     
     
 
-public function highlightUpdate(Request $request)
-{
-    // Melakukan validasi pada request
-    $validated = $request->validate([
-        // Validasi untuk highlight1, highlight2, highlight3 (gambar)
-        'highlight1' => 'required|image|mimes:jpg,jpeg,png,gif,svg|max:2048',
-        'highlight2' => 'required|image|mimes:jpg,jpeg,png,gif,svg|max:2048',
-        'highlight3' => 'required|image|mimes:jpg,jpeg,png,gif,svg|max:2048',
-
-        // Validasi untuk event dan promosi (gambar)
-        'event' => 'required|image|mimes:jpg,jpeg,png,gif,svg|max:2048',
-        'promosi' => 'required|image|mimes:jpg,jpeg,png,gif,svg|max:2048',
-    ]);
-
-    // Path untuk gambar highlight, event, dan promosi
-    $highlight1ImagePath = null;
-    $highlight2ImagePath = null;
-    $highlight3ImagePath = null;
-    $eventImagePath = null;
-    $promosiImagePath = null;
-
-    // Menyimpan gambar highlight1 jika ada
-    if ($request->hasFile('highlight1')) {
-        $highlight1Image = $request->file('highlight1');
-        $highlight1ImageName = 'highlight1.jpg'; // Nama file untuk highlight1
-
-        // Cek jika file lama ada dan hapus
-        if (Storage::exists('public/img/highlight/' . $highlight1ImageName)) {
-            Storage::delete('public/img/highlight/' . $highlight1ImageName);
+    public function highlightUpdate(Request $request)
+    {
+    //     dd($request->all());
+        // Melakukan validasi pada request
+        $validated = $request->validate([
+            'highlight1' => 'nullable|image|mimes:jpg,jpeg,png,gif,svg|max:2048',
+            'highlight2' => 'nullable|image|mimes:jpg,jpeg,png,gif,svg|max:2048',
+            'highlight3' => 'nullable|image|mimes:jpg,jpeg,png,gif,svg|max:2048',
+            'event' => 'nullable|image|mimes:jpg,jpeg,png,gif,svg|max:2048',
+            'promosi' => 'nullable|image|mimes:jpg,jpeg,png,gif,svg|max:2048',
+        ]);
+    
+        // Ambil data model terkait (misal: Highlightdata)
+        $data = Hightlight::get();
+    
+        // Menyimpan gambar highlight1 jika ada
+        if ($request->hasFile('highlight1')) {
+            $highlight1Image = $request->file('highlight1');
+            $highlight1ImageName = 'highlight1.' . $highlight1Image->getClientOriginalExtension();
+    
+            // Cek jika file lama ada dan hapus
+            if ($data[0]->highlight1 && Storage::exists($data[0]->highlight1)) {
+                Storage::delete($data[0]->highlight1);
+            }
+    
+            // Simpan gambar baru
+            $highlight1ImagePath = $highlight1Image->storeAs('img', $highlight1ImageName, 'public');
+            $data[0]->path = 'storage/' . $highlight1ImagePath;
+            $data[0]->save();
+        }
+    
+        // Menyimpan gambar highlight2 jika ada
+        if ($request->hasFile('highlight2')) {
+            $highlight2Image = $request->file('highlight2');
+            $highlight2ImageName = 'highlight2.' . $highlight2Image->getClientOriginalExtension();
+    
+            // Cek jika file lama ada dan hapus
+            if ($data[1]->highlight2 && Storage::exists($data[1]->highlight2)) {
+                Storage::delete($data[1]->highlight2);
+            }
+    
+            // Simpan gambar baru
+            $highlight2ImagePath = $highlight2Image->storeAs('img', $highlight2ImageName, 'public');
+            $data[1]->path = 'storage/' . $highlight2ImagePath;
+            $data[1]->save();
+        }
+    
+        // Menyimpan gambar highlight3 jika ada
+        if ($request->hasFile('highlight3')) {
+            $highlight3Image = $request->file('highlight3');
+            $highlight3ImageName = 'highlight3.' . $highlight3Image->getClientOriginalExtension();
+    
+            // Cek jika file lama ada dan hapus
+            if ($data[2]->highlight3 && Storage::exists($data[2]->highlight3)) {
+                Storage::delete($data[2]->highlight3);
+            }
+    
+            // Simpan gambar baru
+            $highlight3ImagePath = $highlight3Image->storeAs('img', $highlight3ImageName, 'public');
+            $data[2]->path = 'storage/' . $highlight3ImagePath;
+            $data[2]->save();
+        }
+        
+    
+        // Menyimpan gambar promosi jika ada
+        if ($request->hasFile('promosi')) {
+            $promosiImage = $request->file('promosi');
+            $promosiImageName = 'promosi.' . $promosiImage->getClientOriginalExtension();
+    
+            // Cek jika file lama ada dan hapus
+            if ($data[3]->promosi && Storage::exists($data[3]->promosi)) {
+                Storage::delete($data[3]->promosi);
+            }
+    
+            // Simpan gambar baru
+            $promosiImagePath = $promosiImage->storeAs('img', $promosiImageName, 'public');
+            $data[3]->path = 'storage/' . $promosiImagePath;
+            $data[3]->save();
         }
 
-        // Simpan gambar baru
-        $highlight1ImagePath = $highlight1Image->storeAs('img/highlight', $highlight1ImageName, 'public');
-    }
-
-    // Menyimpan gambar highlight2 jika ada
-    if ($request->hasFile('highlight2')) {
-        $highlight2Image = $request->file('highlight2');
-        $highlight2ImageName = 'highlight2.jpg'; // Nama file untuk highlight2
-
-        // Cek jika file lama ada dan hapus
-        if (Storage::exists('public/img/highlight/' . $highlight2ImageName)) {
-            Storage::delete('public/img/highlight/' . $highlight2ImageName);
+        // Menyimpan gambar event jika ada
+        // dd($request->all());
+        // dd($request->all());
+        if ($request->hasFile('event')) {
+            // dd($request->all());
+           
+            $eventImage = $request->file('event');
+            $eventImageName = 'event.' . $eventImage->getClientOriginalExtension();
+    
+            // Cek jika file lama ada dan hapus
+            if ($data[4]->event && Storage::exists($data[4]->event)) {
+                Storage::delete($data[4]->event);
+            }
+    
+            // Simpan gambar baru
+            $eventImagePath = $eventImage->storeAs('img', $eventImageName, 'public');
+            $data[4]->path = 'storage/' . $eventImagePath;
+            $data[4]->save();
         }
-
-        // Simpan gambar baru
-        $highlight2ImagePath = $highlight2Image->storeAs('img/highlight', $highlight2ImageName, 'public');
+    
+        // Simpan perubahan ke database
+        // $data->save();
+    
+        // Menyimpan flash data ke session dan mengarahkan kembali ke halaman sebelumnya
+        return back()->with('success', 'Highlight images updated successfully!');
     }
-
-    // Menyimpan gambar highlight3 jika ada
-    if ($request->hasFile('highlight3')) {
-        $highlight3Image = $request->file('highlight3');
-        $highlight3ImageName = 'highlight3.jpg'; // Nama file untuk highlight3
-
-        // Cek jika file lama ada dan hapus
-        if (Storage::exists('public/img/highlight/' . $highlight3ImageName)) {
-            Storage::delete('public/img/highlight/' . $highlight3ImageName);
-        }
-
-        // Simpan gambar baru
-        $highlight3ImagePath = $highlight3Image->storeAs('img/highlight', $highlight3ImageName, 'public');
-    }
-
-    // Menyimpan gambar event jika ada
-    if ($request->hasFile('event')) {
-        $eventImage = $request->file('event');
-        $eventImageName = 'event.jpg'; // Nama file untuk event
-
-        // Cek jika file lama ada dan hapus
-        if (Storage::exists('public/img/event/' . $eventImageName)) {
-            Storage::delete('public/img/event/' . $eventImageName);
-        }
-
-        // Simpan gambar baru
-        $eventImagePath = $eventImage->storeAs('img/event', $eventImageName, 'public');
-    }
-
-    // Menyimpan gambar promosi jika ada
-    if ($request->hasFile('promosi')) {
-        $promosiImage = $request->file('promosi');
-        $promosiImageName = 'promosi.jpg'; // Nama file untuk promosi
-
-        // Cek jika file lama ada dan hapus
-        if (Storage::exists('public/img/promosi/' . $promosiImageName)) {
-            Storage::delete('public/img/promosi/' . $promosiImageName);
-        }
-
-        // Simpan gambar baru
-        $promosiImagePath = $promosiImage->storeAs('img/promosi', $promosiImageName, 'public');
-    }
-
-    // Menyimpan flash data ke session dan mengarahkan kembali ke halaman sebelumnya
-    return back()->with('success', 'Highlight images updated successfully!');
-}
+    
 
 
 }
