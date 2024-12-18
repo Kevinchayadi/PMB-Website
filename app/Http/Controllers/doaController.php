@@ -11,7 +11,7 @@ class doaController extends Controller
 {
     public function doaIndex(){
         $doa = Doa::get();
-        return view('admin.viewPage.landingpage.doa.doa');
+        return view('admin.viewPage.landingpage.doa.doa', ['doa'=>$doa]);
     }
     public function addDoa(){
         return view('admin.viewPage.landingpage.doa.addDoa');
@@ -43,7 +43,7 @@ class doaController extends Controller
     }
     public function updateDoa($id){
         $doa = Doa::find($id);
-        return view('admin.viewPage.landingpage.doa.updateDoa');
+        return view('admin.viewPage.landingpage.doa.updateDoa', ['doa'=>$doa]);
     }
     public function updatedDoa(Request $request, $id){
         $doa = Doa::find($id);

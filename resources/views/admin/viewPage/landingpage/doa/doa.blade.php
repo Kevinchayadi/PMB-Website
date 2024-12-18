@@ -16,31 +16,37 @@
             </form>
             <a href="/admin/add-doa" class="btn btn-primary ">Add New Doa</a>
         </div>
-        <div class="rounded overflow-hidden shadow-sm">
-            <table class="table table-hover table-striped mb-0 text-center">
-                <thead class="table-primary">
-                    <tr>
-                        <th scope="col">No.</th>
-                        <th scope="col">Judul Doa</th>
-                        <th scope="col">Deskripsi Doa</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Doa A</td>
-                        <td>Lorem Ipsum sjslslasalks ....</td>
+        @if ($doa->count() > 0)
+            <div class="rounded overflow-hidden shadow-sm">
+                <table class="table table-hover table-striped mb-0 text-center">
+                    <thead class="table-primary">
+                        <tr>
+                            <th scope="col">No.</th>
+                            <th scope="col">Judul Doa</th>
+                            <th scope="col">Deskripsi Doa</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($doa as $doas)
+                            <tr>
+                                <th scope="row">{{ $loop->iteration }}</th>
+                                <td>{{ $doas->nama_doa }}</td>
+                                <td>{{ Str::limit($doas->deskripsi_doa, 20) }}</td>
 
-                        <td>
-                            <button class="btn btn-sm btn-outline-primary"><a href="/admin/edit-doa/1"
-                                    class="nav-link">Edit</a></button>
-                            <button class="btn btn-sm btn-outline-danger"><a href="/admin/delete-doa/1"
-                                    class="nav-link">Delete</a></button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-primary"><a href="/admin/edit-doa/1"
+                                            class="nav-link">Edit</a></button>
+                                    <button class="btn btn-sm btn-outline-danger"><a href="/admin/delete-doa/1"
+                                            class="nav-link">Delete</a></button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        @else
+            <div class="fs-5 fw-bolder text-center">Doa tidak ada</div>
+        @endif
     </div>
 @endsection
