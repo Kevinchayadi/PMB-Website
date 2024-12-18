@@ -2,6 +2,15 @@
 @section('title', 'Doa - Form')
 
 @section('content')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="container-fluid">
         <div class=" min-vh-100 d-flex flex-column align-items-center justify-content-center ">
             <div class="row w-100 justify-content-center">
@@ -15,45 +24,67 @@
 
                                 <!-- Nama -->
                                 <div class="mb-3">
-                                    <label for="name" class="form-label">Nama Doa</label>
-                                    <input type="text" class="form-control" id="name" name="name"
-                                        placeholder="{{ old('nama_doa', $doa->nama_doa) }}" required>
+                                    <label for="name" class="form-label">Nama Doa<span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                        id="name" name="name" placeholder="{{ old('nama_doa', $doa->nama_doa) }}"
+                                        required>
+                                    @error('name')
+                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <!-- Deskripsi -->
                                 <div class="mb-3">
-                                    <label for="desc" class="form-label">Deskripsi Doa</label>
-                                    <textarea class="form-control" id="desc" name="desc"
+                                    <label for="desc" class="form-label">Deskripsi Doa<span
+                                            class="text-danger">*</span></label>
+                                    <textarea class="form-control @error('desc') is-invalid @enderror" id="desc" name="desc"
                                         placeholder="{{ old('deskripsi_doa', $doa->deskripsi_doa) }}" rows="5" required></textarea>
+                                    @error('desc')
+                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 {{-- Ayat Renungan --}}
                                 <div class="mb-3">
-                                    <label for="ayat_renungan" class="form-label">Ayat Renungan</label>
-                                    <textarea class="form-control" id="ayat_renungan" name="ayat_renungan"
+                                    <label for="ayat_renungan" class="form-label">Ayat Renungan<span
+                                            class="text-danger">*</span></label>
+                                    <textarea class="form-control @error('ayat_renungan') is-invalid @enderror" id="ayat_renungan" name="ayat_renungan"
                                         placeholder="{{ old('ayat_renungan', $doa->ayat_renungan) }}" rows="5" required></textarea>
+                                    @error('ayat_renungan')
+                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 {{-- Isi Renungan --}}
                                 <div class="mb-3">
-                                    <label for="isi_renungan" class="form-label">Isi Renungan</label>
-                                    <textarea class="form-control" id="isi_renungan" name="isi_renungan"
+                                    <label for="isi_renungan" class="form-label">Isi Renungan<span
+                                            class="text-danger">*</span></label>
+                                    <textarea class="form-control @error('isi_renungan') is-invalid @enderror" id="isi_renungan" name="isi_renungan"
                                         placeholder="{{ old('deskripsi_doa', $doa->isi_renungan) }}" rows="5" required></textarea>
+                                    @error('isi_renungan')
+                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
 
                                 {{-- Ayat Tambahan --}}
                                 <div class="mb-3">
-                                    <label for="ayat_tambahan" class="form-label">Ayat Tambahan</label>
-                                    <textarea class="form-control" id="ayat_tambahan" name="ayat_tambahan"
+                                    <label for="ayat_tambahan" class="form-label">Ayat Tambahan<span
+                                            class="text-danger">*</span></label>
+                                    <textarea class="form-control @error('ayat_tambahan') is-invalid @enderror" id="ayat_tambahan" name="ayat_tambahan"
                                         placeholder="{{ old('ayat_tambahan', $doa->ayat_tambahan) }}" rows="5"></textarea>
+                                    @error('ayat_tambahan')
+                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <!-- gambar -->
                                 <div class="mb-3">
                                     <!-- Gambar -->
                                     <div class="mb-3">
-                                        <label for="foto" class="form-label">Gambar</label>
+                                        <label for="foto" class="form-label">Gambar<span
+                                                class="text-danger">*</span></label>
 
                                         <!-- Menampilkan gambar yang ada -->
                                         @if ($doa->path)
@@ -65,8 +96,12 @@
                                         @endif
 
                                         <!-- Input file untuk mengganti gambar -->
-                                        <input type="file" class="form-control" id="foto" name="foto"
-                                            placeholder="Edit gambar" onchange="previewImage(event)">
+                                        <input type="file" class="form-control @error('foto') is-invalid @enderror"
+                                            id="foto" name="foto" placeholder="Edit gambar"
+                                            onchange="previewImage(event)">
+                                        @error('foto')
+                                            <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                     <!-- Tombol Submit -->
@@ -74,6 +109,7 @@
                                         <button type="submit" class="btn btn-success">Update</button>
                                         <a class=" btn btn-danger rounded-none mt-2" href="/admin/doa">Cancel</a>
                                     </div>
+                                </div>
                             </form>
                         </div>
                     </div>

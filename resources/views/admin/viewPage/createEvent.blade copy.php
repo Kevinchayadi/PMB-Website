@@ -81,11 +81,11 @@
 
                                 <!-- Tanggal -->
                                 <div class="mb-3">
-                                    <label for="jadwal_transaction" class="form-label">Jadwal Transaksi <span class="text-danger">*</span></label>
+                                    <label for="jadwal_transaction" class="form-label">Jadwal Acara <span class="text-danger">*</span></label>
                                     <input type="datetime-local" class="form-control" id="jadwal_transaction" name="jadwal_transaction" required>
                                     @error('jadwal_transaction')
                                     <div class="invalid-feedback">{{ $message }}</div>
-                                     @enderror
+                                    @enderror
                                 </div>
 
                                 <!-- Dropdown Umat (Nullable, Multiple Select2) -->

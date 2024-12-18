@@ -2,9 +2,16 @@
 @section('title', 'Kegiatan - Form')
 
 @section('content')
-    <div>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
-    </div>
     <div class="container-fluid">
         <div class=" min-vh-100 d-flex flex-column align-items-center justify-content-center ">
             <div class="row w-100 justify-content-center">
@@ -18,23 +25,42 @@
 
                                 <!-- Nama -->
                                 <div class="mb-3">
-                                    <label for="name" class="form-label">Nama Kegiatan</label>
-                                    <input type="text" class="form-control" id="name" name="name"
-                                        placeholder="Masukkan nama kegiatan" required>
+                                    <label for="name" class="form-label">Nama Kegiatan<span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                        id="name" name="name" placeholder="Masukkan nama kegiatan" required>
+                                    @error('name')
+                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <!-- Deskripsi -->
                                 <div class="mb-3">
-                                    <label for="desc" class="form-label">Deskripsi Kegiatan</label>
-                                    <input type="text" class="form-control" id="desc" name="desc"
-                                        placeholder="Masukkan deskripsi kegiatan" required>
+                                    <label for="desc" class="form-label">Deskripsi Kegiatan<span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" class="form-control @error('desc') is-invalid @enderror"
+                                        id="desc" name="desc" placeholder="Masukkan deskripsi kegiatan" required>
+                                    @error('desc')
+                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <!-- gambar -->
                                 <div class="mb-3">
-                                    <label for="file" class="form-label">Gambar</label>
-                                    <input type="file" class="form-control" id="file" name="file"
-                                        placeholder="Masukkan gambar" required>
+                                    <label for="file" class="form-label">Gambar<span
+                                            class="text-danger">*</span></label>
+
+                                    <!-- Menampilkan gambar yang ada -->
+                                    <img src="{{ asset('picture/Gereja.jpg') }}" alt="Gambar Default"
+                                        class="img-fluid rounded-3 mb-2" id="current-image">
+
+                                    <!-- Input file untuk mengganti gambar -->
+                                    <input type="file" class="form-control @error('foto') is-invalid @enderror"
+                                        id="foto" name="foto" placeholder="Masukkan gambar"
+                                        onchange="previewImage(event)">
+                                    @error('foto')
+                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <!-- Tombol Submit -->
@@ -48,6 +74,7 @@
                 </div>
             </div>
         </div>
-
     </div>
+    <!-- JavaScript untuk Preview Gambar -->
+    <script src="{{ asset('js/preview.js') }}"></script>
 @endsection
