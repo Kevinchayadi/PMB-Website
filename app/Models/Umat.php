@@ -23,6 +23,10 @@ class Umat extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function getAuthIdentifierName()
+    {
+        return 'email_umat';
+    }
 
     public function transactionDetails(): HasMany
     {

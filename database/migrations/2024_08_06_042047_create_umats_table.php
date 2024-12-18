@@ -18,10 +18,10 @@ return new class extends Migration
             $table->string('google_token')->nullable();
             $table->string('google_refresh_token')->nullable();
             $table->string('nama_umat', 255);
-            $table->string('nama_baptis', 255);
+            $table->string('nama_baptis', 255)->nullable();
             $table->string('slug', 255)->nullable()->unique();
             $table->string('email_umat')->unique();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->string('ttl_uamt',255)->nullable();
             $table->string('Wilayah', 225)->nullable();
             $table->string('lingkungan', 100)->nullable();

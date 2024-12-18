@@ -21,7 +21,7 @@
         </div>
         <div class="col-6">
             <div class="card border-0">
-                <div class="card-header p-0 border-bottom-0 bg-white">
+                {{-- <div class="card-header p-0 border-bottom-0 bg-white">
                     <a href="/auth/redirect" class="nav-link d-flex justify-content-center">
                         <div class="fs-5 fw-bolder me-2 align-self-center">Login with</div>
                         <div class="google badge text-bg-primary rounded-circle p-2 align-self-center" >
@@ -32,10 +32,10 @@
                             </svg>
                         </div>
                     </a>
-                </div>
-                <div class="divider d-flex align-items-center my-4">
+                </div> --}}
+                {{-- <div class="divider d-flex align-items-center my-4">
                     <p class="text-center fw-bold mx-3 mb-0">Or</p>
-                </div>
+                </div> --}}
                 <div class="card-body">
                     <form method="POST" action="/admin/login">
                         @csrf

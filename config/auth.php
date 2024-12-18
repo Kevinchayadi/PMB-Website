@@ -95,6 +95,8 @@ return [
         'umat' => [
             'driver' => 'eloquent',
             'model' => App\Models\Umat::class,
+            'table' => 'umats',
+            'column' => 'email_umat',
         ],
         'admin' => [
             'driver' => 'eloquent',
