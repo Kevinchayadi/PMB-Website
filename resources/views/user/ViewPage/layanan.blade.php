@@ -8,8 +8,7 @@
                     <div class="bg-primary rounded p-2 hvr-shrink" data-bs-toggle="modal"
                         data-bs-target="#{{ $layanans->slug }}">
                         {{-- Gambar --}}
-                        <img class="img-fluid rounded-3 mb-2" src="{{ asset('picture/Gereja.jpg') }}" alt="">
-
+                        <img class="img-fluid rounded-3 mb-2" src="{{ $layanans->path }}" alt="{{ $layanans->slug }}">
                         {{-- Description --}}
                         <div class="fs-6">
                             <div class="w-50 mx-auto fw-bolder text-center text-white">{{ $layanans->nama_acara }}</div>

@@ -7,7 +7,8 @@
             <div class="col-lg-6 col-12 p-2">
                 <div class="bg-primary rounded-3 shadow-lg p-2 hvr-shrink" data-bs-toggle="modal"
                     data-bs-target="#{{ str_replace([' ', '.', ','], '-', $romos->nama_romo) }}">
-                    <img src="{{ asset('picture/Gereja.jpg') }}" alt="" class="img-fluid rounded-3">
+                    <img src="{{ $romos->path }}" alt="{{ str_replace([' ', '.', ','], '-', $romos->nama_romo) }}"
+                        class="img-fluid rounded-3">
                     <div class="fs-6">
                         <div class="w-50 mx-auto fw-bolder text-center text-white">{{ $romos->nama_romo }}</div>
                     </div>
