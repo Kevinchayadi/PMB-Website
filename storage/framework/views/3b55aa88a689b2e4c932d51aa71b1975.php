@@ -8,6 +8,7 @@
     <title><?php echo $__env->yieldContent('title'); ?></title>
     <?php echo $__env->make('admin.layout.bootstrap', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <?php echo $__env->make('admin.Layout.font', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <link rel="stylesheet" href="<?php echo e(asset('css/hover.css')); ?>">
 
 </head>
 

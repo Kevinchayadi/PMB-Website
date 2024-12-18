@@ -2,15 +2,16 @@
 @section('title', 'Layanan - Form')
 
 @section('content')
-@if ($errors->any())
-<div class="alert alert-danger">
-    <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
-@endif
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <div class="container-fluid">
         <div class=" min-vh-100 d-flex flex-column align-items-center justify-content-center ">
             <div class="row w-100 justify-content-center">
@@ -24,36 +25,54 @@
 
                                 <!-- Nama -->
                                 <div class="mb-3">
-                                    <label for="nama_acara" class="form-label">Judul Layanan</label>
-                                    <input type="text" class="form-control" id="nama_acara" name="nama_acara"
-                                        placeholder="Masukkan judul layanan" required>
+                                    <label for="nama_acara" class="form-label">Judul Layanan<span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" class="form-control @error('nama_acara') is-invalid @enderror"
+                                        id="nama_acara" name="nama_acara" placeholder="Masukkan judul layanan" required>
+                                    @error('nama_acara')
+                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <!-- Type -->
                                 <div class="mb-3">
-                                    <label for="tipe_acara" class="form-label">Tipe Layanan (Liturgi/Sakramen)</label>
-                                    <input type="text" class="form-control" id="tipe_acara" name="tipe_acara"
-                                        placeholder="Masukkan tipe layanan" required></textarea>
+                                    <label for="tipe_acara" class="form-label">Tipe Layanan (Liturgi/Sakramen)<span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" class="form-control @error('tipe_acara') is-invalid @enderror"
+                                        id="tipe_acara" name="tipe_acara" placeholder="Masukkan tipe layanan" required>
+                                    @error('tipe_acara')
+                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <!-- Deskripsi -->
                                 <div class="mb-3">
-                                    <label for="deskripsi_acara" class="form-label">Deskripsi Layanan</label>
-                                    <textarea class="form-control" id="deskripsi_acara" name="deskripsi_acara" placeholder="Masukkan deskripsi layanan" rows="20"
-                                        required></textarea>
+                                    <label for="deskripsi_acara" class="form-label">Deskripsi Layanan<span
+                                            class="text-danger">*</span></label>
+                                    <textarea class="form-control @error('deskripsi_acara') is-invalid @enderror" id="deskripsi_acara"
+                                        name="deskripsi_acara" placeholder="Masukkan deskripsi layanan" rows="20" required></textarea>
+                                    @error('deskripsi_acara')
+                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <!-- gambar -->
                                 <div class="mb-3">
-                                    <label for="foto" class="form-label">Gambar</label>
-                                    
+                                    <label for="foto" class="form-label">Gambar<span
+                                            class="text-danger">*</span></label>
+
                                     <!-- Menampilkan gambar yang ada -->
-                                
-                                        <img src="{{ asset('picture/Gereja.jpg') }}" alt="Gambar Default" class="img-fluid rounded-3 mb-2" id="current-image">
-                                    
+                                    <img src="{{ asset('picture/Gereja.jpg') }}" alt="Gambar Default"
+                                        class="img-fluid rounded-3 mb-2" id="current-image">
 
                                     <!-- Input file untuk mengganti gambar -->
-                                    <input type="file" class="form-control" id="foto" name="foto" placeholder="Edit gambar" onchange="previewImage(event)">
+                                    <input type="file" id="gambar" name="gambar"
+                                        class="form-control @error('gambar') is-invalid @enderror" id="foto"
+                                        name="foto" placeholder="Masukkan gambar" onchange="previewImage(event)"
+                                        required>
+                                    @error('gambar')
+                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <!-- Tombol Submit -->

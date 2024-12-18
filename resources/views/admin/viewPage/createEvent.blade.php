@@ -63,9 +63,10 @@
                                 @csrf <!-- Laravel CSRF Token -->
                                 <div class="mb-3">
                                     <label for="judul" class="form-label">Judul <span
-                                        class="text-danger">*</span></label>
+                                            class="text-danger">*</span></label>
                                     <input type="text" class="form-control @error('judul') is-invalid @enderror"
-                                           id="judul" name="judul" value="{{ old('judul') }}" placeholder="Masukkan Judul Acara" required>
+                                        id="judul" name="judul" value="{{ old('judul') }}"
+                                        placeholder="Masukkan Judul Acara" required>
                                     @error('judul')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -146,7 +147,7 @@
 
                                 <!-- Tanggal -->
                                 <div class="mb-3">
-                                    <label for="jadwal_transaction" class="form-label">Jadwal Transaksi <span
+                                    <label for="jadwal_transaction" class="form-label">Jadwal Acara <span
                                             class="text-danger">*</span></label>
                                     <input type="datetime-local"
                                         class="form-control @error('jadwal_transaction') is-invalid @enderror"

@@ -1,6 +1,14 @@
 <?php $__env->startSection('title', 'Doa - List'); ?>
 
 <?php $__env->startSection('content'); ?>
+    
+    <?php if(session()->has('success')): ?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Sukses!</strong> <?php echo e(session('success')); ?>
+
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php endif; ?>
     <div class="d-flex justify-content-start align-items-center mb-3 text-center">
         <h1 class="mb-0 fw-bold  p-2 text-white bg-primary shadow rounded-end-2">Doa List</h1>
     </div>
@@ -9,8 +17,8 @@
         <!-- Pagination and Search -->
         <div class="d-flex justify-content-between align-items-center mb-3">
             <form action="/admin/doa" method="GET" class="d-flex">
-                <input type="text" id="searchInput" name="search" class="form-control me-2" value="<?php echo e(request('search')); ?>"
-                    placeholder="Search...">
+                <input type="text" id="searchInput" name="search" class="form-control me-2"
+                    value="<?php echo e(request('search')); ?>" placeholder="Search...">
                 <button type="submit" class="btn btn-outline-primary">Search</button>
             </form>
             <a href="/admin/add-doa" class="btn btn-primary ">Add New Doa</a>

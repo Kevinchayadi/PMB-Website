@@ -14,11 +14,13 @@
                         <input type="file" id="highlight1" name="highlight1" 
                             class="form-control btn btn-primary rounded-3 w-100" onchange="previewImage(this, 'preview-highlight1')">
                     </div>
+
                     <div class="col-4">
                         <img id="preview-highlight2" src="<?php echo e(asset($highlight[1]->path)); ?>" class="img-fluid rounded-3 shadow-lg mb-2" alt="Carousel 2">
                         <input type="file" id="highlight2" name="highlight2" 
                             class="form-control btn btn-primary rounded-3 w-100" onchange="previewImage(this, 'preview-highlight2')">
                     </div>
+
                     <div class="col-4">
                         <img id="preview-highlight3" src="<?php echo e(asset($highlight[2]->path)); ?>" class="img-fluid rounded-3 shadow-lg mb-2" alt="Carousel 3">
                         <input type="file" id="highlight3" name="highlight3" 
