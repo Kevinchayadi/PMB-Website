@@ -28,7 +28,8 @@
                                     <label for="nama_romo" class="form-label">Nama Pastor<span
                                             class="text-danger">*</span></label>
                                     <input type="text" class="form-control @error('nama_romo') is-invalid @enderror"
-                                        id="nama_romo" name="nama_romo" placeholder="Masukkan nama pastor" required>
+                                        id="nama_romo" name="nama_romo" value="{{ old('nama_romo', $pastor->nama_romo) }}"
+                                        required>
                                     @error('nama_romo')
                                         <div class="invalid-feedback text-white">{{ $message }}</div>
                                     @enderror
@@ -39,7 +40,8 @@
                                     <label for="DOB_romo" class="form-label">Tanggal Lahir Pastor<span
                                             class="text-danger">*</span></label>
                                     <input type="date" class="form-control @error('DOB_romo') is-invalid @enderror"
-                                        id="DOB_romo" name="DOB_romo" placeholder="Masukkan tanggal lahir pastor" required>
+                                        id="DOB_romo" name="DOB_romo" value="{{ old('DOB_romo', $pastor->DOB_romo) }}"
+                                        required>
                                     @error('DOB_romo')
                                         <div class="invalid-feedback text-white">{{ $message }}</div>
                                     @enderror
@@ -50,8 +52,8 @@
                                     <label for="tempat_lahir" class="form-label">Tempat Lahir Pastor<span
                                             class="text-danger">*</span></label>
                                     <input type="text" class="form-control @error('tempat_lahir') is-invalid @enderror"
-                                        id="tempat_lahir" name="tempat_lahir" placeholder="Masukkan tempat lahir pastor"
-                                        required>
+                                        id="tempat_lahir" name="tempat_lahir"
+                                        value="{{ old('tempat_lahir', $pastor->tempat_lahir) }}" required>
                                     @error('tempat_lahir')
                                         <div class="invalid-feedback text-white">{{ $message }}</div>
                                     @enderror
@@ -61,10 +63,18 @@
                                             class="text-danger">*</span></label>
                                     <select class="form-control @error('jabatan') is-invalid @enderror" name="jabatan"
                                         id="jabatan">
-                                        <option value="" selected disabled>Pilih Jabatan</option>
-                                        <option value="Pastor Paroki">Pastor Paroki</option>
-                                        <option value="Romo Tamu">Romo Tamu</option>
-                                        <option value="Pastor Pembantu Paroki">Pastor Pembantu Paroki</option>
+                                        <option value="" disabled
+                                            {{ old('jabatan', $pastor->jabatan ?? '') == '' ? 'selected' : '' }}>
+                                            Pilih Jabatan</option>
+                                        <option value="Pastor Paroki"
+                                            {{ old('jabatan', $pastor->jabatan ?? '') == 'Pastor Paroki' ? 'selected' : '' }}>
+                                            Pastor Paroki</option>
+                                        <option value="Romo Tamu"
+                                            {{ old('jabatan', $pastor->jabatan ?? '') == 'Romo Tamu' ? 'selected' : '' }}>
+                                            Romo Tamu</option>
+                                        <option value="Pastor Pembantu Paroki"
+                                            {{ old('jabatan', $pastor->jabatan ?? '') == 'Pastor Pembantu Paroki' ? 'selected' : '' }}>
+                                            Pastor Pembantu Paroki</option>
                                     </select>
                                     @error('jabatan')
                                         <div class="invalid-feedback text-white">{{ $message }}</div>
@@ -74,7 +84,7 @@
                                     <label for="Pengalaman" class="form-label">Pengalaman<span
                                             class="text-danger">*</span></label>
                                     <textarea class="form-control @error('Pengalaman') is-invalid @enderror" name="Pengalaman" id="Pengalaman"
-                                        cols="30" rows="10"></textarea>
+                                        cols="30" rows="10">{{ old('Pengalaman', $pastor->Pengalaman) }}</textarea>
                                     @error('Pengalaman')
                                         <div class="invalid-feedback text-white">{{ $message }}</div>
                                     @enderror
@@ -85,7 +95,8 @@
                                     <label for="nomor" class="form-label">Nomor Telepon Pastor<span
                                             class="text-danger">*</span></label>
                                     <input type="number" class="form-control @error('nomor') is-invalid @enderror"
-                                        id="nomor" name="nomor" placeholder="Masukkan nomor telepon pastor" required>
+                                        id="nomor" name="nomor"
+                                        value="{{ old('nomorhp_romo', $pastor->nomorhp_romo) }}" required>
                                     @error('nomor')
                                         <div class="invalid-feedback text-white">{{ $message }}</div>
                                     @enderror
@@ -97,13 +108,10 @@
                                             class="text-danger">*</span></label>
 
                                     <!-- Menampilkan gambar yang ada -->
-                                    @if ($romo->path)
-                                        <img src="{{ asset('storage/' . $romo->path) }}" alt="Gambar_Kegiatan"
+                                    <div>
+                                        <img src="{{ asset('storage/' . $pastor->path) }}" alt="Gambar_Pastor"
                                             class="img-fluid rounded-3 mb-2" id="current-image">
-                                    @else
-                                        <img src="{{ asset('picture/Gereja.jpg') }}" alt="Gambar Default"
-                                            class="img-fluid rounded-3 mb-2" id="current-image">
-                                    @endif
+                                    </div>
 
                                     <!-- Input file untuk mengganti gambar -->
                                     <input type="file" class="form-control @error('foto') is-invalid @enderror"

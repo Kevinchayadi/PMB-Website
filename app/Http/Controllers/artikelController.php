@@ -9,7 +9,8 @@ class artikelController extends Controller
 {
     public function artikelIndex()
     {
-        return view('admin.viewPage.landingpage.artikel.artikel');
+        Articel::get();
+        return view('admin.viewPage.landingpage.artikel.artikel', compact('artikel'));
     }
     public function addArtikel()
     {

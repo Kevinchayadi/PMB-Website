@@ -39,7 +39,7 @@
                                     <label for="desc" class="form-label">Deskripsi Kegiatan<span
                                             class="text-danger">*</span></label>
                                     <input type="text" class="form-control @error('desc') is-invalid @enderror"
-                                        id="desc" name="desc" placeholder="Masukkan deskripsi kegiatan" required>
+                                        id="desc" name="desc" placeholder="" required>
                                     @error('desc')
                                         <div class="invalid-feedback text-white">{{ $message }}</div>
                                     @enderror
@@ -51,13 +51,10 @@
                                             class="text-danger">*</span></label>
 
                                     <!-- Menampilkan gambar yang ada -->
-                                    @if ($kegiatan->path)
+                                    <div>
                                         <img src="{{ asset('storage/' . $kegiatan->path) }}" alt="Gambar_Kegiatan"
                                             class="img-fluid rounded-3 mb-2" id="current-image">
-                                    @else
-                                        <img src="{{ asset('picture/Gereja.jpg') }}" alt="Gambar Default"
-                                            class="img-fluid rounded-3 mb-2" id="current-image">
-                                    @endif
+                                    </div>
 
                                     <!-- Input file untuk mengganti gambar -->
                                     <input type="file" class="form-control @error('foto') is-invalid @enderror"

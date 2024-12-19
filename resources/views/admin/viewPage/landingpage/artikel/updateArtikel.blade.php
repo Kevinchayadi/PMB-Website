@@ -50,13 +50,10 @@
                                             class="text-danger">*</span></label>
 
                                     <!-- Menampilkan gambar yang ada -->
-                                    @if ($artikel->path)
+                                    <div>
                                         <img src="{{ asset('storage/' . $artikel->path) }}" alt="Gambar-Artikel"
                                             class="img-fluid rounded-3 mb-2" id="current-image">
-                                    @else
-                                        <img src="{{ asset('picture/Gereja.jpg') }}" alt="Gambar Default"
-                                            class="img-fluid rounded-3 mb-2" id="current-image">
-                                    @endif
+                                    </div>
 
                                     <!-- Input file untuk mengganti gambar -->
                                     <input type="file" class="form-control @error('foto') is-invalid @enderror"

@@ -15,8 +15,9 @@
     <div class="container-fluid row justify-content-center">
         <div class="col-lg-6 col-12">
             <div class="title fs-5 fw-bolder text-center">Let's Log In You To PMB Web</div>
-            <div class="image h-50 p-4">
-                <img class="img-fluid h-100 rounded-3 shadow-lg" src="{{ asset('picture/Gereja.jpg') }}" alt="">
+            <div class="image h-75 p-4">
+                <img class="img-fluid h-100 rounded-3 shadow-lg w-100" src="{{ asset('picture/Gereja.jpg') }}"
+                    alt="">
             </div>
         </div>
         <div class="col-lg-6 col-12">
@@ -50,7 +51,8 @@
                         @csrf
                         <div class="form-group mb-3">
                             <label for="email_umat">Email</label>
-                            <input type="email_umat" name="email_umat" class="form-control" id="email_umat" required autofocus>
+                            <input type="email_umat" name="email_umat" class="form-control" id="email_umat" required
+                                autofocus>
                         </div>
 
                         <div class="form-group mb-3">
