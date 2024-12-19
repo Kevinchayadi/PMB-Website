@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('documentations', function (Blueprint $table) {
             $table->id('id_documentation');
             $table->string('nameDocumentation');
-            $table->unsignedBigInteger('id_acara');
+            $table->unsignedBigInteger('id_kegiatan');
             $table->softDeletes();
             $table->timestamps();
 

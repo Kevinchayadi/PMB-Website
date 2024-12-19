@@ -103,7 +103,7 @@ Route::prefix('admin')
         Route::put('/edit-artikel/{slug}', [artikelController::class,'updatedArtikel'])->name('admin.updateArtikel');
         Route::delete('/delete-artikel/{slug}', [artikelController::class, 'deleteArtikel'])->name('admin.deleteArtikel');
 
-        Route::get('/kegiatan', [kegiatanController::class, 'kegiatanIndex'])->name('admin.kegiatan');
+        Route::get('/kegiatan', [kegiatanController::class, 'kegiatanIndex'])->name('admin.kegiatan.index');
         Route::get('/add-kegiatan', [kegiatanController::class, 'addKegiatan'])->name('admin.addKegiatanForm');
         Route::post('/add-kegiatan', [kegiatanController::class, 'storekegiatan'])->name('admin.addKegiatan');
         Route::get('/edit-kegiatan/{slug}', [kegiatanController::class, 'updateKegiatan'])->name('admin.updateKegiatanForm');
