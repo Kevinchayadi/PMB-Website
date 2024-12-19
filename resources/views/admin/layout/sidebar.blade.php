@@ -3,7 +3,12 @@
 
     <div class="d-flex flex-column align-items-center border-bottom pb-2">
         <img class="logo p-1 col-12" src="{{ asset('picture/Logo Paroki baru 2.png') }}" alt="">
-        <div class="text-center fs-5 text-white">{{ Auth::user()->name ?? 'username' }}</div>
+        <div class="text-center fs-5 text-white">
+            {{ Auth::guard('admin')->user()->username ?? 'username' }}
+            @if(Auth::guard('admin')->check())
+                | <a href="/admin/logout" class="nav-link  text-white" style="display: inline;">Logout</a>
+            @endif
+        </div>
     </div>
 
     <ul class="fs-5 list-unstyled ">

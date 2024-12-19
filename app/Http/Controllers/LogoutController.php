@@ -13,13 +13,13 @@ class LogoutController extends Controller
         Auth::guard('admin')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('admin.login');
+        return redirect()->route('admin.login');
     }
     function userLogout(Request $request)
     {
         Auth::guard('web')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('umat.login');
+        return redirect()->route('umat.login');
     }
 }

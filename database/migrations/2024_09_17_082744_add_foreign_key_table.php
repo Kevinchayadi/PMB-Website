@@ -44,9 +44,7 @@ return new class extends Migration
             
         // });
 
-        Schema::table('documentations', function (Blueprint $table) {
-            $table->foreign('id_acara')->references('id_acara')->on('acaras')->onDelete('cascade');
-        });
+        
 
 
     }

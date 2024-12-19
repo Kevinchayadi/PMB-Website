@@ -87,7 +87,7 @@ class RequestController extends Controller
     public function pernikahanSubmit(Request $request)
     {
         $request->validate([
-            'namaAcara' => 'required|string|max:255',
+            'nama_acara' => 'required|string|max:255',
             'id_umat' => 'required|integer|exists:umats,id',
             'umat_terlibat_satu' => 'required|string',
             'umat_terlibat_dua' => 'required|nullable|string',
@@ -132,21 +132,79 @@ class RequestController extends Controller
         ModelsRequest::create($request->all());
         return redirect()->route('home')->with('success', 'Pengajuan baptis berhasil dikirim!');
     }
+    public function storeRequest(Request $request)
+    {
+        // dd($request->all());
+        $data=[];
+        if($request->nama_acara=="pernikahan"){
+            $data=$request->validate([
+                'nama_acara' => 'required|string|max:255',
+                'id_umat' => 'required|integer|exists:umats,id_umat',
+                'nama_terlibat_satu' => 'required|string',
+                'nama_terlibat_dua' => 'required|string',
+                'nama_romo' => 'nullable|string|max:255',
+                'jadwal_acara' => 'required|date',
+                'deskripsi_pengajuan' => 'nullable|string',
+            ]);
+        }else{
+            $data=$request->validate([
+                'nama_acara' => 'required|string|max:255',
+                'id_umat' => 'required|integer|exists:umats,id_umat',
+                'nama_terlibat_satu' => 'required|string',
+                'nama_terlibat_dua' => 'nullable|string',
+                'nama_romo' => 'nullable|string|max:255',
+                'jadwal_acara' => 'required|date',
+                'deskripsi_pengajuan' => 'nullable|string',
+            ]);
+        }
+   
+        
+        // dd($data);
+        ModelsRequest::create($data);
+        return redirect()->route('home')->with('success', 'Pengajuan baptis berhasil dikirim!');
+    }
 
     public function pendingListRequest()
     {
-        $requestList = ModelsRequest::with('umats')->where('status','pending')->get();
+        $requestList = ModelsRequest::where('status','pending')->get();
+        // dd($requestList);
         return view('admin.viewPage.pendingRequest', ['requestList' => $requestList]);
     }
     public function processListRequest()
     {
-        $requestList = ModelsRequest::with('umats')->where('status','process')->get();
+        $requestList = ModelsRequest::where('status','process')->get();
         return view('admin.viewPage.processRequest', ['requestList' => $requestList]);
     }
     public function acceptedListRequest()
     {
-        $requestList = ModelsRequest::with('umats')->where('status','accepted')->get();
+        $requestList = ModelsRequest::where('status','accepted')->get();
         return view('admin.viewPage.acceptedRequest', ['requestList' => $requestList]);
+    }
+    public function acceptedRequest($id)
+    {
+        $requestData = ModelsRequest::find($id);
+        $current_status = $requestData->status;
+        $data = ['Komuni Pertama', 'Sakramen Baptis', 'Sakramen Tobat', 'Krismasi'];
+        // dd(in_array($requestData->nama_acara, $data));
+        if($requestData && in_array($requestData->nama_acara, $data) && $requestData->status == 'pending' ){
+            $requestData->status = 'process';
+        }else{
+            $requestData->status = 'accepted';
+        }
+        $requestData->save();
+        if($current_status == 'pending'){
+            return redirect()->route('admin.request.pending')->with('success', 'data berhasil Diterima!');
+        }else{
+            return redirect()->route('admin.update.Proccessed')->with('success', 'data berhasil Diterima!');
+        }
+    }
+    public function rejectRequest(Request $request,$id)
+    {
+        $requestData = ModelsRequest::find($id);
+        $requestData->status = 'reject';
+        $requestData->keterangan = $request->reason;
+        $requestData->save();
+        return redirect()->route('admin.request.pending')->with('success', 'data berhasil Ditolak!');
     }
     public function detailRequest($slug)
     {
@@ -164,13 +222,13 @@ class RequestController extends Controller
     }
 
 
-    public function RejectRequest($slug)
-    {
-        $requestList = ModelsRequest::with('umats')->where('slug', $slug)->firstOrFail();
-        $requestList->delete();
+    // public function RejectRequest($slug)
+    // {
+    //     $requestList = ModelsRequest::with('umats')->where('slug', $slug)->firstOrFail();
+    //     $requestList->delete();
 
-        return back()->with('Rejected Success', 'Pengajuan berhasil dibatalkan!!');
-    }
+    //     return back()->with('Rejected Success', 'Pengajuan berhasil dibatalkan!!');
+    // }
 
 
 }

@@ -94,11 +94,11 @@
         <div class="right col-3">
             <div class="collapse navbar-collapse row justify-content-center">
                 <div class="username col-5 px-0 fw-bolder">
-                    Halo,<span class="ms-1 text-primary">Ucok Subejo</span>
+                    Halo,<span class="ms-1 text-primary"><?php echo e(Auth::guard('web')->user()->nama_umat); ?>  </span>
                 </div>
 
                 <div class="logoutIcon col-2 px-0">
-                    <a class="icon-link icon-link-hover text-dark text-decoration-none" href="">
+                    <a class="icon-link icon-link-hover text-dark text-decoration-none" href="/logout">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000"
                             class="bi bi-box-arrow-right" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"

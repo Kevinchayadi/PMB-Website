@@ -17,6 +17,7 @@ use App\Http\Controllers\pastorController;
 use App\Http\Controllers\artikelController;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\kegiatanController;
+use App\Http\Controllers\LogoutController;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -45,6 +46,7 @@ Route::get('/jadwal/{slug}', [LandingController::class, 'jadwalDetail'])->name('
 Route::get('/artikel', [LandingController::class, 'artikel'])->name('artikel');
 Route::get('/artikel/{slug}', [LandingController::class, 'artikeldetail'])->name('artikel');
 Route::get('/layanan', [LandingController::class, 'layanan'])->name('layanan');
+Route::post('/request', [RequestController::class, 'storeRequest'])->name('request');
 Route::get('/hubungi', [hubungiController::class, 'hubungi'])->name('hubungi');
 
 Route::middleware(['guest:web'])->group(function () {
@@ -61,7 +63,7 @@ Route::prefix('admin')
     });
 
 Route::prefix('admin')
-    // ->middleware(['auth:admin'])
+    ->middleware(['auth:admin'])
     ->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
         Route::get('/admin-list', [AdminController::class, 'index'])->name('admin.admin-list');
@@ -101,7 +103,7 @@ Route::prefix('admin')
         Route::put('/edit-artikel/{slug}', [artikelController::class,'updatedArtikel'])->name('admin.updateArtikel');
         Route::delete('/delete-artikel/{slug}', [artikelController::class, 'deleteArtikel'])->name('admin.deleteArtikel');
 
-        Route::get('/kegiatan', [kegiatanController::class, 'kegiatanIndex'])->name('admin.kegiatan');
+        Route::get('/kegiatan', [kegiatanController::class, 'kegiatanIndex'])->name('admin.kegiatan.index');
         Route::get('/add-kegiatan', [kegiatanController::class, 'addKegiatan'])->name('admin.addKegiatanForm');
         Route::post('/add-kegiatan', [kegiatanController::class, 'storekegiatan'])->name('admin.addKegiatan');
         Route::get('/edit-kegiatan/{slug}', [kegiatanController::class, 'updateKegiatan'])->name('admin.updateKegiatanForm');
@@ -153,9 +155,11 @@ Route::prefix('admin')
         // Route::put('/update-pengurapan-sakit/{slug}', [TransaksiController::class,'updatedPengurapan'])->name('admin.updated.Pengurapan');
 
         Route::get('/Request-Pending', [RequestController::class,'pendingListRequest'])->name('admin.request.pending');
-        Route::get('/Request-Processed', [RequestController::class,'processListRequest'])->name('admin.update.Misa');
-        Route::get('/Request-Accepted', [RequestController::class,'acceptedListRequest'])->name('admin.update.Misa');
+        Route::put('/datacomplete/{id}', [RequestController::class,'acceptedRequest'])->name('admin.request.proccess');
+        Route::get('/Request-Processed', [RequestController::class,'processListRequest'])->name('admin.update.Proccessed');
+        Route::get('/Request-Accepted', [RequestController::class,'acceptedListRequest'])->name('admin.update.Accepted');
         Route::get('/Request-detail/{id}', [RequestController::class,'pendingListRequest'])->name('admin.update.Misa');
+        Route::put('/Request-Reject/{id}', [RequestController::class,'rejectRequest'])->name('admin.request.reject');
 
         Route::get('/highlight', [UmatController::class, 'highlight'])->name('admin.highlight');
         Route::post('/highlight', [UmatController::class, 'highlightupdate'])->name('admin.highlightupdate');
@@ -163,6 +167,7 @@ Route::prefix('admin')
         Route::get('export/umat', [ExcelController::class, 'exportUmat'])->name('export.umat');
         Route::get('export/event/{status}', [ExcelController::class, 'exportEvent'])->name('export.event');
         Route::get('export/request/{status}', [ExcelController::class, 'exportRequest'])->name('export.request');
+        Route::get('logout', [LogoutController::class, 'adminLogout'])->name('admin.logout');
 
     });
 
@@ -171,5 +176,5 @@ Route::prefix('admin')
     Route::get('/auth/redirect', [LoginController::class, 'socialitePage']);
      
     Route::get('/Auth/google/callback', [LoginController::class, 'googleLogin']);
-
+    Route::get('/logout', [LogoutController::class, 'userLogout'])->name('umats.logout');
 Route::middleware('auth:web')->group(function () {});

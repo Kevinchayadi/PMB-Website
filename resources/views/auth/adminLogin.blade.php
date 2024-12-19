@@ -40,8 +40,8 @@
                     <form method="POST" action="/admin/login">
                         @csrf
                         <div class="form-group mb-3">
-                            <label for="email">Email</label>
-                            <input type="email" name="email" class="form-control" id="email" required autofocus>
+                            <label for="text">username</label>
+                            <input type="username" name="username" class="form-control" id="username" required autofocus>
                         </div>
 
                         <div class="form-group mb-3">

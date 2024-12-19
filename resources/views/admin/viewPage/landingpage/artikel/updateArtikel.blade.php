@@ -19,27 +19,30 @@
                         <div class="card-body text-white">
 
                             <h2 class="card-title text-center mb-4 fw-bolder">Edit Artikel</h2>
-                            <form action="/admin/edit-artikel/{id}" method="PUT">
-                                @csrf <!-- Laravel CSRF Token -->
+                            <form action="/admin/edit-artikel/{{ $artikel->id }}" method="POST"
+                                enctype="multipart/form-data">
+                                @csrf
+                                @method('PUT')
+                                
 
                                 <!-- Nama -->
                                 <div class="mb-3">
-                                    <label for="name" class="form-label">Judul Artikel<span
+                                    <label for="title" class="form-label">Judul Artikel<span
                                             class="text-danger">*</span></label>
-                                    <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                        id="name" name="name" placeholder="Masukkan judul artikel" required>
-                                    @error('name')
+                                    <input type="text" class="form-control @error('title') is-invalid @enderror"
+                                        id="title" name="title" placeholder="Masukkan judul artikel" value="{{ $artikel->title }}" required>
+                                    @error('title')
                                         <div class="invalid-feedback text-white">{{ $message }}</div>
                                     @enderror
                                 </div>
 
                                 <!-- Deskripsi -->
                                 <div class="mb-3">
-                                    <label for="desc" class="form-label">Deskripsi Artikel<span
+                                    <label for="body" class="form-label">Deskripsi Artikel<span
                                             class="text-danger">*</span></label>
-                                    <textarea class="form-control @error('desc') is-invalid @enderror" id="desc" name="desc"
-                                        placeholder="Masukkan deskripsi Artikel" rows="20" required></textarea>
-                                    @error('desc')
+                                    <textarea class="form-control @error('body') is-invalid @enderror" id="body" name="body"
+                                        placeholder="Masukkan deskripsi Artikel" rows="20" required>{{ $artikel->body }}</textarea>
+                                    @error('body')
                                         <div class="invalid-feedback text-white">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -66,10 +69,10 @@
 
                                 {{-- additional link --}}
                                 <div class="mb-3">
-                                    <label for="link" class="form-label">Link Artikel (Opsional)</label>
-                                    <input type="text" class="form-control @error('link') is-invalid @enderror"
-                                        id="link" name="link" placeholder="Masukkan link artikel">
-                                    @error('link')
+                                    <label for="additionalLink" class="form-label">Link Artikel (Opsional)</label>
+                                    <input type="text" class="form-control @error('additionalLink') is-invalid @enderror"
+                                        id="additionalLink" name="additionalLink" placeholder="Masukkan link artikel" value="{{ $artikel->additionalLink }}">
+                                    @error('additionalLink')
                                         <div class="invalid-feedback text-white">{{ $message }}</div>
                                     @enderror
                                 </div>

@@ -1,13 +1,23 @@
 <?php $__env->startSection('title', 'Layanan'); ?>
 <?php $__env->startSection('content'); ?>
     <div class="container-fluid row mx-auto">
+        <?php if($errors->any()): ?>
+        <div class="alert alert-danger">
+            <ul>
+                <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <li><?php echo e($error); ?></li>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </ul>
+        </div>
+    <?php endif; ?>
         <?php if($layanan->count() > 0): ?>
-            <?php $__currentLoopData = $layanan; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $layanans): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> 
+            <?php $__currentLoopData = $layanan; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $layanans): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="col-lg-4 col-12 p-2">
                     <div class="bg-primary rounded p-2 hvr-shrink" data-bs-toggle="modal"
                         data-bs-target="#<?php echo e($layanans->slug); ?>">
                         
-                        <img class="img-fluid rounded-3 mb-2" src="<?php echo e(asset('storage/'. $layanans->path)); ?>" alt="<?php echo e($layanans->slug); ?>">
+                        <img class="img-fluid rounded-3 mb-2" src="<?php echo e(asset('storage/' . $layanans->path)); ?>"
+                            alt="<?php echo e($layanans->slug); ?>">
                         
                         <div class="fs-6">
                             <div class="w-50 mx-auto fw-bolder text-center text-white"><?php echo e($layanans->nama_acara); ?></div>
@@ -47,33 +57,38 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form>
+                                    <form action="/request" method="POST">
+                                        <?php echo csrf_field(); ?>
+                                        <input type="text" class="form-control" id="nama_acara" name="nama_acara"
+                                            placeholder="Contoh: John Smith" value="<?php echo e($layanans->nama_acara); ?>" hidden>
+                                        <input type="text" class="form-control" id="id_umat"name="id_umat" value="1" hidden>
                                         <div class="mb-3">
-                                            <label for="Terlibat-1" class="form-label">Nama Terlibat 1</label>
-                                            <input type="text" class="form-control" id="Terlibat-1"
+                                            <label for="nama_terlibat_satu" class="form-label">Nama Terlibat 1</label>
+                                            <input type="text" class="form-control" id="nama_terlibat_satu" name="nama_terlibat_satu"
                                                 placeholder="Contoh: John Smith" required>
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="Terlibat-2" class="form-label">Nama Terlibat 2</label>
-                                            <input type="text" class="form-control" id="Terlibat-2"
+                                            <label for="nama_terlibat_dua" class="form-label">Nama Terlibat 2</label>
+                                            <input type="text" class="form-control" id="nama_terlibat_dua" name="nama_terlibat_dua"
                                                 placeholder="Contoh: John Smith">
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="Romo" class="form-label">Nama Romo</label>
-                                            <input type="text" class="form-control" id="Romo"
+                                            <label for="nama_romo" class="form-label">Nama Romo</label>
+                                            <input type="text" class="form-control" id="nama_romo" name="nama_romo"
                                                 placeholder="Contoh: John Smith">
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="Jadwal" class="form-label">Jadwal Acara</label>
-                                            <input type="date" class="form-control" id="Jadwal">
+                                            <label for="jadwal_acara" class="form-label">Jadwal Acara</label>
+                                            <input type="date" class="form-control" id="jadwal_acara" name="jadwal_acara">
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="Description" class="form-label">Catatan</label>
-                                            <textarea class="form-control" id="Description" rows="3" placeholder="Contoh: Tolong segera diproses nya"></textarea>
+                                            <label for="deskripsi_pengajuan" class="form-label">Catatan</label>
+                                            <textarea class="form-control" id="deskripsi_pengajuan" name="deskripsi_pengajuan" rows="3"
+                                                placeholder="Contoh: Tolong segera diproses nya"></textarea>
                                         </div>
 
                                         <button type="submit" class="btn btn-primary hvr-shrink">Submit</button>

@@ -62,7 +62,7 @@
                                 <?php echo csrf_field(); ?> <!-- Laravel CSRF Token -->
                                 <div class="mb-3">
                                     <label for="judul" class="form-label">Judul <span
-                                        class="text-danger">*</span></label>
+                                            class="text-danger">*</span></label>
                                     <input type="text" class="form-control <?php $__errorArgs = ['judul'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -71,7 +71,8 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
-                                           id="judul" name="judul" value="<?php echo e(old('judul')); ?>" placeholder="Masukkan Judul Acara" required>
+                                        id="judul" name="judul" value="<?php echo e(old('judul')); ?>"
+                                        placeholder="Masukkan Judul Acara" required>
                                     <?php $__errorArgs = ['judul'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -219,7 +220,7 @@ unset($__errorArgs, $__bag); ?>
 
                                 <!-- Tanggal -->
                                 <div class="mb-3">
-                                    <label for="jadwal_transaction" class="form-label">Jadwal Transaksi <span
+                                    <label for="jadwal_transaction" class="form-label">Jadwal Acara <span
                                             class="text-danger">*</span></label>
                                     <input type="datetime-local"
                                         class="form-control <?php $__errorArgs = ['jadwal_transaction'];

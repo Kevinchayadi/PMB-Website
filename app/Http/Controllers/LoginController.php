@@ -90,11 +90,11 @@ class LoginController extends Controller
         // Cek apakah pengguna ingin menggunakan fitur "Remember Me"
         $remember = $request->filled('remember');
         
-        dd($remember);
+        // dd($remember);
         // Coba untuk login dengan kredensial yang telah divalidasi
         if (Auth::guard('web')->attempt($credentials, $remember)) {
             // Jika login berhasil, arahkan ke halaman dashboard
-            return redirect()->route('user.viewPage.dashboard');
+            return redirect()->route('home');
         }
     
         // Jika login gagal, kembalikan dengan pesan error
