@@ -176,5 +176,5 @@ Route::prefix('admin')
     Route::get('/auth/redirect', [LoginController::class, 'socialitePage']);
      
     Route::get('/Auth/google/callback', [LoginController::class, 'googleLogin']);
-
+    Route::get('/logout', [LogoutController::class, 'userLogout'])->name('umats.logout');
 Route::middleware('auth:web')->group(function () {});
