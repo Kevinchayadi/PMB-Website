@@ -27,21 +27,21 @@
 
                                 <!-- Nama -->
                                 <div class="mb-3">
-                                    <label for="name" class="form-label">Nama Doa</label>
-                                    <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                        id="name" name="name" placeholder="Masukkan nama doa"
-                                        value="{{ old('name') }}" required>
-                                    @error('name')
+                                    <label for="nama_doa" class="form-label">Nama Doa</label>
+                                    <input type="text" class="form-control @error('nama_doa') is-invalid @enderror"
+                                        id="nama_doa" name="nama_doa" placeholder="Masukkan nama doa"
+                                        value="{{ old('nama_doa') }}" required>
+                                    @error('nama_doa')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
 
                                 <!-- Deskripsi -->
                                 <div class="mb-3">
-                                    <label for="desc" class="form-label">Deskripsi Doa</label>
-                                    <textarea class="form-control @error('desc') is-invalid @enderror" id="desc" name="desc" rows="5"
-                                        placeholder="Masukkan deskripsi doa" required>{{ old('desc') }}</textarea>
-                                    @error('desc')
+                                    <label for="deskripsi_doa" class="form-label">Deskripsi Doa</label>
+                                    <textarea class="form-control @error('deskripsi_doa') is-invalid @enderror" id="deskripsi_doa" name="deskripsi_doa" rows="5"
+                                        placeholder="Masukkan deskripsi doa" required>{{ old('deskripsi_doa') }}</textarea>
+                                    @error('deskripsi_doa')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
