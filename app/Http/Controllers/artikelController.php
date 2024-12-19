@@ -10,11 +10,7 @@ class artikelController extends Controller
 {
     public function artikelIndex()
     {
-<<<<<<< HEAD
-        Articel::get();
-=======
         $artikel = Articel::get();
->>>>>>> 07907ae12082f64d2cf56987107948381f286f31
         return view('admin.viewPage.landingpage.artikel.artikel', compact('artikel'));
     }
     public function addArtikel()
