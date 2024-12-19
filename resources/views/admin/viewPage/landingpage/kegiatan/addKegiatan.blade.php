@@ -20,16 +20,16 @@
                         <div class="card-body text-white">
 
                             <h2 class="card-title text-center mb-4 fw-bolder">Create New Kegiatan</h2>
-                            <form action="/admin/add-kegiatan" method="POST">
+                            <form action="/admin/add-kegiatan" method="POST" enctype="multipart/form-data">
                                 @csrf <!-- Laravel CSRF Token -->
 
                                 <!-- Nama -->
                                 <div class="mb-3">
-                                    <label for="name" class="form-label">Nama Kegiatan<span
+                                    <label for="title" class="form-label">Nama Kegiatan<span
                                             class="text-danger">*</span></label>
-                                    <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                        id="name" name="name" placeholder="Masukkan nama kegiatan" required>
-                                    @error('name')
+                                    <input type="text" class="form-control @error('title') is-invalid @enderror"
+                                        id="title" name="title" placeholder="Masukkan nama kegiatan" required>
+                                    @error('title')
                                         <div class="invalid-feedback text-white">{{ $message }}</div>
                                     @enderror
                                 </div>

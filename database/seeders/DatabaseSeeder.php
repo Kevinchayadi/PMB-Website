@@ -21,9 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(doa_seeder::class);
         $this->call(hightlight_seeder::class);
         $this->call(article_seeder::class);
-        $this->call(dokumentasi_seeder::class);
-
-
-       
+        // $this->call(dokumentasi_seeder::class);
     }
 }

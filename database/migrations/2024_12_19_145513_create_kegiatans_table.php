@@ -23,7 +23,7 @@ return new class extends Migration
             $table->timestamps();
         });
         Schema::table('documentations', function (Blueprint $table) {
-            $table->foreign('id_kegiatan')->references('id')->on('kegiatan')->onDelete('cascade');
+            $table->foreign('id_kegiatan')->references('id')->on('kegiatans')->onDelete('cascade');
         });
     }
 

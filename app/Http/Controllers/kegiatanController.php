@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 class kegiatanController extends Controller
 {
     public function kegiatanIndex(){
-        // $kegiatans = Kegiatan::all();
+        $kegiatans = Kegiatan::all();
         return view('admin.viewPage.landingpage.kegiatan.kegiatan', compact('kegiatans'));
     }
     public function addKegiatan(){
