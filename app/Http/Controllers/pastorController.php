@@ -11,7 +11,8 @@ class pastorController extends Controller
 {
     public function pastorIndex()
     {
-        $pastor = Romo::get();
+        $pastor = Romo::withTrashed()->orderBy('deleted_at')->get();
+        // $inactive = Romo::withTrashed()->get();
         return view('admin.viewPage.landingpage.pastor.Pastor', compact('pastor'));
     }
     public function addPastor()
@@ -21,14 +22,15 @@ class pastorController extends Controller
 
     public function storePastor(Request $request)
     {
+        // dd($request->foto);
         $input = $request->validate([
             'nama_romo' => 'required|string|max:255',
             'DOB_romo' => 'nullable|date',
             'tempat_lahir' => 'nullable|string|max:255',
             'jabatan' => 'nullable|string|max:255',
             'pengalaman' => 'nullable|string',
-            'nomorhp_romo' => 'nullable|digits:10',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'nomorhp_romo' => 'nullable|min:10',
+            'foto' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $foto = str_replace([' ', '.'], '-', $input['nama_romo']);
@@ -50,18 +52,20 @@ class pastorController extends Controller
     public function updatePastor($id)
     {
         $pastor = Romo::find($id);
+        // dd($pastor)
         return view('admin.viewPage.landingpage.pastor.updatePastor', compact('pastor'));
     }
     public function updatedPastor(Request $request, $id)
     {
+        // dd($request->all());
         $input = $request->validate([
             'nama_romo' => 'required|string|max:255',
             'DOB_romo' => 'nullable|date',
             'tempat_lahir' => 'nullable|string|max:255',
             'jabatan' => 'nullable|string|max:255',
-            'pengalaman' => 'nullable|string',
-            'nomorhp_romo' => 'nullable|digits:10',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'pengalaman' => 'nullable|string|max:255',
+            'nomorhp_romo' => 'nullable|min:10',
+            'foto' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $foto= str_replace([' ', '.'], '-', $input['nama_romo']);

@@ -12,44 +12,40 @@
         </div>
     @endif
     <div class="container-fluid">
-        <div class=" min-vh-100 d-flex flex-column align-items-center justify-content-center ">
+        <div class="min-vh-100 d-flex flex-column align-items-center justify-content-center">
             <div class="row w-100 justify-content-center">
                 <div class="col-10 col-md-8">
                     <div class="card bg-primary shadow-lg rounded-4">
                         <div class="card-body text-white">
-
                             <h2 class="card-title text-center mb-4 fw-bolder">Create New Artikel</h2>
-                            <form action="/admin/add-artikel" method="POST">
+                            <form action="/admin/add-artikel" method="POST" enctype="multipart/form-data">
                                 @csrf <!-- Laravel CSRF Token -->
 
                                 <!-- Nama -->
                                 <div class="mb-3">
-                                    <label for="name" class="form-label">Judul Artikel<span
-                                            class="text-danger">*</span></label>
-                                    <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                        id="name" name="name" placeholder="Masukkan judul artikel" required>
-                                    @error('name')
+                                    <label for="title" class="form-label">Judul Artikel<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control @error('title') is-invalid @enderror"
+                                        id="title" name="title" placeholder="Masukkan judul artikel"
+                                        value="{{ old('title') }}" required>
+                                    @error('title')
                                         <div class="invalid-feedback text-white">{{ $message }}</div>
                                     @enderror
                                 </div>
 
                                 <!-- Deskripsi -->
                                 <div class="mb-3">
-                                    <label for="desc" class="form-label">Deskripsi Artikel<span
-                                            class="text-danger">*</span></label>
-                                    <textarea class="form-control @error('desc') is-invalid @enderror" id="desc" name="desc"
-                                        placeholder="Masukkan deskripsi Artikel" rows="20" required></textarea>
-                                    @error('desc')
+                                    <label for="body" class="form-label">Deskripsi Artikel<span class="text-danger">*</span></label>
+                                    <textarea class="form-control @error('body') is-invalid @enderror" id="body" name="body"
+                                        placeholder="Masukkan deskripsi Artikel" rows="20" required>{{ old('body') }}</textarea>
+                                    @error('body')
                                         <div class="invalid-feedback text-white">{{ $message }}</div>
                                     @enderror
                                 </div>
 
-                                <!-- gambar -->
+                                <!-- Gambar -->
                                 <div class="mb-3">
-                                    <label for="file" class="form-label">Gambar<span
-                                            class="text-danger">*</span></label>
-
-                                    <!-- Menampilkan gambar yang ada -->
+                                    <label for="file" class="form-label">Gambar<span class="text-danger">*</span></label>
+                                    <!-- Menampilkan gambar default -->
                                     <img src="{{ asset('picture/Gereja.jpg') }}" alt="Gambar Default"
                                         class="img-fluid rounded-3 mb-2" id="current-image">
 
@@ -62,12 +58,13 @@
                                     @enderror
                                 </div>
 
-                                {{-- additional link --}}
+                                <!-- Additional Link -->
                                 <div class="mb-3">
-                                    <label for="link" class="form-label">Link Artikel (Opsional)</label>
-                                    <input type="text" class="form-control @error('link') is-invalid @enderror"
-                                        id="link" name="link" placeholder="Masukkan link artikel">
-                                    @error('link')
+                                    <label for="additionalLink" class="form-label">Additional Link Artikel (Opsional)</label>
+                                    <input type="text" class="form-control @error('additionalLink') is-invalid @enderror"
+                                        id="additionalLink" name="additionalLink" placeholder="Masukkan additionalLink artikel"
+                                        value="{{ old('additionalLink') }}">
+                                    @error('additionalLink')
                                         <div class="invalid-feedback text-white">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -75,7 +72,7 @@
                                 <!-- Tombol Submit -->
                                 <div class="d-grid">
                                     <button type="submit" class="btn btn-success">Submit</button>
-                                    <a class=" btn btn-danger rounded-none mt-2" href="/admin/artikel"> cancel</a>
+                                    <a class="btn btn-danger rounded-none mt-2" href="/admin/artikel">Cancel</a>
                                 </div>
                             </form>
                         </div>

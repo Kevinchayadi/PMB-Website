@@ -8,9 +8,6 @@
     <div class="px-4">
         <!-- Pagination and Search -->
         <div class="d-flex justify-content-between align-items-center mb-4 p-3 bg-light rounded shadow-sm">
-            <!-- Button to Add New Admin --
-
-                                <!-- Search Input Field -->
             <div class="d-flex align-items-center">
                 <input type="text" id="searchInput" class="form-control w-50" placeholder="Search Request..."
                     aria-label="Search Request">
@@ -20,47 +17,108 @@
             </div>
         </div>
 
-
         <!-- Table -->
         <div class="rounded overflow-hidden shadow-sm">
             <table class="table table-hover table-striped mb-0 text-center">
                 <thead class="table-primary">
                     <tr>
                         <th scope="col">No.</th>
-                        <th scope="col">ID Admin</th>
-                        <th scope="col">Type Request</th>
+                        <th scope="col">Nama Request</th>
+                        <th scope="col">Tipe Request</th>
+                        <th scope="col">Tanggal Request</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
+                    <?php $__empty_1 = true; $__currentLoopData = $requestList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                        <tr>
+                            <th scope="row"><?php echo e($key + 1); ?></th>
+                            <td><?php echo e($data->nama_terlibat_satu); ?></td>
+                            <td><?php echo e($data->nama_acara); ?></td>
+                            <td><?php echo e($data->jadwal_acara); ?></td>
+                            <td>
+                                <!-- Accept Form -->
+                                <form method="POST" action="<?php echo e(route('admin.request.proccess', $data->id)); ?>" class="d-inline">
+                                    <?php echo csrf_field(); ?>
+                                    <?php echo method_field('PUT'); ?>
+                                    <button type="submit" class="btn btn-sm btn-outline-success">Accept</button>
+                                </form>
 
-                        <td>
-                            <button class="btn btn-sm btn-outline-primary">Edit</button>
-                            <button class="btn btn-sm btn-outline-danger">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>
-                            <button class="btn btn-sm btn-outline-primary">Edit</button>
-                            <button class="btn btn-sm btn-outline-danger">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>The Bird</td>
-                        <td>
-                            <button class="btn btn-sm btn-outline-primary">Edit</button>
-                            <button class="btn btn-sm btn-outline-danger">Delete</button>
-                        </td>
-                    </tr>
+                                <!-- Button to trigger the detail modal -->
+                                <button 
+                                    class="btn btn-sm btn-outline-info" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#detailModal<?php echo e($data->id); ?>">
+                                    Detail
+                                </button>
+
+                                <!-- Button to trigger the reject modal -->
+                                <button 
+                                    class="btn btn-sm btn-outline-danger" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#rejectModal<?php echo e($data->id); ?>">
+                                    Reject
+                                </button>
+                            </td>
+                        </tr>
+
+                        <!-- Modal for Details -->
+                        <div class="modal fade" id="detailModal<?php echo e($data->id); ?>" tabindex="-1" aria-labelledby="detailModalLabel<?php echo e($data->id); ?>" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="detailModalLabel<?php echo e($data->id); ?>">Request Details</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p><strong>Nama Terlibat Satu:</strong> <?php echo e($data->nama_terlibat_satu); ?></p>
+                                        <p><strong>Nama Terlibat Dua:</strong> <?php echo e($data->nama_terlibat_dua); ?></p>
+                                        <p><strong>Nama Romo:</strong> <?php echo e($data->nama_romo); ?></p>
+                                        <p><strong>Jadwal:</strong> <?php echo e($data->jadwal_acara); ?></p>
+                                        <p><strong>Deskripsi:</strong> <?php echo e($data->deskripsi_pengajuan); ?></p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <form method="POST" action="<?php echo e(route('admin.request.proccess', $data->id)); ?>" class="d-inline">
+                                            <?php echo csrf_field(); ?>
+                                            <?php echo method_field('PUT'); ?>
+                                            <button type="submit" class="btn btn-sm btn-outline-success">Accept</button>
+                                        </form>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal for Reject -->
+                        <div class="modal fade" id="rejectModal<?php echo e($data->id); ?>" tabindex="-1" aria-labelledby="rejectModalLabel<?php echo e($data->id); ?>" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="rejectModalLabel<?php echo e($data->id); ?>">Reject Request</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form method="POST" action="<?php echo e(route('admin.request.reject', $data->id)); ?>">
+                                        <?php echo csrf_field(); ?>
+                                        <?php echo method_field('PUT'); ?>
+                                        <div class="modal-body">
+                                            <div class="form-group mb-3">
+                                                <label for="reason" class="form-label">Reason for Rejection:</label>
+                                                <textarea name="reason" id="reason" class="form-control" rows="4" placeholder="Enter reason for rejection" required></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-danger">Reject</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                        <tr>
+                            <td colspan="5">No data available.</td>
+                        </tr>
+                    <?php endif; ?>
                 </tbody>
             </table>
         </div>

@@ -9,7 +9,7 @@
     </div>
 
     <div class="rounded overflow-hidden shadow-sm mx-5">
-        @if ($event->count() > 0)
+        {{-- @if ($event->count() > 0) --}}
             <table class="table table-hover table-striped mb-0 text-center">
                 <thead class="table-primary">
                     <tr>
@@ -22,7 +22,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($event as $index => $data)
+                    @forelse ($event as $index => $data)
                         <tr>
                             <th scope="row">{{ $index + 1 }}</th>
                             <td>{{ $data->judul }}</td> <!-- Nama data -->
@@ -34,12 +34,16 @@
                                 <a href="#" class="btn btn-sm btn-outline-primary">Detail</a>
                             </td>
                         </tr>
-                    @endforeach
+                        @empty
+                        <tr>
+                            <td colspan="5">No data available.</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
-        @else
+        {{-- @else
             <div class="text-center fw-bolder fs-5">Data Event Masih Kosong!</div>
-        @endif
+        @endif --}}
 
     </div>
 @endsection

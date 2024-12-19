@@ -166,18 +166,45 @@ class RequestController extends Controller
 
     public function pendingListRequest()
     {
-        $requestList = ModelsRequest::with('umats')->where('status','pending')->get();
+        $requestList = ModelsRequest::where('status','pending')->get();
+        // dd($requestList);
         return view('admin.viewPage.pendingRequest', ['requestList' => $requestList]);
     }
     public function processListRequest()
     {
-        $requestList = ModelsRequest::with('umats')->where('status','process')->get();
+        $requestList = ModelsRequest::where('status','process')->get();
         return view('admin.viewPage.processRequest', ['requestList' => $requestList]);
     }
     public function acceptedListRequest()
     {
-        $requestList = ModelsRequest::with('umats')->where('status','accepted')->get();
+        $requestList = ModelsRequest::where('status','accepted')->get();
         return view('admin.viewPage.acceptedRequest', ['requestList' => $requestList]);
+    }
+    public function acceptedRequest($id)
+    {
+        $requestData = ModelsRequest::find($id);
+        $current_status = $requestData->status;
+        $data = ['Komuni Pertama', 'Sakramen Baptis', 'Sakramen Tobat', 'Krismasi'];
+        // dd(in_array($requestData->nama_acara, $data));
+        if($requestData && in_array($requestData->nama_acara, $data) && $requestData->status == 'pending' ){
+            $requestData->status = 'process';
+        }else{
+            $requestData->status = 'accepted';
+        }
+        $requestData->save();
+        if($current_status == 'pending'){
+            return redirect()->route('admin.request.pending')->with('success', 'data berhasil Diterima!');
+        }else{
+            return redirect()->route('admin.update.Proccessed')->with('success', 'data berhasil Diterima!');
+        }
+    }
+    public function rejectRequest(Request $request,$id)
+    {
+        $requestData = ModelsRequest::find($id);
+        $requestData->status = 'reject';
+        $requestData->keterangan = $request->reason;
+        $requestData->save();
+        return redirect()->route('admin.request.pending')->with('success', 'data berhasil Ditolak!');
     }
     public function detailRequest($slug)
     {
@@ -195,13 +222,13 @@ class RequestController extends Controller
     }
 
 
-    public function RejectRequest($slug)
-    {
-        $requestList = ModelsRequest::with('umats')->where('slug', $slug)->firstOrFail();
-        $requestList->delete();
+    // public function RejectRequest($slug)
+    // {
+    //     $requestList = ModelsRequest::with('umats')->where('slug', $slug)->firstOrFail();
+    //     $requestList->delete();
 
-        return back()->with('Rejected Success', 'Pengajuan berhasil dibatalkan!!');
-    }
+    //     return back()->with('Rejected Success', 'Pengajuan berhasil dibatalkan!!');
+    // }
 
 
 }

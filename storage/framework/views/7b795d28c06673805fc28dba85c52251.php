@@ -3,7 +3,13 @@
 
     <div class="d-flex flex-column align-items-center border-bottom pb-2">
         <img class="logo p-1 col-12" src="<?php echo e(asset('picture/Logo Paroki baru 2.png')); ?>" alt="">
-        <div class="text-center fs-5 text-white"><?php echo e(Auth::user()->name ?? 'username'); ?></div>
+        <div class="text-center fs-5 text-white">
+            <?php echo e(Auth::guard('admin')->user()->username ?? 'username'); ?>
+
+            <?php if(Auth::guard('admin')->check()): ?>
+                | <a href="/admin/logout" class="nav-link  text-white" style="display: inline;">Logout</a>
+            <?php endif; ?>
+        </div>
     </div>
 
     <ul class="fs-5 list-unstyled ">

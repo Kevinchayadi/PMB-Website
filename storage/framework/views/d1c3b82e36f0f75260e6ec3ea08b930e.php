@@ -16,7 +16,7 @@
     </div>
 
     <div class="rounded overflow-hidden shadow-sm mx-5">
-        <?php if($event->count() > 0): ?>
+        
             <table class="table table-hover table-striped mb-0 text-center">
                 <thead class="table-primary">
                     <tr>
@@ -29,7 +29,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $__currentLoopData = $event; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php $__empty_1 = true; $__currentLoopData = $event; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                         <tr>
                             <th scope="row"><?php echo e($index + 1); ?></th>
                             <td><?php echo e($data->judul); ?></td> <!-- Nama data -->
@@ -54,12 +54,15 @@
                                 <!-- Selesai Button -->
                             </td>
                         </tr>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                        <tr>
+                            <td colspan="5">No data available.</td>
+                        </tr>
+                    <?php endif; ?>
+                    
                 </tbody>
             </table>
-        <?php else: ?>
-            <div class="text-center fw-bolder fs-5">Data Event Masih Kosong!</div>
-        <?php endif; ?>
+        
 
     </div>
 <?php $__env->stopSection(); ?>

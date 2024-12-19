@@ -17,6 +17,7 @@ use App\Http\Controllers\pastorController;
 use App\Http\Controllers\artikelController;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\kegiatanController;
+use App\Http\Controllers\LogoutController;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -62,7 +63,7 @@ Route::prefix('admin')
     });
 
 Route::prefix('admin')
-    // ->middleware(['auth:admin'])
+    ->middleware(['auth:admin'])
     ->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
         Route::get('/admin-list', [AdminController::class, 'index'])->name('admin.admin-list');
@@ -154,9 +155,11 @@ Route::prefix('admin')
         // Route::put('/update-pengurapan-sakit/{slug}', [TransaksiController::class,'updatedPengurapan'])->name('admin.updated.Pengurapan');
 
         Route::get('/Request-Pending', [RequestController::class,'pendingListRequest'])->name('admin.request.pending');
-        Route::get('/Request-Processed', [RequestController::class,'processListRequest'])->name('admin.update.Misa');
-        Route::get('/Request-Accepted', [RequestController::class,'acceptedListRequest'])->name('admin.update.Misa');
+        Route::put('/datacomplete/{id}', [RequestController::class,'acceptedRequest'])->name('admin.request.proccess');
+        Route::get('/Request-Processed', [RequestController::class,'processListRequest'])->name('admin.update.Proccessed');
+        Route::get('/Request-Accepted', [RequestController::class,'acceptedListRequest'])->name('admin.update.Accepted');
         Route::get('/Request-detail/{id}', [RequestController::class,'pendingListRequest'])->name('admin.update.Misa');
+        Route::put('/Request-Reject/{id}', [RequestController::class,'rejectRequest'])->name('admin.request.reject');
 
         Route::get('/highlight', [UmatController::class, 'highlight'])->name('admin.highlight');
         Route::post('/highlight', [UmatController::class, 'highlightupdate'])->name('admin.highlightupdate');
@@ -164,6 +167,7 @@ Route::prefix('admin')
         Route::get('export/umat', [ExcelController::class, 'exportUmat'])->name('export.umat');
         Route::get('export/event/{status}', [ExcelController::class, 'exportEvent'])->name('export.event');
         Route::get('export/request/{status}', [ExcelController::class, 'exportRequest'])->name('export.request');
+        Route::get('logout', [LogoutController::class, 'adminLogout'])->name('admin.logout');
 
     });
 

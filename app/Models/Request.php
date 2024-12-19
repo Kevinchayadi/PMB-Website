@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Request extends Model
@@ -13,9 +14,9 @@ class Request extends Model
 
     protected $fillable = ['nama_acara', 'id_umat', 'nama_terlibat_satu', 'nama_terlibat_dua', 'nama_romo', 'jadwal_acara', 'deskripsi_pengajuan', 'status'];
 
-    public function umat(): BelongsTo
+    public function umat(): HasOne
     {
-        return $this->belongsTo(Umat::class, 'id_umat');
+        return $this->HasOne(Umat::class, 'id_umat');
     }
 
     public function sluggable(): array

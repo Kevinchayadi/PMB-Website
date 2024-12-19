@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('slug')->nullable()->unique();
             $table->text('body');
             $table->string('path');
-            $table->string('additionalLink');
-            $table->unsignedBigInteger('id_admin');
+            $table->string('additionalLink')->nullable();
+            $table->unsignedBigInteger('id_admin')->nullable();
             $table->foreign('id_admin')->references('id_admin')->on('admins');
             $table->softDeletes();
             $table->timestamps();

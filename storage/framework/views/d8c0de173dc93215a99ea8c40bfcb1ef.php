@@ -31,6 +31,7 @@
                         <th scope="col">No.</th>
                         <th scope="col">Nama Pastor</th>
                         <th scope="col">Jabatan</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -40,17 +41,30 @@
                             <th scope="row"><?php echo e($index + 1); ?></th>
                             <td><?php echo e($romo->nama_romo); ?></td>
                             <td><?php echo e($romo->jabatan); ?></td>
+                            <td><?php if($romo->deleted_at): ?>
+                                inactive
+                                <?php else: ?>
+                                active
+                                <?php endif; ?>
+                            </td>
                             <td>
                                 <a href="/admin/edit-pastor/<?php echo e($romo->id_romo); ?>" class="btn btn-sm btn-outline-primary">Edit</a>
-                                <a href="/admin/delete-pastor/<?php echo e($romo->id_romo); ?>" class="btn btn-sm btn-outline-danger"
-                                    onclick="return confirm('Are you sure you want to delete this pastor?');">Delete</a>
+                                <form action="<?php echo e(route('admin.deletePastor', $romo->id_romo)); ?>" method="POST" class="d-inline">
+                                    <?php echo csrf_field(); ?>
+                                    <?php echo method_field('DELETE'); ?>
+                                    <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to delete this pastor?')">
+                                        Delete
+                                    </button>
+                                </form>
+                                
                             </td>
                         </tr>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                         <tr>
-                            <td colspan="4" class="text-center">No data available.</td>
+                            <td colspan="4" class="text-center">No data active Pastor!</td>
                         </tr>
                     <?php endif; ?>
+                    
                 </tbody>
             </table>
         </div>

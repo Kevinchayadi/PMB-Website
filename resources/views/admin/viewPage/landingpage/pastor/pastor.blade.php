@@ -31,6 +31,7 @@
                         <th scope="col">No.</th>
                         <th scope="col">Nama Pastor</th>
                         <th scope="col">Jabatan</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -40,17 +41,43 @@
                             <th scope="row">{{ $index + 1 }}</th>
                             <td>{{ $romo->nama_romo }}</td>
                             <td>{{ $romo->jabatan }}</td>
+                            <td>@if($romo->deleted_at)
+                                inactive
+                                @else
+                                active
+                                @endif
+                            </td>
                             <td>
                                 <a href="/admin/edit-pastor/{{ $romo->id_romo }}" class="btn btn-sm btn-outline-primary">Edit</a>
-                                <a href="/admin/delete-pastor/{{ $romo->id_romo }}" class="btn btn-sm btn-outline-danger"
-                                    onclick="return confirm('Are you sure you want to delete this pastor?');">Delete</a>
+                                <form action="{{ route('admin.deletePastor', $romo->id_romo) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to delete this pastor?')">
+                                        Delete
+                                    </button>
+                                </form>
+                                
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4" class="text-center">No data available.</td>
+                            <td colspan="4" class="text-center">No data active Pastor!</td>
                         </tr>
                     @endforelse
+                    {{-- @forelse ($inactive as $index => $romo)
+                    <tr>
+                        <th scope="row">{{ $pastor->count() + $index + 1 }}</th>
+                        <td>{{ $romo->nama_romo }}</td>
+                        <td>{{ $romo->jabatan }}</td>
+                        <td>Inactive</td>
+                        <td></td>
+                        
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="5">No inactive pastors available.</td>
+                    </tr>
+                @endforelse --}}
                 </tbody>
             </table>
         </div>

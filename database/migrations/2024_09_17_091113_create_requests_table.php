@@ -21,6 +21,7 @@ return new class extends Migration
             $table->date('jadwal_acara')->nullable();
             $table->text('deskripsi_pengajuan')->nullable();
             $table->string('status')->default('pending');
+            $table->string('keterangan')->nullable();
             $table->softDeletes();
             $table->timestamps();
 
