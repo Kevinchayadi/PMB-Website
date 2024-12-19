@@ -13,7 +13,7 @@ class AcaraController extends Controller
 {
     public function acaraIndex()
     {
-        $acara = Acara::with('documentations')->get();
+        $acara = Acara::get();
         return view('admin.viewPage.landingpage.acara.layanan', ['acara' => $acara]);
     }
 

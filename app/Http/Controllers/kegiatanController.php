@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Storage;
 class kegiatanController extends Controller
 {
     public function kegiatanIndex(){
-        $kegiatans = Kegiatan::all();
-        return view('admin.viewPage.landingpage.kegiatan.kegiatan', compact('kegiatans'));
+        $kegiatan = Kegiatan::all();
+        return view('admin.viewPage.landingpage.kegiatan.kegiatan', compact('kegiatan'));
     }
     public function addKegiatan(){
         return view('admin.viewPage.landingpage.kegiatan.addKegiatan');
@@ -32,7 +32,7 @@ class kegiatanController extends Controller
 
             $filePath = $file->storeAs('article', $fileName, 'public');
 
-            $input['path'] = $filePath;
+            $validated['path'] = $filePath;
         }
 
         Kegiatan::create($validated);
@@ -50,6 +50,7 @@ class kegiatanController extends Controller
             'date' => 'required|date',
             'foto' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+        // dd($validated);
         $kegiatan = Kegiatan::find($id);
         $foto = str_replace([' ', '.'], '-', $validated['title']);
         if ($request->hasFile('foto')) {
@@ -62,7 +63,7 @@ class kegiatanController extends Controller
 
             $filePath = $file->storeAs('article', $fileName, 'public');
 
-            $input['path'] = $filePath;
+            $validated['path'] = $filePath;
         }
         $kegiatan->update($validated);
         return redirect()->route('admin.kegiatan.index')->with('success', 'Kegiatan updated successfully.');

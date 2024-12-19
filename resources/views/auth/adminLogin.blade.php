@@ -12,9 +12,9 @@
 </head>
 
 <body>
-    <div class="container-fluid row justify-content-center mt-3">
+    <div class="container-fluid row justify-content-center align-content-center">
+        <div class="title fs-5 fw-bolder text-center">Let's Sign In You To PMB Admin</div>
         <div class="col-6">
-            <div class="title fs-5 fw-bolder text-center">Let's Sign In You To PMB Admin</div>
             <div class="image h-100 p-4">
                 <img class="img-fluid h-100 rounded-3 shadow-lg" src="{{ asset('picture/Gereja.jpg') }}" alt="">
             </div>
@@ -41,7 +41,8 @@
                         @csrf
                         <div class="form-group mb-3">
                             <label for="text">username</label>
-                            <input type="username" name="username" class="form-control" id="username" required autofocus>
+                            <input type="username" name="username" class="form-control" id="username" required
+                                autofocus>
                         </div>
 
                         <div class="form-group mb-3">

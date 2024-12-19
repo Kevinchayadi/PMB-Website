@@ -29,22 +29,33 @@
                         <th scope="col">No.</th>
                         <th scope="col">Nama Kegiatan</th>
                         <th scope="col">Deskripsi</th>
+                        <th scope="col">Tanggal Kegiatan</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Kegiatan A</td>
-                        <td>Lorem Ipsum sjslslasalks ....</td>
+                    @forelse ($kegiatan as $kegiatans)
+                        <tr>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td>{{ $kegiatans->title }}</td>
+                            <td>{{ $kegiatans->description }}</td>
+                            <td>{{ $kegiatans->date }}</td>
 
-                        <td>
-                            <button class="btn btn-sm btn-outline-primary"><a href="/admin/edit-kegiatan/1"
-                                    class="nav-link">Edit</a></button>
-                            <button class="btn btn-sm btn-outline-danger"><a href="/admin/delete-kegiatan/1"
-                                    class="nav-link">Delete</a></button>
-                        </td>
-                    </tr>
+                            <td>
+                                <button class="btn btn-sm btn-outline-primary"><a
+                                        href="/admin/edit-kegiatan/{{ $kegiatans->id }}" class="nav-link">Edit</a></button>
+                                <button class="btn btn-sm btn-outline-danger"><a
+                                        href="/admin/delete-kegiatan/{{ $kegiatans->id }}"
+                                        class="nav-link">Delete</a></button>
+                                <button class="btn btn-sm btn-outline-success"
+                                    data-bs-target="#{{ $kegiatans->slug }}"></button>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="5">No data available.</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

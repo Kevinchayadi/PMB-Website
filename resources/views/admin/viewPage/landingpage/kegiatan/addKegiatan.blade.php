@@ -36,11 +36,33 @@
 
                                 <!-- Deskripsi -->
                                 <div class="mb-3">
-                                    <label for="desc" class="form-label">Deskripsi Kegiatan<span
+                                    <label for="description" class="form-label">Deskripsi Kegiatan<span
                                             class="text-danger">*</span></label>
-                                    <input type="text" class="form-control @error('desc') is-invalid @enderror"
-                                        id="desc" name="desc" placeholder="Masukkan deskripsi kegiatan" required>
-                                    @error('desc')
+                                    <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description"
+                                        placeholder="Masukkan deskripsi kegiatan" required></textarea>
+                                    @error('description')
+                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <!-- Location -->
+                                <div class="mb-3">
+                                    <label for="location" class="form-label">Lokasi Kegiatan<span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" class="form-control @error('location') is-invalid @enderror"
+                                        id="location" name="location" placeholder="Masukkan lokasi kegiatan" required>
+                                    @error('location')
+                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <!-- Tanggal -->
+                                <div class="mb-3">
+                                    <label for="date" class="form-label">Tanggal Kegiatan<span
+                                            class="text-danger">*</span></label>
+                                    <input type="date" class="form-control @error('date') is-invalid @enderror"
+                                        id="date" name="date" placeholder="Masukkan tanggal kegiatan" required>
+                                    @error('date')
                                         <div class="invalid-feedback text-white">{{ $message }}</div>
                                     @enderror
                                 </div>
