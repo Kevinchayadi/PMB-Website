@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('nama_terlibat_satu');
             $table->string('nama_terlibat_dua')->nullable();
             $table->string('nama_romo')->nullable();
-            $table->date('jadwal acara')->nullable();
+            $table->date('jadwal_acara')->nullable();
             $table->text('deskripsi_pengajuan')->nullable();
             $table->string('status')->default('pending');
             $table->softDeletes();

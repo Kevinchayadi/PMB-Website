@@ -45,6 +45,7 @@ Route::get('/jadwal/{slug}', [LandingController::class, 'jadwalDetail'])->name('
 Route::get('/artikel', [LandingController::class, 'artikel'])->name('artikel');
 Route::get('/artikel/{slug}', [LandingController::class, 'artikeldetail'])->name('artikel');
 Route::get('/layanan', [LandingController::class, 'layanan'])->name('layanan');
+Route::post('/request', [RequestController::class, 'storeRequest'])->name('request');
 Route::get('/hubungi', [hubungiController::class, 'hubungi'])->name('hubungi');
 
 Route::middleware(['guest:web'])->group(function () {

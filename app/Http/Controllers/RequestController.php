@@ -87,7 +87,7 @@ class RequestController extends Controller
     public function pernikahanSubmit(Request $request)
     {
         $request->validate([
-            'namaAcara' => 'required|string|max:255',
+            'nama_acara' => 'required|string|max:255',
             'id_umat' => 'required|integer|exists:umats,id',
             'umat_terlibat_satu' => 'required|string',
             'umat_terlibat_dua' => 'required|nullable|string',
@@ -130,6 +130,37 @@ class RequestController extends Controller
             'deskripsi_pengajuan' => 'required|string',
         ]);
         ModelsRequest::create($request->all());
+        return redirect()->route('home')->with('success', 'Pengajuan baptis berhasil dikirim!');
+    }
+    public function storeRequest(Request $request)
+    {
+        // dd($request->all());
+        $data=[];
+        if($request->nama_acara=="pernikahan"){
+            $data=$request->validate([
+                'nama_acara' => 'required|string|max:255',
+                'id_umat' => 'required|integer|exists:umats,id_umat',
+                'nama_terlibat_satu' => 'required|string',
+                'nama_terlibat_dua' => 'required|string',
+                'nama_romo' => 'nullable|string|max:255',
+                'jadwal_acara' => 'required|date',
+                'deskripsi_pengajuan' => 'nullable|string',
+            ]);
+        }else{
+            $data=$request->validate([
+                'nama_acara' => 'required|string|max:255',
+                'id_umat' => 'required|integer|exists:umats,id_umat',
+                'nama_terlibat_satu' => 'required|string',
+                'nama_terlibat_dua' => 'nullable|string',
+                'nama_romo' => 'nullable|string|max:255',
+                'jadwal_acara' => 'required|date',
+                'deskripsi_pengajuan' => 'nullable|string',
+            ]);
+        }
+   
+        
+        // dd($data);
+        ModelsRequest::create($data);
         return redirect()->route('home')->with('success', 'Pengajuan baptis berhasil dikirim!');
     }
 
