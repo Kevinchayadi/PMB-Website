@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('slug')->nullable()->unique();
             $table->string('path');
+            $table->text('keterangan')->nullable();
             $table->unsignedBigInteger('id_admin');
             $table->foreign('id_admin')->references('id_admin')->on('admins');
             $table->softDeletes();

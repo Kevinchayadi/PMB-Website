@@ -79,22 +79,27 @@ class LoginController extends Controller
 
     function umatLogin(Request $request)
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'string', 'email'],
-            'password' => ['required', 'string', 'min:8'],
+        $request->validate([
+            'email_umat' => ['required',  'email'],
+            'password' => ['required', 'min:8'],
         ]);
-
-        if (
-            Auth::guard('web')->attempt(
-                [
-                    'email' => $credentials['email'],
-                    'password' => $credentials['password'],
-                ],
-                $request->filled('remember'),
-            )
-        ) {
+        
+        // Ambil kredensial dari request
+        $credentials = $request->only('email_umat', 'password');
+        
+        // Cek apakah pengguna ingin menggunakan fitur "Remember Me"
+        $remember = $request->filled('remember');
+        
+        dd($remember);
+        // Coba untuk login dengan kredensial yang telah divalidasi
+        if (Auth::guard('web')->attempt($credentials, $remember)) {
+            // Jika login berhasil, arahkan ke halaman dashboard
             return redirect()->route('user.viewPage.dashboard');
         }
-        return back()->with('error', 'gagal login, tolong untuk dicek kembali email dan password!');
+    
+        // Jika login gagal, kembalikan dengan pesan error
+        return back()->withErrors([
+            'email_umat' => 'Gagal login, pastikan email dan password Anda benar.'
+        ]);
     }
 }
