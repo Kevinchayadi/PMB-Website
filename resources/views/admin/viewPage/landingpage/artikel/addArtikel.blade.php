@@ -23,7 +23,8 @@
 
                                 <!-- Nama -->
                                 <div class="mb-3">
-                                    <label for="title" class="form-label">Judul Artikel<span class="text-danger">*</span></label>
+                                    <label for="title" class="form-label">Judul Artikel<span
+                                            class="text-danger">*</span></label>
                                     <input type="text" class="form-control @error('title') is-invalid @enderror"
                                         id="title" name="title" placeholder="Masukkan judul artikel"
                                         value="{{ old('title') }}" required>
@@ -34,7 +35,8 @@
 
                                 <!-- Deskripsi -->
                                 <div class="mb-3">
-                                    <label for="body" class="form-label">Deskripsi Artikel<span class="text-danger">*</span></label>
+                                    <label for="body" class="form-label">Deskripsi Artikel<span
+                                            class="text-danger">*</span></label>
                                     <textarea class="form-control @error('body') is-invalid @enderror" id="body" name="body"
                                         placeholder="Masukkan deskripsi Artikel" rows="20" required>{{ old('body') }}</textarea>
                                     @error('body')
@@ -42,9 +44,22 @@
                                     @enderror
                                 </div>
 
+                                <!-- Additional Link -->
+                                <div class="mb-3">
+                                    <label for="additionalLink" class="form-label">Additional Link Artikel
+                                        (Opsional)</label>
+                                    <input type="text" class="form-control @error('additionalLink') is-invalid @enderror"
+                                        id="additionalLink" name="additionalLink"
+                                        placeholder="Masukkan additionalLink artikel" value="{{ old('additionalLink') }}">
+                                    @error('additionalLink')
+                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
                                 <!-- Gambar -->
                                 <div class="mb-3">
-                                    <label for="file" class="form-label">Gambar<span class="text-danger">*</span></label>
+                                    <label for="file" class="form-label">Gambar<span
+                                            class="text-danger">*</span></label>
                                     <!-- Menampilkan gambar default -->
                                     <img src="{{ asset('picture/Gereja.jpg') }}" alt="Gambar Default"
                                         class="img-fluid rounded-3 mb-2" id="current-image">
@@ -54,17 +69,6 @@
                                         id="foto" name="foto" placeholder="Masukkan gambar"
                                         onchange="previewImage(event)">
                                     @error('foto')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <!-- Additional Link -->
-                                <div class="mb-3">
-                                    <label for="additionalLink" class="form-label">Additional Link Artikel (Opsional)</label>
-                                    <input type="text" class="form-control @error('additionalLink') is-invalid @enderror"
-                                        id="additionalLink" name="additionalLink" placeholder="Masukkan additionalLink artikel"
-                                        value="{{ old('additionalLink') }}">
-                                    @error('additionalLink')
                                         <div class="invalid-feedback text-white">{{ $message }}</div>
                                     @enderror
                                 </div>

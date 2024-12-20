@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Admin - Login</title>
     <link rel="stylesheet" href="{{ asset('css/admin/login.css') }}">
-    @include('user.layout.bootstrap')
-    @include('user.layout.font')
+    @include('admin.layout.bootstrap')
+    @include('admin.layout.font')
 </head>
 
 <body>
@@ -37,17 +37,35 @@
                     <p class="text-center fw-bold mx-3 mb-0">Or</p>
                 </div> --}}
                 <div class="card-body">
+                    <!-- Pesan kesalahan validasi -->
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <form method="POST" action="/admin/login">
                         @csrf
                         <div class="form-group mb-3">
-                            <label for="text">username</label>
-                            <input type="username" name="username" class="form-control" id="username" required
+                            <label for="text">Username</label>
+                            <input type="username" name="username"
+                                class="form-control @error('username') is-invalid @enderror" id="username" required
                                 autofocus>
+                            @error('username')
+                                <div class="invalid-feedback text-white">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="form-group mb-3">
                             <label for="password">Password</label>
-                            <input type="password" name="password" class="form-control" id="password" required>
+                            <input type="password" name="password"
+                                class="form-control @error('password') is-invalid @enderror" id="password" required>
+                            @error('password')
+                                <div class="invalid-feedback text-white">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="form-group mb-3 form-check">

@@ -12,17 +12,17 @@
 </head>
 
 <body>
-    <div class="container-fluid row justify-content-center">
+    <div class="container-fluid row justify-content-center align-content-center">
+        <div class="title fs-4 fw-bolder text-center">Let's Log In You To PMB Web</div>
         <div class="col-lg-6 col-12">
-            <div class="title fs-5 fw-bolder text-center">Let's Log In You To PMB Web</div>
-            <div class="image h-75 p-4">
+            <div class="image h-100 p-4">
                 <img class="img-fluid h-100 rounded-3 shadow-lg w-100" src="{{ asset('picture/Gereja.jpg') }}"
                     alt="">
             </div>
         </div>
         <div class="col-lg-6 col-12">
             <div class="card border-0">
-                <div class="card-header p-0 border-bottom-0 bg-white">
+                <div class="card-header p-4 border-bottom-0 bg-white">
                     <a href="/auth/redirect" class="nav-link d-flex justify-content-center">
                         <div class="fs-5 fw-bolder me-2 align-self-center">Log In With</div>
                         <div class="google badge text-bg-primary rounded-circle p-2 align-self-center">
@@ -51,13 +51,21 @@
                         @csrf
                         <div class="form-group mb-3">
                             <label for="email_umat">Email</label>
-                            <input type="email_umat" name="email_umat" class="form-control" id="email_umat" required
+                            <input type="email_umat" name="email_umat"
+                                class="form-control @error('email_umat') is-invalid @enderror" id="email_umat" required
                                 autofocus>
+                            @error('email_umat')
+                                <div class="invalid-feedback text-white">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="form-group mb-3">
                             <label for="password">Password</label>
-                            <input type="password" name="password" class="form-control" id="password" required>
+                            <input type="password" name="password"
+                                class="form-control @error('password') is-invalid @enderror" id="password" required>
+                            @error('password')
+                                <div class="invalid-feedback text-white">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="form-group mb-3 form-check">

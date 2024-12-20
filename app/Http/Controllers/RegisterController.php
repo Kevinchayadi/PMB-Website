@@ -42,15 +42,16 @@ class RegisterController extends Controller
 
     public function umatRegister(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         // Validasi data input dari form
         $request->validate([
             'nama_umat' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
+            'ttl_umat' => 'nullable|date',
             'wilayah' => 'required|string|max:255',
             'lingkungan' => 'required|string|max:255',
-            'nomohp_umat' => 'required|string|max:15',
+            'nomorhp_umat' => 'required|string|max:15',
             'alamat' => 'required|string|max:255',
             'status' => 'required|string',
             'pekerjaan' => 'required|string|max:255',
@@ -61,9 +62,10 @@ class RegisterController extends Controller
             'nama_umat' => $request->nama_umat,
             'email' => $request->email,
             'password' => Hash::make($request->password), // Enkripsi password
+            'ttl_umat' => $request->ttl_umat,
             'wilayah' => $request->wilayah,
             'lingkungan' => $request->lingkungan,
-            'nomohp_umat' => $request->nomohp_umat,
+            'nomorhp_umat' => $request->nomohp_umat,
             'alamat' => $request->alamat,
             'status' => $request->status,
             'pekerjaan' => $request->pekerjaan,

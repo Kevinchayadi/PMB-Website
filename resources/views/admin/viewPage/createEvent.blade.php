@@ -79,7 +79,7 @@
                                 <!-- Dropdown Romo -->
                                 <div class="mb-3">
                                     <label for="id_romo" class="form-label">Romo</label>
-                                    <select class="form-control @error('id_romo') is-invalid @enderror" id="id_romo"
+                                    <select class="form-select @error('id_romo') is-invalid @enderror" id="id_romo"
                                         name="id_romo" required>
                                         <option value="" disabled selected>Pilih Romo</option>
                                         @foreach ($romos as $romo)
@@ -97,7 +97,7 @@
                                 <div class="mb-3">
                                     <label for="id_acara" class="form-label">Acara <span
                                             class="text-danger">*</span></label>
-                                    <select class="form-control @error('id_acara') is-invalid @enderror" id="id_acara"
+                                    <select class="form-select @error('id_acara') is-invalid @enderror" id="id_acara"
                                         name="id_acara" required>
                                         <option value="" disabled selected>Pilih Acara</option>
                                         @foreach ($acaras as $acara)
@@ -114,7 +114,7 @@
                                 <!-- Dropdown Seksi -->
                                 <div class="mb-3">
                                     <label for="id_seksi" class="form-label">Seksi</label>
-                                    <select class="form-control select2 @error('id_seksi') is-invalid @enderror"
+                                    <select class="form-select select2 @error('id_seksi') is-invalid @enderror"
                                         id="id_seksi" name="id_seksi[]" multiple="multiple">
                                         @foreach ($seksis as $seksi)
                                             <option value="{{ $seksi->id }}"
@@ -131,7 +131,7 @@
                                 <!-- Dropdown Doa -->
                                 <div class="mb-3">
                                     <label for="id_doa" class="form-label">Doa <span class="text-danger">*</span></label>
-                                    <select class="form-control @error('id_doa') is-invalid @enderror" id="id_doa"
+                                    <select class="form-select @error('id_doa') is-invalid @enderror" id="id_doa"
                                         name="id_doa" required>
                                         <option value="" disabled selected>Pilih Doa</option>
                                         @foreach ($doas as $doa)
@@ -163,7 +163,7 @@
                                 <!-- Dropdown Umat -->
                                 <div class="mb-3">
                                     <label for="id_umat" class="form-label">Umat</label>
-                                    <select class="form-control select2 @error('id_umat') is-invalid @enderror"
+                                    <select class="form-select select2 @error('id_umat') is-invalid @enderror"
                                         id="id_umat" name="id_umat[]" multiple="multiple">
                                         @foreach ($umats as $umat)
                                             <option value="{{ $umat->id_umat }}"
