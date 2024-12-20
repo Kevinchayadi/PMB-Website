@@ -83,9 +83,9 @@
                                         <img id="current-image" src="{{ asset('picture/Gereja.jpg') }}" alt="Gambar Doa"
                                             class="img-fluid rounded-3 mb-2">
                                     </div>
-                                    <input type="file" class="form-control @error('file') is-invalid @enderror"
-                                        id="file" name="file" onchange="previewImage(event)" required>
-                                    @error('file')
+                                    <input type="file" class="form-control @error('foto') is-invalid @enderror"
+                                        id="foto" name="foto" onchange="previewImage(event)" required>
+                                    @error('foto')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>

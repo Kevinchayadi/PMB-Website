@@ -80,7 +80,7 @@
                                     <!-- Input file untuk mengganti gambar -->
                                     <input type="file" class="form-control @error('foto') is-invalid @enderror"
                                         id="foto" name="foto" placeholder="Edit gambar"
-                                        onchange="previewImage(event)" required>
+                                        onchange="previewImage(event)" >
                                     @error('foto')
                                         <div class="invalid-feedback text-white">{{ $message }}</div>
                                     @enderror
