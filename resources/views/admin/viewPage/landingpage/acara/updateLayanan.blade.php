@@ -1,4 +1,3 @@
-
 @extends('admin.layout.template')
 @section('title', 'Layanan - Edit Form')
 
@@ -15,7 +14,7 @@
         </div>
     @endif
 
-    <div class="container-fluid">
+    <div class="container-fluid my-3">
         <div class="min-vh-100 d-flex flex-column align-items-center justify-content-center">
             <div class="row w-100 justify-content-center">
                 <div class="col-10 col-md-8">
@@ -80,7 +79,7 @@
                                     <!-- Input file untuk mengganti gambar -->
                                     <input type="file" class="form-control @error('foto') is-invalid @enderror"
                                         id="foto" name="foto" placeholder="Edit gambar"
-                                        onchange="previewImage(event)" >
+                                        onchange="previewImage(event)">
                                     @error('foto')
                                         <div class="invalid-feedback text-white">{{ $message }}</div>
                                     @enderror

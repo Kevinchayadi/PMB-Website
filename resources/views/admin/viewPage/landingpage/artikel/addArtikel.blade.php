@@ -11,7 +11,7 @@
             </ul>
         </div>
     @endif
-    <div class="container-fluid">
+    <div class="container-fluid my-3">
         <div class="min-vh-100 d-flex flex-column align-items-center justify-content-center">
             <div class="row w-100 justify-content-center">
                 <div class="col-10 col-md-8">
