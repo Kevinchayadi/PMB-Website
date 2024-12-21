@@ -26,7 +26,8 @@ class doaController extends Controller
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         $foto = str_replace([' ', '.'], '-', $input['nama_doa']);
-
+        
+        dd($request->all());
         if ($request->hasFile('foto')) {
             $file = $request->file('foto');
 
