@@ -47,8 +47,8 @@
                                 <button class="btn btn-sm btn-outline-danger"><a
                                         href="/admin/delete-kegiatan/{{ $kegiatans->id }}"
                                         class="nav-link">Delete</a></button>
-                                <button class="btn btn-sm btn-outline-success"
-                                    data-bs-target="#{{ $kegiatans->slug }}"></button>
+                                {{-- <button class="btn btn-sm btn-outline-success"
+                                    data-bs-target="#{{ $kegiatans->slug }}"></button> --}}
                             </td>
                         </tr>
                     @empty

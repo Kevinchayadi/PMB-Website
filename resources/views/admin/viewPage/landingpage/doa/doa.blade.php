@@ -35,25 +35,27 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($doa as $doas)
+                        @forelse ($doa as $doas)
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $doas->nama_doa }}</td>
                                 <td>{{ Str::limit($doas->deskripsi_doa, 20) }}</td>
 
                                 <td>
-                                    <button class="btn btn-sm btn-outline-primary"><a href="/admin/edit-doa/{{ $doas->id_doa }}"
-                                            class="nav-link">Edit</a></button>
-                                    <button class="btn btn-sm btn-outline-danger"><a href="/admin/delete-doa/{{ $doas->id_doa }}"
+                                    <button class="btn btn-sm btn-outline-primary"><a
+                                            href="/admin/edit-doa/{{ $doas->id_doa }}" class="nav-link">Edit</a></button>
+                                    <button class="btn btn-sm btn-outline-danger"><a
+                                            href="/admin/delete-doa/{{ $doas->id_doa }}"
                                             class="nav-link">Delete</a></button>
                                 </td>
                             </tr>
-                        @endforeach
+                        @empty
+                            <tr>
+                                <td colspan="5">No data available.</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
-        @else
-            <div class="fs-5 fw-bolder text-center">Doa tidak ada</div>
-        @endif
     </div>
 @endsection
