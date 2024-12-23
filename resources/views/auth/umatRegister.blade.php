@@ -12,11 +12,14 @@
 </head>
 
 <body>
-    <div class="w-75 mx-auto h-50">
-        <div class="container-fluid row justify-content-center align-content-center bg-white shadow-lg rounded-3">
-            <div class="title fs-5 fw-bolder text-center">Let's Make An Account</div>
-            <div class="col-lg-6 col-12">
-                <div class="card border-0 p-4">
+    <div class="container d-flex justify-content-center align-items-center min-vh-75">
+        <div class="row justify-content-center bg-white shadow-lg rounded-3 w-lg-75 w-100 p-4 overflow-auto mx-auto"
+            style="max-height: 90vh;">
+            <div class="title fs-4 fw-bolder text-center mb-4">Let's Make An Account</div>
+
+            <!-- Bagian Kiri -->
+            <div class="col-lg-6 col-12 mb-4">
+                <div class="card border-0">
                     <div class="image card-img-top">
                         <img class="img-fluid h-100 rounded-3 shadow-lg" src="{{ asset('picture/Gereja.jpg') }}"
                             alt="">
@@ -24,21 +27,20 @@
                     <div class="card-body px-0">
                         <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, placeat
                             assumenda mollitia molestias illo facere dolorum et amet. Magni omnis enim iste ut cum?
-                            Maxime
-                            tenetur pariatur harum ad quia.
+                            Maxime tenetur pariatur harum ad quia.
                             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Modi iste qui repudiandae quia
                             nihil
                             consequuntur sunt odit aperiam iusto. Fugiat reiciendis debitis sit provident quis, suscipit
-                            id
-                            doloribus sint consequatur.
+                            id doloribus sint consequatur.
                         </p>
                         <a href="/home" class="btn btn-primary">See Around</a>
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-6 col-12 p-4">
-                <a href="#" class="nav-link d-flex justify-content-center">
+            <!-- Bagian Kanan -->
+            <div class="col-lg-6 col-12">
+                <a href="#" class="nav-link d-flex justify-content-center mb-4">
                     <div class="fs-5 fw-bolder me-2 align-self-center">Sign In With</div>
                     <div class="google badge text-bg-primary rounded-circle p-2 align-self-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#fff"
@@ -48,10 +50,10 @@
                         </svg>
                     </div>
                 </a>
-                <div class="divider d-flex align-items-center my-4">
+                <div class="divider d-flex align-items-center mb-4">
                     <p class="text-center fw-bold mx-3 mb-0">Or</p>
                 </div>
-                <div class="card border-0 h-50 overflow-y-scroll">
+                <div class="card border-0 overflow-auto" style="max-height: 60vh;">
                     <div class="card-body">
                         <!-- Pesan kesalahan validasi -->
                         @if ($errors->any())
@@ -63,6 +65,7 @@
                                 </ul>
                             </div>
                         @endif
+                        <!-- Form -->
                         <form action="/register" method="POST">
                             @csrf <!-- Token CSRF untuk keamanan form -->
 

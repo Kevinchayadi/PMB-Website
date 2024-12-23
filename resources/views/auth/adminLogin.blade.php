@@ -16,13 +16,13 @@
         <div class="container-fluid row justify-content-center align-content-center bg-white shadow-lg rounded-3">
             <div class="title fs-4 fw-bolder text-center">Let's Sign In You To PMB Admin</div>
             <div class="col-6">
-                <div class="image h-100 py-4">
+                <div class="image h-100 p-4">
                     <img class="img-fluid h-100 rounded-3 shadow-lg" src="{{ asset('picture/Gereja.jpg') }}"
                         alt="">
                 </div>
             </div>
             <div class="col-6">
-                <div class="card border-0">
+                <div class="card border-0 p-4">
                     {{-- <div class="card-header p-0 border-bottom-0 bg-white">
                     <a href="/auth/redirect" class="nav-link d-flex justify-content-center">
                         <div class="fs-5 fw-bolder me-2 align-self-center">Login with</div>
