@@ -33,7 +33,7 @@ class doaController extends Controller
 
             $fileName = $foto . '-' . Carbon::now()->timestamp . '.' . $file->getClientOriginalExtension();
 
-            $filePath = $file->storeAs('romos', $fileName, 'public');
+            $filePath = $file->storeAs('doas', $fileName, 'public');
 
             $input['path'] = $filePath;
         }
@@ -44,6 +44,7 @@ class doaController extends Controller
     }
     public function updateDoa($id){
         $doa = Doa::find($id);
+        // dd($doa);
         return view('admin.viewPage.landingpage.doa.updateDoa', ['doa'=>$doa]);
     }
     public function updatedDoa(Request $request, $id){

@@ -12,7 +12,7 @@
         </div>
     @endif
 
-    <div class="container-fluid">
+    <div class="container-fluid my-3">
         <div class=" min-vh-100 d-flex flex-column align-items-center justify-content-center ">
             <div class="row w-100 justify-content-center">
                 <div class="col-10 col-md-8">
@@ -20,27 +20,49 @@
                         <div class="card-body text-white">
 
                             <h2 class="card-title text-center mb-4 fw-bolder">Create New Kegiatan</h2>
-                            <form action="/admin/add-kegiatan" method="POST">
+                            <form action="/admin/add-kegiatan" method="POST" enctype="multipart/form-data">
                                 @csrf <!-- Laravel CSRF Token -->
 
                                 <!-- Nama -->
                                 <div class="mb-3">
-                                    <label for="name" class="form-label">Nama Kegiatan<span
+                                    <label for="title" class="form-label">Nama Kegiatan<span
                                             class="text-danger">*</span></label>
-                                    <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                        id="name" name="name" placeholder="Masukkan nama kegiatan" required>
-                                    @error('name')
+                                    <input type="text" class="form-control @error('title') is-invalid @enderror"
+                                        id="title" name="title" placeholder="Masukkan nama kegiatan" required>
+                                    @error('title')
                                         <div class="invalid-feedback text-white">{{ $message }}</div>
                                     @enderror
                                 </div>
 
                                 <!-- Deskripsi -->
                                 <div class="mb-3">
-                                    <label for="desc" class="form-label">Deskripsi Kegiatan<span
+                                    <label for="description" class="form-label">Deskripsi Kegiatan<span
                                             class="text-danger">*</span></label>
-                                    <input type="text" class="form-control @error('desc') is-invalid @enderror"
-                                        id="desc" name="desc" placeholder="Masukkan deskripsi kegiatan" required>
-                                    @error('desc')
+                                    <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description"
+                                        placeholder="Masukkan deskripsi kegiatan" required></textarea>
+                                    @error('description')
+                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <!-- Location -->
+                                <div class="mb-3">
+                                    <label for="location" class="form-label">Lokasi Kegiatan<span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" class="form-control @error('location') is-invalid @enderror"
+                                        id="location" name="location" placeholder="Masukkan lokasi kegiatan" required>
+                                    @error('location')
+                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <!-- Tanggal -->
+                                <div class="mb-3">
+                                    <label for="date" class="form-label">Tanggal Kegiatan<span
+                                            class="text-danger">*</span></label>
+                                    <input type="date" class="form-control @error('date') is-invalid @enderror"
+                                        id="date" name="date" placeholder="Masukkan tanggal kegiatan" required>
+                                    @error('date')
                                         <div class="invalid-feedback text-white">{{ $message }}</div>
                                     @enderror
                                 </div>

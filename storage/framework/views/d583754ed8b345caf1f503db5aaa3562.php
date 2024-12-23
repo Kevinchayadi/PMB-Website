@@ -42,9 +42,9 @@
                                 <td><?php echo e(Str::limit($doas->deskripsi_doa, 20)); ?></td>
 
                                 <td>
-                                    <button class="btn btn-sm btn-outline-primary"><a href="/admin/edit-doa/1"
+                                    <button class="btn btn-sm btn-outline-primary"><a href="/admin/edit-doa/<?php echo e($doas->id_doa); ?>"
                                             class="nav-link">Edit</a></button>
-                                    <button class="btn btn-sm btn-outline-danger"><a href="/admin/delete-doa/1"
+                                    <button class="btn btn-sm btn-outline-danger"><a href="/admin/delete-doa/<?php echo e($doas->id_doa); ?>"
                                             class="nav-link">Delete</a></button>
                                 </td>
                             </tr>

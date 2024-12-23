@@ -13,7 +13,7 @@ class AcaraController extends Controller
 {
     public function acaraIndex()
     {
-        $acara = Acara::with('documentations')->get();
+        $acara = Acara::get();
         return view('admin.viewPage.landingpage.acara.layanan', ['acara' => $acara]);
     }
 
@@ -24,7 +24,7 @@ class AcaraController extends Controller
 
     public function storeAcara(Request $request)
     {
-        // dd($request);
+        // dd($request->all());
         $input = $request->validate([
             'nama_acara' => 'required',
             'deskripsi_acara' => 'required',

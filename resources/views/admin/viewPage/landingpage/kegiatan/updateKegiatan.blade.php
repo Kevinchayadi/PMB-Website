@@ -12,7 +12,7 @@
         </div>
     @endif
 
-    <div class="container-fluid">
+    <div class="container-fluid my-3">
         <div class=" min-vh-100 d-flex flex-column align-items-center justify-content-center ">
             <div class="row w-100 justify-content-center">
                 <div class="col-10 col-md-8">
@@ -20,27 +20,52 @@
                         <div class="card-body text-white">
 
                             <h2 class="card-title text-center mb-4 fw-bolder">Edit Kegiatan</h2>
-                            <form action="/admin/edit-kegiatan/{id}" method="PUT">
+                            <form action="/admin/edit-kegiatan/{{ $kegiatans->id }}" method="POST"
+                                enctype="multipart/form-data">
                                 @csrf <!-- Laravel CSRF Token -->
+                                @method('PUT')
 
                                 <!-- Nama -->
                                 <div class="mb-3">
-                                    <label for="name" class="form-label">Nama Kegiatan<span
+                                    <label for="title" class="form-label">Nama Kegiatan<span
                                             class="text-danger">*</span></label>
-                                    <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                        id="name" name="name" placeholder="Masukkan nama kegiatan" required>
-                                    @error('name')
+                                    <input type="text" class="form-control @error('title') is-invalid @enderror"
+                                        id="title" name="title" value="{{ old('title', $kegiatan->title) }}" required>
+                                    @error('title')
                                         <div class="invalid-feedback text-white">{{ $message }}</div>
                                     @enderror
                                 </div>
 
                                 <!-- Deskripsi -->
                                 <div class="mb-3">
-                                    <label for="desc" class="form-label">Deskripsi Kegiatan<span
+                                    <label for="description" class="form-label">Deskripsi Kegiatan<span
                                             class="text-danger">*</span></label>
-                                    <input type="text" class="form-control @error('desc') is-invalid @enderror"
-                                        id="desc" name="desc" placeholder="" required>
-                                    @error('desc')
+                                    <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description"
+                                        value="Masukkan deskripsi kegiatan" required>{{ old('description', $kegiatan->description) }}</textarea>
+                                    @error('description')
+                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <!-- Location -->
+                                <div class="mb-3">
+                                    <label for="location" class="form-label">Lokasi Kegiatan<span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" class="form-control @error('location') is-invalid @enderror"
+                                        id="location" name="location" value="{{ old('location', $kegiatan->location) }}"
+                                        required>
+                                    @error('location')
+                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <!-- Tanggal -->
+                                <div class="mb-3">
+                                    <label for="date" class="form-label">Tanggal Kegiatan<span
+                                            class="text-danger">*</span></label>
+                                    <input type="date" class="form-control @error('date') is-invalid @enderror"
+                                        id="date" name="date" value="{{ old('date', $kegiatan->date) }}" required>
+                                    @error('date')
                                         <div class="invalid-feedback text-white">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -59,7 +84,7 @@
                                     <!-- Input file untuk mengganti gambar -->
                                     <input type="file" class="form-control @error('foto') is-invalid @enderror"
                                         id="foto" name="foto" placeholder="Edit gambar"
-                                        onchange="previewImage(event)" required>
+                                        onchange="previewImage(event)">
                                     @error('foto')
                                         <div class="invalid-feedback text-white">{{ $message }}</div>
                                     @enderror

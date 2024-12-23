@@ -9,7 +9,7 @@
 
     <div class="px-4">
         @if ($event->count() > 0)
-            @foreach ($event as $data)
+            @forelse ($event as $data)
                 <div class="px-4 py-2 my-3 mx-1 card-3d">
                     <h2>{{ $data->transaction_details->acara->nama_acara }}t</h2>
                     <div class="d-flex justify-content-between">
@@ -21,10 +21,10 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
-        @else
-            <div class="text-center fw-bolder fs-5">Data Event Masih Kosong!</div>
-        @endif
-
+            @empty
+                <tr>
+                    <td colspan="5">No data available.</td>
+                </tr>
+            @endforelse
     </div>
 @endsection

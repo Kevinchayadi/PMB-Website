@@ -53,6 +53,7 @@ Route::middleware(['guest:web'])->group(function () {
     Route::get('/login', [LoginController::class, 'umatIndex'])->name('umat.login');
     Route::post('/login', [LoginController::class, 'umatLogin'])->name('umat.login');
     Route::get('/register', [RegisterController::class, 'umatIndex'])->name('umat.register');
+    Route::post('/register', [RegisterController::class, 'umatRegister'])->name('umat.register');
 });
 
 Route::prefix('admin')

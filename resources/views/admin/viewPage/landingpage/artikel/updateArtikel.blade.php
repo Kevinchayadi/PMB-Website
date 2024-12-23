@@ -11,7 +11,7 @@
             </ul>
         </div>
     @endif
-    <div class="container-fluid">
+    <div class="container-fluid my-3">
         <div class=" min-vh-100 d-flex flex-column align-items-center justify-content-center ">
             <div class="row w-100 justify-content-center">
                 <div class="col-10 col-md-8">
@@ -23,14 +23,15 @@
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
-                                
+
 
                                 <!-- Nama -->
                                 <div class="mb-3">
                                     <label for="title" class="form-label">Judul Artikel<span
                                             class="text-danger">*</span></label>
                                     <input type="text" class="form-control @error('title') is-invalid @enderror"
-                                        id="title" name="title" placeholder="Masukkan judul artikel" value="{{ $artikel->title }}" required>
+                                        id="title" name="title" placeholder="Masukkan judul artikel"
+                                        value="{{ $artikel->title }}" required>
                                     @error('title')
                                         <div class="invalid-feedback text-white">{{ $message }}</div>
                                     @enderror
@@ -43,6 +44,17 @@
                                     <textarea class="form-control @error('body') is-invalid @enderror" id="body" name="body"
                                         placeholder="Masukkan deskripsi Artikel" rows="20" required>{{ $artikel->body }}</textarea>
                                     @error('body')
+                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                {{-- additional link --}}
+                                <div class="mb-3">
+                                    <label for="additionalLink" class="form-label">Link Artikel (Opsional)</label>
+                                    <input type="text" class="form-control @error('additionalLink') is-invalid @enderror"
+                                        id="additionalLink" name="additionalLink" placeholder="Masukkan link artikel"
+                                        value="{{ $artikel->additionalLink }}">
+                                    @error('additionalLink')
                                         <div class="invalid-feedback text-white">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -63,16 +75,6 @@
                                         id="foto" name="foto" placeholder="Masukkan gambar"
                                         onchange="previewImage(event)">
                                     @error('gambar')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                {{-- additional link --}}
-                                <div class="mb-3">
-                                    <label for="additionalLink" class="form-label">Link Artikel (Opsional)</label>
-                                    <input type="text" class="form-control @error('additionalLink') is-invalid @enderror"
-                                        id="additionalLink" name="additionalLink" placeholder="Masukkan link artikel" value="{{ $artikel->additionalLink }}">
-                                    @error('additionalLink')
                                         <div class="invalid-feedback text-white">{{ $message }}</div>
                                     @enderror
                                 </div>

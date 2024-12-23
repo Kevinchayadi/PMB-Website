@@ -23,49 +23,46 @@
 
         <!-- Table -->
         <div class="rounded overflow-hidden shadow-sm">
-            @if ($admins->total())
-                <table class="table table-hover table-striped mb-0 text-center">
-                    <thead class="table-primary">
+            <table class="table table-hover table-striped mb-0 text-center">
+                <thead class="table-primary">
+                    <tr>
+                        <th scope="col">No.</th>
+                        {{-- <th scope="col">ID Admin</th> --}}
+                        <th scope="col">Username</th>
+                        {{-- <th scope="col">Password</th> --}}
+                        <th scope="col">Role</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($admins as $index => $admin)
                         <tr>
-                            <th scope="col">No.</th>
-                            {{-- <th scope="col">ID Admin</th> --}}
-                            <th scope="col">Username</th>
-                            {{-- <th scope="col">Password</th> --}}
-                            <th scope="col">Role</th>
-                            <th scope="col">Action</th>
+                            <th scope="row">{{ $index + 1 }}</th>
+                            {{-- <td>{{ $admin->id }}</td> --}}
+                            <td>{{ $admin->username }}</td>
+                            {{-- <td>{{ $admin->password }}</td> --}}
+                            <td>{{ $admin->roles->role }}</td>
+                            <td>
+                                <a href="/admin/admin-detail/{{ $admin->username }}"
+                                    class="btn btn-sm btn-outline-primary">Edit</a>
+                                <form action="{{ route('admin.remove', $admin->username) }}" method="POST"
+                                    class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-outline-danger"
+                                        onclick="return confirm('Apakah Anda yakin ingin menghapus admin ini?');">
+                                        Delete
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($admins as $index => $admin)
-                            <tr>
-                                <th scope="row">{{ $index + 1 }}</th>
-                                {{-- <td>{{ $admin->id }}</td> --}}
-                                <td>{{ $admin->username }}</td>
-                                {{-- <td>{{ $admin->password }}</td> --}}
-                                <td>{{ $admin->roles->role }}</td>
-                                <td>
-                                    <a href="/admin/admin-detail/{{ $admin->username }}"
-                                        class="btn btn-sm btn-outline-primary">Edit</a>
-                                    <form action="{{ route('admin.remove', $admin->username) }}" method="POST"
-                                        class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-outline-danger"
-                                            onclick="return confirm('Apakah Anda yakin ingin menghapus admin ini?');">
-                                            Delete
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            @else
-                <div class="p-2">
-                    <p>data admin not found!</p>
-                </div>
-            @endif
-
+                    @empty
+                        <tr>
+                            <td colspan="5">No data available.</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
 
         </div>
 

@@ -35,7 +35,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($acara as $acaras)
+                    @forelse ($acara as $acaras)
                         <tr>
                             <th scope="row">{{ $loop->iteration }}</th>
                             <td>{{ $acaras->nama_acara }}</td>
@@ -55,7 +55,11 @@
 
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="5">No data available.</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

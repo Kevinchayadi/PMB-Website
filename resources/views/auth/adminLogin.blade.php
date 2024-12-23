@@ -7,21 +7,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Admin - Login</title>
     <link rel="stylesheet" href="{{ asset('css/admin/login.css') }}">
-    @include('user.layout.bootstrap')
-    @include('user.layout.font')
+    @include('admin.layout.bootstrap')
+    @include('admin.layout.font')
 </head>
 
 <body>
-    <div class="container-fluid row justify-content-center mt-3">
-        <div class="col-6">
-            <div class="title fs-5 fw-bolder text-center">Let's Sign In You To PMB Admin</div>
-            <div class="image h-100 p-4">
-                <img class="img-fluid h-100 rounded-3 shadow-lg" src="{{ asset('picture/Gereja.jpg') }}" alt="">
+    <div class="w-75 mx-auto">
+        <div class="container-fluid row justify-content-center align-content-center bg-white shadow-lg rounded-3">
+            <div class="title fs-4 fw-bolder text-center">Let's Sign In You To PMB Admin</div>
+            <div class="col-6">
+                <div class="image h-100 py-4">
+                    <img class="img-fluid h-100 rounded-3 shadow-lg" src="{{ asset('picture/Gereja.jpg') }}"
+                        alt="">
+                </div>
             </div>
-        </div>
-        <div class="col-6">
-            <div class="card border-0">
-                {{-- <div class="card-header p-0 border-bottom-0 bg-white">
+            <div class="col-6">
+                <div class="card border-0">
+                    {{-- <div class="card-header p-0 border-bottom-0 bg-white">
                     <a href="/auth/redirect" class="nav-link d-flex justify-content-center">
                         <div class="fs-5 fw-bolder me-2 align-self-center">Login with</div>
                         <div class="google badge text-bg-primary rounded-circle p-2 align-self-center" >
@@ -33,32 +35,53 @@
                         </div>
                     </a>
                 </div> --}}
-                {{-- <div class="divider d-flex align-items-center my-4">
+                    {{-- <div class="divider d-flex align-items-center my-4">
                     <p class="text-center fw-bold mx-3 mb-0">Or</p>
                 </div> --}}
-                <div class="card-body">
-                    <form method="POST" action="/admin/login">
-                        @csrf
-                        <div class="form-group mb-3">
-                            <label for="text">username</label>
-                            <input type="username" name="username" class="form-control" id="username" required autofocus>
-                        </div>
+                    <div class="card-body">
+                        <!-- Pesan kesalahan validasi -->
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <form method="POST" action="/admin/login">
+                            @csrf
+                            <div class="form-group mb-3">
+                                <label for="text">Username</label>
+                                <input type="username" name="username"
+                                    class="form-control @error('username') is-invalid @enderror" id="username" required
+                                    autofocus>
+                                @error('username')
+                                    <div class="invalid-feedback text-white">{{ $message }}</div>
+                                @enderror
+                            </div>
 
-                        <div class="form-group mb-3">
-                            <label for="password">Password</label>
-                            <input type="password" name="password" class="form-control" id="password" required>
-                        </div>
+                            <div class="form-group mb-3">
+                                <label for="password">Password</label>
+                                <input type="password" name="password"
+                                    class="form-control @error('password') is-invalid @enderror" id="password"
+                                    required>
+                                @error('password')
+                                    <div class="invalid-feedback text-white">{{ $message }}</div>
+                                @enderror
+                            </div>
 
-                        <div class="form-group mb-3 form-check">
-                            <input type="checkbox" name="remember" class="form-check-input" id="remember">
-                            <label class="form-check-label" for="remember">Remember Me</label>
-                        </div>
+                            <div class="form-group mb-3 form-check">
+                                <input type="checkbox" name="remember" class="form-check-input" id="remember">
+                                <label class="form-check-label" for="remember">Remember Me</label>
+                            </div>
 
-                        <div class="form-group mb-3">
-                            <button type="submit" class="btn btn-primary">Login</button>
-                        </div>
+                            <div class="form-group mb-3">
+                                <button type="submit" class="btn btn-primary">Login</button>
+                            </div>
 
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

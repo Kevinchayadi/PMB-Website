@@ -41,22 +41,26 @@
                             <th scope="row">{{ $index + 1 }}</th>
                             <td>{{ $romo->nama_romo }}</td>
                             <td>{{ $romo->jabatan }}</td>
-                            <td>@if($romo->deleted_at)
-                                inactive
+                            <td>
+                                @if ($romo->deleted_at)
+                                    inactive
                                 @else
-                                active
+                                    active
                                 @endif
                             </td>
                             <td>
-                                <a href="/admin/edit-pastor/{{ $romo->id_romo }}" class="btn btn-sm btn-outline-primary">Edit</a>
-                                <form action="{{ route('admin.deletePastor', $romo->id_romo) }}" method="POST" class="d-inline">
+                                <a href="/admin/edit-pastor/{{ $romo->id_romo }}"
+                                    class="btn btn-sm btn-outline-primary">Edit</a>
+                                <form action="{{ route('admin.deletePastor', $romo->id_romo) }}" method="POST"
+                                    class="d-inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to delete this pastor?')">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger"
+                                        onclick="return confirm('Are you sure you want to delete this pastor?')">
                                         Delete
                                     </button>
                                 </form>
-                                
+
                             </td>
                         </tr>
                     @empty
@@ -82,5 +86,5 @@
             </table>
         </div>
     </div>
-    
+
 @endsection

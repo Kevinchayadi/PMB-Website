@@ -2,7 +2,7 @@
 @section('title', 'Doa - Form')
 
 @section('content')
-    <div class="container-fluid">
+    <div class="container-fluid my-3">
         <div class="min-vh-100 d-flex flex-column align-items-center justify-content-center">
             <div class="row w-100 justify-content-center">
                 <div class="col-10 col-md-8">
@@ -39,8 +39,8 @@
                                 <!-- Deskripsi -->
                                 <div class="mb-3">
                                     <label for="deskripsi_doa" class="form-label">Deskripsi Doa</label>
-                                    <textarea class="form-control @error('deskripsi_doa') is-invalid @enderror" id="deskripsi_doa" name="deskripsi_doa" rows="5"
-                                        placeholder="Masukkan deskripsi doa" required>{{ old('deskripsi_doa') }}</textarea>
+                                    <textarea class="form-control @error('deskripsi_doa') is-invalid @enderror" id="deskripsi_doa" name="deskripsi_doa"
+                                        rows="5" placeholder="Masukkan deskripsi doa" required>{{ old('deskripsi_doa') }}</textarea>
                                     @error('deskripsi_doa')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -83,9 +83,9 @@
                                         <img id="current-image" src="{{ asset('picture/Gereja.jpg') }}" alt="Gambar Doa"
                                             class="img-fluid rounded-3 mb-2">
                                     </div>
-                                    <input type="file" class="form-control @error('file') is-invalid @enderror"
-                                        id="file" name="file" onchange="previewImage(event)" required>
-                                    @error('file')
+                                    <input type="file" class="form-control @error('foto') is-invalid @enderror"
+                                        id="foto" name="foto" onchange="previewImage(event)" required>
+                                    @error('foto')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>

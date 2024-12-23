@@ -12,7 +12,7 @@
         </div>
     @endif
 
-    <div class="container-fluid">
+    <div class="container-fluid my-3">
         <div class=" min-vh-100 d-flex flex-column align-items-center justify-content-center ">
             <div class="row w-100 justify-content-center">
                 <div class="col-10 col-md-8">
@@ -66,11 +66,10 @@
                                         class="img-fluid rounded-3 mb-2" id="current-image">
 
                                     <!-- Input file untuk mengganti gambar -->
-                                    <input type="file" id="gambar" name="gambar"
-                                        class="form-control @error('gambar') is-invalid @enderror" id="foto"
-                                        name="foto" placeholder="Masukkan gambar" onchange="previewImage(event)"
-                                        required>
-                                    @error('gambar')
+                                    <input type="file" class="form-control @error('foto') is-invalid @enderror"
+                                        id="foto" name="foto" placeholder="Masukkan gambar"
+                                        onchange="previewImage(event)" required>
+                                    @error('foto')
                                         <div class="invalid-feedback text-white">{{ $message }}</div>
                                     @enderror
                                 </div>

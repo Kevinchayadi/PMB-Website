@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('slug', 255)->nullable()->unique();
             $table->string('email_umat')->unique();
             $table->string('password')->nullable();
-            $table->string('ttl_uamt',255)->nullable();
+            $table->string('ttl_umat',255)->nullable();
             $table->string('Wilayah', 225)->nullable();
             $table->string('lingkungan', 100)->nullable();
             $table->string('nomorhp_umat', 100)->nullable();
