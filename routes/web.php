@@ -170,6 +170,12 @@ Route::prefix('admin')
         Route::get('export/request/{status}', [ExcelController::class, 'exportRequest'])->name('export.request');
         Route::get('logout', [LogoutController::class, 'adminLogout'])->name('admin.logout');
 
+
+        Route::get('/exportEventTemplate', [TransaksiController::class, 'exportTemplate'])->name('export.event.template');
+        Route::post('/ImportEvent', [TransaksiController::class, 'importEvent'])->name('import.event.template');
+        
+        Route::get('/exportEventTemplate', [TransaksiController::class, 'exportTemplate'])->name('export.event.template');
+        Route::post('/ImportEvent', [TransaksiController::class, 'importEvent'])->name('import.event.template');
     });
 
     // use Laravel\Socialite\Facades\Socialite;

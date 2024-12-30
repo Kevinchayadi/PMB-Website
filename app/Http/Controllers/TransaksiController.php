@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\TemplateEventImport;
+use App\Imports\TransactionImport;
 use App\Models\Acara;
 use App\Models\Doa;
 use App\Models\Romo;
@@ -12,6 +14,7 @@ use App\Models\Umat;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TransaksiController extends Controller
 {
@@ -286,4 +289,25 @@ class TransaksiController extends Controller
         // dd($transaction->status);
         return redirect()->route('admin.transaksi')->with('success', 'Transaksi berhasil di Selesaikan!');
     }
+
+    public function exportTemplate()
+    {
+        return Excel::download(new TemplateEventImport, 'event_Template.xlsx');
+    }
+
+ 
+    public function importEvent(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls,csv',
+        ]);
+
+        try {
+            Excel::import(new TransactionImport, $request->file('file'));
+            return back()->with('success', 'Data successfully imported!');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Error importing data: ' . $e->getMessage());
+        }
+    }
+
 }
