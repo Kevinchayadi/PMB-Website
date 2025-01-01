@@ -46,7 +46,7 @@ class RegisterController extends Controller
         // Validasi data input dari form
         $request->validate([
             'nama_umat' => 'required|string|max:255',
-            'email_umat' => 'required|string|email|max:255|unique:users',
+            'email_umat' => 'required|string|email|max:255|unique:umats,email_umat',
             'password' => 'required|string|min:8|confirmed',
             'ttl_umat' => 'nullable|date',
             'wilayah' => 'required|string|max:255',
@@ -58,9 +58,10 @@ class RegisterController extends Controller
         ]);
 
         // Membuat user baru dan menyimpan ke database
+        // dd($request->email_umat);
         $umat = Umat::create([
             'nama_umat' => $request->nama_umat,
-            'email' => $request->email,
+            'email_umat' => $request->email_umat,
             'password' => Hash::make($request->password), // Enkripsi password
             'ttl_umat' => $request->ttl_umat,
             'wilayah' => $request->wilayah,

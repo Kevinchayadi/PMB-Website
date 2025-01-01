@@ -58,7 +58,7 @@ class umat_seeder extends Seeder
                 'nama_baptis' => $row[2],
                 'email_umat' => $row[4],
                 'password' => Hash::make("12345678"),
-                'ttl_uamt' => $row[5],
+                'ttl_umat' => $row[5],
                 'Wilayah' => $row[6],
                 'lingkungan' => $row[7],
                 'nomorhp_umat' => $row[8],

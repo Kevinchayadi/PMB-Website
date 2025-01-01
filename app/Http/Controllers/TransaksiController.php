@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\errorTransaction;
 use App\Exports\TemplateEventImport;
 use App\Imports\TransactionImport;
+use App\Imports\transactionImports;
 use App\Models\Acara;
 use App\Models\Doa;
 use App\Models\Romo;
@@ -122,7 +124,7 @@ class TransaksiController extends Controller
             }
         }
     
-        // try {
+        try {
             DB::beginTransaction();
     
             // Buat header transaksi
@@ -146,10 +148,10 @@ class TransaksiController extends Controller
             DB::commit();
     
             return redirect()->route('admin.transaksi')->with('success', 'Transaksi berhasil ditambahkan!');
-        // } catch (\Throwable $th) {
-        //     DB::rollBack();
-        //     return redirect()->back()->withInput()->withErrors('Terjadi kesalahan saat menyimpan data');
-        // }
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->back()->withInput()->withErrors('Terjadi kesalahan saat menyimpan data');
+        }
     }
     
     public function updateTransaction($id)
@@ -303,10 +305,25 @@ class TransaksiController extends Controller
         ]);
 
         try {
-            Excel::import(new TransactionImport, $request->file('file'));
-            return back()->with('success', 'Data successfully imported!');
+            // Ambil file yang diupload
+            $file = $request->file('file');
+
+            // Lakukan import data
+            Excel::import(new transactionImports(), $file);
+
+            // Cek apakah ada error pada file yang diupload
+            $failedRows = session()->get('failed_rows', []);
+
+            if (count($failedRows) > 0) {
+                // Jika ada error, buat file Excel dan langsung download
+                return Excel::download(new errorTransaction(), 'transaction_error.xlsx');
+            } else {
+                // Jika tidak ada error, arahkan ke halaman utama
+                return redirect()->route('home')->with('success', 'Data berhasil diimport');
+            }
         } catch (\Exception $e) {
-            return back()->with('error', 'Error importing data: ' . $e->getMessage());
+            // Jika terjadi kesalahan, kembalikan error
+            return redirect()->route('home')->with('error', 'Terjadi kesalahan saat mengimpor data');
         }
     }
 
