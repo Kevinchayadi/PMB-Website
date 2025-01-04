@@ -31,6 +31,10 @@ class TransactionImport implements WithHeadingRow, ToModel
     {
         foreach ($rows as $row) {
             // Validasi data
+            $row['id_romo'] = $row['id_romo'] - 100;
+            $row['id_acara'] = $row['id_acara'] - 230;
+            $row['id_doa'] = $row['id_doa'] - 700;
+
             $validator = Validator::make($row, [
                 'judul' => 'required|string|max:255',
                 'id_romo' => 'required|exists:romos,id_romo',
@@ -59,7 +63,10 @@ class TransactionImport implements WithHeadingRow, ToModel
             }
 
             if (isset($row['id_umat'])) {
-                $idUmatArray = preg_split('/[,;]\s*/', $row['id_umat']); // Pisahkan berdasarkan , atau ;
+                $idUmatArray = preg_split('/[,;]\s*/', $row['id_umat']); 
+                $idUmatArray = array_map(function($id) {
+                    return $id - 1000;
+                }, $idUmatArray);//
                 foreach ($idUmatArray as $idUmat) {
                     // Validasi jika ID Umat tidak ada dalam tabel 'umats'
                     if (Umat::where('id_umat', $idUmat)->exists()) {
@@ -82,6 +89,9 @@ class TransactionImport implements WithHeadingRow, ToModel
 
             if (isset($row['id_seksi'])) {
                 $idSeksiArray = preg_split('/[,;]\s*/', $row['id_seksi']); // Pisahkan berdasarkan , atau
+                $idSeksiArray = array_map(function($id) {
+                    return $id - 540;
+                }, $idSeksiArray);
                 foreach ($idSeksiArray as $idSeksi) {
                     // Validasi jika ID Umat tidak ada dalam tabel 'umats'
                     if (Seksi::where('id_seksi', $idSeksi)->exists()) {

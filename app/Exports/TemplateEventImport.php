@@ -162,7 +162,7 @@ class DataSheet implements FromArray, WithTitle, WithStyles
 
         $doaData = $doas
             ->map(function ($doa) {
-                return [$doa->nama_doa, $doa->id_doa];
+                return [$doa->nama_doa, $doa->id_doa +700];
             })
             ->toArray();
 
