@@ -13,7 +13,7 @@ class pastorController extends Controller
     {
         $pastor = Romo::withTrashed()->orderBy('deleted_at')->get();
         // $inactive = Romo::withTrashed()->get();
-        return view('admin.viewPage.landingpage.pastor.Pastor', compact('pastor'));
+        return view('admin.viewPage.landingpage.pastor.pastor', compact('pastor'));
     }
     public function addPastor()
     {
