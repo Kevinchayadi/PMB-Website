@@ -174,8 +174,8 @@ Route::prefix('admin')
         Route::get('/exportEventTemplate', [TransaksiController::class, 'exportTemplate'])->name('export.event.template');
         Route::post('/ImportEvent', [TransaksiController::class, 'importEvent'])->name('import.event.template');
         
-        Route::get('/exportEventTemplate', [TransaksiController::class, 'exportTemplate'])->name('export.event.template');
-        Route::post('/ImportEvent', [TransaksiController::class, 'importEvent'])->name('import.event.template');
+        Route::get('/exportRequestTemplate', [RequestController::class, 'exportTemplate'])->name('export.Request.template');
+        Route::post('/ImportRequest', [RequestController::class, 'importRequest'])->name('import.Request.template');
     });
 
     // use Laravel\Socialite\Facades\Socialite;

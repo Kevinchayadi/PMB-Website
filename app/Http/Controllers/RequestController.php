@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\errorRequest;
+use App\Exports\requestStoreTemplate;
+use App\Imports\RequestImports;
+use App\Imports\transactionImports;
 use App\Models\Request as ModelsRequest;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class RequestController extends Controller
 {
@@ -219,6 +224,41 @@ class RequestController extends Controller
         }
         return back()->with('error', 'something wrong happened!!');
 
+    }
+
+    public function exportTemplate()
+    {
+        return Excel::download(new requestStoreTemplate, 'Request_Template.xlsx');
+    }
+
+ 
+    public function importRequest(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls,csv',
+        ]);
+
+        try {
+            // Ambil file yang diupload
+            $file = $request->file('file');
+
+            // Lakukan import data
+            Excel::import(new RequestImports(), $file);
+
+            // Cek apakah ada error pada file yang diupload
+            $failedRows = session()->get('failed_rows', []);
+
+            if (count($failedRows) > 0) {
+                // Jika ada error, buat file Excel dan langsung download
+                return Excel::download(new errorRequest(), 'transaction_error.xlsx');
+            } else {
+                // Jika tidak ada error, arahkan ke halaman utama
+                return redirect()->route('home')->with('success', 'Data berhasil diimport');
+            }
+        } catch (\Exception $e) {
+            // Jika terjadi kesalahan, kembalikan error
+            return redirect()->route('home')->with('error', 'Terjadi kesalahan saat mengimpor data');
+        }
     }
 
 

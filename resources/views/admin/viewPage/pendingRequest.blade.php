@@ -185,13 +185,41 @@
             </table>
         </div>
     </div>
-
     <script>
+        function downloadTemplate() {
+            window.location.href = "/admin/exportRequestTemplate";
+        }
+    
+        function submitExcel() {
+            let fileInput = document.getElementById('uploadfile');
+            if (fileInput.files.length == 0) {
+                alert("Silakan pilih file sebelum mengirim.");
+                return;
+            }
+    
+            let formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+    
+            fetch('/admin/ImportRequest', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert("File berhasil dikirim.");
+            })
+            .catch(error => {
+                alert("Terjadi kesalahan saat mengirim file.");
+                console.error('Error:', error);
+            });
+        }
+    </script>
+    {{-- <script>
         function downloadTemplate() {
             const link = document.createElement('a');
             link.href = 'template.xlsx'; // Replace with your template file URL
             link.download = 'template.xlsx';
             link.click();
         }
-    </script>
+    </script> --}}
 @endsection

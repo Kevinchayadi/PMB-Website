@@ -28,9 +28,9 @@ class EventDataSampleExport extends Seeder
             // Menyiapkan data untuk setiap baris
             $data[] = [
                 'judul' => 'Religious Event ' . $faker->word, // Judul acak
-                'id_romo' => rand(1, 7), // id_romo antara 1-7
-                'id_acara' => rand(1, 7), // id_acara antara 1-7
-                'id_doa' => rand(1, 2), // id_doa antara 1-2
+                'id_romo' => rand(1, 7)+100, // id_romo antara 1-7
+                'id_acara' => rand(1, 7)+230, // id_acara antara 1-7
+                'id_doa' => rand(1, 2)+700, // id_doa antara 1-2
                 'jadwal_transaction' => Carbon::now()->addDays(rand(1, 30))->format('Y-m-d H:i:s'), // Jadwal acak
                 'deskripsi_transaksi' => $faker->sentence, // Deskripsi transaksi acak
             ];

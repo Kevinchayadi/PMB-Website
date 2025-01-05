@@ -29,7 +29,7 @@ class HeaderSheet implements FromArray, WithTitle, WithStyles
     // Sheet pertama dengan informasi header
     public function array(): array
     {
-        return [
+        $data[] = [
             ['status', 'Judul', 'ID Romo', 'ID Seksi', 'ID Acara', 'ID Doa', 'ID Umat', 'Jadwal Transaction', 'Deskripsi Transaksi'],
             [
                 'Penjelasan: Kolom ini akan diisi secara otomatis oleh sistem dengan nilai "Accepted" atau "Rejected" setelah proses validasi.',
@@ -44,6 +44,13 @@ class HeaderSheet implements FromArray, WithTitle, WithStyles
             ],
             //tambahakan data errornya
         ];
+        $failedRows = Session::get('failed_rows', []);
+        if (!empty($failedRows)) {
+            foreach ($failedRows as $row) {
+                $data[] = [$row['status'] ?? '', $row['judul'] ?? '', $row['id_romo'] ?? '', $row['id_seksi'] ?? '', $row['id_acara'] ?? '', $row['id_doa'] ?? '', $row['id_umat'] ?? '', $row['jadwal_transaction'] ?? '', $row['deskripsi_transaksi'] ?? ''];
+            }
+        }
+        return $data;
     }
 
     public function title(): string
@@ -100,12 +107,7 @@ class ExampleSheet implements FromArray, WithTitle, WithStyles
         ];
 
         // Menambahkan data error dari session
-        $failedRows = Session::get('failed_rows', []);
-        if (!empty($failedRows)) {
-            foreach ($failedRows as $row) {
-                $data[] = [$row['status'] ?? '', $row['judul'] ?? '', $row['id_romo'] ?? '', $row['id_seksi'] ?? '', $row['id_acara'] ?? '', $row['id_doa'] ?? '', $row['id_umat'] ?? '', $row['jadwal_transaction'] ?? '', $row['deskripsi_transaksi'] ?? ''];
-            }
-        }
+        
         return $data;
     }
 

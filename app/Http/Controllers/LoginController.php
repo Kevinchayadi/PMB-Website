@@ -67,7 +67,7 @@ class LoginController extends Controller
             
         } catch (\Exception $e) {
             // Log exception or handle error gracefully
-            return redirect()->route('login')->with('error', 'There was an error during the login process.');
+            return redirect()->route('umat.login')->with('error', 'There was an error during the login process.');
         }
     }
     
