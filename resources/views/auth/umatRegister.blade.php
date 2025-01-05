@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Umat - Register</title>
     <link rel="stylesheet" href="{{ asset('css/admin/login.css') }}">
-    @include('user.layout.bootstrap')
-    @include('user.layout.font')
+    @include('user.Layout.bootstrap')
+    @include('user.Layout.font')
 </head>
 
 <body>
