@@ -44,9 +44,9 @@ class LoginController extends Controller
 
     public function googleLogin()
     {
+        $googleUser = Socialite::driver('google')->user();
         try {
             $googleUser = Socialite::driver('google')->user();
-            // dd();
     
             // Update or create user record based on google_id
             $user = Umat::updateOrCreate(
@@ -70,7 +70,6 @@ class LoginController extends Controller
             return redirect()->route('umat.login')->with('error', 'There was an error during the login process.');
         }
     }
-    
 
     function umatIndex()
     {

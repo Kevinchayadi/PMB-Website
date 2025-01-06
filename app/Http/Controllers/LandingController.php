@@ -24,8 +24,6 @@ class LandingController extends Controller
         $jadwal_acara = TransactionHeader::with(['romo', 'seksi', 'doa', 'transactionDetails' => function ($query) {
             $query->with('umats', 'acara', 'admin')->where('umat_id', Auth::guard('web')->user()->umat_id);
         }])->where('status', 'coming')->get();
-        dd($jadwal_acara);
-        // ->firstOrFail();
         return view('user.ViewPage.dashboard');
     }
 
