@@ -3,14 +3,14 @@
 @section('content')
     <div class="container-fluid row mx-auto">
         @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         @if ($layanan->count() > 0)
             @foreach ($layanan as $layanans)
                 <div class="col-lg-4 col-12 p-2">
@@ -20,7 +20,7 @@
                         <img class="img-fluid rounded-3 mb-2" src="{{ asset('storage/' . $layanans->path) }}"
                             alt="{{ $layanans->slug }}">
                         {{-- Description --}}
-                        <div class="fs-6">
+                        <div class="fs-5">
                             <div class="w-50 mx-auto fw-bolder text-center text-white">{{ $layanans->nama_acara }}</div>
                         </div>
                     </div>
@@ -29,19 +29,24 @@
                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                             <div class="modal-content">
                                 <div class="modal-header bg-primary">
-                                    <h1 class="modal-title fs-5 text-white" id="{{ $layanans->slug }}">
-                                        {{ $layanans->nama_acara }}</h1>
+                                    <div class="modal-title fs-4 text-white" id="{{ $layanans->slug }}">
+                                        {{ $layanans->nama_acara }}</div>
                                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
-                                <div class="modal-body">
+                                <div class="modal-body fs-5">
                                     {{ $layanans->deskripsi_acara }}
                                 </div>
 
-                                <div class="modal-btn text-center mb-2">
-                                    <a class="btn text-primary bg-white hvr-border-fade" data-bs-toggle="modal"
-                                        data-bs-target="#daftar-{{ $layanans->slug }}">Daftar Sekarang</a>
-                                </div>
+                                @if (Auth::check())
+                                    <div class="modal-btn text-center mb-2">
+                                        <a class="btn text-primary bg-white hvr-border-fade" data-bs-toggle="modal"
+                                            data-bs-target="#daftar-{{ $layanans->slug }}">Daftar Sekarang</a>
+                                    </div>
+                                @else
+                                    <div class="fs-5 text-center text-danger">Anda harus login untuk melakukan pendaftaran
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -61,17 +66,18 @@
                                         @csrf
                                         <input type="text" class="form-control" id="nama_acara" name="nama_acara"
                                             placeholder="Contoh: John Smith" value="{{ $layanans->nama_acara }}" hidden>
-                                        <input type="text" class="form-control" id="id_umat"name="id_umat" value="1" hidden>
+                                        <input type="text" class="form-control" id="id_umat"name="id_umat"
+                                            value="1" hidden>
                                         <div class="mb-3">
                                             <label for="nama_terlibat_satu" class="form-label">Nama Terlibat 1</label>
-                                            <input type="text" class="form-control" id="nama_terlibat_satu" name="nama_terlibat_satu"
-                                                placeholder="Contoh: John Smith" required>
+                                            <input type="text" class="form-control" id="nama_terlibat_satu"
+                                                name="nama_terlibat_satu" placeholder="Contoh: John Smith" required>
                                         </div>
 
                                         <div class="mb-3">
                                             <label for="nama_terlibat_dua" class="form-label">Nama Terlibat 2</label>
-                                            <input type="text" class="form-control" id="nama_terlibat_dua" name="nama_terlibat_dua"
-                                                placeholder="Contoh: John Smith">
+                                            <input type="text" class="form-control" id="nama_terlibat_dua"
+                                                name="nama_terlibat_dua" placeholder="Contoh: John Smith">
                                         </div>
 
                                         <div class="mb-3">
@@ -82,7 +88,8 @@
 
                                         <div class="mb-3">
                                             <label for="jadwal_acara" class="form-label">Jadwal Acara</label>
-                                            <input type="date" class="form-control" id="jadwal_acara" name="jadwal_acara">
+                                            <input type="date" class="form-control" id="jadwal_acara"
+                                                name="jadwal_acara">
                                         </div>
 
                                         <div class="mb-3">
