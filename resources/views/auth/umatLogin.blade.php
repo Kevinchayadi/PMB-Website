@@ -14,9 +14,9 @@
 <body>
     <div class="w-75 mx-auto">
         <div class="container-fluid row justify-content-center align-content-center shadow-lg bg-white rounded-3">
-            <div class="title fs-4 fw-bolder text-center">Let's Log In You To PMB Web</div>
+            <div class="title fs-4 fw-bolder text-center text-primary">Let's Log In You To PMB Web</div>
             <div class="col-lg-6 col-12">
-                <div class="image h-100 py-4">
+                <div class="image h-100 p-3 rounded-3 bg-primary">
                     <img class="img-fluid h-100 rounded-3 shadow-lg w-100" src="{{ asset('picture/Gereja.jpg') }}"
                         alt="">
                 </div>

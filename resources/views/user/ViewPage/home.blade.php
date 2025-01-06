@@ -9,13 +9,13 @@
         <div id="carouselforhighlight" class="carousel slide w-100 mx-auto mb-3" data-bs-ride="carousel">
             <div class="carousel-inner rounded-3 shadow-lg">
                 <div class="carousel-item active">
-                    <img src="{{ $highlight[0]->path }}" class="d-block w-100" alt="Highlight-Image-1">
+                    <img src="{{ $highlight[0]->path }}" class="d-block w-100 h-75" alt="Highlight-Image-1">
                 </div>
                 <div class="carousel-item">
-                    <img src="{{ $highlight[1]->path }}" class="d-block w-100" alt="Highlight-Image-2">
+                    <img src="{{ $highlight[1]->path }}" class="d-block w-100 h-75" alt="Highlight-Image-2">
                 </div>
                 <div class="carousel-item">
-                    <img src="{{ $highlight[2]->path }}" class="d-block w-100" alt="Highlight-Image-3">
+                    <img src="{{ $highlight[2]->path }}" class="d-block w-100 h-75" alt="Highlight-Image-3">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselforhighlight"
@@ -66,7 +66,7 @@
 
             {{-- Jadwal misa head --}}
             <div class="head-section d-flex justify-content-between">
-                <div class="align-self-center fs-4 fw-bolder">Jadwal Misa</div>
+                <div class="align-self-center fs-4 fw-bolder text-primary">Jadwal Misa</div>
                 <a class="nav-link align-self-center text-primary fs-6" href="/jadwal">Lihat semua jadwal</a>
             </div>
             <hr>
@@ -173,7 +173,7 @@
             {{-- Artikel --}}
 
             <div class="head-section d-flex justify-content-between">
-                <div class="align-self-center fs-4 fw-bolder">Artikel</div>
+                <div class="align-self-center fs-4 fw-bolder text-primary">Artikel</div>
                 <a class="nav-link align-self-center text-primary fs-6" href="/artikel">Lihat semua artikel</a>
             </div>
             <hr>
@@ -250,8 +250,8 @@
 
 
             {{-- Banner bawah --}}
-            <div class="banner-bottom my-4 rounded-3 shadow-lg w-100 mx-auto">
-                <a href= "https://youtube.com">
+            <div class="banner-bottom my-4 rounded-3 shadow-lg w-100 h-75 mx-auto">
+                <a href= "https://www.youtube.com/@parokimanggabesarjakarta4023">
                     <img class="object-fit-contain w-100 rounded-3" src="{{ $highlight[3]->path }}" alt="">
                 </a>
             </div>

@@ -1,6 +1,6 @@
 .header {
-    background-image: url('/picture/header-bg.png');
-    background-size: cover;
+    background-image: #fff;
+    background-color: #fff;
 }
 
 .logo img {

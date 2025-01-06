@@ -71,7 +71,7 @@
     }
 
     .footer {
-        background-color: #a2d4e4 !important;
+        background-image: linear-gradient(to top, #0084b5, #3a99c4, #5baed3, #79c4e3, #96daf3);
     }
 
     .row {
@@ -88,5 +88,9 @@
 
     .btn-primary {
         background-color: #0084B5 !important;
+    }
+
+    .text-justify {
+        text-align: justify;
     }
 </style>
