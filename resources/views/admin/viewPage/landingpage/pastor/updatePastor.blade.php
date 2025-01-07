@@ -63,7 +63,7 @@
 
                                 <!-- Jabatan -->
                                 <div class="mb-3">
-                                    <label for="jabatan" class="form-label">Jabatan<span
+                                    <label for="jabatan" class="form-label">Jabatan Pastor<span
                                             class="text-danger">*</span></label>
                                     <select class="form-control @error('jabatan') is-invalid @enderror" name="jabatan"
                                         id="jabatan">
@@ -86,7 +86,7 @@
 
                                 <!-- pengalaman -->
                                 <div class="mb-3">
-                                    <label for="pengalaman" class="form-label">pengalaman<span
+                                    <label for="pengalaman" class="form-label">Pengalaman Pastor<span
                                             class="text-danger">*</span></label>
                                     <textarea class="form-control @error('pengalaman') is-invalid @enderror" name="pengalaman" id="pengalaman"
                                         cols="30" rows="10">{{ old('pengalaman', $pastor->pengalaman) }}</textarea>
@@ -109,7 +109,7 @@
 
                                 <!-- Gambar -->
                                 <div class="mb-3">
-                                    <label for="foto" class="form-label">Gambar<span
+                                    <label for="foto" class="form-label">Foto Pastor<span
                                             class="text-danger">*</span></label>
                                     {{-- @if ($pastor->path) --}}
                                     <img src="{{ asset('storage/' . $pastor->path) }}" alt="Foto Pastor"

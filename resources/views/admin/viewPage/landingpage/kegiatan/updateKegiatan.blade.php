@@ -72,7 +72,7 @@
 
                                 <!-- gambar -->
                                 <div class="mb-3">
-                                    <label for="foto" class="form-label">Gambar<span
+                                    <label for="foto" class="form-label">Foto Kegiatan<span
                                             class="text-danger">*</span></label>
 
                                     <!-- Menampilkan gambar yang ada -->

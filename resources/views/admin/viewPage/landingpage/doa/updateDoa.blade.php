@@ -75,7 +75,7 @@
 
                                 <!-- Gambar -->
                                 <div class="mb-3">
-                                    <label for="foto" class="form-label">Gambar</label>
+                                    <label for="foto" class="form-label">Gambar Doa</label>
                                     <div>
                                         <img id="current-image"
                                             src="{{ $doa->path ? asset('storage/' . $doa->path) : asset('picture/Gereja.jpg') }}"

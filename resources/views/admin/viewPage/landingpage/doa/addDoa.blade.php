@@ -78,7 +78,7 @@
 
                                 <!-- Gambar -->
                                 <div class="mb-3">
-                                    <label for="file" class="form-label">Gambar</label>
+                                    <label for="file" class="form-label">Gambar Doa</label>
                                     <div>
                                         <img id="current-image" src="{{ asset('picture/Gereja.jpg') }}" alt="Gambar Doa"
                                             class="img-fluid rounded-3 mb-2">

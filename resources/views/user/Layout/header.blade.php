@@ -32,19 +32,6 @@
             id="navbarNav">
             <ul class="navbar-nav fs-6">
 
-                @if (Auth::check())
-                    {{-- User --}}
-                    <li class="nav-item py-2 fw-bolder d-lg-none d-block">
-                        Halo, <span class="text-primary">Ucok Subejo</span>
-                    </li>
-
-                    {{-- Dashboard --}}
-                    <li class="nav-item hvr-float">
-                        <a class="nav-link {{ Route::is('dashboard') ? 'text-secondary' : 'text-primary' }} me-2"
-                            href="/dashboard">Dashboard</a>
-                    </li>
-                @endif
-
                 {{-- Home --}}
                 <li class="nav-item">
                     <a class="nav-link {{ Route::is('home') ? 'text-secondary' : 'text-primary hvr-float' }} me-2"
@@ -76,6 +63,19 @@
                 </li>
 
                 @if (Auth::check())
+                    {{-- User --}}
+                    <li class="nav-item py-2 fw-bolder d-lg-none d-block">
+                        Halo, <span class="text-primary">Ucok Subejo</span>
+                    </li>
+
+                    {{-- Dashboard --}}
+                    <li class="nav-item hvr-float">
+                        <a class="nav-link {{ Route::is('dashboard') ? 'text-secondary' : 'text-primary' }} me-2"
+                            href="/dashboard">Dashboard</a>
+                    </li>
+                @endif
+
+                @if (Auth::check())
                     {{-- logout --}}
                     <li class="nav-item d-lg-none d-block">
                         <a class="nav-link text-primary" href="/#">Keluar</a>
@@ -94,7 +94,7 @@
         <div class="right col-3">
             <div class="collapse navbar-collapse row justify-content-center">
                 <div class="username col-5 px-0 fw-bolder">
-                    Halo,<span class="ms-1 text-primary">{{ Auth::guard('web')->user()->nama_umat }}  </span>
+                    Halo,<span class="ms-1 text-primary">{{ Auth::guard('web')->user()->nama_umat }} </span>
                 </div>
 
                 <div class="logoutIcon col-2 px-0">

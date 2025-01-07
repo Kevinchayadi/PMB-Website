@@ -61,7 +61,7 @@
 
                                 <!-- gambar -->
                                 <div class="mb-3">
-                                    <label for="file" class="form-label">Gambar<span
+                                    <label for="file" class="form-label">Gambar Artikel<span
                                             class="text-danger">*</span></label>
 
                                     <!-- Menampilkan gambar yang ada -->
