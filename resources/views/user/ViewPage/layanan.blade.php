@@ -44,6 +44,11 @@
                                             data-bs-target="#daftar-{{ $layanans->slug }}">Daftar Sekarang</a>
                                     </div>
                                 @else
+                                    <div class="modal-btn text-center mb-2">
+                                        <a class="btn text-primary bg-white hvr-border-fade disabled" data-bs-toggle="modal"
+                                            data-bs-target="#daftar-{{ $layanans->slug }}" aria-disabled="true">Daftar
+                                            Sekarang</a>
+                                    </div>
                                     <div class="fs-5 text-center text-danger">Anda harus login untuk melakukan pendaftaran
                                     </div>
                                 @endif

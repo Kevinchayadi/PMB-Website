@@ -69,6 +69,10 @@
                         <td>23 November 2024</td>
                         <td>Diterima</td>
                     </tr>
+                    {{-- @empty
+                        <tr>
+                            <td colspan="5">No data available.</td>
+                        </tr> --}}
                 </tbody>
             </table>
             <nav>
