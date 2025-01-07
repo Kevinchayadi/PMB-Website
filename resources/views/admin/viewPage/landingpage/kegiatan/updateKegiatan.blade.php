@@ -20,7 +20,7 @@
                         <div class="card-body text-white">
 
                             <h2 class="card-title text-center mb-4 fw-bolder">Edit Kegiatan</h2>
-                            <form action="/admin/edit-kegiatan/{{ $kegiatans->id }}" method="POST"
+                            <form action="/admin/edit-kegiatan/{{ $kegiatan->id }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf <!-- Laravel CSRF Token -->
                                 @method('PUT')
