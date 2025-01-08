@@ -24,11 +24,11 @@ class LandingController extends Controller
         return view('user.ViewPage.home', compact('highlight', 'artikel'));
     }
 
-    public function Dashboard(){
+    public function history(){
         $jadwal_acara = TransactionHeader::with(['romo', 'seksi', 'doa', 'transactionDetails' => function ($query) {
             $query->with('umats', 'acara', 'admin')->where('umat_id', Auth::guard('web')->user()->umat_id);
-        }])->where('status', 'coming')->get();
-        return view('user.ViewPage.dashboard');
+        }])->get();
+        return view('user.ViewPage.history', compact('jadwal_acara'));
     }
 
     public function jadwal()

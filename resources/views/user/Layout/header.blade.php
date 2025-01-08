@@ -40,8 +40,8 @@
 
                 {{-- Profile --}}
                 <li class="nav-item">
-                    <a class="nav-link {{ (Route::is('visiMisi') or Route::is('sejarah') or Route::is('doa') or Route::is('fasilitas') or Route::is('pastor') or Route::is('kegiatan')) ? 'text-secondary' : 'text-primary hvr-float' }} me-2"
-                        href="/profile/visiMisi">Profil</a>
+                    <a class="nav-link {{ (Route::is('visiMisi') or Route::is('doa') or Route::is('fasilitas') or Route::is('pastor') or Route::is('kegiatan')) ? 'text-secondary' : 'text-primary hvr-float' }} me-2"
+                        href="/profil/sejarahVisiMisi">Profil</a>
                 </li>
 
                 {{-- Jadwal --}}
@@ -65,13 +65,13 @@
                 @if (Auth::check())
                     {{-- User --}}
                     <li class="nav-item py-2 fw-bolder d-lg-none d-block">
-                        Halo, <span class="text-primary">Ucok Subejo</span>
+                        Halo, <span class="text-primary">{{ Auth::guard('web')->user()->nama_umat }}</span>
                     </li>
 
                     {{-- Dashboard --}}
                     <li class="nav-item hvr-float">
-                        <a class="nav-link {{ Route::is('dashboard') ? 'text-secondary' : 'text-primary' }} me-2"
-                            href="/dashboard">Histori</a>
+                        <a class="nav-link {{ Route::is('histori') ? 'text-secondary' : 'text-primary' }} me-2"
+                            href="/histori">Histori</a>
                     </li>
                 @endif
 
@@ -93,15 +93,28 @@
     @if (Auth::check())
         <div class="right col-3">
             <div class="collapse navbar-collapse row justify-content-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-info-circle-fill" viewBox="0 0 16 16">
-                    <path
-                        d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2" />
-                </svg>
-                <div class="username col-5 px-0 fw-bolder">
-                    Halo,<span class="ms-1 text-primary">{{ Auth::guard('web')->user()->nama_umat }} </span>
+                <div class="row col-8" data-bs-toggle="modal" data-bs-target="#Modal">
+                    @if (empty(Auth::user()->nama_baptis) or
+                            empty(Auth::user()->ttl_umat) or
+                            empty(Auth::user()->wilayah) or
+                            empty(Auth::user()->lingkungan) or
+                            empty(Auth::user()->nomorhp_umat) or
+                            empty(Auth::user()->alamat) or
+                            empty(Auth::user()->status) or
+                            empty(Auth::user()->pekerjaan))
+                        <div class="col-3 ps-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                class="bi bi-exclamation-circle-fill text-secondary" viewBox="0 0 16 16">
+                                <path
+                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
+                            </svg>
+                        </div>
+                    @else
+                    @endif
+                    <div class="username col-9 px-0 fw-bolder">
+                        Halo,<span class="ms-1 text-primary">{{ Auth::guard('web')->user()->nama_umat }} </span>
+                    </div>
                 </div>
-
                 <div class="logoutIcon col-2 px-0">
                     <a class="icon-link icon-link-hover text-dark text-decoration-none" href="/logout">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000"
@@ -114,7 +127,42 @@
                         Keluar
                     </a>
                 </div>
+                <!-- Modal -->
+                <div class="modal fade" id="Modal" data-bs-keyboard="false" tabindex="-1"
+                    aria-labelledby="ModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-primary">
+                                <h1 class="modal-title fs-5 text-white" id="ModalLabel">Update Data</h1>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="Terlibat-1" class="form-label">Nama Lengkap</label>
+                                        <input type="text" class="form-control" id="Terlibat-1"
+                                            placeholder="Contoh: John Smith" required>
+                                    </div>
 
+                                    <div class="mb-3">
+                                        <label for="Terlibat-2" class="form-label">Nomor Telepon</label>
+                                        <input type="number" class="form-control" id="Terlibat-2"
+                                            placeholder="081237171">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="Romo" class="form-label">Email</label>
+                                        <input type="text" class="form-control" disabled id="Romo"
+                                            placeholder="email@lorem.co.id">
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     @else

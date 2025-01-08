@@ -63,7 +63,7 @@ class LoginController extends Controller
             Auth::guard('web')->login($user);
     
             // Redirect to dashboard or other page
-            return redirect('/dashboard');
+            return redirect('/home');
             
         } catch (\Exception $e) {
             // Log exception or handle error gracefully

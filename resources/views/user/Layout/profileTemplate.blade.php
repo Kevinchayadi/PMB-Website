@@ -21,31 +21,25 @@
                 {{-- Profil Gereja --}}
                 <li class="nav-item ms-3">
                     <a class="nav-link {{ Route::is('visiMisi') ? 'text-primary text-decoration-underline decoration-secondary' : 'text-primary hvr-push' }} me-2"
-                        href="/profile/visiMisi">Visi Misi & Sejarah Gereja</a>
+                        href="/profil/visiMisi">Visi Misi & Sejarah Gereja</a>
                 </li>
-
-                {{-- Sejarah Gereja
-                <li class="nav-item">
-                    <a class="nav-link {{ Route::is('sejarah') ? 'text-primary text-decoration-underline decoration-secondary' : 'text-primary hvr-push' }} me-2"
-                        href="/profile/sejarah">Sejarah Gereja</a>
-                </li> --}}
 
                 {{-- Doa Paroki --}}
                 <li class="nav-item">
                     <a class="nav-link {{ Route::is('doa') ? 'text-primary text-decoration-underline decoration-secondary' : 'text-primary hvr-push' }} me-2"
-                        href="/profile/doa">Doa Paroki</a>
+                        href="/profil/doa">Doa Paroki</a>
                 </li>
 
                 {{-- Fasilitas --}}
                 <li class="nav-item">
                     <a class="nav-link {{ Route::is('fasilitas') ? 'text-primary text-decoration-underline decoration-secondary' : 'text-primary hvr-push' }} me-2"
-                        href="/profile/fasilitas">Fasilitas</a>
+                        href="/profil/fasilitas">Fasilitas</a>
                 </li>
 
                 {{-- Pastor Paroki --}}
                 <li class="nav-item">
                     <a class="nav-link {{ Route::is('pastor') ? 'text-primary text-decoration-underline decoration-secondary' : 'text-primary hvr-push' }}"
-                        href="/profile/pastor">Pastor
+                        href="/profil/pastor">Pastor
                         Paroki</a>
                 </li>
 

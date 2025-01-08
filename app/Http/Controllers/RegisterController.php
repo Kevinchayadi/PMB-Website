@@ -76,6 +76,6 @@ class RegisterController extends Controller
         Auth::guard('web')->login($umat);
 
         // Redirect ke halaman home atau dashboard setelah login berhasil
-        return redirect()->route('dashboard')->with('success', 'Registrasi berhasil! Anda telah login.');
+        return redirect()->route('home')->with('success', 'Registrasi berhasil! Anda telah login.');
     }
 }
