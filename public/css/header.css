@@ -11,7 +11,3 @@
 .active {
     color: #F6AF00 !important;
 }
-
-.modal {
-    z-index: 99;
-}

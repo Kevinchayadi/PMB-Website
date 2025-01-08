@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="{{ asset('css/header.css') }}">
 <div
     class="header navbar navbar-expand-md px-3 pe-0 fixed-top {{ (Route::is('visiMisi') or Route::is('sejarah') or Route::is('doa') or Route::is('fasilitas') or Route::is('pastor') or Route::is('kegiatan')) ? '' : 'shadow-sm border-bottom' }}">
+
     <div class="left row col-lg-3 col-12">
         {{-- button --}}
         <button class="navbar-toggler col-2 h-50 my-auto mx-1" type="button" data-bs-toggle="collapse"
@@ -114,6 +115,42 @@
                     <div class="username col-9 px-0 fw-bolder">
                         Halo,<span class="ms-1 text-primary">{{ Auth::guard('web')->user()->nama_umat }} </span>
                     </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="Modal" data-bs-keyboard="false" tabindex="-1"
+                        aria-labelledby="ModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header bg-primary">
+                                    <h1 class="modal-title fs-5 text-white" id="ModalLabel">Update Data</h1>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="mb-3">
+                                            <label for="Terlibat-1" class="form-label">Nama Lengkap</label>
+                                            <input type="text" class="form-control" id="Terlibat-1"
+                                                placeholder="Contoh: John Smith" required>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="Terlibat-2" class="form-label">Nomor Telepon</label>
+                                            <input type="number" class="form-control" id="Terlibat-2"
+                                                placeholder="081237171">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="Romo" class="form-label">Email</label>
+                                            <input type="text" class="form-control" disabled id="Romo"
+                                                placeholder="email@lorem.co.id">
+                                        </div>
+
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="logoutIcon col-2 px-0">
                     <a class="icon-link icon-link-hover text-dark text-decoration-none" href="/logout">
@@ -126,42 +163,6 @@
                         </svg>
                         Keluar
                     </a>
-                </div>
-                <!-- Modal -->
-                <div class="modal fade" id="Modal" data-bs-keyboard="false" tabindex="-1"
-                    aria-labelledby="ModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header bg-primary">
-                                <h1 class="modal-title fs-5 text-white" id="ModalLabel">Update Data</h1>
-                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form>
-                                    <div class="mb-3">
-                                        <label for="Terlibat-1" class="form-label">Nama Lengkap</label>
-                                        <input type="text" class="form-control" id="Terlibat-1"
-                                            placeholder="Contoh: John Smith" required>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="Terlibat-2" class="form-label">Nomor Telepon</label>
-                                        <input type="number" class="form-control" id="Terlibat-2"
-                                            placeholder="081237171">
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="Romo" class="form-label">Email</label>
-                                        <input type="text" class="form-control" disabled id="Romo"
-                                            placeholder="email@lorem.co.id">
-                                    </div>
-
-                                    <button type="submit" class="btn btn-primary">Save</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
