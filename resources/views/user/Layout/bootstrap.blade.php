@@ -93,4 +93,10 @@
     .text-justify {
         text-align: justify;
     }
+
+    @media(max-width: 768px) {
+        .sticky-top {
+            top: 75;
+        }
+    }
 </style>

@@ -34,7 +34,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 Route::redirect('/', 'home');
 Route::get('/home', [LandingController::class, 'home'])->name('home');
-Route::get('/dashboard', [LandingController::class, 'Dashboard'])->name('dashboard');
+Route::get('/dashboard', [LandingController::class, 'Dashboard'])->name('dashboard')->middleware('auth');
 Route::get('/profile/visiMisi', [ProfileController::class, 'visiMisi'])->name('visiMisi');
 Route::get('/profile/sejarah', [ProfileController::class, 'sejarah'])->name('sejarah');
 Route::get('/profile/doa', [ProfileController::class, 'doa'])->name('doa');

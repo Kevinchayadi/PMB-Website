@@ -16,7 +16,7 @@
         <div class="bg-primary p-2 rounded-3">
             <div class="row justify-content-center bg-white shadow-lg rounded-3 w-lg-75 w-100 p-4 overflow-auto mx-auto"
                 style="max-height: 90vh;">
-                <div class="title fs-4 fw-bolder text-center mb-4">Let's Make An Account</div>
+                <div class="title fs-4 fw-bolder text-center mb-4">Ayo Buat Akun</div>
 
                 <!-- Bagian Kiri -->
                 <div class="col-lg-6 col-12 mb-4">
@@ -43,7 +43,7 @@
                                 yang
                                 memperkuat ikatan antar umat.
                             </p>
-                            <a href="/home" class="btn btn-primary">See Around</a>
+                            <a href="/home" class="btn btn-primary">Ayo lihat lihat</a>
                         </div>
                     </div>
                 </div>
@@ -80,11 +80,11 @@
 
                                 <!-- Email -->
                                 <div class="mb-3">
-                                    <label for="email_umat" class="form-label">Email<span
+                                    <label for="email_umat" class="form-label">Alamat Email<span
                                             class="text-danger">*</span></label>
                                     <input type="email_umat"
                                         class="form-control  @error('email_umat') is-invalid @enderror" id="email_umat"
-                                        name="email_umat" placeholder="Masukkan email. Contoh: name@example.com"
+                                        name="email_umat" placeholder="Masukkan alamat email. Contoh: nama@example.com"
                                         required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
                                     <div class="form-text">Pastikan email mengandung @ dan domain yang valid (seperti
                                         .com).
@@ -96,10 +96,10 @@
 
                                 <!-- Password -->
                                 <div class="mb-3">
-                                    <label for="password" class="form-label">Password<span
+                                    <label for="password" class="form-label">Kata Sandi<span
                                             class="text-danger">*</span></label>
                                     <input type="password" class="form-control  @error('password') is-invalid @enderror"
-                                        id="password" name="password" placeholder="Masukkan password" required>
+                                        id="password" name="password" placeholder="Masukkan kata sandi" required>
                                     @error('password')
                                         <div class="invalid-feedback text-white">{{ $message }}</div>
                                     @enderror
@@ -107,12 +107,12 @@
 
                                 <!-- Konfirmasi Password -->
                                 <div class="mb-3">
-                                    <label for="password_confirmation" class="form-label">Konfirmasi Password<span
+                                    <label for="password_confirmation" class="form-label">Konfirmasi Kata Sandi<span
                                             class="text-danger">*</span></label>
                                     <input type="password"
                                         class="form-control  @error('password_confirmation') is-invalid @enderror"
                                         id="password_confirmation" name="password_confirmation"
-                                        placeholder="Ulangi password" required>
+                                        placeholder="Ulangi kata sandi" required>
                                     @error('password_confirmation')
                                         <div class="invalid-feedback text-white">{{ $message }}</div>
                                     @enderror
@@ -212,8 +212,8 @@
                                 <!-- Tombol Submit -->
                                 <button type="submit" class="btn btn-primary">Daftar</button>
                                 <div class="register fs-6 fw-bolder d-flex">
-                                    Have an account? <span class="text-primary"><a href="/login"
-                                            class="nav-link">Login</a></span>
+                                    Punya akun? <span class="text-primary"><a href="/login" class="nav-link">Masuk
+                                            di sini</a></span>
                                 </div>
                             </form>
                         </div>

@@ -44,15 +44,17 @@
                             <td>
                                 <button class="btn btn-sm btn-outline-primary"><a
                                         href="/admin/edit-kegiatan/{{ $kegiatans->id }}" class="nav-link">Edit</a></button>
-                                <button class="btn btn-sm btn-outline-danger"><a
-                                        href="/admin/delete-kegiatan/{{ $kegiatans->id }}" class="nav-link"
-                                        onclick="return confirm('Apa kamu yakin untuk menghapus kegiatan ini?')">Delete</a></button>
+                                <form action="/admin/delete-kegiatan/{{ $kegiatans->id }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-outline-danger"
+                                        onclick="return confirm('Apa kamu yakin untuk menghapus kegiatan ini?')">Hapus</button>
+                                </form>
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5">Data
-                                kegiatan tidak ada
+                            <td colspan="5">Data kegiatan tidak ada
                             </td>
                         </tr>
                     @endforelse

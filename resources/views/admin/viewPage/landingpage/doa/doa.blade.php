@@ -44,9 +44,12 @@
                                 <td>
                                     <button class="btn btn-sm btn-outline-primary"><a
                                             href="/admin/edit-doa/{{ $doas->id_doa }}" class="nav-link">Edit</a></button>
-                                    <button class="btn btn-sm btn-outline-danger"><a
-                                            href="/admin/delete-doa/{{ $doas->id_doa }}" class="nav-link"
-                                            onclick="return confirm('Apa kamu yakin untuk menghapus doa ini?')">Hapus</a></button>
+                                    <form action="/admin/delete-doa/{{ $doas->id_doa }}" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-outline-danger"
+                                            onclick="return confirm('Apa kamu yakin untuk menghapus doa ini?')">Hapus</button>
+                                    </form>
                                 </td>
                             </tr>
                         @empty

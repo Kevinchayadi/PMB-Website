@@ -101,27 +101,14 @@ class AcaraController extends Controller
             $acara->update($input);
             DB::commit();
             return redirect()->route('admin.acara')->with('success', 'Acara dan dokumentasi berhasil diubah!');
-        // } catch (\Throwable $th) {
-        //     DB::rollBack();
-        //     Log::error('Gagal melakukan update acara: ' . $th->getMessage());
-        //     return back()->with('error', 'Gagal melakukan update acara!');
-        // }
-
-       
     }
 
     public function deleteAcara($slug)
     {
-        $acara = Acara::get()->where('slug', $slug)->firstOrFail();
+        $acara = Acara::where('slug', $slug)->firstOrFail();
 
         try {
             DB::beginTransaction();
-
-            // Hapus dokumentasi
-            foreach ($acara->documentations as $dokumentasi) {
-                Storage::delete('dokumentasi/' . $dokumentasi->nama_dokumentasi);
-                $dokumentasi->delete();
-            }
 
             // Hapus acara
             $acara->delete();

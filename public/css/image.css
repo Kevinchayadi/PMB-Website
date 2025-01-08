@@ -18,3 +18,26 @@
     min-height: 180px;
     max-height: 180px;
 }
+
+@media (max-width: 768px) {
+    .custom-img {
+        min-width: 100%;
+        max-width: 100%;
+        min-height: auto;
+        max-height: auto;
+    }
+
+    .custom-img-2 {
+        min-width: 250px;
+        max-width: 250px;
+        min-height: 250px;
+        max-height: 250px;
+    }
+
+    .custom-img-3 {
+        min-width: 100%;
+        max-width: 100%;
+        min-height: auto;
+        max-height: auto;
+    }
+}

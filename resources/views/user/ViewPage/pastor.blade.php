@@ -3,9 +3,9 @@
 @extends('user.Layout.profileTemplate')
 @section('title', 'Pastor')
 @section('content')
-    <div class="row mx-auto mb-2">
+    <div class="row mx-auto mb-2 justify-content-center">
         @forelse ($romo as $romos)
-            <div class="col-lg-4 col-12 p-2">
+            <div class="col-lg-4 col-12 p-2 d-flex justify-content-center align-items-center">
                 <div class="bg-primary rounded-3 shadow-lg p-2 hvr-shrink" data-bs-toggle="modal"
                     data-bs-target="#{{ str_replace([' ', '.', ','], '-', $romos->nama_romo) }}">
                     <img src="{{ asset('storage/' . $romos->path) }}"

@@ -28,7 +28,7 @@
         </div>
     </div>
     <div class="row mx-auto mb-3 justify-content-center">
-        <div class="col-lg-6 col-6 px-2 mb-2 hvr-shrink">
+        <div class="col-lg-6 col-12 px-2 mb-2 hvr-shrink">
             <div class="card bg-primary rounded-3 shadow-lg" data-bs-toggle="collapse" data-bs-target="#collapse-sejarah-1">
                 <img src="{{ asset('picture/Gereja.jpg') }}" class="card-img-top h-100" alt="...">
                 <div class="card-body">
@@ -45,7 +45,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-6 col-6 px-2 mb-2 hvr-shrink">
+        <div class="col-lg-6 col-12 px-2 mb-2 hvr-shrink">
             <div class="card bg-primary rounded-3 shadow-lg" data-bs-toggle="collapse" data-bs-target="#collapse-sejarah-2">
                 <img src="{{ asset('picture/Gereja.jpg') }}" class="card-img-top h-100" alt="...">
                 <div class="card-body">
@@ -64,7 +64,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-6 col-6 px-2 mb-2 hvr-shrink">
+        <div class="col-lg-6 col-12 px-2 mb-2 hvr-shrink">
             <div class="card bg-primary rounded-3 shadow-lg" data-bs-toggle="collapse" data-bs-target="#collapse-sejarah-3">
                 <img src="{{ asset('picture/Gereja.jpg') }}" class="card-img-top h-100" alt="...">
                 <div class="card-body">

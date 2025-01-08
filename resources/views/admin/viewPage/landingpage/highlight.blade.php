@@ -1,6 +1,6 @@
+<link rel="stylesheet" href="{{ asset('css/image.css') }}">
 @extends('admin.layout.template')
 @section('title', 'Admin - Highlight')
-
 @section('content')
     @if (session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -30,7 +30,7 @@
                 <div class="row">
                     <div class="col-4">
                         <img id="preview-highlight1" src="{{ asset($highlight[0]->path) }}"
-                            class="img-fluid rounded-3 shadow-lg mb-2" alt="Carousel 1">
+                            class="img-fluid custom-img-3 rounded-3 shadow-lg mb-2" alt="Carousel 1">
                         <input type="file" id="highlight1" name="highlight1"
                             class="form-control btn btn-primary rounded-3 w-100 @error('highlight1') is-invalid @enderror"
                             onchange="previewImage(this, 'preview-highlight1')">
@@ -41,7 +41,7 @@
 
                     <div class="col-4">
                         <img id="preview-highlight2" src="{{ asset($highlight[1]->path) }}"
-                            class="img-fluid rounded-3 shadow-lg mb-2" alt="Carousel 2">
+                            class="img-fluid custom-img-3 rounded-3 shadow-lg mb-2" alt="Carousel 2">
                         <input type="file" id="highlight2" name="highlight2"
                             class="form-control btn btn-primary rounded-3 w-100 @error('highlight2') is-invalid @enderror"
                             onchange="previewImage(this, 'preview-highlight2')">
@@ -52,7 +52,7 @@
 
                     <div class="col-4">
                         <img id="preview-highlight3" src="{{ asset($highlight[2]->path) }}"
-                            class="img-fluid rounded-3 shadow-lg mb-2" alt="Carousel 3">
+                            class="img-fluid custom-img-3 rounded-3 shadow-lg mb-2" alt="Carousel 3">
                         <input type="file" id="highlight3" name="highlight3"
                             class="form-control btn btn-primary rounded-3 w-100 @error('highlight3') is-invalid @enderror"
                             onchange="previewImage(this, 'preview-highlight3')">
@@ -81,8 +81,8 @@
                         <div class="col-md-8">
                             <div class="card-body">
                                 <div class="content align-content-center py-4 fs-1 d-lg-block d-none">
-                                    <input type="text" class="text-secondary form-control"
-                                        placeholder="{{ $highlight[4]->nama }}">
+                                    <input type="text" class="form-control" name="keterangan" id="keterangan"
+                                        value="{{ $highlight[4]->keterangan }}">
                                 </div>
                             </div>
                         </div>
