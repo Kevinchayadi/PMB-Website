@@ -1,5 +1,5 @@
 @extends('admin.layout.template')
-@section('title', 'Artikel - Form')
+@section('title', 'Perbarui Data Artikel')
 
 @section('content')
     @if ($errors->any())
@@ -18,7 +18,7 @@
                     <div class="card bg-primary shadow-lg rounded-4">
                         <div class="card-body text-white">
 
-                            <h2 class="card-title text-center mb-4 fw-bolder">Edit Artikel</h2>
+                            <h2 class="card-title text-center mb-4 fw-bolder">Perbarui Data Artikel</h2>
                             <form action="/admin/edit-artikel/{{ $artikel->id }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
@@ -61,8 +61,7 @@
 
                                 <!-- gambar -->
                                 <div class="mb-3">
-                                    <label for="file" class="form-label">Gambar Artikel<span
-                                            class="text-danger">*</span></label>
+                                    <label for="file" class="form-label">Gambar Artikel</label>
 
                                     <!-- Menampilkan gambar yang ada -->
                                     <div>
@@ -81,8 +80,8 @@
 
                                 <!-- Tombol Submit -->
                                 <div class="d-grid">
-                                    <button type="submit" class="btn btn-success">Submit</button>
-                                    <a class=" btn btn-danger rounded-none mt-2" href="/admin/artikel"> cancel</a>
+                                    <button type="submit" class="btn btn-success">Perbarui Data Artikel</button>
+                                    <a class=" btn btn-danger rounded-none mt-2" href="/admin/artikel">Batal</a>
                                 </div>
                             </form>
                         </div>

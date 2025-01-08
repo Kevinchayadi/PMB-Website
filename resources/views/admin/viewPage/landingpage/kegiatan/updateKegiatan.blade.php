@@ -1,5 +1,5 @@
 @extends('admin.layout.template')
-@section('title', 'Kegiatan - Form')
+@section('title', 'Perbarui Data Kegiatan')
 
 @section('content')
     @if ($errors->any())
@@ -19,7 +19,7 @@
                     <div class="card bg-primary shadow-lg rounded-4">
                         <div class="card-body text-white">
 
-                            <h2 class="card-title text-center mb-4 fw-bolder">Edit Kegiatan</h2>
+                            <h2 class="card-title text-center mb-4 fw-bolder">Perbarui Data Kegiatan</h2>
                             <form action="/admin/edit-kegiatan/{{ $kegiatan->id }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf <!-- Laravel CSRF Token -->
@@ -72,8 +72,7 @@
 
                                 <!-- gambar -->
                                 <div class="mb-3">
-                                    <label for="foto" class="form-label">Foto Kegiatan<span
-                                            class="text-danger">*</span></label>
+                                    <label for="foto" class="form-label">Foto Kegiatan</label>
 
                                     <!-- Menampilkan gambar yang ada -->
                                     <div>
@@ -92,8 +91,8 @@
 
                                 <!-- Tombol Submit -->
                                 <div class="d-grid">
-                                    <button type="submit" class="btn btn-success">Update</button>
-                                    <a class=" btn btn-danger rounded-none mt-2" href="/admin/kegiatan"> cancel</a>
+                                    <button type="submit" class="btn btn-success">Perbarui Data Kegiatan</button>
+                                    <a class=" btn btn-danger rounded-none mt-2" href="/admin/kegiatan">Batal</a>
                                 </div>
                             </form>
                         </div>

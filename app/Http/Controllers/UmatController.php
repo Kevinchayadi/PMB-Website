@@ -98,9 +98,6 @@ class UmatController extends Controller
             $data[3]->save();
         }
 
-        // Menyimpan gambar event jika ada
-        // dd($request->all());
-        // dd($request->all());
         if ($request->hasFile('event')) {
             // dd($request->all());
            
@@ -118,10 +115,6 @@ class UmatController extends Controller
             $data[4]->save();
         }
     
-        // Simpan perubahan ke database
-        // $data->save();
-    
-        // Menyimpan flash data ke session dan mengarahkan kembali ke halaman sebelumnya
         return back()->with('success', 'Highlight images updated successfully!');
     }
     

@@ -10,14 +10,18 @@ use App\Models\TransactionHeader;
 use App\Models\Umat;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class LandingController extends Controller
 {
     public function Home()
     {
         $highlight = Hightlight::get();
-        // dd($highlight);
-        return view('user.ViewPage.home', compact('highlight'));
+        $artikel = Articel::inRandomOrder()->take(6)->get()->map(function ($artikel) {
+            $artikel->body = Str::limit($artikel->body, 50);
+            return $artikel;
+        });
+        return view('user.ViewPage.home', compact('highlight', 'artikel'));
     }
 
     public function Dashboard(){
@@ -51,7 +55,10 @@ class LandingController extends Controller
 
     public function artikel()
     {
-        $artikel= Articel::get();
+        $artikel= Articel::get()->map(function ($artikel) {
+            $artikel->body = Str::limit($artikel->body, 100);
+            return $artikel;
+        });;
         return view('user.ViewPage.artikel', compact('artikel'));
     }
 
@@ -59,7 +66,11 @@ class LandingController extends Controller
     {
         $artikel= Articel::where('id', $id)
         ->firstOrFail();
-        return view('user.ViewPage.artikeldetail', compact('artikel'));
+        $moreArtikel = Articel::where('id', '!=', $id)->inRandomOrder()->take(2)->get()->map(function ($moreArtikel) {
+            $moreArtikel->body = Str::limit($moreArtikel->body, 50);
+            return $moreArtikel;
+        });;
+        return view('user.ViewPage.artikeldetail', compact('artikel', 'moreArtikel'));
     }
 
     public function layanan()

@@ -1,5 +1,5 @@
 @extends('admin.layout.template')
-@section('title', 'Doa - Form')
+@section('title', 'Perbarui Data Doa')
 
 @section('content')
     @if ($errors->any())
@@ -17,7 +17,7 @@
                 <div class="col-10 col-md-8">
                     <div class="card bg-primary shadow-lg rounded-4">
                         <div class="card-body text-white">
-                            <h2 class="card-title text-center mb-4 fw-bolder">Edit Doa</h2>
+                            <h2 class="card-title text-center mb-4 fw-bolder">Perbarui Data Doa</h2>
                             <form action="/admin/edit-doa/{{ $doa->id_doa }}" method="POST" enctype="multipart/form-data">
                                 @csrf <!-- Laravel CSRF Token -->
                                 @method('PUT') <!-- Laravel method spoofing -->
@@ -90,8 +90,8 @@
 
                                 <!-- Tombol Submit -->
                                 <div class="d-grid">
-                                    <button type="submit" class="btn btn-success">Update</button>
-                                    <a href="/admin/doa" class="btn btn-danger mt-2">Cancel</a>
+                                    <button type="submit" class="btn btn-success">Perbarui Data Doa</button>
+                                    <a href="/admin/doa" class="btn btn-danger mt-2">Batal</a>
                                 </div>
                             </form>
                         </div>

@@ -1,5 +1,5 @@
 @extends('admin.layout.template')
-@section('title', 'Doa - List')
+@section('title', 'Tabel Doa')
 
 @section('content')
     {{-- Sukses --}}
@@ -10,7 +10,7 @@
         </div>
     @endif
     <div class="d-flex justify-content-start align-items-center mb-3 text-center">
-        <h1 class="mb-0 fw-bold  p-2 text-white bg-primary shadow rounded-end-2">Doa List</h1>
+        <h1 class="mb-0 fw-bold  p-2 text-white bg-primary shadow rounded-end-2">Tabel Doa</h1>
     </div>
 
     <div class="px-4">
@@ -19,9 +19,9 @@
             <form action="/admin/doa" method="GET" class="d-flex">
                 <input type="text" id="searchInput" name="search" class="form-control me-2"
                     value="{{ request('search') }}" placeholder="Search...">
-                <button type="submit" class="btn btn-outline-primary">Search</button>
+                <button type="submit" class="btn btn-outline-primary">Cari</button>
             </form>
-            <a href="/admin/add-doa" class="btn btn-primary ">Add New Doa</a>
+            <a href="/admin/add-doa" class="btn btn-primary ">Tambah Doa Baru</a>
         </div>
         @if ($doa->count() > 0)
             <div class="rounded overflow-hidden shadow-sm">
@@ -31,7 +31,7 @@
                             <th scope="col">No.</th>
                             <th scope="col">Judul Doa</th>
                             <th scope="col">Deskripsi Doa</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,13 +45,13 @@
                                     <button class="btn btn-sm btn-outline-primary"><a
                                             href="/admin/edit-doa/{{ $doas->id_doa }}" class="nav-link">Edit</a></button>
                                     <button class="btn btn-sm btn-outline-danger"><a
-                                            href="/admin/delete-doa/{{ $doas->id_doa }}"
-                                            class="nav-link">Delete</a></button>
+                                            href="/admin/delete-doa/{{ $doas->id_doa }}" class="nav-link"
+                                            onclick="return confirm('Apa kamu yakin untuk menghapus doa ini?')">Hapus</a></button>
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5">No data available.</td>
+                                <td colspan="5">Data doa tidak ada</td>
                             </tr>
                         @endforelse
                     </tbody>

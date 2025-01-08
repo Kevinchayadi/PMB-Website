@@ -1,5 +1,5 @@
 @extends('admin.layout.template')
-@section('title', 'Kegiatan - Form')
+@section('title', 'Tambah Kegiatan Baru')
 
 @section('content')
     @if ($errors->any())
@@ -19,7 +19,7 @@
                     <div class="card bg-primary shadow-lg rounded-4">
                         <div class="card-body text-white">
 
-                            <h2 class="card-title text-center mb-4 fw-bolder">Create New Kegiatan</h2>
+                            <h2 class="card-title text-center mb-4 fw-bolder">Tambah Kegiatan Baru</h2>
                             <form action="/admin/add-kegiatan" method="POST" enctype="multipart/form-data">
                                 @csrf <!-- Laravel CSRF Token -->
 
@@ -73,13 +73,15 @@
                                             class="text-danger">*</span></label>
 
                                     <!-- Menampilkan gambar yang ada -->
-                                    <img src="{{ asset('picture/Gereja.jpg') }}" alt="Gambar Default"
-                                        class="img-fluid rounded-3 mb-2" id="current-image">
+                                    <div>
+                                        <img src="{{ asset('picture/Gereja.jpg') }}" alt="Gambar Default"
+                                            class="img-fluid rounded-3 mb-2" id="current-image">
+                                    </div>
 
                                     <!-- Input file untuk mengganti gambar -->
                                     <input type="file" class="form-control @error('foto') is-invalid @enderror"
                                         id="foto" name="foto" placeholder="Masukkan gambar"
-                                        onchange="previewImage(event)">
+                                        onchange="previewImage(event)" required>
                                     @error('foto')
                                         <div class="invalid-feedback text-white">{{ $message }}</div>
                                     @enderror
@@ -87,8 +89,8 @@
 
                                 <!-- Tombol Submit -->
                                 <div class="d-grid">
-                                    <button type="submit" class="btn btn-success">Submit</button>
-                                    <a class=" btn btn-danger rounded-none mt-2" href="/admin/kegiatan"> cancel</a>
+                                    <button type="submit" class="btn btn-success">Tambah Kegiatan Baru</button>
+                                    <a class=" btn btn-danger rounded-none mt-2" href="/admin/kegiatan">Batal</a>
                                 </div>
                             </form>
                         </div>

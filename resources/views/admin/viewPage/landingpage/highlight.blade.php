@@ -1,7 +1,13 @@
 @extends('admin.layout.template')
-@section('title', 'Admin - Article Page')
+@section('title', 'Admin - Highlight')
 
 @section('content')
+    @if (session()->has('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Sukses!</strong> {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     <div class="container">
         <form class="form" action="/admin/highlight" method="POST" enctype="multipart/form-data">
             @csrf
@@ -63,12 +69,12 @@
                 <div class="card mx-auto mb-3 col-9 bg-dark rounded-3 shadow-lg d-lg-block d-none">
                     <div class="row g-0">
                         <div class="col-md-4">
-                            <img id="preview-highlight4" src="{{ asset($highlight[4]->path) }}"
+                            <img id="preview-event" src="{{ asset($highlight[4]->path) }}"
                                 class="img-fluid rounded-start mb-2" alt="Banner Atas">
-                            <input type="file" id="highlight4" name="highlight4"
-                                class="form-control btn btn-primary rounded-3 w-100 @error('highlight4') is-invalid @enderror"
-                                onchange="previewImage(this, 'preview-highlight4')">
-                            @error('highlight4')
+                            <input type="file" id="event" name="event"
+                                class="form-control btn btn-primary rounded-3 w-100 @error('event') is-invalid @enderror"
+                                onchange="previewImage(this, 'preview-event')">
+                            @error('event')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
@@ -88,12 +94,12 @@
                 <div class="title fs-4 fw-bolder">Banner Bawah</div>
                 {{-- Banner Bawah --}}
                 <div class="banner-bottom my-4 rounded-3 shadow-lg w-75 mx-auto">
-                    <img id="preview-highlight5" class="object-fit-contain w-100 rounded-3"
+                    <img id="preview-promosi" class="object-fit-contain w-100 rounded-3"
                         src="{{ asset($highlight[3]->path) }}" alt="Banner Bawah">
-                    <input type="file" id="highlight5" name="highlight5"
-                        class="form-control btn btn-primary rounded-3 w-100 @error('highlight5') is-invalid @enderror"
-                        onchange="previewImage(this, 'preview-highlight5')">
-                    @error('highlight5')
+                    <input type="file" id="promosi" name="promosi"
+                        class="form-control btn btn-primary rounded-3 w-100 @error('promosi') is-invalid @enderror"
+                        onchange="previewImage(this, 'preview-promosi')">
+                    @error('promosi')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
