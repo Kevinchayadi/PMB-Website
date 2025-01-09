@@ -9,12 +9,22 @@ use Illuminate\Support\Facades\Storage;
 
 class pastorController extends Controller
 {
-    public function pastorIndex()
-    {
-        $pastor = Romo::withTrashed()->orderBy('deleted_at')->get();
-        // $inactive = Romo::withTrashed()->get();
-        return view('admin.viewPage.landingpage.pastor.pastor', compact('pastor'));
-    }
+    public function pastorIndex(Request $request)
+{
+    // Ambil parameter pencarian dari request
+    $search = $request->input('search');
+
+    // Query data pastor berdasarkan pencarian nama_romo
+    $pastor = Romo::withTrashed()
+        ->when($search, function ($query, $search) {
+            return $query->where('nama_romo', 'like', "%{$search}%");
+        })
+        ->orderBy('deleted_at')
+        ->get();
+
+    // Return view dengan data pastor dan pencarian
+    return view('admin.viewPage.landingpage.pastor.pastor', compact('pastor', 'search'));
+}
     public function addPastor()
     {
         return view('admin.viewPage.landingpage.pastor.addPastor');

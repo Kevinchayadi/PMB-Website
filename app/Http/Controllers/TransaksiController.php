@@ -98,7 +98,7 @@ class TransaksiController extends Controller
         $acara = $input2['id_acara'];
         $checkTransaction = TransactionHeader::whereBetween('jadwal_transaction', [$startRange, $endRange])->whereHas('TransactionDetails', function($query) use($acara){
             $query->where('id_acara',$acara);
-        })->where('status','coming')->get();
+        })->get();
         if($checkTransaction->isNotEmpty()){
             return redirect()->back()->withErrors(['error' => 'Jadwal acara yang dipilih sudah tersedia.']);
         }
@@ -116,7 +116,7 @@ class TransaksiController extends Controller
             $input['id_romo'] = $romoAvailable->id_romo;
         } else {
             $romo = Romo::whereHas('transactionHeaders', function ($query) use ($startRange, $endRange) {
-                $query->whereBetween('jadwal_transaction', [$startRange, $endRange])->where('status','coming');
+                $query->whereBetween('jadwal_transaction', [$startRange, $endRange]);
             })->find($input['id_romo']);
     
             if ($romo) {

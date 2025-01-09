@@ -11,11 +11,19 @@ use Illuminate\Support\Facades\Storage;
 
 class AcaraController extends Controller
 {
-    public function acaraIndex()
-    {
-        $acara = Acara::get();
-        return view('admin.viewPage.landingpage.acara.layanan', ['acara' => $acara]);
-    }
+    public function acaraIndex(Request $request)
+{
+    // Ambil parameter pencarian dari request
+    $search = $request->input('search');
+
+    // Query data berdasarkan pencarian (jika ada)
+    $acara = Acara::when($search, function ($query, $search) {
+        return $query->where('nama_acara', 'like', "%{$search}%");
+    })->get();
+
+    // Return view dengan data acara
+    return view('admin.viewPage.landingpage.acara.layanan', ['acara' => $acara, 'search' => $search]);
+}
 
     public function addAcara()
     {

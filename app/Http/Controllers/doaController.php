@@ -9,10 +9,22 @@ use Illuminate\Support\Facades\Storage;
 
 class doaController extends Controller
 {
-    public function doaIndex(){
-        $doa = Doa::get();
-        return view('admin.viewPage.landingpage.doa.doa', ['doa'=>$doa]);
-    }
+    public function doaIndex(Request $request)
+{
+    // Ambil parameter pencarian dari request
+    $search = $request->input('search');
+
+    // Query data doa berdasarkan pencarian nama_doa
+    $doa = Doa::when($search, function ($query, $search) {
+        return $query->where('nama_doa', 'like', "%{$search}%");
+    })->get();
+
+    // Return view dengan data doa dan pencarian
+    return view('admin.viewPage.landingpage.doa.doa', [
+        'doa' => $doa,
+        'search' => $search,
+    ]);
+}
     public function addDoa(){
         return view('admin.viewPage.landingpage.doa.addDoa');
     }

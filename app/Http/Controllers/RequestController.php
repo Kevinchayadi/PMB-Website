@@ -140,9 +140,9 @@ class RequestController extends Controller
     public function storeRequest(Request $request)
     {
         // dd($request->all());
-        $data=[];
-        if($request->nama_acara=="pernikahan"){
-            $data=$request->validate([
+        $data = [];
+        if ($request->nama_acara == 'pernikahan') {
+            $data = $request->validate([
                 'nama_acara' => 'required|string|max:255',
                 'id_umat' => 'required|integer|exists:umats,id_umat',
                 'nama_terlibat_satu' => 'required|string',
@@ -151,8 +151,8 @@ class RequestController extends Controller
                 'jadwal_acara' => 'required|date',
                 'deskripsi_pengajuan' => 'nullable|string',
             ]);
-        }else{
-            $data=$request->validate([
+        } else {
+            $data = $request->validate([
                 'nama_acara' => 'required|string|max:255',
                 'id_umat' => 'required|integer|exists:umats,id_umat',
                 'nama_terlibat_satu' => 'required|string',
@@ -162,48 +162,67 @@ class RequestController extends Controller
                 'deskripsi_pengajuan' => 'nullable|string',
             ]);
         }
-   
-        
+
         // dd($data);
         ModelsRequest::create($data);
         return redirect()->route('home')->with('success', 'Pengajuan baptis berhasil dikirim!');
     }
 
-    public function pendingListRequest()
+    private function getRequestList($status, $search = null)
     {
-        $requestList = ModelsRequest::where('status','pending')->get();
-        // dd($requestList);
-        return view('admin.viewPage.pendingRequest', ['requestList' => $requestList]);
+        return ModelsRequest::where('status', $status)
+            ->when($search, function ($query, $search) {
+                return $query->where(function ($query) use ($search) {
+                    $query
+                        ->where('nama_acara', 'like', "%{$search}%")
+                        ->orWhere('nama_romo', 'like', "%{$search}%")
+                        ->orWhere('nama_terlibat_satu', 'like', "%{$search}%")
+                        ->orWhere('nama_terlibat_dua', 'like', "%{$search}%");
+                });
+            })
+            ->get();
     }
-    public function processListRequest()
+
+    public function pendingListRequest(Request $request)
     {
-        $requestList = ModelsRequest::where('status','process')->get();
-        return view('admin.viewPage.processRequest', ['requestList' => $requestList]);
+        $search = $request->input('search');
+        $requestList = $this->getRequestList('pending', $search);
+        return view('admin.viewPage.pendingRequest', ['requestList' => $requestList, 'search' => $search]);
     }
-    public function acceptedListRequest()
+
+    public function processListRequest(Request $request)
     {
-        $requestList = ModelsRequest::where('status','accepted')->get();
-        return view('admin.viewPage.acceptedRequest', ['requestList' => $requestList]);
+        $search = $request->input('search');
+        $requestList = $this->getRequestList('process', $search);
+        return view('admin.viewPage.processRequest', ['requestList' => $requestList, 'search' => $search]);
     }
+
+    public function acceptedListRequest(Request $request)
+    {
+        $search = $request->input('search');
+        $requestList = $this->getRequestList('accepted', $search);
+        return view('admin.viewPage.acceptedRequest', ['requestList' => $requestList, 'search' => $search]);
+    }
+
     public function acceptedRequest($id)
     {
         $requestData = ModelsRequest::find($id);
         $current_status = $requestData->status;
         $data = ['Komuni Pertama', 'Sakramen Baptis', 'Sakramen Tobat', 'Krismasi'];
         // dd(in_array($requestData->nama_acara, $data));
-        if($requestData && in_array($requestData->nama_acara, $data) && $requestData->status == 'pending' ){
+        if ($requestData && in_array($requestData->nama_acara, $data) && $requestData->status == 'pending') {
             $requestData->status = 'process';
-        }else{
+        } else {
             $requestData->status = 'accepted';
         }
         $requestData->save();
-        if($current_status == 'pending'){
+        if ($current_status == 'pending') {
             return redirect()->route('admin.request.pending')->with('success', 'data berhasil Diterima!');
-        }else{
+        } else {
             return redirect()->route('admin.update.Proccessed')->with('success', 'data berhasil Diterima!');
         }
     }
-    public function rejectRequest(Request $request,$id)
+    public function rejectRequest(Request $request, $id)
     {
         $requestData = ModelsRequest::find($id);
         $requestData->status = 'reject';
@@ -213,25 +232,35 @@ class RequestController extends Controller
     }
     public function detailRequest($slug)
     {
-        $data = ModelsRequest::with('umats')->where('nama_acara','$slug')->firstOrfail();
-        if($data){
-            if($data->nama_acara == 'baptis') return view('admin.viewPage.detail.baptis', ['requestList' => $data]);
-            if($data->nama_acara == 'komuniPertama') return view('admin.viewPage.detail.baptis', ['requestList' => $data]);
-            if($data->nama_acara == 'krisma') return view('admin.viewPage.detail.krisma', ['requestList' => $data]);
-            if($data->nama_acara == 'pengurapan') return view('admin.viewPage.detail.pengurapan', ['requestList' => $data]);
-            if($data->nama_acara == 'pernikahan') return view('admin.viewPage.detail.pernikahan', ['requestList' => $data]);
-            if($data->nama_acara == 'tobat') return view('admin.viewPage.detail.tobat', ['requestList' => $data]);
+        $data = ModelsRequest::with('umats')->where('nama_acara', '$slug')->firstOrfail();
+        if ($data) {
+            if ($data->nama_acara == 'baptis') {
+                return view('admin.viewPage.detail.baptis', ['requestList' => $data]);
+            }
+            if ($data->nama_acara == 'komuniPertama') {
+                return view('admin.viewPage.detail.baptis', ['requestList' => $data]);
+            }
+            if ($data->nama_acara == 'krisma') {
+                return view('admin.viewPage.detail.krisma', ['requestList' => $data]);
+            }
+            if ($data->nama_acara == 'pengurapan') {
+                return view('admin.viewPage.detail.pengurapan', ['requestList' => $data]);
+            }
+            if ($data->nama_acara == 'pernikahan') {
+                return view('admin.viewPage.detail.pernikahan', ['requestList' => $data]);
+            }
+            if ($data->nama_acara == 'tobat') {
+                return view('admin.viewPage.detail.tobat', ['requestList' => $data]);
+            }
         }
         return back()->with('error', 'something wrong happened!!');
-
     }
 
     public function exportTemplate()
     {
-        return Excel::download(new requestStoreTemplate, 'Request_Template.xlsx');
+        return Excel::download(new requestStoreTemplate(), 'Request_Template.xlsx');
     }
 
- 
     public function importRequest(Request $request)
     {
         $request->validate([
@@ -261,7 +290,6 @@ class RequestController extends Controller
         }
     }
 
-
     // public function RejectRequest($slug)
     // {
     //     $requestList = ModelsRequest::with('umats')->where('slug', $slug)->firstOrFail();
@@ -269,6 +297,4 @@ class RequestController extends Controller
 
     //     return back()->with('Rejected Success', 'Pengajuan berhasil dibatalkan!!');
     // }
-
-
 }
