@@ -20,7 +20,9 @@ class pastorController extends Controller
             return $query->where('nama_romo', 'like', "%{$search}%");
         })
         ->orderBy('deleted_at')
-        ->get();
+        ->latest()
+            ->paginate(20)
+            ->withQueryString();
 
     // Return view dengan data pastor dan pencarian
     return view('admin.viewPage.landingpage.pastor.pastor', compact('pastor', 'search'));

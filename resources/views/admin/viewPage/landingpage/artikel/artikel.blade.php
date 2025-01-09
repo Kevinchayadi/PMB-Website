@@ -58,6 +58,49 @@
                     @endforelse
                 </tbody>
             </table>
+            @if ($artikel->total() > 0)
+            <div class="mt-1 text-center">
+                <small class="text-muted">
+                    Tampilkan {{ $artikel->firstItem() }} sampai {{ $artikel->lastItem() }} dari {{ $artikel->total() }} data
+                    admin
+                </small>
+            </div>
+            <nav class="mt-2">
+                <ul class="pagination justify-content-center mb-0" id="pagination">
+                    <!-- Previous Button -->
+                    @if ($artikel->onFirstPage())
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#">
+                                < </a>
+                        </li>
+                    @else
+                        <li class="page-item">
+                            <a class="page-link" href="{{ $artikel->previousPageUrl() }}">
+                                << /a>
+                        </li>
+                    @endif
+
+                    <!-- Page Numbers -->
+                    @for ($i = 1; $i <= $artikel->lastPage(); $i++)
+                        <li class="page-item {{ $artikel->currentPage() == $i ? 'active' : '' }}">
+                            <a class="page-link" href="{{ $artikel->url($i) }}">{{ $i }}</a>
+                        </li>
+                    @endfor
+
+                    <!-- Next Button -->
+                    @if ($artikel->hasMorePages())
+                        <li class="page-item">
+                            <a class="page-link" href="{{ $artikel->nextPageUrl() }}">></a>
+                        </li>
+                    @else
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#">></a>
+                        </li>
+                    @endif
+                </ul>
+            </nav>
+
+        @endif
         </div>
     </div>
     {{-- Pagination --}}

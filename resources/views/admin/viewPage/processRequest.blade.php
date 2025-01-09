@@ -126,6 +126,51 @@
                     @endforelse
                 </tbody>
             </table>
+
+            @if ($requestList->total() > 0)
+                <div class="mt-1 text-center">
+                    <small class="text-muted">
+                        Tampilkan {{ $requestList->firstItem() }} sampai {{ $requestList->lastItem() }} dari
+                        {{ $requestList->total() }} data
+                        admin
+                    </small>
+                </div>
+                <nav class="mt-2">
+                    <ul class="pagination justify-content-center mb-0" id="pagination">
+                        <!-- Previous Button -->
+                        @if ($requestList->onFirstPage())
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#">
+                                    < </a>
+                            </li>
+                        @else
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $requestList->previousPageUrl() }}">
+                                    << /a>
+                            </li>
+                        @endif
+
+                        <!-- Page Numbers -->
+                        @for ($i = 1; $i <= $requestList->lastPage(); $i++)
+                            <li class="page-item {{ $event->currentPage() == $i ? 'active' : '' }}">
+                                <a class="page-link" href="{{ $requestList->url($i) }}">{{ $i }}</a>
+                            </li>
+                        @endfor
+
+                        <!-- Next Button -->
+                        @if ($requestList->hasMorePages())
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $requestList->nextPageUrl() }}">></a>
+                            </li>
+                        @else
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#">></a>
+                            </li>
+                        @endif
+                    </ul>
+                </nav>
+
+            @endif
         </div>
     </div>
 @endsection

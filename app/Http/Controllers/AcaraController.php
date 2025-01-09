@@ -12,18 +12,21 @@ use Illuminate\Support\Facades\Storage;
 class AcaraController extends Controller
 {
     public function acaraIndex(Request $request)
-{
-    // Ambil parameter pencarian dari request
-    $search = $request->input('search');
+    {
+        // Ambil parameter pencarian dari request
+        $search = $request->input('search');
 
-    // Query data berdasarkan pencarian (jika ada)
-    $acara = Acara::when($search, function ($query, $search) {
-        return $query->where('nama_acara', 'like', "%{$search}%");
-    })->get();
+        // Query data berdasarkan pencarian (jika ada)
+        $acara = Acara::when($search, function ($query, $search) {
+            return $query->where('nama_acara', 'like', "%{$search}%");
+        })
+            ->latest()
+            ->paginate(20)
+            ->withQueryString();
 
-    // Return view dengan data acara
-    return view('admin.viewPage.landingpage.acara.layanan', ['acara' => $acara, 'search' => $search]);
-}
+        // Return view dengan data acara
+        return view('admin.viewPage.landingpage.acara.layanan', ['acara' => $acara, 'search' => $search]);
+    }
 
     public function addAcara()
     {
@@ -39,20 +42,20 @@ class AcaraController extends Controller
             'tipe_acara' => 'required',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-        
+
         try {
             DB::beginTransaction();
             $foto = str_replace([' ', '.'], '-', $input['nama_acara']);
             if ($request->hasFile('foto')) {
                 // dd($request);
-            $file = $request->file('foto');
+                $file = $request->file('foto');
 
-            $fileName = $foto . '.' . $file->getClientOriginalExtension();
+                $fileName = $foto . '.' . $file->getClientOriginalExtension();
 
-            $filePath = $file->storeAs('acara', $fileName, 'public');
+                $filePath = $file->storeAs('acara', $fileName, 'public');
 
-            $input['path'] = $filePath;
-        }
+                $input['path'] = $filePath;
+            }
             // Simpan acara
             Acara::create($input);
 
@@ -77,19 +80,18 @@ class AcaraController extends Controller
     public function updatedAcara(Request $request, $slug)
     {
         $acara = Acara::get()->where('slug', $slug)->firstOrFail();
-        
+
         $input = $request->validate([
             'nama_acara' => 'required',
             'deskripsi_acara' => 'required',
             'tipe_acara' => 'required',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         // dd($request->all());
 
         // try {
-            DB::beginTransaction();
-            $foto= str_replace([' ', '.'], '-', $input['nama_acara']);
-
+        DB::beginTransaction();
+        $foto = str_replace([' ', '.'], '-', $input['nama_acara']);
 
         if ($request->hasFile('foto')) {
             if ($acara->path) {
@@ -103,12 +105,11 @@ class AcaraController extends Controller
             $filePath = $file->storeAs('acara', $fileName, 'public');
 
             $input['path'] = $filePath;
-            
         }
-            // Update acara
-            $acara->update($input);
-            DB::commit();
-            return redirect()->route('admin.acara')->with('success', 'Acara dan dokumentasi berhasil diubah!');
+        // Update acara
+        $acara->update($input);
+        DB::commit();
+        return redirect()->route('admin.acara')->with('success', 'Acara dan dokumentasi berhasil diubah!');
     }
 
     public function deleteAcara($slug)

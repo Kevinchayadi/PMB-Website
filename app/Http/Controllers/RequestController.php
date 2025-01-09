@@ -180,7 +180,9 @@ class RequestController extends Controller
                         ->orWhere('nama_terlibat_dua', 'like', "%{$search}%");
                 });
             })
-            ->get();
+            ->latest()
+            ->paginate(20)
+            ->withQueryString();
     }
 
     public function pendingListRequest(Request $request)

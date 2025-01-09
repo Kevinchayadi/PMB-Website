@@ -17,7 +17,10 @@ class doaController extends Controller
     // Query data doa berdasarkan pencarian nama_doa
     $doa = Doa::when($search, function ($query, $search) {
         return $query->where('nama_doa', 'like', "%{$search}%");
-    })->get();
+    })
+    ->latest()
+            ->paginate(20)
+            ->withQueryString();
 
     // Return view dengan data doa dan pencarian
     return view('admin.viewPage.landingpage.doa.doa', [

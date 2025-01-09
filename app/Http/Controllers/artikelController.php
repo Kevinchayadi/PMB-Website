@@ -16,7 +16,10 @@ class artikelController extends Controller
         // Query data artikel berdasarkan pencarian title
         $artikel = Articel::when($search, function ($query, $search) {
             return $query->where('title', 'like', "%{$search}%");
-        })->get();
+        })
+        ->latest()
+            ->paginate(20)
+            ->withQueryString();
     
         // Return view dengan data artikel dan pencarian
         return view('admin.viewPage.landingpage.artikel.artikel', compact('artikel', 'search'));

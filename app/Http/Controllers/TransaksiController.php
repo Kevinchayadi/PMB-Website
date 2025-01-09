@@ -31,7 +31,9 @@ class TransaksiController extends Controller
             },
         ])
             ->where('status', 'coming')
-            ->get();
+            ->latest()
+            ->paginate(20)
+            ->withQueryString();
         // $jadwal_acara = TransactionHeader::with('romo', 'seksis', 'doa')->where('status', 'coming')->get();
         // dd($jadwal_acara->map(function ($transactionHeader) {
         //     return $transactionHeader->transactionDetails->acara->nama_acara;
@@ -51,7 +53,9 @@ class TransaksiController extends Controller
             },
         ])
             ->where('status', 'passed')
-            ->get();
+            ->latest()
+            ->paginate(20)
+            ->withQueryString();
 
         return view('admin.viewPage.passEvent', ['event' => $jadwal_acara]);
     }

@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\Storage;
 class kegiatanController extends Controller
 {
     public function kegiatanIndex(){
-        $kegiatan = Kegiatan::all();
+        $kegiatan = Kegiatan::latest()
+        ->paginate(20)
+        ->withQueryString();;
         return view('admin.viewPage.landingpage.kegiatan.kegiatan', compact('kegiatan'));
     }
     public function addKegiatan(){
