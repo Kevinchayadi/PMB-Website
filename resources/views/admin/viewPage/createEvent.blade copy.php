@@ -1,5 +1,5 @@
 @extends('admin.layout.template')
-@section('title', 'Admin - Form')
+@section('title', 'Form Tambah Acara Baru')
 
 @section('content')
     <style>
@@ -29,7 +29,7 @@
                     <div class="card bg-primary shadow-lg rounded-4">
                         <div class="card-body text-white">
 
-                            <h2 class="card-title text-center mb-4 fw-bolder">Create New Event</h2>
+                            <h2 class="card-title text-center mb-4 fw-bolder">Tambah Acara Baru</h2>
 
                             <!-- Form Start -->
                             <form action="/admin/add-admin" method="POST">
@@ -107,8 +107,8 @@
 
                                 <!-- Tombol Submit -->
                                 <div class="d-grid">
-                                    <button type="submit" class="btn btn-success">Submit</button>
-                                    <a class="btn btn-danger rounded-none mt-2" href="/admin/admin-list">Cancel</a>
+                                    <button type="submit" class="btn btn-success">Tambah Acara</button>
+                                    <a class="btn btn-danger rounded-none mt-2" href="/admin/admin-list">Batal</a>
                                 </div>
                             </form>
                             <!-- Form End -->

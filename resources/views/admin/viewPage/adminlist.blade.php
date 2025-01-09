@@ -1,9 +1,9 @@
 @extends('admin.layout.template')
-@section('title', 'Admin - List')
+@section('title', 'TabeLl Admin')
 
 @section('content')
     <div class="d-flex justify-content-start  align-items-center mb-3  text-center">
-        <h1 class="mb-0 fw-bold  p-2 text-white bg-primary shadow rounded-end-2">Admin List</h1>
+        <h1 class="mb-0 fw-bold  p-2 text-white bg-primary shadow rounded-end-2">Tabel Admin</h1>
     </div>
 
     <div class="px-4">
@@ -14,10 +14,10 @@
             <form action="{{ route('admin.admin-list') }}" method="GET" class="d-flex">
                 <input type="text" id="searchInput" name="search" class="form-control me-2" value="{{ request('search') }}"
                     placeholder="Search...">
-                <button type="submit" class="btn btn-outline-primary">Search</button>
+                <button type="submit" class="btn btn-outline-primary">Cari</button>
             </form>
 
-            <a href="/admin/add-admin" class="btn btn-primary ">Add New Admin</a>
+            <a href="/admin/add-admin" class="btn btn-primary ">Tambah Admin Baru</a>
 
         </div>
 
@@ -28,10 +28,10 @@
                     <tr>
                         <th scope="col">No.</th>
                         {{-- <th scope="col">ID Admin</th> --}}
-                        <th scope="col">Username</th>
+                        <th scope="col">Nama Pengguna</th>
                         {{-- <th scope="col">Password</th> --}}
-                        <th scope="col">Role</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">Peran</th>
+                        <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,14 +51,14 @@
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-outline-danger"
                                         onclick="return confirm('Apakah Anda yakin ingin menghapus admin ini?');">
-                                        Delete
+                                        Hapus
                                     </button>
                                 </form>
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5">No data available.</td>
+                            <td colspan="5">Data admin tidak ada</td>
                         </tr>
                     @endforelse
                 </tbody>
@@ -70,7 +70,8 @@
         @if ($admins->total() > 0)
             <div class="mt-1 text-center">
                 <small class="text-muted">
-                    Show {{ $admins->firstItem() }} until {{ $admins->lastItem() }} from {{ $admins->total() }} data admin
+                    Tampilkan {{ $admins->firstItem() }} sampai {{ $admins->lastItem() }} dari {{ $admins->total() }} data
+                    admin
                 </small>
             </div>
             <nav class="mt-2">

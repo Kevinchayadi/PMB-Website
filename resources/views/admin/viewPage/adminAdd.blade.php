@@ -1,5 +1,5 @@
 @extends('admin.layout.template')
-@section('title', 'Create - Admin - Form')
+@section('title', 'Form Tambah Admin Baru')
 
 @section('content')
     <div class="container mt-4">
@@ -21,13 +21,13 @@
             <div class="col-md-8">
                 <div class="card shadow-lg bg-primary text-white"> <!-- Tambahkan bg-primary dan text-white di sini -->
                     <div class="card-body">
-                        <h2 class="text-center fw-bold mb-4">Create New Admin</h2>
+                        <h2 class="text-center fw-bold mb-4">Tambah Admin Baru</h2>
                         <form action="{{ url('/admin/add-admin') }}" method="POST">
                             @csrf
 
                             <!-- Username -->
                             <div class="mb-3">
-                                <label for="username" class="form-label text-white">Username</label>
+                                <label for="username" class="form-label text-white">Nama Pengguna</label>
                                 <input type="text" class="form-control @error('username') is-invalid @enderror"
                                     id="username" name="username" value="{{ old('username') }}" required>
                                 @error('username')
@@ -37,7 +37,7 @@
 
                             <!-- Password -->
                             <div class="mb-3">
-                                <label for="password" class="form-label text-white">Password</label>
+                                <label for="password" class="form-label text-white">Kata Sandi</label>
                                 <input type="password" class="form-control @error('password') is-invalid @enderror"
                                     id="password" name="password" required>
                                 @error('password')
@@ -47,17 +47,18 @@
 
                             <!-- Confirm Password -->
                             <div class="mb-3">
-                                <label for="password_confirmation" class="form-label text-white">Confirm Password</label>
+                                <label for="password_confirmation" class="form-label text-white">Konfirmasi Kata
+                                    Sandi</label>
                                 <input type="password" class="form-control" id="password_confirmation"
                                     name="password_confirmation" required>
                             </div>
 
                             <!-- Role -->
                             <div class="mb-3">
-                                <label for="id_role" class="form-label text-white">Role</label>
+                                <label for="id_role" class="form-label text-white">Peran</label>
                                 <select class="form-select @error('id_role') is-invalid @enderror" id="id_role"
                                     name="id_role" required>
-                                    <option value="" disabled>Pilih Role</option>
+                                    <option value="" disabled>Pilih Peran</option>
                                     @foreach ($roles as $role)
                                         <option value="{{ $role->id_role }}"
                                             {{ old('id_role') == $role->id ? 'selected' : '' }}>
@@ -72,8 +73,8 @@
 
                             <!-- Tombol Submit -->
                             <div class="d-grid">
-                                <button type="submit" class="btn btn-success">Submit</button>
-                                <a href="{{ url('/admin/admin-list') }}" class="btn btn-danger mt-2">Cancel</a>
+                                <button type="submit" class="btn btn-success">Tambah Admin</button>
+                                <a href="{{ url('/admin/admin-list') }}" class="btn btn-danger mt-2">Batal</a>
                             </div>
                         </form>
                     </div>

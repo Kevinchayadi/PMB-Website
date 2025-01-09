@@ -5,8 +5,8 @@
         <img class="logo p-1 col-12" src="{{ asset('picture/Logo Paroki baru 2.png') }}" alt="">
         <div class="text-center fs-5 text-white">
             {{ Auth::guard('admin')->user()->username ?? 'username' }}
-            @if(Auth::guard('admin')->check())
-                | <a href="/admin/logout" class="nav-link  text-white" style="display: inline;">Logout</a>
+            @if (Auth::guard('admin')->check())
+                | <a href="/admin/logout" class="nav-link  text-white" style="display: inline;">Keluar</a>
             @endif
         </div>
     </div>
@@ -20,7 +20,7 @@
                         d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1 0-.708"
                         hidden />
                 </svg>
-                Dashboard
+                Dasbor
             </a>
         </li>
         <li class="py-1">
@@ -46,21 +46,21 @@
                     <path fill-rule="evenodd"
                         d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1 0-.708" />
                 </svg>
-                Request
+                Permintaan
             </a>
             <div class="collapse {{ (Request::is('admin/Request-Pending') or Request::is('admin/Request-Processed') or Request::is('admin/Request-Accepted') or Request::is('admin/Request-detail')) ? 'show' : '' }}"
                 id="collapseRequest">
                 <ul class="list-unstyled ps-5">
                     <li class="py-1"><a
                             class="nav-link text-white {{ Request::is('admin/Request-Pending') ? 'active' : '' }}"
-                            href="/admin/Request-Pending">Pending Request</a></li>
+                            href="/admin/Request-Pending">Permintaan Yang Tertunda</a></li>
                     <li class="py-1"><a
                             class="nav-link text-white {{ Request::is('admin/Request-Processed') ? 'active' : '' }}"
-                            href="/admin/Request-Processed">In Process Request</a>
+                            href="/admin/Request-Processed">Permintaan Yang Diproses</a>
                     </li>
                     <li class="py-1"><a
                             class="nav-link text-white {{ Request::is('admin/Request-Accepted') ? 'active' : '' }}"
-                            href="/admin/Request-Accepted">Accepted Request</a></li>
+                            href="/admin/Request-Accepted">Permintaan Yang Disetujui</a></li>
                 </ul>
             </div>
         </li>
@@ -76,20 +76,20 @@
                     <path fill-rule="evenodd"
                         d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1 0-.708" />
                 </svg>
-                Event
+                Acara
             </a>
             <div class="collapse {{ (Request::is('admin/createEvent') or Request::is('admin/passEvent') or Request::is('admin/scheduledEvent')) ? 'show' : '' }}"
                 id="collapsePelayanan">
                 <ul class="list-unstyled ps-5">
                     <li class="py-1"><a
                             class="nav-link text-white {{ Request::is('admin/createEvent') ? 'active' : '' }}"
-                            href="/admin/createEvent">Create New Event</a></li>
+                            href="/admin/createEvent">Buat Acara Baru</a></li>
                     <li class="py-1"><a
                             class="nav-link text-white {{ Request::is('admin/scheduledEvent') ? 'active' : '' }}"
-                            href="/admin/scheduledEvent">Scheduled Event</a></li>
+                            href="/admin/scheduledEvent">Acara Terjadwal</a></li>
                     <li class="py-1"><a
                             class="nav-link text-white {{ Request::is('admin/passEvent') ? 'active' : '' }}"
-                            href="/admin/passEvent">Passed Event</a></li>
+                            href="/admin/passEvent">Acara Yang Telah Berlalu</a></li>
                 </ul>
             </div>
         </li>
@@ -105,14 +105,14 @@
                     <path fill-rule="evenodd"
                         d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1 0-.708" />
                 </svg>
-                User Page
+                Halaman Pengguna
             </a>
             <div class="collapse {{ (Request::is('admin/highlight') or Request::is('admin/layanan') or Request::is('admin/doa') or Request::is('admin/pastor') or Request::is('admin/artikel') or Request::is('admin/kegiatan')) ? 'show' : '' }}"
                 id="collapseUserPage">
                 <ul class="list-unstyled ps-5">
                     <li class="py-1"><a
                             class="nav-link text-white {{ Request::is('admin/highlight') ? 'active' : '' }}"
-                            href="/admin/highlight">Highlight</a></li>
+                            href="/admin/highlight">Sorotan</a></li>
                     <li class="py-1"><a
                             class="nav-link text-white {{ Request::is('admin/layanan') ? 'active' : '' }}"
                             href="/admin/layanan">Layanan</a></li>

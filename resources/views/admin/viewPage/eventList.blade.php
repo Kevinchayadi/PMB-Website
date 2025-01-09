@@ -1,5 +1,5 @@
 @extends('admin.layout.template')
-@section('title', 'Event - List')
+@section('title', 'Tabel Acara')
 
 @section('content')
     <style>
@@ -24,17 +24,17 @@
     @endif
 
     <div class="d-flex justify-content-start  align-items-center mb-3  text-center">
-        <h1 class="mb-0 fw-bold  p-2 text-white bg-primary shadow rounded-end-2">Scheduled Event</h1>
+        <h1 class="mb-0 fw-bold  p-2 text-white bg-primary shadow rounded-end-2">Acara Terjadwal</h1>
     </div>
 
-    <div class="btn btn-primary mx-5 mb-3" data-bs-toggle="modal" data-bs-target="#uploadexcelmodal">Upload File Excel</div>
+    <div class="btn btn-primary mx-5 mb-3" data-bs-toggle="modal" data-bs-target="#uploadexcelmodal">Unggah File Excel</div>
 
     <div class="modal fade" id="uploadexcelmodal" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog
         modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header bg-primary">
-                    <h1 class="modal-title fs-5 text-white" id="staticBackdropLabel">Upload Event</h1>
+                    <h1 class="modal-title fs-5 text-white" id="staticBackdropLabel">Unggah Acara</h1>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
@@ -49,7 +49,7 @@
                                 <path
                                     d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z" />
                             </svg>
-                            <div class="fs-5">Upload file di sini</div>
+                            <div class="fs-5">Unggah file di sini</div>
                         </label>
                         <input type="file" id="uploadfile" accept=".xlsx, .xls" />
                     </div>
@@ -57,10 +57,10 @@
                     {{-- Template and Submit --}}
                     <div class="d-flex row">
                         <div class="col-6">
-                            <div class="btn btn-outline-warning w-100" onclick="downloadTemplate()">Download Template</div>
+                            <div class="btn btn-outline-warning w-100" onclick="downloadTemplate()">Unduh Template</div>
                         </div>
                         <div class="col-6">
-                            <div class="btn btn-outline-success w-100">Submit Excel</div>
+                            <div class="btn btn-outline-success w-100">Unggah Excel</div>
                         </div>
                     </div>
                 </div>
@@ -74,11 +74,11 @@
             <thead class="table-primary">
                 <tr>
                     <th scope="col">No.</th>
-                    <th scope="col">Nama Event</th>
+                    <th scope="col">Judul Acara</th>
                     <th scope="col">Nama Acara</th>
-                    <th scope="col">Jadwal</th>
-                    <th scope="col">Deskripsi</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">Jadwal Acara</th>
+                    <th scope="col">Deskripsi Acara</th>
+                    <th scope="col">Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -92,7 +92,7 @@
                         <td>
                             <!-- Update Button -->
                             <a href="/admin/updateEvent/{{ $data->id_transaction }}"
-                                class="btn btn-sm btn-outline-primary">Update</a>
+                                class="btn btn-sm btn-outline-primary">Perbarui</a>
                             <a href="/admin/selesaiEvent/{{ $data->id_transaction }}"
                                 onclick="return confirm('Apakah Anda yakin ingin menyelesaikan event ini?');"
                                 class="btn btn-sm btn-outline-success">Selesai</a>
@@ -104,7 +104,7 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-outline-danger"
                                     onclick="return confirm('Apakah Anda yakin ingin menghapus event ini?');">
-                                    Delete
+                                    Hapus
                                 </button>
                             </form>
 
@@ -113,7 +113,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5">No data available.</td>
+                        <td colspan="5">Data acara tidak ada</td>
                     </tr>
                 @endforelse
 
@@ -128,29 +128,29 @@
         function downloadTemplate() {
             window.location.href = "/admin/exportEventTemplate";
         }
-    
+
         function submitExcel() {
             let fileInput = document.getElementById('uploadfile');
             if (fileInput.files.length == 0) {
                 alert("Silakan pilih file sebelum mengirim.");
                 return;
             }
-    
+
             let formData = new FormData();
             formData.append('file', fileInput.files[0]);
-    
+
             fetch('/admin/ImportEvent', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                alert("File berhasil dikirim.");
-            })
-            .catch(error => {
-                alert("Terjadi kesalahan saat mengirim file.");
-                console.error('Error:', error);
-            });
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert("File berhasil dikirim.");
+                })
+                .catch(error => {
+                    alert("Terjadi kesalahan saat mengirim file.");
+                    console.error('Error:', error);
+                });
         }
     </script>
     {{-- <script>

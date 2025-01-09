@@ -1,5 +1,5 @@
 @extends('admin.layout.template')
-@section('title', 'Admin - List')
+@section('title', 'Tabel Permintaan Yang Tertunda')
 
 @section('content')
     <style>
@@ -16,17 +16,17 @@
     </style>
 
     <div class="d-flex justify-content-start align-items-center mb-3 text-center">
-        <h1 class="mb-0 fw-bold  p-2 text-white bg-primary shadow rounded-end-2">Pending Request</h1>
+        <h1 class="mb-0 fw-bold  p-2 text-white bg-primary shadow rounded-end-2">Permintaan Yang Tertunda</h1>
     </div>
 
-    <div class="btn btn-primary mx-5 mb-3" data-bs-toggle="modal" data-bs-target="#uploadexcelmodal">Upload File Excel</div>
+    <div class="btn btn-primary mx-5 mb-3" data-bs-toggle="modal" data-bs-target="#uploadexcelmodal">Unggah File Excel</div>
 
     <div class="modal fade" id="uploadexcelmodal" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog
         modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header bg-primary">
-                    <h1 class="modal-title fs-5 text-white" id="staticBackdropLabel">Upload Event</h1>
+                    <h1 class="modal-title fs-5 text-white" id="staticBackdropLabel">Unggah Acara</h1>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
@@ -41,7 +41,7 @@
                                 <path
                                     d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z" />
                             </svg>
-                            <div class="fs-5">Upload file di sini</div>
+                            <div class="fs-5">Unggah file di sini</div>
                         </label>
                         <input type="file" id="uploadfile" accept=".xlsx, .xls" />
                     </div>
@@ -49,10 +49,10 @@
                     {{-- Template and Submit --}}
                     <div class="d-flex row">
                         <div class="col-6">
-                            <div class="btn btn-outline-warning w-100" onclick="downloadTemplate()">Download Template</div>
+                            <div class="btn btn-outline-warning w-100" onclick="downloadTemplate()">Unduh Template</div>
                         </div>
                         <div class="col-6">
-                            <div class="btn btn-outline-success w-100">Submit Excel</div>
+                            <div class="btn btn-outline-success w-100">Unggah Excel</div>
                         </div>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
                 <input type="text" id="searchInput" class="form-control w-50" placeholder="Search Request..."
                     aria-label="Search Request">
                 <button class="btn btn-outline-primary ms-2" type="button">
-                    Search
+                    Cari
                 </button>
             </div>
         </div>
@@ -78,10 +78,10 @@
                 <thead class="table-primary">
                     <tr>
                         <th scope="col">No.</th>
-                        <th scope="col">Nama Request</th>
-                        <th scope="col">Tipe Request</th>
-                        <th scope="col">Tanggal Request</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">Nama Permintaan</th>
+                        <th scope="col">Tipe Permintaan</th>
+                        <th scope="col">Tanggal Permintaan</th>
+                        <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -97,7 +97,7 @@
                                     class="d-inline">
                                     @csrf
                                     @method('PUT')
-                                    <button type="submit" class="btn btn-sm btn-outline-success">Accept</button>
+                                    <button type="submit" class="btn btn-sm btn-outline-success">Terima</button>
                                 </form>
 
                                 <!-- Button to trigger the detail modal -->
@@ -109,7 +109,7 @@
                                 <!-- Button to trigger the reject modal -->
                                 <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
                                     data-bs-target="#rejectModal{{ $data->id }}">
-                                    Reject
+                                    Tolak
                                 </button>
                             </td>
                         </tr>
@@ -120,7 +120,7 @@
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="detailModalLabel{{ $data->id }}">Request Details
+                                        <h5 class="modal-title" id="detailModalLabel{{ $data->id }}">Detail Permintaan
                                         </h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
@@ -137,10 +137,10 @@
                                             class="d-inline">
                                             @csrf
                                             @method('PUT')
-                                            <button type="submit" class="btn btn-sm btn-outline-success">Accept</button>
+                                            <button type="submit" class="btn btn-sm btn-outline-success">Terima</button>
                                         </form>
                                         <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Back</button>
+                                            data-bs-dismiss="modal">Kembali</button>
                                     </div>
                                 </div>
                             </div>
@@ -152,7 +152,7 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="rejectModalLabel{{ $data->id }}">Reject Request
+                                        <h5 class="modal-title" id="rejectModalLabel{{ $data->id }}">Tolak Permintaan
                                         </h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
@@ -162,15 +162,15 @@
                                         @method('PUT')
                                         <div class="modal-body">
                                             <div class="form-group mb-3">
-                                                <label for="reason" class="form-label">Reason for Rejection:</label>
+                                                <label for="reason" class="form-label">Alasan Penolakan:</label>
                                                 <textarea name="reason" id="reason" class="form-control" rows="4"
                                                     placeholder="Enter reason for rejection" required></textarea>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="submit" class="btn btn-danger">Reject</button>
+                                            <button type="submit" class="btn btn-danger">Tolak</button>
                                             <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Cancel</button>
+                                                data-bs-dismiss="modal">Kembali</button>
                                         </div>
                                     </form>
                                 </div>
@@ -178,7 +178,7 @@
                         </div>
                     @empty
                         <tr>
-                            <td colspan="5">No data available.</td>
+                            <td colspan="5">Data permintaan tidak ada</td>
                         </tr>
                     @endforelse
                 </tbody>
