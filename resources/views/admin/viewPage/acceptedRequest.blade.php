@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="d-flex justify-content-start align-items-center mb-3 text-center">
-        <h1 class="mb-0 fw-bold  p-2 text-white bg-primary shadow rounded-end-2">Pending Request</h1>
+        <h1 class="mb-0 fw-bold  p-2 text-white bg-primary shadow rounded-end-2">Accepted Request</h1>
     </div>
 
     <div class="px-4">
@@ -46,9 +46,7 @@
                                 </form> --}}
 
                                 <!-- Button to trigger the detail modal -->
-                                <button 
-                                    class="btn btn-sm btn-outline-info" 
-                                    data-bs-toggle="modal" 
+                                <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal"
                                     data-bs-target="#detailModal{{ $data->id }}">
                                     Detail
                                 </button>
@@ -64,12 +62,15 @@
                         </tr>
 
                         <!-- Modal for Details -->
-                        <div class="modal fade" id="detailModal{{ $data->id }}" tabindex="-1" aria-labelledby="detailModalLabel{{ $data->id }}" aria-hidden="true">
+                        <div class="modal fade" id="detailModal{{ $data->id }}" tabindex="-1"
+                            aria-labelledby="detailModalLabel{{ $data->id }}" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="detailModalLabel{{ $data->id }}">Request Details</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <h5 class="modal-title" id="detailModalLabel{{ $data->id }}">Request Details
+                                        </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
                                         <p><strong>Nama Terlibat Satu:</strong> {{ $data->nama_terlibat_satu }}</p>
@@ -84,14 +85,14 @@
                                             @method('PUT')
                                             <button type="submit" class="btn btn-sm btn-outline-success">Accept</button>
                                         </form> --}}
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
-                                    </div>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
                                 </div>
                             </div>
                         </div>
+        </div>
 
-                        <!-- Modal for Reject -->
-                        {{-- <div class="modal fade" id="rejectModal{{ $data->id }}" tabindex="-1" aria-labelledby="rejectModalLabel{{ $data->id }}" aria-hidden="true">
+        <!-- Modal for Reject -->
+        {{-- <div class="modal fade" id="rejectModal{{ $data->id }}" tabindex="-1" aria-labelledby="rejectModalLabel{{ $data->id }}" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -115,13 +116,13 @@
                                 </div>
                             </div>
                         </div> --}}
-                    @empty
-                        <tr>
-                            <td colspan="5">No data available.</td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
+    @empty
+        <tr>
+            <td colspan="5">No data available.</td>
+        </tr>
+        @endforelse
+        </tbody>
+        </table>
+    </div>
     </div>
 @endsection

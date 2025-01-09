@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="d-flex justify-content-start align-items-center mb-3 text-center">
-        <h1 class="mb-0 fw-bold  p-2 text-white bg-primary shadow rounded-end-2">Pending Request</h1>
+        <h1 class="mb-0 fw-bold  p-2 text-white bg-primary shadow rounded-end-2">Process Request</h1>
     </div>
 
     <div class="px-4">
@@ -39,16 +39,15 @@
                             <td>{{ $data->jadwal_acara }}</td>
                             <td>
                                 <!-- Accept Form -->
-                                <form method="POST" action="{{ route('admin.request.proccess', $data->id) }}" class="d-inline">
+                                <form method="POST" action="{{ route('admin.request.proccess', $data->id) }}"
+                                    class="d-inline">
                                     @csrf
                                     @method('PUT')
                                     <button type="submit" class="btn btn-sm btn-outline-success">Accept</button>
                                 </form>
 
                                 <!-- Button to trigger the detail modal -->
-                                <button 
-                                    class="btn btn-sm btn-outline-info" 
-                                    data-bs-toggle="modal" 
+                                <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal"
                                     data-bs-target="#detailModal{{ $data->id }}">
                                     Detail
                                 </button>
@@ -64,12 +63,15 @@
                         </tr>
 
                         <!-- Modal for Details -->
-                        <div class="modal fade" id="detailModal{{ $data->id }}" tabindex="-1" aria-labelledby="detailModalLabel{{ $data->id }}" aria-hidden="true">
+                        <div class="modal fade" id="detailModal{{ $data->id }}" tabindex="-1"
+                            aria-labelledby="detailModalLabel{{ $data->id }}" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="detailModalLabel{{ $data->id }}">Request Details</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <h5 class="modal-title" id="detailModalLabel{{ $data->id }}">Request Details
+                                        </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
                                         <p><strong>Nama Terlibat Satu:</strong> {{ $data->nama_terlibat_satu }}</p>
@@ -79,12 +81,14 @@
                                         <p><strong>Deskripsi:</strong> {{ $data->deskripsi_pengajuan }}</p>
                                     </div>
                                     <div class="modal-footer">
-                                        <form method="POST" action="{{ route('admin.request.proccess', $data->id) }}" class="d-inline">
+                                        <form method="POST" action="{{ route('admin.request.proccess', $data->id) }}"
+                                            class="d-inline">
                                             @csrf
                                             @method('PUT')
                                             <button type="submit" class="btn btn-sm btn-outline-success">Accept</button>
                                         </form>
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Back</button>
                                     </div>
                                 </div>
                             </div>
