@@ -26,9 +26,19 @@ class LandingController extends Controller
     }
 
     public function history(){
-        $jadwal_acara = TransactionHeader::with(['romo', 'seksi', 'doa', 'transactionDetails' => function ($query) {
-            $query->with('umats', 'acara', 'admin')->where('umat_id', Auth::guard('web')->user()->umat_id);
-        }])->get();
+        $jadwal_acara = TransactionHeader::with([
+            'romo',
+            'seksis',
+            'doa',
+            'transactionDetails.umats',
+            'transactionDetails.acara',
+            'transactionDetails.admin'
+        ])
+        ->whereHas('transactionDetails.umats', function ($query) {
+            $query->where('relation_transaction_umats.id_umat', Auth::guard('web')->user()->id);
+        })
+        ->get();
+    
         return view('user.ViewPage.history', compact('jadwal_acara'));
     }
 

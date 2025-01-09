@@ -143,6 +143,7 @@
     @endif
 </div>
 <!-- Modal -->
+@if (Auth::check())
 <div class="modal fade" id="Modal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -314,3 +315,4 @@
         </div>
     </div>
 </div>
+@endif

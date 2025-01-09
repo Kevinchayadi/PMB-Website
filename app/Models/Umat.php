@@ -28,9 +28,9 @@ class Umat extends Authenticatable
         return 'email_umat';
     }
 
-    public function transactionDetails(): HasMany
+    public function transactionDetails()
     {
-        return $this->HasMany(TransactionDetail::class, 'relation_transaction_umats', 'id_transaction', 'id_umat');
+        return $this->belongsToMany(TransactionDetail::class, 'relation_transaction_umats', 'id_transaction', 'id_umat');
     }
 
     public function requests(): HasMany
