@@ -93,7 +93,7 @@ class AdminController extends Controller
     public function removeAdmin($slug)
     {
         $admin = Admin::where('username', $slug)->firstOrFail();
-        $admin->delete();
+        $admin->forceDelete();
 
         return redirect()->route('admin.admin-list')->with('success', 'Admin removed successfully');
     }

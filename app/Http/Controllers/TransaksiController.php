@@ -284,7 +284,7 @@ class TransaksiController extends Controller
     public function deleteTransaction($id)
     {
         $transaction = TransactionHeader::where('status', 'coming')->find($id);
-        $transaction->delete();
+        $transaction->forceDelete();
         return redirect()->route('admin.transaksi')->with('success', 'Transaksi berhasil di Delete!');
     }
     public function moveTransaction($id)
