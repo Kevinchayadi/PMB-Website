@@ -12,7 +12,9 @@ class AdminController extends Controller
 {
     public function index(Request $request)
     {
-        $search = $request->input('search');
+        $search = $request->validate([
+            'search' => 'nullable|string|max:255'
+        ]);
 
         $admins = Admin::with('roles')
             ->when($search, function ($query, $search) {

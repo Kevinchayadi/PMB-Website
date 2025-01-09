@@ -22,7 +22,7 @@
                 <div class="card shadow-lg bg-primary text-white"> <!-- Tambahkan bg-primary dan text-white di sini -->
                     <div class="card-body">
                         <h2 class="text-center fw-bold mb-4">Tambah Admin Baru</h2>
-                        <form action="{{ url('/admin/add-admin') }}" method="POST">
+                        <form action="{{ secure_url('/admin/add-admin') }}" method="POST">
                             @csrf
 
                             <!-- Username -->
