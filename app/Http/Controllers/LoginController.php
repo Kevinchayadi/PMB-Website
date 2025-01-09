@@ -58,7 +58,7 @@ class LoginController extends Controller
                     'google_refresh_token' => $googleUser->refreshToken,
                 ]
             );
-    
+            
             // Login the user
             Auth::guard('web')->login($user);
     
