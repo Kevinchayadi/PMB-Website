@@ -1,5 +1,5 @@
 @extends('admin.layout.template')
-@section('title', 'Update - Admin - Form')
+@section('title', 'Form Pembaruan Data Admin')
 
 @section('content')
     <div class="container mt-4">
@@ -21,14 +21,14 @@
             <div class="col-md-8">
                 <div class="card shadow-lg bg-primary text-white">
                     <div class="card-body">
-                        <h2 class="text-center fw-bold mb-4">Update Admin</h2>
+                        <h2 class="text-center fw-bold mb-4">Perbarui Data Admin</h2>
                         <form action="{{ url('/admin/admin-detail/' . $admin->username) }}" method="POST">
                             @csrf
                             @method('PUT') <!-- Method PUT untuk update data -->
 
                             <!-- Username -->
                             <div class="mb-3">
-                                <label for="username" class="form-label text-white">Username</label>
+                                <label for="username" class="form-label text-white">Nama Pengguna</label>
                                 <input type="text" class="form-control @error('username') is-invalid @enderror"
                                     id="username" name="username" value="{{ old('username', $admin->username) }}" required>
                                 @error('username')
@@ -38,7 +38,7 @@
 
                             <!-- Password -->
                             <div class="mb-3">
-                                <label for="password" class="form-label text-white">Password (Kosongkan jika tidak ingin
+                                <label for="password" class="form-label text-white">Kata Sandi (Kosongkan jika tidak ingin
                                     diubah)</label>
                                 <input type="password" class="form-control @error('password') is-invalid @enderror"
                                     id="password" name="password">
@@ -49,17 +49,18 @@
 
                             <!-- Confirm Password -->
                             <div class="mb-3">
-                                <label for="password_confirmation" class="form-label text-white">Confirm Password</label>
+                                <label for="password_confirmation" class="form-label text-white">Konfirmasi Kata
+                                    Sandi</label>
                                 <input type="password" class="form-control" id="password_confirmation"
                                     name="password_confirmation">
                             </div>
 
                             <!-- Role -->
                             <div class="mb-3">
-                                <label for="id_role" class="form-label text-white">Role</label>
+                                <label for="id_role" class="form-label text-white">Peran</label>
                                 <select class="form-control @error('id_role') is-invalid @enderror" id="role"
                                     name="role" required>
-                                    <option value="" disabled>Pilih Role</option>
+                                    <option value="" disabled>Pilih Peran</option>
                                     @foreach ($roles as $role)
                                         <option value="{{ $role->id_role }}"
                                             {{ old('id_role', $admin->id_role) == $role->id_role ? 'selected' : '' }}>
@@ -74,8 +75,8 @@
 
                             <!-- Tombol Submit -->
                             <div class="d-grid">
-                                <button type="submit" class="btn btn-success">Update</button>
-                                <a href="{{ url('/admin/admin-list') }}" class="btn btn-danger mt-2">Cancel</a>
+                                <button type="submit" class="btn btn-success">Perbarui Data</button>
+                                <a href="{{ url('/admin/admin-list') }}" class="btn btn-danger mt-2">Batal</a>
                             </div>
                         </form>
                     </div>
