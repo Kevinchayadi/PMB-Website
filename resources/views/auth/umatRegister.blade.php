@@ -198,13 +198,13 @@
 
                                 <!-- Pekerjaan -->
                                 <div class="mb-3">
-                                    <label for="pekerjaan" class="form-label">Pekerjaan<span
+                                    <label for="Pekerjaan" class="form-label">Pekerjaan<span
                                             class="text-danger">*</span></label>
                                     <input type="text"
-                                        class="form-control  @error('pekerjaan') is-invalid @enderror" id="pekerjaan"
-                                        name="pekerjaan" placeholder="Masukkan pekerjaan. Contoh: Wiraswasta"
+                                        class="form-control  @error('Pekerjaan') is-invalid @enderror" id="Pekerjaan"
+                                        name="Pekerjaan" placeholder="Masukkan pekerjaan. Contoh: Wiraswasta"
                                         required>
-                                    @error('pekerjaan')
+                                    @error('Pekerjaan')
                                         <div class="invalid-feedback text-white">{{ $message }}</div>
                                     @enderror
                                 </div>

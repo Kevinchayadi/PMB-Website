@@ -48,7 +48,7 @@
                                         data-bs-target="#daftar-{{ $layanans->slug }}" aria-disabled="true">Daftar
                                         Sekarang</a>
                                 </div>
-                                <div class="fs-5 text-center text-danger">Anda harus login untuk melakukan pendaftaran
+                                <div class="fs-6 text-center text-danger">Anda harus login untuk melakukan pendaftaran
                                 </div>
                             @endif
                         </div>

@@ -54,7 +54,7 @@ class RegisterController extends Controller
             'nomorhp_umat' => 'required|string|max:15',
             'alamat' => 'required|string|max:255',
             'status' => 'required|string',
-            'pekerjaan' => 'required|string|max:255',
+            'Pekerjaan' => 'required|string|max:255',
         ]);
 
         // Membuat user baru dan menyimpan ke database
@@ -66,10 +66,10 @@ class RegisterController extends Controller
             'ttl_umat' => $request->ttl_umat,
             'wilayah' => $request->wilayah,
             'lingkungan' => $request->lingkungan,
-            'nomorhp_umat' => $request->nomohp_umat,
+            'nomorhp_umat' => $request->nomorhp_umat,
             'alamat' => $request->alamat,
             'status' => $request->status,
-            'pekerjaan' => $request->pekerjaan,
+            'Pekerjaan' => $request->Pekerjaan,
         ]);
 
         // Login otomatis setelah registrasi berhasil

@@ -30,7 +30,7 @@
                                 <h5 class="card-title">{{ $more->title }}</h5>
                                 <p class="card-text">{{ $more->body }}
                                 </p>
-                                <a href="/artikel/{{ $more->id }}"
+                                <a href="/artikel/{{ $more->slug }}"
                                     class="nav-link text-primary hvr-shrink">Selengkapnya</a>
                             </div>
                         </div>

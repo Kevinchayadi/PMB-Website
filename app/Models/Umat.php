@@ -16,7 +16,7 @@ class Umat extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, Sluggable, SoftDeletes;
     protected $primaryKey = 'id_umat';
-    protected $fillable = ['google_id','google_token','google_refresh_token','nama_umat','nama_baptis', 'email_umat', 'password', 'ttl_umat' ,'wilayah', 'lingkungan', 'nomohp_umat', 'alamat', 'status', 'pekerjaan'];
+    protected $fillable = ['google_id','google_token','google_refresh_token','nama_umat','nama_baptis', 'email_umat', 'password', 'ttl_umat' ,'wilayah', 'lingkungan', 'nomorhp_umat', 'alamat', 'status', 'Pekerjaan'];
 
     protected $hidden = ['password', 'remember_token'];
 

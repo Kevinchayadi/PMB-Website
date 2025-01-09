@@ -4,8 +4,15 @@
 @section('title', 'Home')
 @section('content')
     <div class="container">
-        {{-- Carousel --}}
+        {{-- Pesan Sukses --}}
+        @if (session()->has('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Sukses!</strong> {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
 
+        {{-- Carousel --}}
         <div id="carouselforhighlight" class="carousel slide w-100 mx-auto mb-3" data-bs-ride="carousel">
             <div class="carousel-inner rounded-3 shadow-lg">
                 <div class="carousel-item active">
@@ -189,7 +196,7 @@
                                 <h5 class="card-title">{{ $artikels->title }}</h5>
                                 <p class="card-text">{{ $artikels->body }}
                                 </p>
-                                <a href="/artikel/{{ $artikels->id }}" class="nav-link text-primary">Selengkapnya</a>
+                                <a href="/artikel/{{ $artikels->slug }}" class="nav-link text-primary">Selengkapnya</a>
                             </div>
                         </div>
                     </div>

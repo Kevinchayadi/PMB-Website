@@ -75,10 +75,6 @@
         margin-right: 0 !important;
     }
 
-    .modal {
-        margin-right: 0 !important;
-    }
-
     .sticky-top {
         top: 80;
     }

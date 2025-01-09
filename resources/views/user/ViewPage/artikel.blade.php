@@ -19,7 +19,7 @@
                     <div class="right-content mx-4 border-bottom mb-2">
                         <div class="head fs-5 text-gray">{{ $artikels->title }}</div>
                         <div class="desc fs-6">{{ $artikels->body }}</div>
-                        <a class="nav-link text-primary hvr-shrink" href="/artikel/{{ $artikels->id }}">Selengkapnya</a>
+                        <a class="nav-link text-primary hvr-shrink" href="/artikel/{{ $artikels->slug }}">Selengkapnya</a>
                     </div>
                 @empty
                     <div class="fs-5 fw-bolder text-center">Artikel tidak ada</div>
