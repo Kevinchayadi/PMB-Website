@@ -22,7 +22,7 @@
                 <div class="card shadow-lg bg-primary text-white">
                     <div class="card-body">
                         <h2 class="text-center fw-bold mb-4">Perbarui Data Admin</h2>
-                        <form action="{{ url('/admin/admin-detail/' . $admin->username) }}" method="POST">
+                        <form action="{{ secure_url('/admin/admin-detail/' . $admin->username) }}" method="POST">
                             @csrf
                             @method('PUT') <!-- Method PUT untuk update data -->
 

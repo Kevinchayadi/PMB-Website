@@ -45,7 +45,7 @@
                             <td>
                                 <a href="/admin/admin-detail/{{ $admin->username }}"
                                     class="btn btn-sm btn-outline-primary">Edit</a>
-                                    <form action="{{ secure_url(route('admin.remove', $admin->username)) }}" method="POST" class="d-inline">
+                                    <form action="{{secure_url('/admin/remove-admin/'.$admin->username) }}" method="POST" class="d-inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm btn-outline-danger"
