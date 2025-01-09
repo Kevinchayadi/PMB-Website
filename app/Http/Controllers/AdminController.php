@@ -6,20 +6,23 @@ use App\Models\Admin;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class AdminController extends Controller
 {
     public function index(Request $request)
     {
         $search = $request->input('search');
-        
-        $admins = Admin::with('roles')->when($search, function ($query, $search) {
-            $query->where('username', 'like', '%' . $search . '%')
-                  ->orWhereHas('roles', function ($query) use ($search) {
-                      $query->where('role', 'like', '%' . $search . '%');
-                  });
-        })->latest()->paginate(20
-        )->withQueryString();
+
+        $admins = Admin::with('roles')
+            ->when($search, function ($query, $search) {
+                $query->where('username', 'like', '%' . $search . '%')->orWhereHas('roles', function ($query) use ($search) {
+                    $query->where('role', 'like', '%' . $search . '%');
+                });
+            })
+            ->latest()
+            ->paginate(20)
+            ->withQueryString();
 
         return view('admin.viewPage.adminlist', ['admins' => $admins]);
     }
@@ -54,12 +57,10 @@ class AdminController extends Controller
 
     public function detailAdmin($slug)
     {
-        
         $roles = Role::get();
         $admin = Admin::with('roles')->where('username', $slug)->first();
         // dd($admin);
         return view('admin.viewPage.adminUpdate', ['admin' => $admin, 'roles' => $roles]);
-        
     }
 
     public function updateAdmin(Request $request, $slug)
@@ -68,7 +69,7 @@ class AdminController extends Controller
         $admin = Admin::where('username', $slug)->firstOrFail();
 
         $request->validate([
-            'username' => 'required|unique:admins',
+            'username' => ['required', Rule::unique('admins')->ignore($slug, 'username')],
             'password' => 'nullable|string|min:8|confirmed',
             'role' => 'required',
         ]);
