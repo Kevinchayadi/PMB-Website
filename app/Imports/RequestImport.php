@@ -17,7 +17,14 @@ class RequestImport implements ToModel, WithHeadingRow
     /**
      * @param Collection $collection
      */
+
+
     private $failedRows = [];
+
+    public function startRow(): int
+    {
+        return 3; // Mulai dari baris ketiga (melewatkan dua baris pertama)
+    }
     public function model(array $row)
     {
         $row['romo'] = $row['romo'] - 100;

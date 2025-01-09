@@ -34,6 +34,7 @@ class TransactionImport implements WithHeadingRow, ToModel
             $row['id_romo'] = $row['id_romo'] - 100;
             $row['id_acara'] = $row['id_acara'] - 230;
             $row['id_doa'] = $row['id_doa'] - 700;
+            $row['id_umat'] = $row['id_umat'] - 1000;
 
             $validator = Validator::make($row, [
                 'judul' => 'required|string|max:255',
