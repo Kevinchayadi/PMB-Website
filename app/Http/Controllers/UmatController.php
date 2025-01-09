@@ -16,11 +16,9 @@ class UmatController extends Controller
         return view('admin.viewPage.landingpage.highlight', compact('highlight'));
     }
     
-    
 
     public function highlightUpdate(Request $request)
     {
-    //     dd($request->all());
         // Melakukan validasi pada request
         $validated = $request->validate([
             'highlight1' => 'nullable|image|mimes:jpg,jpeg,png,gif,svg|max:2048',
@@ -98,11 +96,7 @@ class UmatController extends Controller
             $data[3]->save();
         }
 
-        // Menyimpan gambar event jika ada
-        // dd($request->all());
-        // dd($request->all());
         if ($request->hasFile('event')) {
-            // dd($request->all());
            
             $eventImage = $request->file('event');
             $eventImageName = 'event.' . $eventImage->getClientOriginalExtension();
@@ -115,13 +109,17 @@ class UmatController extends Controller
             // Simpan gambar baru
             $eventImagePath = $eventImage->storeAs('img', $eventImageName, 'public');
             $data[4]->path = 'storage/' . $eventImagePath;
+            $data[4]->keterangan = $request->input('keterangan');
+            $data[4]->save();
+        } 
+        else if($request->has('keterangan')){
+            $input = $request->validate([
+                'keterangan' => 'string|max:255',
+            ]);
+            $data[4]->keterangan = $input['keterangan'];
             $data[4]->save();
         }
     
-        // Simpan perubahan ke database
-        // $data->save();
-    
-        // Menyimpan flash data ke session dan mengarahkan kembali ke halaman sebelumnya
         return back()->with('success', 'Highlight images updated successfully!');
     }
     

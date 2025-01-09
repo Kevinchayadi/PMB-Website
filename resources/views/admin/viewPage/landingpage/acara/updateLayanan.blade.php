@@ -1,5 +1,5 @@
 @extends('admin.layout.template')
-@section('title', 'Layanan - Edit Form')
+@section('title', 'Perbarui Data Layanan')
 
 @section('content')
     @if ($errors->any())
@@ -21,7 +21,7 @@
                     <div class="card bg-primary shadow-lg rounded-4">
                         <div class="card-body text-white">
 
-                            <h2 class="card-title text-center mb-4 fw-bolder">Edit Layanan</h2>
+                            <h2 class="card-title text-center mb-4 fw-bolder">Perbarui Data Layanan</h2>
 
                             <!-- Form Edit Layanan -->
                             <form action="{{ route('admin.updateAcara', $acara->slug) }}" method="POST"
@@ -66,8 +66,7 @@
 
                                 <!-- Gambar -->
                                 <div class="mb-3">
-                                    <label for="foto" class="form-label">Gambar<span
-                                            class="text-danger">*</span></label>
+                                    <label for="foto" class="form-label">Gambar Layanan</label>
 
                                     <!-- Menampilkan gambar yang ada -->
                                     <div>
@@ -87,9 +86,8 @@
 
                                 <!-- Tombol Submit -->
                                 <div class="d-grid">
-                                    <button type="submit" class="btn btn-success">Update</button>
-                                    <a href="{{ route('admin.acara') }}"
-                                        class="btn btn-danger rounded-none mt-2">Cancel</a>
+                                    <button type="submit" class="btn btn-success">Perbarui Data Layanan</button>
+                                    <a href="{{ route('admin.acara') }}" class="btn btn-danger rounded-none mt-2">Batal</a>
                                 </div>
                             </form>
                         </div>

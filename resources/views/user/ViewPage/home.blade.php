@@ -1,11 +1,18 @@
+<link rel="stylesheet" href="{{ asset('css/home.css') }}">
+<link rel="stylesheet" href="{{ asset('css/image.css') }}">
 @extends('user.Layout.template')
 @section('title', 'Home')
-<link rel="stylesheet" href="{{ asset('css/home.css') }}">
-
 @section('content')
     <div class="container">
-        {{-- Carousel --}}
+        {{-- Pesan Sukses --}}
+        @if (session()->has('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Sukses!</strong> {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
 
+        {{-- Carousel --}}
         <div id="carouselforhighlight" class="carousel slide w-100 mx-auto mb-3" data-bs-ride="carousel">
             <div class="carousel-inner rounded-3 shadow-lg">
                 <div class="carousel-item active">
@@ -39,9 +46,9 @@
                 <div class="col-md-8">
                     <div class="card-body">
                         <div class="content align-content-center py-4 fs-1 d-lg-block d-none">
-                            <div class="text-secondary fw-bolder">Ikuti misa pekan ini</div>
+                            <div class="text-secondary fw-bolder">{{ $highlight[4]->keterangan }}</div>
                             <div class="btn btn-secondary text-dark">
-                                <a href="/jadwal/1" class="nav-link fs-6">Info lebih lanjut</a>
+                                <a href="/layanan" class="nav-link fs-6">Info lebih lanjut</a>
                             </div>
                         </div>
                     </div>
@@ -53,9 +60,9 @@
             <img src="{{ asset('picture/Misa.jpg') }}" class="card-img-top" alt="...">
             <div class="card-body">
                 <div class="content col-12 align-content-center fs-4">
-                    <div class="text-secondary fw-bolder">Ikuti misa pekan ini</div>
+                    <div class="text-secondary fw-bolder">{{ $highlight[4]->keterangan }}</div>
                     <div class="btn btn-secondary text-dark">
-                        <a href="/jadwal/1" class="nav-link fs-6 hvr-shrink">Info lebih lanjut</a>
+                        <a href="/layanan" class="nav-link fs-6 hvr-shrink">Info lebih lanjut</a>
                     </div>
                 </div>
             </div>
@@ -66,7 +73,7 @@
 
             {{-- Jadwal misa head --}}
             <div class="head-section d-flex justify-content-between">
-                <div class="align-self-center fs-4 fw-bolder">Jadwal Misa</div>
+                <div class="align-self-center fs-4 fw-bolder text-primary">Jadwal Misa</div>
                 <a class="nav-link align-self-center text-primary fs-6" href="/jadwal">Lihat semua jadwal</a>
             </div>
             <hr>
@@ -173,85 +180,35 @@
             {{-- Artikel --}}
 
             <div class="head-section d-flex justify-content-between">
-                <div class="align-self-center fs-4 fw-bolder">Artikel</div>
+                <div class="align-self-center fs-4 fw-bolder text-primary">Artikel</div>
                 <a class="nav-link align-self-center text-primary fs-6" href="/artikel">Lihat semua artikel</a>
             </div>
             <hr>
 
             {{-- Content --}}
             <div class="row px-2">
-                <div class="col-lg-4 col-6 px-2 mb-2 hvr-shrink">
-                    <div class="card">
-                        <img src="{{ asset('picture/Gereja.jpg') }}" class="card-img-top px-0" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Apa Makna Natal Bagi Saya di saat seperti ini?</h5>
-                            <p class="card-text">ulan Desember merupakan bulan yang paling ditunggu oleh banyak orang...
-                            </p>
-                            <a href="/artikel/1" class="nav-link text-primary">Selengkapnya</a>
+                @forelse($artikel as $artikels)
+                    <div class="col-lg-4 col-6 px-2 mb-2 hvr-shrink">
+                        <div class="card h-100">
+                            <img src="{{ asset('storage/' . $artikels->path) }}" class="card-img-top px-0 custom-img-3"
+                                alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $artikels->title }}</h5>
+                                <p class="card-text">{{ $artikels->body }}
+                                </p>
+                                <a href="/artikel/{{ $artikels->slug }}" class="nav-link text-primary">Selengkapnya</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-6 px-2 mb-2 hvr-shrink">
-                    <div class="card">
-                        <img src="{{ asset('picture/Gereja.jpg') }}" class="card-img-top px-0" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Apa Makna Natal Bagi Saya di saat seperti ini?</h5>
-                            <p class="card-text">ulan Desember merupakan bulan yang paling ditunggu oleh banyak orang...
-                            </p>
-                            <a href="/artikel/1" class="nav-link text-primary">Selengkapnya</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-6 px-2 mb-2 hvr-shrink">
-                    <div class="card">
-                        <img src="{{ asset('picture/Gereja.jpg') }}" class="card-img-top px-0" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Apa Makna Natal Bagi Saya di saat seperti ini?</h5>
-                            <p class="card-text">ulan Desember merupakan bulan yang paling ditunggu oleh banyak orang...
-                            </p>
-                            <a href="/artikel/1" class="nav-link text-primary">Selengkapnya</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-6 px-2 mb-2 hvr-shrink">
-                    <div class="card">
-                        <img src="{{ asset('picture/Gereja.jpg') }}" class="card-img-top px-0" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Apa Makna Natal Bagi Saya di saat seperti ini?</h5>
-                            <p class="card-text">ulan Desember merupakan bulan yang paling ditunggu oleh banyak orang...
-                            </p>
-                            <a href="/artikel/1" class="nav-link text-primary">Selengkapnya</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-6 px-2 mb-2 hvr-shrink">
-                    <div class="card">
-                        <img src="{{ asset('picture/Gereja.jpg') }}" class="card-img-top px-0" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Apa Makna Natal Bagi Saya di saat seperti ini?</h5>
-                            <p class="card-text">ulan Desember merupakan bulan yang paling ditunggu oleh banyak orang...
-                            </p>
-                            <a href="/artikel/1" class="nav-link text-primary">Selengkapnya</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-6 px-2 mb-2 hvr-shrink">
-                    <div class="card">
-                        <img src="{{ asset('picture/Gereja.jpg') }}" class="card-img-top px-0" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Apa Makna Natal Bagi Saya di saat seperti ini?</h5>
-                            <p class="card-text">ulan Desember merupakan bulan yang paling ditunggu oleh banyak orang...
-                            </p>
-                            <a href="/artikel/1" class="nav-link text-primary">Selengkapnya</a>
-                        </div>
-                    </div>
-                </div>
+                @empty
+                    <div class="fs-5 text-center fw-bolder">Artikel tidak tersedia</div>
+                @endforelse
             </div>
 
 
             {{-- Banner bawah --}}
             <div class="banner-bottom my-4 rounded-3 shadow-lg w-100 mx-auto">
-                <a href= "https://youtube.com">
+                <a href= "https://www.youtube.com/@parokimanggabesarjakarta4023">
                     <img class="object-fit-contain w-100 rounded-3" src="{{ $highlight[3]->path }}" alt="">
                 </a>
             </div>

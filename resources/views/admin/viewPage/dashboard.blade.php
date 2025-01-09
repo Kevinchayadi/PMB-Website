@@ -121,7 +121,7 @@
                 <p>deskripsi event</p>
                 <div>
                     <a href="">Update</a>
-                    <a href="">cancle</a>
+                    <a href="">Cancel</a>
                 </div>
             </div>
         </div>
@@ -131,7 +131,7 @@
                 <p>deskripsi event</p>
                 <div>
                     <a href="">Update</a>
-                    <a href="">cancle</a>
+                    <a href="">Cancel</a>
                 </div>
             </div>
         </div>

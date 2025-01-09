@@ -27,7 +27,6 @@ class doaController extends Controller
         ]);
         $foto = str_replace([' ', '.'], '-', $input['nama_doa']);
         
-        dd($request->all());
         if ($request->hasFile('foto')) {
             $file = $request->file('foto');
 
@@ -44,7 +43,6 @@ class doaController extends Controller
     }
     public function updateDoa($id){
         $doa = Doa::find($id);
-        // dd($doa);
         return view('admin.viewPage.landingpage.doa.updateDoa', ['doa'=>$doa]);
     }
     public function updatedDoa(Request $request, $id){
@@ -73,7 +71,6 @@ class doaController extends Controller
             $file = $request->file('foto');
 
             $fileName = $foto. '-' . Carbon::now()->timestamp . '.' . $file->getClientOriginalExtension();
-            // dd($fileName);
 
             $filePath = $file->storeAs('doas', $fileName, 'public');
 
@@ -85,8 +82,7 @@ class doaController extends Controller
             $doa->update($input);
             
             return redirect()->route('admin.doa')->with('success', 'Data Doa Berhasil Diubah!');
-        } catch (\Throwable $th) {
-         //throw $th;  
+        } catch (\Throwable $th) { 
              return redirect()->route('admin.doa')->with('error', 'Data Doa Gagal Diubah!');
          
         }

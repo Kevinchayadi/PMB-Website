@@ -1,5 +1,5 @@
 @extends('admin.layout.template')
-@section('title', 'Pastor - Form Update')
+@section('title', 'Perbarui Data Pastor')
 
 @section('content')
     @if ($errors->any())
@@ -19,7 +19,7 @@
                     <div class="card bg-primary shadow-lg rounded-4">
                         <div class="card-body text-white">
 
-                            <h2 class="card-title text-center mb-4 fw-bolder">Edit Pastor</h2>
+                            <h2 class="card-title text-center mb-4 fw-bolder">Perbarui Data Pastor</h2>
                             <form action="{{ route('admin.updatePastor', $pastor->id_romo) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
@@ -63,7 +63,7 @@
 
                                 <!-- Jabatan -->
                                 <div class="mb-3">
-                                    <label for="jabatan" class="form-label">Jabatan<span
+                                    <label for="jabatan" class="form-label">Jabatan Pastor<span
                                             class="text-danger">*</span></label>
                                     <select class="form-control @error('jabatan') is-invalid @enderror" name="jabatan"
                                         id="jabatan">
@@ -86,7 +86,7 @@
 
                                 <!-- pengalaman -->
                                 <div class="mb-3">
-                                    <label for="pengalaman" class="form-label">pengalaman<span
+                                    <label for="pengalaman" class="form-label">Pengalaman Pastor<span
                                             class="text-danger">*</span></label>
                                     <textarea class="form-control @error('pengalaman') is-invalid @enderror" name="pengalaman" id="pengalaman"
                                         cols="30" rows="10">{{ old('pengalaman', $pastor->pengalaman) }}</textarea>
@@ -109,32 +109,33 @@
 
                                 <!-- Gambar -->
                                 <div class="mb-3">
-                                    <label for="foto" class="form-label">Gambar<span
-                                            class="text-danger">*</span></label>
-                                    {{-- @if ($pastor->path) --}}
-                                    <img src="{{ asset('storage/' . $pastor->path) }}" alt="Foto Pastor"
-                                        class="img-fluid rounded-3 mb-2" id="current-image">
+                                    <label for="foto" class="form-label">Foto Pastor</label>
+
+                                    <div>
+                                        <img src="{{ asset('storage/' . $pastor->path) }}" alt="Foto Pastor"
+                                            class="img-fluid rounded-3 mb-2" id="current-image">
+                                    </div>
+
+                                    <!-- Input file untuk mengganti gambar -->
+                                    <input type="file" class="form-control @error('foto') is-invalid @enderror"
+                                        id="foto" name="foto" placeholder="Edit gambar"
+                                        onchange="previewImage(event)">
+                                    @error('foto')
+                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
-                                <!-- Input file untuk mengganti gambar -->
-                                <input type="file" class="form-control @error('foto') is-invalid @enderror"
-                                    id="foto" name="foto" placeholder="Edit gambar" onchange="previewImage(event)">
-                                @error('foto')
-                                    <div class="invalid-feedback text-white">{{ $message }}</div>
-                                @enderror
+                                <!-- Tombol Submit -->
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-success">Perbarui Data Pastor</button>
+                                    <a class="btn btn-danger rounded-none mt-2" href="/admin/pastor">Batal</a>
+                                </div>
+                            </form>
                         </div>
-
-                        <!-- Tombol Submit -->
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-success">Update</button>
-                            <a class="btn btn-danger rounded-none mt-2" href="/admin/pastor">Cancel</a>
-                        </div>
-                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
     </div>
     <!-- JavaScript untuk Preview Gambar -->

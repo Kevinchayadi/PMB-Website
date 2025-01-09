@@ -1,5 +1,5 @@
 @extends('admin.layout.template')
-@section('title', 'Layanan - Form')
+@section('title', 'Tambah Layanan Baru')
 
 @section('content')
     @if ($errors->any())
@@ -19,7 +19,7 @@
                     <div class="card bg-primary shadow-lg rounded-4">
                         <div class="card-body text-white">
 
-                            <h2 class="card-title text-center mb-4 fw-bolder">Create New Layanan</h2>
+                            <h2 class="card-title text-center mb-4 fw-bolder">Tambah Layanan Baru</h2>
                             <form action="/admin/add-layanan" method="POST" enctype="multipart/form-data">
                                 @csrf <!-- Laravel CSRF Token -->
 
@@ -58,12 +58,14 @@
 
                                 <!-- gambar -->
                                 <div class="mb-3">
-                                    <label for="foto" class="form-label">Gambar<span
+                                    <label for="foto" class="form-label">Gambar Layanan<span
                                             class="text-danger">*</span></label>
 
-                                    <!-- Menampilkan gambar yang ada -->
-                                    <img src="{{ asset('picture/Gereja.jpg') }}" alt="Gambar Default"
-                                        class="img-fluid rounded-3 mb-2" id="current-image">
+                                    <div>
+                                        <!-- Menampilkan gambar yang ada -->
+                                        <img src="{{ asset('picture/Gereja.jpg') }}" alt="Gambar Default"
+                                            class="img-fluid rounded-3 mb-2" id="current-image">
+                                    </div>
 
                                     <!-- Input file untuk mengganti gambar -->
                                     <input type="file" class="form-control @error('foto') is-invalid @enderror"
@@ -76,8 +78,8 @@
 
                                 <!-- Tombol Submit -->
                                 <div class="d-grid">
-                                    <button type="submit" class="btn btn-success">Submit</button>
-                                    <a class=" btn btn-danger rounded-none mt-2" href="/admin/layanan"> cancel</a>
+                                    <button type="submit" class="btn btn-success">Tambah Layanan</button>
+                                    <a class=" btn btn-danger rounded-none mt-2" href="/admin/layanan">Batal</a>
                                 </div>
                             </form>
                         </div>

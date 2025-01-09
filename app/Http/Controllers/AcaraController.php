@@ -61,14 +61,14 @@ class AcaraController extends Controller
     public function updateAcara($slug)
     {
         //Ambil acara berdasarkan slug beserta dokumentasinya
-        $acara = Acara::with('documentations')->where('slug', $slug)->first();
+        $acara = Acara::get()->where('slug', $slug)->first();
         // dd($acara);
         return view('admin.viewPage.landingpage.acara.updateLayanan', compact('acara'));
     }
 
     public function updatedAcara(Request $request, $slug)
     {
-        $acara = Acara::with('documentations')->where('slug', $slug)->firstOrFail();
+        $acara = Acara::get()->where('slug', $slug)->firstOrFail();
         
         $input = $request->validate([
             'nama_acara' => 'required',
@@ -101,27 +101,14 @@ class AcaraController extends Controller
             $acara->update($input);
             DB::commit();
             return redirect()->route('admin.acara')->with('success', 'Acara dan dokumentasi berhasil diubah!');
-        // } catch (\Throwable $th) {
-        //     DB::rollBack();
-        //     Log::error('Gagal melakukan update acara: ' . $th->getMessage());
-        //     return back()->with('error', 'Gagal melakukan update acara!');
-        // }
-
-       
     }
 
     public function deleteAcara($slug)
     {
-        $acara = Acara::with('documentations')->where('slug', $slug)->firstOrFail();
+        $acara = Acara::where('slug', $slug)->firstOrFail();
 
         try {
             DB::beginTransaction();
-
-            // Hapus dokumentasi
-            foreach ($acara->documentations as $dokumentasi) {
-                Storage::delete('dokumentasi/' . $dokumentasi->nama_dokumentasi);
-                $dokumentasi->delete();
-            }
 
             // Hapus acara
             $acara->delete();
