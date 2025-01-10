@@ -44,8 +44,11 @@ class LandingController extends Controller
 
     public function jadwal()
     {
-        $transactions = TransactionHeader::with(['romo', 'seksi', 'doa', 'transactionDetails' => function ($query) {
-            $query->with('umats', 'acara', 'admin')->where('umat_id', Auth::guard('web')->user()->umat_id);
+        // $transactions = TransactionHeader::with(['romo', 'seksis', 'doa', 'transactionDetails' => function ($query) {
+        //     $query->with('umats', 'acara', 'admin')->where('umat_id', Auth::guard('web')->user()->umat_id);
+        // }])->where('status', 'coming')->get();
+        $transactions = TransactionHeader::with(['romo', 'seksis', 'doa', 'transactionDetails' => function ($query) {
+            $query->with('umats', 'acara', 'admin');
         }])->where('status', 'coming')->get();
         
         return view('user.ViewPage.jadwal', ['transactions' => $transactions]);
@@ -55,7 +58,7 @@ class LandingController extends Controller
     {
         $transaction = TransactionHeader::with([
             'transactionDetails' => function ($query) {
-                $query->with(['acara', 'umat']);
+                $query->with(['acara', 'umats']);
             },
         ])
             ->where('id_transaction', $id)

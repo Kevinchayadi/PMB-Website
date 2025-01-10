@@ -21,7 +21,7 @@
                 {{-- Profil Gereja --}}
                 <li class="nav-item ms-3">
                     <a class="nav-link {{ Route::is('visiMisi') ? 'text-primary text-decoration-underline decoration-secondary' : 'text-primary hvr-push' }} me-2"
-                        href="/profil/visiMisi">Visi Misi & Sejarah Gereja</a>
+                        href="/profil/sejarahVisiMisi">Visi Misi & Sejarah Gereja</a>
                 </li>
 
                 {{-- Doa Paroki --}}
