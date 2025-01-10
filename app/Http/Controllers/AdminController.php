@@ -41,8 +41,13 @@ class AdminController extends Controller
             'username' => 'required|unique:admins',
             'password' => 'required|string|min:8|confirmed',
             'id_role' => 'required',
+        ], [
+            'username.required' => 'Kolom Nama Pengguna harus diisi.',
+            'username.unique' => 'Nama Pengguna sudah digunakan oleh admin lain.',
+            'password.min' => 'Kata Sandi harus memiliki minimal :min karakter.',
+            'password.confirmed' => 'Konfirmasi Kata Sandi tidak cocok.',
+            'id_role.required' => 'Kolom Role harus diisi.',
         ]);
-        // dd($request);
 
         try {
             Admin::create([
@@ -74,6 +79,12 @@ class AdminController extends Controller
             'username' => ['required', Rule::unique('admins')->ignore($slug, 'username')],
             'password' => 'nullable|string|min:8|confirmed',
             'role' => 'required',
+        ], [
+            'username.required' => 'Kolom Nama Pengguna harus diisi.',
+            'username.unique' => 'Nama Pengguna sudah digunakan oleh admin lain.',
+            'password.min' => 'Kata Sandi harus memiliki minimal :min karakter.',
+            'password.confirmed' => 'Konfirmasi Kata Sandi tidak cocok.',
+            'role.required' => 'Kolom Role harus diisi.',
         ]);
         try {
             $admin->slug = null;

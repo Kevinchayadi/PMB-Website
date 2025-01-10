@@ -18,7 +18,7 @@ use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class TransactionImport implements WithHeadingRow, ToModel
+class TransactionImport implements ToCollection, WithHeadingRow
 {
     protected $failedRows = [];
 
@@ -27,16 +27,31 @@ class TransactionImport implements WithHeadingRow, ToModel
         return 3; // Mulai dari baris ketiga (melewatkan dua baris pertama)
     }
 
-    public function model(array $rows)
+    public function collection(Collection $collection)
     {
-        foreach ($rows as $row) {
+        $collection = $collection->slice(1);
+        foreach ($collection as $row) {
+            // dd($collection);
+            $row['id_umat'] = isset($row['id_umat']) ? strval($row['id_umat']) : '';
+            // dd($collection);
+
+            if (isset($row['jadwal_transaction']) && is_numeric($row['jadwal_transaction'])) {
+                // Excel menyimpan tanggal sebagai angka, kita gunakan Carbon untuk konversi
+                $tanggal = Carbon::createFromFormat('Y-m-d', '1900-01-01')
+                    ->addDays($row['jadwal_transaction'] - 2) // Kurangi 2 karena Excel menggunakan 1 Januari 1900 sebagai hari pertama
+                    ->format('Y-m-d');
+                $jam_transaction = $row['jam_transaksi']; // Formatkan menjadi string tanggal dengan jam dan menit
+                $tanggal_waktu = $tanggal . ' ' . $jam_transaction;
+                $waktu = Carbon::createFromFormat('Y-m-d H:i:s', $tanggal_waktu)
+                                    ->format('Y-m-d H:i:s');
+            }
             // Validasi data
             $row['id_romo'] = $row['id_romo'] - 100;
             $row['id_acara'] = $row['id_acara'] - 230;
             $row['id_doa'] = $row['id_doa'] - 700;
-            $row['id_umat'] = $row['id_umat'] - 1000;
-
-            $validator = Validator::make($row, [
+            // $row['id_umat'] = $row['id_umat']- 1000;
+            // dd($row['id_romo']);
+            $validator = Validator::make($row->toArray(), [
                 'judul' => 'required|string|max:255',
                 'id_romo' => 'required|exists:romos,id_romo',
                 'id_seksi' => 'nullable|string',
@@ -52,72 +67,78 @@ class TransactionImport implements WithHeadingRow, ToModel
                 $this->failedRows[] = [
                     'status' => implode(', ', $validator->errors()->all()),
                     'judul' => $row['judul'],
-                    'id_romo' => $row['id_romo'],
+                    'id_romo' => $row['id_romo'] + 100,
                     'id_seksi' => $row['id_seksi'],
-                    'id_acara' => $row['id_acara'],
-                    'id_doa' => $row['id_doa'],
-                    'id_umat' => $row['id_umat'],
+                    'id_acara' => $row['id_acara'] + 230,
+                    'id_doa' => $row['id_doa'] + 700,
+                    'id_umat' => $row['id_umat'] + 1000,
                     'jadwal_transaction' => $row['jadwal_transaction'],
                     'deskripsi_transaksi' => $row['deskripsi_transaksi'] ?? null,
                 ];
                 continue; // Jika validasi gagal, lanjutkan ke baris berikutnya
             }
-
+            $hasError = false;
             if (isset($row['id_umat'])) {
-                $idUmatArray = preg_split('/[,;]\s*/', $row['id_umat']); 
-                $idUmatArray = array_map(function($id) {
+                $idUmatArray = preg_split('/[,;]\s*/', $row['id_umat']);
+                $idUmatArray = array_map(function ($id) {
                     return $id - 1000;
-                }, $idUmatArray);//
+                }, $idUmatArray); //
                 foreach ($idUmatArray as $idUmat) {
+                    // dd(!Umat::where('id_umat', $idUmat)->exists());
                     // Validasi jika ID Umat tidak ada dalam tabel 'umats'
-                    if (Umat::where('id_umat', $idUmat)->exists()) {
+                    if (!Umat::where('id_umat', $idUmat)->exists()) {
                         $this->failedRows[] = [
-                            'status' => 'Rejected',
+                            'status' => 'ID Umat yang diselect tidak valid',
                             'judul' => $row['judul'],
-                            'id_romo' => $row['id_romo'],
+                            'id_romo' => $row['id_romo'] + 100,
                             'id_seksi' => $row['id_seksi'],
-                            'id_acara' => $row['id_acara'],
-                            'id_doa' => $row['id_doa'],
-                            'id_umat' => $row['id_umat'],
+                            'id_acara' => $row['id_acara'] + 230,
+                            'id_doa' => $row['id_doa'] + 700,
+                            'id_umat' => $row['id_umat'] + 1000,
                             'jadwal_transaction' => $row['jadwal_transaction'],
+                            'jam_transaction' => $row['jam_transaction'],
                             'deskripsi_transaksi' => $row['deskripsi_transaksi'] ?? null,
-                            
                         ];
-                        continue; // Jika ada ID Umat yang tidak valid, lanjutkan ke baris berikutnya
+                        $hasError = true; // Set flag ke true jika ada kesalahan
+                        break; // Jika ada ID Umat yang tidak valid, lanjutkan ke baris berikutnya
                     }
                 }
             }
 
             if (isset($row['id_seksi'])) {
                 $idSeksiArray = preg_split('/[,;]\s*/', $row['id_seksi']); // Pisahkan berdasarkan , atau
-                $idSeksiArray = array_map(function($id) {
+                $idSeksiArray = array_map(function ($id) {
                     return $id - 540;
                 }, $idSeksiArray);
                 foreach ($idSeksiArray as $idSeksi) {
                     // Validasi jika ID Umat tidak ada dalam tabel 'umats'
-                    if (Seksi::where('id_seksi', $idSeksi)->exists()) {
+                    if (!Seksi::where('id_seksi', $idSeksi)->exists()) {
                         $this->failedRows[] = [
-                            'status' => 'Rejected',
+                            'status' => 'Id seksi yang dipilih Tidak Valid',
                             'judul' => $row['judul'],
-                            'id_romo' => $row['id_romo'],
+                            'id_romo' => $row['id_romo'] + 100,
                             'id_seksi' => $row['id_seksi'],
-                            'id_acara' => $row['id_acara'],
-                            'id_doa' => $row['id_doa'],
-                            'id_umat' => $row['id_umat'],
+                            'id_acara' => $row['id_acara'] + 230,
+                            'id_doa' => $row['id_doa'] + 700,
+                            'id_umat' => $row['id_umat'] + 1000,
                             'jadwal_transaction' => $row['jadwal_transaction'],
+                            'jam_transaction' => $row['Jam_transaction'],
                             'deskripsi_transaksi' => $row['deskripsi_transaksi'] ?? null,
-                            
                         ];
-                        continue; // Jika ada ID Umat yang tidak valid, lanjutkan ke baris berikutnya
+                        $hasError = true; // Set flag ke true jika ada kesalahan
+                        break; // Jika ada ID Umat yang tidak valid, lanjutkan ke baris berikutnya
                     }
                 }
+            }
+            if ($hasError) {
+                continue;
             }
 
             $input = [
                 'judul' => $row['judul'],
                 'id_romo' => $row['id_romo'],
                 'id_doa' => $row['id_doa'],
-                'jadwal_transaction' => $row['jadwal_transaction'],
+                'jadwal_transaction' => $waktu,
             ];
 
             $input2 = [
@@ -143,16 +164,16 @@ class TransactionImport implements WithHeadingRow, ToModel
                 ->get();
             if ($checkTransaction->isNotEmpty()) {
                 $this->failedRows[] = [
-                    'status' => 'Jadwal acara yang dipilih sudah tersedia.',
+                    'status' => 'ID Umat yang diselect tidak valid',
                     'judul' => $row['judul'],
-                    'id_romo' => $row['id_romo'],
+                    'id_romo' => $row['id_romo'] + 100,
                     'id_seksi' => $row['id_seksi'],
-                    'id_acara' => $row['id_acara'],
-                    'id_doa' => $row['id_doa'],
-                    'id_umat' => $row['id_umat'],
+                    'id_acara' => $row['id_acara'] + 230,
+                    'id_doa' => $row['id_doa'] + 700,
+                    'id_umat' => $row['id_umat'] + 1000,
                     'jadwal_transaction' => $row['jadwal_transaction'],
+                    'jam_transaction' => $row['jam_transaction'],
                     'deskripsi_transaksi' => $row['deskripsi_transaksi'] ?? null,
-                    
                 ];
                 continue;
                 // return redirect()
@@ -168,16 +189,16 @@ class TransactionImport implements WithHeadingRow, ToModel
 
                 if (!$romoAvailable) {
                     $this->failedRows[] = [
-                        'status' => 'Tidak ada Romo yang tersedia pada tanggal ini.',
+                        'status' => 'ID Umat yang diselect tidak valid',
                         'judul' => $row['judul'],
-                        'id_romo' => $row['id_romo'],
+                        'id_romo' => $row['id_romo'] + 100,
                         'id_seksi' => $row['id_seksi'],
-                        'id_acara' => $row['id_acara'],
-                        'id_doa' => $row['id_doa'],
-                        'id_umat' => $row['id_umat'],
+                        'id_acara' => $row['id_acara'] + 230,
+                        'id_doa' => $row['id_doa'] + 700,
+                        'id_umat' => $row['id_umat'] + 1000,
                         'jadwal_transaction' => $row['jadwal_transaction'],
+                        'jam_transaction' => $row['jam_transaction'],
                         'deskripsi_transaksi' => $row['deskripsi_transaksi'] ?? null,
-                        
                     ];
                     continue;
                     // return redirect()
@@ -193,16 +214,16 @@ class TransactionImport implements WithHeadingRow, ToModel
 
                 if ($romo) {
                     $this->failedRows[] = [
-                        'status' => 'Romo yang dipilih sudah memiliki jadwal pada waktu ini.',
+                        'status' => 'ID Umat yang diselect tidak valid',
                         'judul' => $row['judul'],
-                        'id_romo' => $row['id_romo'],
+                        'id_romo' => $row['id_romo'] + 100,
                         'id_seksi' => $row['id_seksi'],
-                        'id_acara' => $row['id_acara'],
-                        'id_doa' => $row['id_doa'],
-                        'id_umat' => $row['id_umat'],
+                        'id_acara' => $row['id_acara'] + 230,
+                        'id_doa' => $row['id_doa'] + 700,
+                        'id_umat' => $row['id_umat'] + 1000,
                         'jadwal_transaction' => $row['jadwal_transaction'],
+                        'jam_transaction' => $row['jam_transaction'],
                         'deskripsi_transaksi' => $row['deskripsi_transaksi'] ?? null,
-                        
                     ];
                     continue;
                     return redirect()
@@ -233,16 +254,16 @@ class TransactionImport implements WithHeadingRow, ToModel
             } catch (\Throwable $th) {
                 DB::rollBack();
                 $this->failedRows[] = [
-                    'status' => 'terjadi kesalahan dalan menyimpan',
+                    'status' => 'ID Umat yang diselect tidak valid',
                     'judul' => $row['judul'],
-                    'id_romo' => $row['id_romo'],
+                    'id_romo' => $row['id_romo'] + 100,
                     'id_seksi' => $row['id_seksi'],
-                    'id_acara' => $row['id_acara'],
-                    'id_doa' => $row['id_doa'],
-                    'id_umat' => $row['id_umat'],
+                    'id_acara' => $row['id_acara'] + 230,
+                    'id_doa' => $row['id_doa'] + 700,
+                    'id_umat' => $row['id_umat'] + 1000,
                     'jadwal_transaction' => $row['jadwal_transaction'],
+                    'jam_transaction' => $row['jam_transaction'],
                     'deskripsi_transaksi' => $row['deskripsi_transaksi'] ?? null,
-                    
                 ];
                 continue;
             }
@@ -251,10 +272,10 @@ class TransactionImport implements WithHeadingRow, ToModel
             // Simpan Acara ke dalam tabel acaras
             // $acaraId = DB::table('acaras')->insertGetId([
             //     'judul' => $row['judul'],
-            //     'id_romo' => $row['id_romo'],
+            //     'id_romo' => $row['id_romo']+100,
             //     'id_seksi' => $row['id_seksi'],
-            //     'id_acara' => $row['id_acara'],
-            //     'id_doa' => $row['id_doa'],
+            //     'id_acara' => $row['id_acara']+230,
+            //     'id_doa' => $row['id_doa']+700,
             //     'jadwal_transaction' => $row['jadwal_transaction'],
             //     'deskripsi_transaksi' => $row['deskripsi_transaksi'] ?? null,
             // ]);

@@ -12,6 +12,7 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use Maatwebsite\Excel\Concerns\WithTitle;
+use NumberFormatter;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
 class requestStoreTemplate implements WithMultipleSheets
@@ -39,7 +40,7 @@ class HeaderSheet implements FromArray, WithTitle, WithStyles
                 'Penjelasan: Nama terlibat satu wajib diisi dengan string yang menjelaskan nama pihak yang terlibat. Kolom ini tidak boleh kosong.',
                 'Penjelasan: Nama terlibat dua bersifat opsional. Jika diisi, panjang karakter tidak boleh lebih dari 255 karakter.',
                 'Penjelasan: Romo bersifat opsional. diisi berdasarkan kode pada halaman data.',
-                'Penjelasan: Jadwal acara wajib diisi dengan tanggal yang valid. Format tanggal harus sesuai (misalnya: YYYY-MM-DD). Tanggal yang dimasukkan tidak boleh lebih awal dari hari ini.',
+                'Penjelasan: Jadwal acara wajib diisi dengan tanggal yang valid. Format tanggal harus sesuai (misalnya: YYYY-MM-DD). Tanggal yang dimasukkan tidak boleh lebih awal dari hari ini. Pastikan dalam format DATE!!!',
                 'Penjelasan: Deskripsi pengajuan bersifat opsional. Jika diisi, panjang karakter tidak boleh lebih dari 255 karakter. Pastikan deskripsi singkat dan jelas terkait pengajuan acara.',
             ],
         ];
@@ -66,6 +67,7 @@ class HeaderSheet implements FromArray, WithTitle, WithStyles
 
         // Menambahkan warna tab halaman menjadi hijau
         $sheet->getTabColor()->setRGB('00FF00');
+        // $sheet->getStyle('G3:G1048576')->getNumberFormat()->setFormatCode('yyyy-mm-dd');
 
         return [
                 // Menambahkan style tambahan jika dibutuhkan

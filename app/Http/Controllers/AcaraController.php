@@ -37,10 +37,18 @@ class AcaraController extends Controller
     {
         // dd($request->all());
         $input = $request->validate([
-            'nama_acara' => 'required',
+            'nama_acara' => 'required|min:5',
             'deskripsi_acara' => 'required',
             'tipe_acara' => 'required',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ], [
+            'nama_acara.required' => 'Kolom Nama Acara harus diisi.',
+            'nama_acara.min' => 'Kolom Nama Acara harus memiliki minimal :min karakter.',
+            'deskripsi_acara.required' => 'Kolom Deskripsi Acara harus diisi.',
+            'tipe_acara.required' => 'Kolom Tipe Acara harus diisi.',
+            'foto.image' => 'Kolom Foto harus berupa gambar.',
+            'foto.mimes' => 'Kolom Foto harus dalam format: jpeg, png, jpg, gif, svg.',
+            'foto.max' => 'Ukuran file Foto tidak boleh lebih dari :max kilobyte.',
         ]);
 
         try {
@@ -82,10 +90,17 @@ class AcaraController extends Controller
         $acara = Acara::get()->where('slug', $slug)->firstOrFail();
 
         $input = $request->validate([
-            'nama_acara' => 'required',
-            'deskripsi_acara' => 'required',
-            'tipe_acara' => 'required',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'nama_acara' => 'required|string|max:255', // Menambahkan aturan string dan batasan karakter
+            'deskripsi_acara' => 'required|string', // Menambahkan aturan string
+            'tipe_acara' => 'required|string', // Menambahkan aturan string
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validasi untuk foto
+        ], [
+            'nama_acara.required' => 'Kolom Nama Acara harus diisi.',
+            'deskripsi_acara.required' => 'Kolom Deskripsi Acara harus diisi.',
+            'tipe_acara.required' => 'Kolom Tipe Acara harus diisi.',
+            'foto.image' => 'Kolom Foto harus berupa gambar.',
+            'foto.mimes' => 'Kolom Foto harus dalam format: jpeg, png, jpg, gif, svg.',
+            'foto.max' => 'Ukuran file Foto tidak boleh lebih dari :max kilobyte.',
         ]);
         // dd($request->all());
 

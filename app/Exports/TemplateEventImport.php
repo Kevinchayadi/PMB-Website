@@ -28,7 +28,7 @@ class HeaderSheet implements FromArray, WithTitle, WithStyles
     public function array(): array
     {
         return [
-            ['status', 'Judul', 'ID Romo', 'ID Seksi', 'ID Acara', 'ID Doa', 'ID Umat', 'Jadwal Transaction', 'Deskripsi Transaksi'],
+            ['status', 'Judul', 'ID Romo', 'ID Seksi', 'ID Acara', 'ID Doa', 'ID Umat', 'Jadwal Transaction','Jam Transaction', 'Deskripsi Transaksi'],
             [
                 'Penjelasan: Kolom ini akan diisi secara otomatis oleh sistem dengan nilai "Accepted" atau "Rejected" setelah proses validasi.',
                 'Penjelasan: Judul wajib diisi dengan string, misalnya "Misa Pagi". Kolom ini tidak boleh kosong dan panjang karakter maksimal adalah 255 karakter.',
@@ -37,7 +37,8 @@ class HeaderSheet implements FromArray, WithTitle, WithStyles
                 'Penjelasan: ID Acara wajib diisi dengan ID yang valid dari tabel `acaras`. ID yang dimasukkan harus ada dalam database dan sesuai dengan ID yang tercatat.',
                 'Penjelasan: ID Doa wajib diisi dengan ID yang valid dari tabel `doas`. Harap pastikan ID Doa yang dimasukkan ada dalam database dan valid.',
                 'Penjelasan: ID Umat wajib diisi dengan ID yang valid dari tabel `umats`. Pastikan ID Umat yang dimasukkan ada dalam database dan dapat diverifikasi.',
-                'Penjelasan: Jadwal Transaction wajib diisi dengan tanggal dan waktu yang valid. Format tanggal harus sesuai (misalnya: YYYY-MM-DD HH:MM:SS). Tanggal yang dimasukkan tidak boleh lebih awal dari hari ini.',
+                'Penjelasan: Jadwal Transaction wajib diisi dengan tanggal dan waktu yang valid. Format tanggal harus sesuai (misalnya: YYYY-MM-DD HH:MM:SS). Tanggal yang dimasukkan tidak boleh lebih awal dari hari ini.Pastikan dalam format DATE!!!',
+                'Penjelasan: Jam Transaction wajib diisi dengan tanggal dan waktu yang valid. Format tanggal harus sesuai (HH:MM:SS). Tanggal yang dimasukkan tidak boleh lebih awal dari hari ini.Pastikan dalam format TiME!!!',
                 'Penjelasan: Deskripsi Transaksi bersifat opsional. Jika diisi, panjang karakter tidak boleh lebih dari 255 karakter. Pastikan deskripsi singkat dan jelas terkait transaksi yang dilakukan.',
             ],
         ];
@@ -77,7 +78,7 @@ class ExampleSheet implements FromArray, WithTitle, WithStyles
     public function array(): array
     {
         return [
-            ['status', 'Judul', 'ID Romo', 'ID Seksi', 'ID Acara', 'ID Doa', 'ID Umat', 'Jadwal Transaction', 'Deskripsi Transaksi'],
+            ['status', 'Judul', 'ID Romo', 'ID Seksi', 'ID Acara', 'ID Doa', 'ID Umat', 'Jadwal Transaction','Jam Transaction', 'Deskripsi Transaksi'],
             [
                 'Penjelasan: Kolom ini akan diisi secara otomatis oleh sistem dengan nilai "Accepted" atau "Rejected" setelah proses validasi.',
                 'Penjelasan: Judul wajib diisi dengan string, misalnya "Misa Pagi". Kolom ini tidak boleh kosong dan panjang karakter maksimal adalah 255 karakter.',
@@ -86,12 +87,13 @@ class ExampleSheet implements FromArray, WithTitle, WithStyles
                 'Penjelasan: ID Acara wajib diisi dengan ID yang valid dari tabel `acaras`. ID yang dimasukkan harus ada dalam database dan sesuai dengan ID yang tercatat.',
                 'Penjelasan: ID Doa wajib diisi dengan ID yang valid dari tabel `doas`. Harap pastikan ID Doa yang dimasukkan ada dalam database dan valid.',
                 'Penjelasan: ID Umat wajib diisi dengan ID yang valid dari tabel `umats`. Pastikan ID Umat yang dimasukkan ada dalam database dan dapat diverifikasi.',
-                'Penjelasan: Jadwal Transaction wajib diisi dengan tanggal dan waktu yang valid. Format tanggal harus sesuai (misalnya: YYYY-MM-DD HH:MM:SS). Tanggal yang dimasukkan tidak boleh kurang awal dari hari ini.',
+                'Penjelasan: Jadwal Transaction wajib diisi dengan tanggal dan waktu yang valid. Format tanggal harus sesuai (misalnya: YYYY-MM-DD HH:MM:SS). Tanggal yang dimasukkan tidak boleh lebih awal dari hari ini.Pastikan dalam format DATE!!!',
+                'Penjelasan: Jam Transaction wajib diisi dengan tanggal dan waktu yang valid. Format tanggal harus sesuai (HH:MM:SS). Tanggal yang dimasukkan tidak boleh lebih awal dari hari ini.Pastikan dalam format TiME!!!',
                 'Penjelasan: Deskripsi Transaksi bersifat opsional. Jika diisi, panjang karakter tidak boleh lebih dari 255 karakter. Pastikan deskripsi singkat dan jelas terkait transaksi yang dilakukan.',
             ],
-            ['', 'Misa Pagi', 1, 2, 1, 1, '2024-12-31 09:00:00', 'Misa pagi dengan Romo X'],
-            ['', 'Misa Malam', 2, 1, 2, 2, '2024-12-31 18:00:00', 'Misa malam dengan Romo Y'],
-            ['', 'Pemberkatan', 1, 3, 3, 3, '2024-12-30 10:00:00', 'Pemberkatan dengan Romo Z'], // Misalnya jika terjadi kesalahan validasi
+            ['', 'Misa Pagi', 1, 2, 1, 1, '2024-12-31', '09:00:00', 'Misa pagi dengan Romo X'],
+            ['', 'Misa Malam', 2, 1, 2, 2, '2024-12-31', '18:00:00', 'Misa malam dengan Romo Y'],
+            ['', 'Pemberkatan', 1, 3, 3, 3, '2024-12-30','10:00:00', 'Pemberkatan dengan Romo Z'], // Misalnya jika terjadi kesalahan validasi
         ];
     }
 

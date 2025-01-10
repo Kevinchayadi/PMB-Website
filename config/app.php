@@ -27,6 +27,7 @@ return [
     | services the application utilizes. Set this in your ".env" file.
     |
     */
+    'locale' => 'id',
 
     'env' => env('APP_ENV', 'production'),
 

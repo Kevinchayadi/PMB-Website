@@ -265,9 +265,12 @@ class RequestController extends Controller
 
     public function importRequest(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'file' => 'required|mimes:xlsx,xls,csv',
         ]);
+        $file = $request->file('file');
+        \Log::info('File uploaded: ' . $file->getClientOriginalName());
 
         try {
             // Ambil file yang diupload
@@ -287,8 +290,9 @@ class RequestController extends Controller
                 return redirect()->route('home')->with('success', 'Data berhasil diimport');
             }
         } catch (\Exception $e) {
-            // Jika terjadi kesalahan, kembalikan error
-            return redirect()->route('home')->with('error', 'Terjadi kesalahan saat mengimpor data');
+            \Log::error('Error during file import: ' . $e->getMessage());
+
+        return redirect()->route('home')->with('error', 'Terjadi kesalahan saat mengimpor data. Silakan coba lagi.');
         }
     }
 

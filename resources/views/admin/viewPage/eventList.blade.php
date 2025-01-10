@@ -30,8 +30,7 @@
     <div class="btn btn-primary mx-5 mb-3" data-bs-toggle="modal" data-bs-target="#uploadexcelmodal">Unggah File Excel</div>
 
     <div class="modal fade" id="uploadexcelmodal" data-bs-backdrop="static" data-bs-keyboard="false">
-        <div class="modal-dialog
-        modal-dialog-centered modal-lg">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header bg-primary">
                     <h1 class="modal-title fs-5 text-white" id="staticBackdropLabel">Unggah Acara</h1>
@@ -39,30 +38,37 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    {{-- Upload button --}}
-                    <div class="btn btn-outline-primary upload-area w-100 p-5 mb-3" style="border: 2px dashed !important">
-                        <label for="uploadfile">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" fill="currentColor"
-                                class="bi bi-upload" viewBox="0 0 16 16">
-                                <path
-                                    d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
-                                <path
-                                    d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z" />
-                            </svg>
-                            <div class="fs-5">Unggah file di sini</div>
-                        </label>
-                        <input type="file" id="uploadfile" accept=".xlsx, .xls" />
-                    </div>
+                    <!-- Form untuk Upload -->
+                    <form action="{{ route('admin.ImportEvent') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="btn btn-outline-primary upload-area w-100 p-5 mb-3"
+                            style="border: 2px dashed !important">
+                            <label for="uploadfile">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" fill="currentColor"
+                                    class="bi bi-upload" viewBox="0 0 16 16">
+                                    <path
+                                        d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
+                                    <path
+                                        d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z" />
+                                </svg>
+                                <div class="fs-5">Unggah file di sini</div>
+                            </label>
+                            <input type="file" id="uploadfile" name="file" accept=".xlsx, .xls"
+                                onchange="displayFileName()" />
+                        </div>
 
-                    {{-- Template and Submit --}}
-                    <div class="d-flex row">
-                        <div class="col-6">
-                            <div class="btn btn-outline-warning w-100" onclick="downloadTemplate()">Unduh Template</div>
+                        <!-- Menampilkan Nama File yang Dipilih -->
+                        <div id="fileNameDisplay" class="mt-3"></div>
+
+                        <div class="d-flex row">
+                            <div class="col-6">
+                                <div class="btn btn-outline-warning w-100" onclick="downloadTemplate()">Unduh Template</div>
+                            </div>
+                            <div class="col-6">
+                                <button type="submit" class="btn btn-outline-success w-100">Unggah Excel</button>
+                            </div>
                         </div>
-                        <div class="col-6">
-                            <div class="btn btn-outline-success w-100">Unggah Excel</div>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -171,6 +177,13 @@
         function downloadTemplate() {
             window.location.href = "/admin/exportEventTemplate";
         }
+        function displayFileName() {
+        var fileInput = document.getElementById("uploadfile");
+        var fileName = fileInput.files[0] ? fileInput.files[0].name : "No file selected"; // Menangani kondisi jika tidak ada file yang dipilih
+        var fileNameDisplay = document.getElementById("fileNameDisplay");
+
+        fileNameDisplay.innerHTML = "<strong>File yang dipilih: </strong>" + fileName;
+    }
 
         function submitExcel() {
             let fileInput = document.getElementById('uploadfile');

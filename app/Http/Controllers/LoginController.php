@@ -20,6 +20,9 @@ class LoginController extends Controller
         $credentials = $request->validate([
             'username' => ['required', 'string'],
             'password' => ['required', 'string', 'min:8'],
+        ], [
+            'password.required' => 'Kolom kata sandi harus diisi.',
+            'password.min' => 'Kolom kata sandi harus memiliki minimal :min karakter.',
         ]);
 
         if (

@@ -39,6 +39,15 @@ class doaController extends Controller
             'isi_renungan' => 'required',
             'ayat_tambahan'=> 'string',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ], [
+            'nama_doa.required' => 'Kolom Nama Doa harus diisi.',
+            'deskripsi_doa.required' => 'Kolom Deskripsi Doa harus diisi.',
+            'ayat_renungan.required' => 'Kolom Ayat Renungan harus diisi.',
+            'isi_renungan.required' => 'Kolom Isi Renungan harus diisi.',
+            'ayat_tambahan.string' => 'Ayat Tambahan harus berupa string.',
+            'foto.image' => 'File yang diupload harus berupa gambar.',
+            'foto.mimes' => 'File foto harus dalam format jpg, jpeg, png, gif atau svg.',
+            'foto.max' => 'Ukuran file foto tidak boleh lebih dari 2MB.',
         ]);
         $foto = str_replace([' ', '.'], '-', $input['nama_doa']);
         
@@ -69,6 +78,15 @@ class doaController extends Controller
             'isi_renungan' => 'required',
             'ayat_tambahan'=> 'string',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ], [
+            'nama_doa.required' => 'Kolom Nama Doa harus diisi.',
+            'deskripsi_doa.required' => 'Kolom Deskripsi Doa harus diisi.',
+            'ayat_renungan.required' => 'Kolom Ayat Renungan harus diisi.',
+            'isi_renungan.required' => 'Kolom Isi Renungan harus diisi.',
+            'ayat_tambahan.string' => 'Ayat Tambahan harus berupa string.',
+            'foto.image' => 'File yang diupload harus berupa gambar.',
+            'foto.mimes' => 'File foto harus dalam format jpg, jpeg, png, gif atau svg.',
+            'foto.max' => 'Ukuran file foto tidak boleh lebih dari 2MB.',
         ]);
         $foto= str_replace([' ', '.'], '-', $input['nama_doa']);
 

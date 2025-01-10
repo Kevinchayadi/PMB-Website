@@ -35,6 +35,15 @@ class artikelController extends Controller
             'body' => 'required|string|min:10',
             'foto' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:2048',             
             'additionalLink' => 'nullable|url',             
+        ], [
+            'title.required' => 'Kolom Judul harus diisi.',
+            'title.max' => 'Judul tidak boleh lebih dari :max karakter.',
+            'body.required' => 'Kolom Isi harus diisi.',
+            'body.min' => 'Isi harus memiliki minimal :min karakter.',
+            'foto.file' => 'Field foto harus berupa file.',
+            'foto.mimes' => 'File foto harus dalam format: jpeg, png, jpg, gif, svg.',
+            'foto.max' => 'Ukuran file foto tidak boleh lebih dari :max kilobyte.',
+            'additionalLink.url' => 'Link tambahan harus berupa URL yang valid.',
         ]);
         // $artikel = Articel::find($id);
         $foto = str_replace([' ', '.'], '-', $input['title']);
@@ -69,6 +78,15 @@ class artikelController extends Controller
             'body' => 'required|string|min:10',
             'foto' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:2048',             
             'additionalLink' => 'nullable|url',             
+        ], [
+            'title.required' => 'Kolom Judul harus diisi.',
+            'title.max' => 'Judul tidak boleh lebih dari :max karakter.',
+            'body.required' => 'Kolom Isi harus diisi.',
+            'body.min' => 'Isi harus memiliki minimal :min karakter.',
+            'foto.file' => 'Field foto harus berupa file.',
+            'foto.mimes' => 'File foto harus dalam format: jpeg, png, jpg, gif, svg.',
+            'foto.max' => 'Ukuran file foto tidak boleh lebih dari :max kilobyte.',
+            'additionalLink.url' => 'Link tambahan harus berupa URL yang valid.',
         ]);
         $artikel = Articel::find($id);
         $foto = str_replace([' ', '.'], '-', $input['title']);

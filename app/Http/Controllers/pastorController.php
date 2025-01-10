@@ -43,6 +43,16 @@ class pastorController extends Controller
             'pengalaman' => 'nullable|string',
             'nomorhp_romo' => 'nullable|min:10',
             'foto' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ], [
+            'nama_romo.required' => 'Kolom Nama Romo harus diisi.',
+            'nama_romo.max' => 'Nama Romo tidak boleh lebih dari :max karakter.',
+            'DOB_romo.date' => 'Format tanggal lahir tidak valid.',
+            'tempat_lahir.max' => 'Tempat Lahir tidak boleh lebih dari :max karakter.',
+            'jabatan.max' => 'Jabatan tidak boleh lebih dari :max karakter.',
+            'nomorhp_romo.min' => 'Nomor HP harus memiliki setidaknya :min karakter.',
+            'foto.file' => 'File yang diupload harus berupa file.',
+            'foto.mimes' => 'Format file foto yang diizinkan: jpeg, png, jpg, gif, svg.',
+            'foto.max' => 'Maksimal ukuran file foto adalah :max kilobyte.',
         ]);
 
         $foto = str_replace([' ', '.'], '-', $input['nama_romo']);
@@ -78,6 +88,16 @@ class pastorController extends Controller
             'pengalaman' => 'nullable|string|max:255',
             'nomorhp_romo' => 'nullable|min:10',
             'foto' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ], [
+            'nama_romo.required' => 'Kolom Nama Romo harus diisi.',
+            'nama_romo.max' => 'Nama Romo tidak boleh lebih dari :max karakter.',
+            'DOB_romo.date' => 'Format tanggal lahir tidak valid.',
+            'tempat_lahir.max' => 'Tempat Lahir tidak boleh lebih dari :max karakter.',
+            'jabatan.max' => 'Jabatan tidak boleh lebih dari :max karakter.',
+            'nomorhp_romo.min' => 'Nomor HP harus memiliki setidaknya :min karakter.',
+            'foto.file' => 'File yang diupload harus berupa file.',
+            'foto.mimes' => 'Format file foto yang diizinkan: jpeg, png, jpg, gif, svg.',
+            'foto.max' => 'Maksimal ukuran file foto adalah :max kilobyte.',
         ]);
 
         $foto= str_replace([' ', '.'], '-', $input['nama_romo']);

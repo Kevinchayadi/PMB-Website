@@ -72,21 +72,45 @@ class TransaksiController extends Controller
 
     public function storeTransaction(Request $request)
     {
-       $request->validate([
+        $request->validate([
             'id_seksi' => 'nullable|array',
             'id_umat' => 'nullable|array',
-       ]);
+        ], [
+            'id_seksi.array' => 'Seksi harus berupa array.',
+            'id_umat.array' => 'Umat harus berupa array.',
+        ]);
+    
+        // Validasi input utama dengan pesan kesalahan kustom
         $input = $request->validate([
-             // id_umat adalah array
-             'judul' => 'nullable|string',
+            'judul' => 'nullable|string',
             'id_romo' => 'nullable|integer|exists:romos,id_romo',
             'id_doa' => 'required|integer|exists:doas,id_doa',
             'jadwal_transaction' => 'required|date|after_or_equal:today',
+        ], [
+            'judul.string' => 'Judul harus berupa teks.',
+            'id_romo.integer' => 'Romo harus berupa angka.',
+            'id_romo.exists' => 'Romo yang dipilih tidak valid.',
+            'id_doa.required' => 'Doa harus diisi.',
+            'id_doa.integer' => 'Doa harus berupa angka.',
+            'id_doa.exists' => 'Doa yang dipilih tidak valid.',
+            'jadwal_transaction.required' => 'Jadwal transaksi harus diisi.',
+            'jadwal_transaction.date' => 'Jadwal transaksi harus berupa tanggal yang valid.',
+            'jadwal_transaction.after_or_equal' => 'Jadwal transaksi harus sama dengan atau setelah tanggal hari ini.',
         ]);
-        $input2= $request->validate([
+    
+        // Validasi input tambahan dengan pesan kesalahan kustom
+        $input2 = $request->validate([
             'id_acara' => 'required|integer|exists:acaras,id_acara',
             'id_admin' => 'nullable|integer|exists:admins,id_admin',
             'deskripsi_transaksi' => 'nullable|string|max:255',
+        ], [
+            'id_acara.required' => 'Acara harus diisi.',
+            'id_acara.integer' => 'Acara harus berupa angka.',
+            'id_acara.exists' => 'Acara yang dipilih tidak valid.',
+            'id_admin.integer' => 'Admin harus berupa angka.',
+            'id_admin.exists' => 'Admin yang dipilih tidak valid.',
+            'deskripsi_transaksi.string' => 'Deskripsi transaksi harus berupa teks.',
+            'deskripsi_transaksi.max' => 'Deskripsi transaksi tidak boleh lebih dari 255 karakter.',
         ]);
     
         // Atur default 'judul' jika tidak ada
@@ -184,19 +208,42 @@ class TransaksiController extends Controller
         $request->validate([
             'id_seksi' => 'nullable|array',
             'id_umat' => 'nullable|array',
+        ], [
+            'id_seksi.array' => 'Seksi harus berupa array.',
+            'id_umat.array' => 'Umat harus berupa array.',
         ]);
     
+        // Validasi input utama dengan pesan kesalahan kustom
         $input = $request->validate([
             'judul' => 'nullable|string',
             'id_romo' => 'nullable|integer|exists:romos,id_romo',
             'id_doa' => 'required|integer|exists:doas,id_doa',
             'jadwal_transaction' => 'required|date|after_or_equal:today',
+        ], [
+            'judul.string' => 'Judul harus berupa teks.',
+            'id_romo.integer' => 'Romo harus berupa angka.',
+            'id_romo.exists' => 'Romo yang dipilih tidak valid.',
+            'id_doa.required' => 'Doa harus diisi.',
+            'id_doa.integer' => 'Doa harus berupa angka.',
+            'id_doa.exists' => 'Doa yang dipilih tidak valid.',
+            'jadwal_transaction.required' => 'Jadwal transaksi harus diisi.',
+            'jadwal_transaction.date' => 'Jadwal transaksi harus berupa tanggal yang valid.',
+            'jadwal_transaction.after_or_equal' => 'Jadwal transaksi harus sama dengan atau setelah tanggal hari ini.',
         ]);
     
+        // Validasi input tambahan dengan pesan kesalahan kustom
         $input2 = $request->validate([
             'id_acara' => 'required|integer|exists:acaras,id_acara',
             'id_admin' => 'nullable|integer|exists:admins,id_admin',
             'deskripsi_transaksi' => 'nullable|string|max:255',
+        ], [
+            'id_acara.required' => 'Acara harus diisi.',
+            'id_acara.integer' => 'Acara harus berupa angka.',
+            'id_acara.exists' => 'Acara yang dipilih tidak valid.',
+            'id_admin.integer' => 'Admin harus berupa angka.',
+            'id_admin.exists' => 'Admin yang dipilih tidak valid.',
+            'deskripsi_transaksi.string' => 'Deskripsi transaksi harus berupa teks.',
+            'deskripsi_transaksi.max' => 'Deskripsi transaksi tidak boleh lebih dari 255 karakter.',
         ]);
     
         // Atur default 'judul' jika tidak ada
