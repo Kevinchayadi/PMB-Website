@@ -24,7 +24,7 @@
                             <h2 class="card-title text-center mb-4 fw-bolder">Perbarui Data Layanan</h2>
 
                             <!-- Form Edit Layanan -->
-                            <form action="{{ route('admin.updateAcara', $acara->slug) }}" method="POST"
+                            <form action="{{ secure_url('/admin/edit-layanan/'. $acara->slug) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
