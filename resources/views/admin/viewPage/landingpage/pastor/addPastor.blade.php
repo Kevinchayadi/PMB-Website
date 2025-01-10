@@ -19,7 +19,7 @@
                     <div class="card bg-primary shadow-lg rounded-4">
                         <div class="card-body text-white">
                             <h2 class="card-title text-center mb-4 fw-bolder">Tambah Pastor Baru</h2>
-                            <form action="/admin/add-pastor" method="POST" enctype="multipart/form-data">
+                            <form action="secure_url('/admin/add-pastor/')" method="POST" enctype="multipart/form-data">
                                 @csrf <!-- Laravel CSRF Token -->
 
                                 <!-- Nama -->

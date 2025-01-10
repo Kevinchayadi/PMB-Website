@@ -51,7 +51,7 @@
                             <td>
                                 <a href="/admin/edit-pastor/{{ $romo->id_romo }}"
                                     class="btn btn-sm btn-outline-primary">Edit</a>
-                                <form action="{{ route('admin.deletePastor', $romo->id_romo) }}" method="POST"
+                                <form action="{{ secure_url('/admin/delete-pastor/', $romo->id_romo) }}" method="POST"
                                     class="d-inline">
                                     @csrf
                                     @method('DELETE')

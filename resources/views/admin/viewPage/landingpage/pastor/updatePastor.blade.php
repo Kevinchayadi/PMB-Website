@@ -20,7 +20,7 @@
                         <div class="card-body text-white">
 
                             <h2 class="card-title text-center mb-4 fw-bolder">Perbarui Data Pastor</h2>
-                            <form action="{{ route('admin.updatePastor', $pastor->id_romo) }}" method="POST"
+                            <form action="{{ secure_url('/admin/edit-pastor/'), $pastor->id_romo) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT') <!-- Method spoofing for PUT request -->
