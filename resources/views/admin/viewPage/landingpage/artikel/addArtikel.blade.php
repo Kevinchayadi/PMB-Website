@@ -29,7 +29,7 @@
                                         id="title" name="title" placeholder="Masukkan judul artikel"
                                         value="{{ old('title') }}" required>
                                     @error('title')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -40,7 +40,7 @@
                                     <textarea class="form-control @error('body') is-invalid @enderror" id="body" name="body"
                                         placeholder="Masukkan deskripsi Artikel" rows="20" required>{{ old('body') }}</textarea>
                                     @error('body')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -52,7 +52,7 @@
                                         id="additionalLink" name="additionalLink"
                                         placeholder="Masukkan additionalLink artikel" value="{{ old('additionalLink') }}">
                                     @error('additionalLink')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -71,7 +71,7 @@
                                         id="foto" name="foto" placeholder="Masukkan gambar"
                                         onchange="previewImage(event)" required>
                                     @error('foto')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 

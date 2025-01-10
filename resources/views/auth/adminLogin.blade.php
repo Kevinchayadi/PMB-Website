@@ -12,6 +12,16 @@
 </head>
 
 <body>
+    <!-- Pesan kesalahan validasi -->
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="w-75 mx-auto">
         <div class="container-fluid row justify-content-center align-content-center bg-white shadow-lg rounded-3">
             <div class="title fs-4 fw-bolder text-center">Ayo Masuk ke PMB Admin</div>
@@ -24,16 +34,6 @@
             <div class="col-6">
                 <div class="card border-0 p-4">
                     <div class="card-body">
-                        <!-- Pesan kesalahan validasi -->
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
                         <form method="POST" action="/admin/login">
                             @csrf
                             <div class="form-group mb-3">
@@ -42,7 +42,7 @@
                                     class="form-control @error('username') is-invalid @enderror" id="username" required
                                     autofocus>
                                 @error('username')
-                                    <div class="invalid-feedback text-white">{{ $message }}</div>
+                                    <div class="invalid-feedback text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -52,7 +52,7 @@
                                     class="form-control @error('password') is-invalid @enderror" id="password"
                                     required>
                                 @error('password')
-                                    <div class="invalid-feedback text-white">{{ $message }}</div>
+                                    <div class="invalid-feedback text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
 

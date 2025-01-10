@@ -29,7 +29,7 @@
                                         id="nama_doa" name="nama_doa" value="{{ old('nama_doa', $doa->nama_doa) }}"
                                         required>
                                     @error('nama_doa')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -39,7 +39,7 @@
                                     <textarea class="form-control @error('deskripsi_doa') is-invalid @enderror" id="deskripsi_doa" name="deskripsi_doa"
                                         rows="5" required>{{ old('deskripsi_doa', $doa->deskripsi_doa) }}</textarea>
                                     @error('deskripsi_doa')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -49,7 +49,7 @@
                                     <textarea class="form-control @error('ayat_renungan') is-invalid @enderror" id="ayat_renungan" name="ayat_renungan"
                                         rows="5" required>{{ old('ayat_renungan', $doa->ayat_renungan) }}</textarea>
                                     @error('ayat_renungan')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -59,7 +59,7 @@
                                     <textarea class="form-control @error('isi_renungan') is-invalid @enderror" id="isi_renungan" name="isi_renungan"
                                         rows="5" required>{{ old('isi_renungan', $doa->isi_renungan) }}</textarea>
                                     @error('isi_renungan')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -69,7 +69,7 @@
                                     <textarea class="form-control @error('ayat_tambahan') is-invalid @enderror" id="ayat_tambahan" name="ayat_tambahan"
                                         rows="5">{{ old('ayat_tambahan', $doa->ayat_tambahan) }}</textarea>
                                     @error('ayat_tambahan')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -84,7 +84,7 @@
                                     <input type="file" class="form-control @error('foto') is-invalid @enderror"
                                         id="foto" name="foto" onchange="previewImage(event)">
                                     @error('foto')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 

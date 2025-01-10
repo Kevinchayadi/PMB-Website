@@ -70,35 +70,55 @@
                                     @csrf
                                     <input type="text" class="form-control" id="nama_acara" name="nama_acara"
                                         placeholder="Contoh: John Smith" value="{{ $layanans->nama_acara }}" hidden>
-                                    <input type="text" class="form-control" id="id_umat"name="id_umat" value="1"
-                                        hidden>
+
+                                    <input type="text" class="form-control @error('nama_acara') is-invalid @enderror"
+                                        id="id_umat"name="id_umat" value="1" hidden>
+
                                     <div class="mb-3">
                                         <label for="nama_terlibat_satu" class="form-label">Nama Terlibat 1</label>
-                                        <input type="text" class="form-control" id="nama_terlibat_satu"
-                                            name="nama_terlibat_satu" placeholder="Contoh: John Smith" required>
+                                        <input type="text"
+                                            class="form-control @error('nama_terlibat_satu') is-invalid @enderror"
+                                            id="nama_terlibat_satu" name="nama_terlibat_satu"
+                                            placeholder="Contoh: John Smith" required>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="nama_terlibat_dua" class="form-label">Nama Terlibat 2</label>
-                                        <input type="text" class="form-control" id="nama_terlibat_dua"
-                                            name="nama_terlibat_dua" placeholder="Contoh: John Smith">
+                                        <input type="text"
+                                            class="form-control @error('nama_terlibat_dua') is-invalid @enderror"
+                                            id="nama_terlibat_dua" name="nama_terlibat_dua"
+                                            placeholder="Contoh: John Smith">
+                                        @error('nama_terlibat_dua')
+                                            <div class="invalid-feedback text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="nama_romo" class="form-label">Nama Romo</label>
-                                        <input type="text" class="form-control" id="nama_romo" name="nama_romo"
-                                            placeholder="Contoh: John Smith">
+                                        <input type="text" class="form-control @error('nama_romo') is-invalid @enderror"
+                                            id="nama_romo" name="nama_romo" placeholder="Contoh: John Smith">
+                                        @error('nama_romo')
+                                            <div class="invalid-feedback text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="jadwal_acara" class="form-label">Jadwal Acara</label>
-                                        <input type="date" class="form-control" id="jadwal_acara" name="jadwal_acara">
+                                        <input type="date"
+                                            class="form-control @error('jadwal_acara') is-invalid @enderror"
+                                            id="jadwal_acara" name="jadwal_acara">
+                                        @error('jadwal_acara')
+                                            <div class="invalid-feedback text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="deskripsi_pengajuan" class="form-label">Catatan</label>
-                                        <textarea class="form-control" id="deskripsi_pengajuan" name="deskripsi_pengajuan" rows="3"
-                                            placeholder="Contoh: Tolong segera diproses nya"></textarea>
+                                        <textarea class="form-control @error('deskripsi_pengajuan') is-invalid @enderror" id="deskripsi_pengajuan"
+                                            name="deskripsi_pengajuan" rows="3" placeholder="Contoh: Tolong segera diproses ya"></textarea>
+                                        @error('deskripsi_pengajuan')
+                                            <div class="invalid-feedback text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                     <button type="submit" class="btn btn-primary hvr-shrink">Submit</button>

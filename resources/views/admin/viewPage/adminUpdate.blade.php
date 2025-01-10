@@ -32,7 +32,7 @@
                                 <input type="text" class="form-control @error('username') is-invalid @enderror"
                                     id="username" name="username" value="{{ old('username', $admin->username) }}" required>
                                 @error('username')
-                                    <div class="invalid-feedback text-white">{{ $message }}</div>
+                                    <div class="invalid-feedback text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -43,7 +43,7 @@
                                 <input type="password" class="form-control @error('password') is-invalid @enderror"
                                     id="password" name="password">
                                 @error('password')
-                                    <div class="invalid-feedback text-white">{{ $message }}</div>
+                                    <div class="invalid-feedback text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -69,7 +69,7 @@
                                     @endforeach
                                 </select>
                                 @error('id_role')
-                                    <div class="invalid-feedback text-white">{{ $message }}</div>
+                                    <div class="invalid-feedback text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
 

@@ -37,7 +37,7 @@ class LandingController extends Controller
         ->whereHas('transactionDetails.umats', function ($query) {
             $query->where('relation_transaction_umats.id_umat', Auth::guard('web')->user()->id);
         })
-        ->get();
+        ->latest()->paginate(20)->withQueryString();
     
         return view('user.ViewPage.history', compact('jadwal_acara'));
     }

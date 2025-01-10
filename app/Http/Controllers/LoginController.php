@@ -34,7 +34,7 @@ class LoginController extends Controller
             return redirect()->route('admin.dashboard');
         }
 
-        return back()->with('error', 'gagal login, tolong untuk dicek kembali email dan password!');
+        return back()->withErrors('Gagal masuk, mohon cek kembali alamat email dan kata sandi!');
     }
 
     function socialitePage()
@@ -67,7 +67,7 @@ class LoginController extends Controller
             
         } catch (\Exception $e) {
             // Log exception or handle error gracefully
-            return redirect()->route('umat.login')->with('error', 'There was an error during the login process.');
+            return redirect()->route('umat.login')->with('error', 'Terjadi kesalahan saat masuk');
         }
     }
 
@@ -96,8 +96,6 @@ class LoginController extends Controller
         }
     
         // Jika login gagal, kembalikan dengan pesan error
-        return back()->withErrors([
-            'email_umat' => 'Gagal masuk, pastikan alamat email dan kata sandi Anda benar.'
-        ]);
+        return back()->withErrors('Gagal masuk, pastikan alamat email dan kata sandi Anda benar.');
     }
 }

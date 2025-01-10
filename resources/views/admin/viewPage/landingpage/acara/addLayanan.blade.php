@@ -30,7 +30,7 @@
                                     <input type="text" class="form-control @error('nama_acara') is-invalid @enderror"
                                         id="nama_acara" name="nama_acara" placeholder="Masukkan judul layanan" required>
                                     @error('nama_acara')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -41,7 +41,7 @@
                                     <input type="text" class="form-control @error('tipe_acara') is-invalid @enderror"
                                         id="tipe_acara" name="tipe_acara" placeholder="Masukkan tipe layanan" required>
                                     @error('tipe_acara')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -52,7 +52,7 @@
                                     <textarea class="form-control @error('deskripsi_acara') is-invalid @enderror" id="deskripsi_acara"
                                         name="deskripsi_acara" placeholder="Masukkan deskripsi layanan" rows="20" required></textarea>
                                     @error('deskripsi_acara')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -72,7 +72,7 @@
                                         id="foto" name="foto" placeholder="Masukkan gambar"
                                         onchange="previewImage(event)" required>
                                     @error('foto')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 

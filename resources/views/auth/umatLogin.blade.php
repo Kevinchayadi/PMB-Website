@@ -12,6 +12,15 @@
 </head>
 
 <body>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="w-75 mx-auto">
         <div class="container-fluid row justify-content-center align-content-center shadow-lg bg-white rounded-3">
             <div class="title fs-4 fw-bolder text-center text-primary">Ayo Masuk ke Website PMB</div>
@@ -39,15 +48,6 @@
                         <p class="text-center fw-bold mx-3 mb-0">Or</p>
                     </div>
                     <div class="card-body">
-                        {{-- @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif --}}
                         <form method="POST" action="/login">
                             @csrf
                             <div class="form-group mb-3">

@@ -32,7 +32,7 @@
                                     <input type="text" class="form-control @error('title') is-invalid @enderror"
                                         id="title" name="title" value="{{ old('title', $kegiatan->title) }}" required>
                                     @error('title')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -43,7 +43,7 @@
                                     <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description"
                                         value="Masukkan deskripsi kegiatan" required>{{ old('description', $kegiatan->description) }}</textarea>
                                     @error('description')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -55,7 +55,7 @@
                                         id="location" name="location" value="{{ old('location', $kegiatan->location) }}"
                                         required>
                                     @error('location')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -66,7 +66,7 @@
                                     <input type="date" class="form-control @error('date') is-invalid @enderror"
                                         id="date" name="date" value="{{ old('date', $kegiatan->date) }}" required>
                                     @error('date')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -85,7 +85,7 @@
                                         id="foto" name="foto" placeholder="Edit gambar"
                                         onchange="previewImage(event)">
                                     @error('foto')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 

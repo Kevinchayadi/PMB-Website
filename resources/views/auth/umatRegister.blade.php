@@ -12,6 +12,16 @@
 </head>
 
 <body>
+    <!-- Pesan kesalahan validasi -->
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="container d-flex justify-content-center align-items-center min-vh-75">
         <div class="bg-primary p-2 rounded-3">
             <div class="row justify-content-center bg-white shadow-lg rounded-3 w-lg-75 w-100 p-4 overflow-auto mx-auto"
@@ -52,16 +62,6 @@
                 <div class="col-lg-6 col-12">
                     <div class="card border-0 overflow-auto" style="max-height: 60vh;">
                         <div class="card-body">
-                            <!-- Pesan kesalahan validasi -->
-                            @if ($errors->any())
-                                <div class="alert alert-danger">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
                             <!-- Form -->
                             <form action="/register" method="POST">
                                 @csrf <!-- Token CSRF untuk keamanan form -->
@@ -74,7 +74,7 @@
                                         id="nama_umat" name="nama_umat"
                                         placeholder="Masukkan nama umat. Contoh: John Doe" required>
                                     @error('nama_umat')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -90,7 +90,7 @@
                                         .com).
                                     </div>
                                     @error('email_umat')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -101,7 +101,7 @@
                                     <input type="password" class="form-control  @error('password') is-invalid @enderror"
                                         id="password" name="password" placeholder="Masukkan kata sandi" required>
                                     @error('password')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -114,7 +114,7 @@
                                         id="password_confirmation" name="password_confirmation"
                                         placeholder="Ulangi kata sandi" required>
                                     @error('password_confirmation')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -125,7 +125,7 @@
                                     <input type="date" class="form-control  @error('ttl_umat') is-invalid @enderror"
                                         id="ttl_umat" name="ttl_umat" placeholder="Masukkan tanggal lahir" required>
                                     @error('ttl_umat')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -138,7 +138,7 @@
                                         placeholder="Masukkan wilayah. Contoh: Wilayah St. Joseph atau Wilayah 7"
                                         required>
                                     @error('wilayah')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -151,7 +151,7 @@
                                         name="lingkungan" placeholder="Masukkan lingkungan. Contoh: Lingkungan 7"
                                         required>
                                     @error('lingkungan')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -165,7 +165,7 @@
                                         required pattern="\d+">
                                     <div class="form-text">Hanya angka yang diperbolehkan.</div>
                                     @error('nomorhp_umat')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -176,7 +176,7 @@
                                     <textarea class="form-control  @error('alamat') is-invalid @enderror" id="alamat" name="alamat" rows="3"
                                         placeholder="Masukkan alamat" required></textarea>
                                     @error('alamat')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -192,7 +192,7 @@
                                         <option value="lainnya">Lainnya</option>
                                     </select>
                                     @error('status')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -205,7 +205,7 @@
                                         name="Pekerjaan" placeholder="Masukkan pekerjaan. Contoh: Wiraswasta"
                                         required>
                                     @error('Pekerjaan')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
