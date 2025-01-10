@@ -167,6 +167,44 @@ class RequestController extends Controller
         ModelsRequest::create($data);
         return redirect()->route('home')->with('success', 'Pengajuan baptis berhasil dikirim!');
     }
+    public function updateRequest(Request $request, $id)
+{
+    // Atur validasi dasar
+    $validationRules = [
+        'nama_acara' => 'required|string|max:255',
+        'id_umat' => 'required|integer|exists:umats,id_umat',
+        'nama_terlibat_satu' => 'required|string',
+        'nama_terlibat_dua' => 'nullable|string',
+        'nama_romo' => 'nullable|string|max:255',
+        'jadwal_acara' => 'required|date',
+        'deskripsi_pengajuan' => 'nullable|string',
+    ];
+
+    // Validasi input
+    $data = $request->validate($validationRules);
+    $data['status'] = 'pending';
+
+    // Perbarui data ModelsRequest
+    ModelsRequest::where('id', $id)->update($data);
+
+    return redirect()->route('home')->with('success', 'Pengajuan berhasil dikirim!');
+}
+
+public function cancelRequest($id)
+{
+    // Cari permintaan berdasarkan ID
+    $requestToCancel = ModelsRequest::find($id);
+
+    // Jika tidak ditemukan, kembalikan kembali dengan pesan error
+    if (!$requestToCancel) {
+        return redirect()->route('home')->with('error', 'Permintaan tidak ditemukan.');
+    }
+
+    // Perbarui status menjadi canceled
+    $requestToCancel->update(['status' => 'canceled']);
+
+    return redirect()->route('home')->with('success', 'Permintaan berhasil dibatalkan!');
+}
 
     private function getRequestList($status, $search = null)
     {
