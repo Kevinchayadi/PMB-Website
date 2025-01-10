@@ -30,7 +30,7 @@
                                     <input type="text" class="form-control @error('title') is-invalid @enderror"
                                         id="title" name="title" placeholder="Masukkan nama kegiatan" required>
                                     @error('title')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -41,7 +41,7 @@
                                     <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description"
                                         placeholder="Masukkan deskripsi kegiatan" required></textarea>
                                     @error('description')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -52,7 +52,7 @@
                                     <input type="text" class="form-control @error('location') is-invalid @enderror"
                                         id="location" name="location" placeholder="Masukkan lokasi kegiatan" required>
                                     @error('location')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -63,7 +63,7 @@
                                     <input type="date" class="form-control @error('date') is-invalid @enderror"
                                         id="date" name="date" placeholder="Masukkan tanggal kegiatan" required>
                                     @error('date')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -83,7 +83,7 @@
                                         id="foto" name="foto" placeholder="Masukkan gambar"
                                         onchange="previewImage(event)" required>
                                     @error('foto')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 

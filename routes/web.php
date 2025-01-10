@@ -39,7 +39,7 @@ Route::get('/profil/sejarahVisiMisi', [ProfileController::class, 'visiMisi'])->n
 Route::get('/profil/doa', [ProfileController::class, 'doa'])->name('doa');
 Route::get('/profil/fasilitas', [ProfileController::class, 'fasilitas'])->name('fasilitas');
 Route::get('/profil/pastor', [ProfileController::class, 'pastor'])->name('pastor');
-Route::get('/profil/kegiatan', [ProfileController::class, 'kegiatan'])->name('kegiatan');
+Route::get('/profil/kegiatan', [ProfileController::class, 'Kegiatan'])->name('kegiatan');
 Route::get('/jadwal', [LandingController::class, 'jadwal'])->name('jadwal');
 Route::get('/jadwal/{slug}', [LandingController::class, 'jadwalDetail'])->name('jadwal');
 Route::get('/artikel', [LandingController::class, 'artikel'])->name('artikel');

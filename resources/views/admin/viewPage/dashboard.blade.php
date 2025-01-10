@@ -13,7 +13,7 @@
 
 
     <div class=" my-2 mx-3 d-flex justify-content-between align-items-center">
-        <h1 class="fw-bold text-black">Dasbor</h1>
+        <h1 class="fw-bold text-black">Beranda</h1>
         <p class="text-center">{{ \Carbon\Carbon::now()->isoFormat('dddd, D MMMM YYYY') }}</p>
     </div>
     <div class="row d-flex justify-content-between m-1  ">

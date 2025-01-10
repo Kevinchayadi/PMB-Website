@@ -33,7 +33,7 @@
                                         id="nama_romo" name="nama_romo" placeholder="Masukkan nama pastor"
                                         value="{{ old('nama_romo', $pastor->nama_romo) }}" required>
                                     @error('nama_romo')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -45,7 +45,7 @@
                                         id="DOB_romo" name="DOB_romo" placeholder="Masukkan tanggal lahir pastor"
                                         value="{{ old('DOB_romo', $pastor->DOB_romo) }}" required>
                                     @error('DOB_romo')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -57,7 +57,7 @@
                                         id="tempat_lahir" name="tempat_lahir" placeholder="Masukkan tempat lahir pastor"
                                         value="{{ old('tempat_lahir', $pastor->tempat_lahir) }}" required>
                                     @error('tempat_lahir')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -80,7 +80,7 @@
                                             Pastor Pembantu Paroki</option>
                                     </select>
                                     @error('jabatan')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -91,7 +91,7 @@
                                     <textarea class="form-control @error('pengalaman') is-invalid @enderror" name="pengalaman" id="pengalaman"
                                         cols="30" rows="10">{{ old('pengalaman', $pastor->pengalaman) }}</textarea>
                                     @error('pengalaman')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -103,7 +103,7 @@
                                         id="nomorhp_romo" name="nomorhp_romo" placeholder="Masukkan nomor telepon pastor"
                                         value="{{ old('nomorhp_romo', $pastor->nomorhp_romo) }}" required>
                                     @error('nomorhp_romo')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -121,7 +121,7 @@
                                         id="foto" name="foto" placeholder="Edit gambar"
                                         onchange="previewImage(event)">
                                     @error('foto')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 

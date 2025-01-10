@@ -37,7 +37,7 @@ class LandingController extends Controller
         ->whereHas('transactionDetails.umats', function ($query) {
             $query->where('relation_transaction_umats.id_umat', Auth::guard('web')->user()->id);
         })
-        ->get();
+        ->latest()->paginate(20)->withQueryString();
     
         return view('user.ViewPage.history', compact('jadwal_acara'));
     }
@@ -128,9 +128,9 @@ class LandingController extends Controller
             Auth::guard('web')->login($umat);
     
             // Redirect ke halaman home atau dashboard setelah login berhasil
-            return redirect()->route('home')->with('success', 'Registrasi berhasil! Anda telah login.');
+            return redirect()->route('home')->with('success', 'Registrasi berhasil! Anda telah masuk.');
         } catch (\Throwable $th) {
-            return back()->with('error','Register failed! Please try again Later...');
+            return back()->with('error','Registrasi gagal, silahkan coba lagi!');
         }
         //disini return data dari database!!
         return view('landing.formPendaftaran');

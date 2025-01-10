@@ -56,10 +56,10 @@ class AdminController extends Controller
                 'id_role' => $request->id_role,
             ]);
         } catch (\Throwable $th) {
-            return redirect()->route('admin.admin-list')->with('error', 'Admin Gagal Ditambahkan');
+            return redirect()->route('admin.admin-list')->with('error', 'Admin gagal ditambahkan!');
         }
 
-        return redirect()->route('admin.admin-list')->with('success', 'Admin Berhasil ditambahkan');
+        return redirect()->route('admin.admin-list')->with('success', 'Admin berhasil ditambahkan!');
     }
 
     public function detailAdmin($slug)
@@ -95,10 +95,10 @@ class AdminController extends Controller
             $admin->id_role = $request->role;
             $admin->save();
         } catch (\Throwable $th) {
-            return redirect()->route('admin.admin-list')->with('Error', 'Admin gagal diUpdate!!');
+            return redirect()->route('admin.admin-list')->with('Error', 'Admin gagal diperbarui!');
         }
 
-        return redirect()->route('admin.admin-list')->with('success', 'Admin berhasil diUpdate!!');
+        return redirect()->route('admin.admin-list')->with('success', 'Admin berhasil diperbarui!');
     }
 
     public function removeAdmin($slug)
@@ -106,7 +106,7 @@ class AdminController extends Controller
         $admin = Admin::where('username', $slug)->firstOrFail();
         $admin->forceDelete();
 
-        return redirect()->route('admin.admin-list')->with('success', 'Admin removed successfully');
+        return redirect()->route('admin.admin-list')->with('success', 'Admin berhasil dihapus!');
     }
 
     public function adminRemoved()
@@ -120,6 +120,6 @@ class AdminController extends Controller
         $admin = Admin::onlyTrashed()->where('username', $slug)->firstOrFail();
         $admin->restore();
 
-        return redirect()->route('admin.removedList')->with('success', 'Admin restored successfully');
+        return redirect()->route('admin.removedList')->with('success', 'Admin berhasil dikembalikan!');
     }
 }

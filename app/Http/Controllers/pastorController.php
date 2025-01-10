@@ -68,7 +68,7 @@ class pastorController extends Controller
         }
         Romo::create($input);
 
-        return redirect()->route('admin.pastor')->with('success', 'Romo berhasil dibuat!');
+        return redirect()->route('admin.pastor')->with('success', 'Pastor berhasil dibuat!');
     }
 
     public function updatePastor($id)
@@ -85,7 +85,7 @@ class pastorController extends Controller
             'DOB_romo' => 'nullable|date',
             'tempat_lahir' => 'nullable|string|max:255',
             'jabatan' => 'nullable|string|max:255',
-            'pengalaman' => 'nullable|string|max:255',
+            'pengalaman' => 'nullable|string',
             'nomorhp_romo' => 'nullable|min:10',
             'foto' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ], [
@@ -120,13 +120,13 @@ class pastorController extends Controller
 
         $romo->update($input);
 
-        return redirect()->route('admin.pastor')->with('success', 'Romo berhasil diperbarui!');
+        return redirect()->route('admin.pastor')->with('success', 'Pastor berhasil diperbarui!');
     }
 
     public function deletePastor($id)
     {
         $pastor = Romo::find($id);
         $pastor->delete();
-        return redirect()->route('admin.pastor')->with('success', 'Romo berhasil dihapus!');
+        return redirect()->route('admin.pastor')->with('success', 'Pastor berhasil dihapus!');
     }
 }

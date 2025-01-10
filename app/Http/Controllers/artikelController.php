@@ -62,7 +62,7 @@ class artikelController extends Controller
         
         
         Articel::create($input);
-        return redirect()->route('admin.artikel')->with('success', 'Artikel berhasil ditambahkan');
+        return redirect()->route('admin.artikel')->with('success', 'Artikel berhasil ditambahkan!');
     }
     public function updateArtikel($id)
     {
@@ -104,13 +104,13 @@ class artikelController extends Controller
         }
         
         $artikel->update($input);
-        return redirect()->route('admin.artikel')->with('success', 'Artikel berhasil diupdate!!');
+        return redirect()->route('admin.artikel')->with('success', 'Artikel berhasil diperbarui!');
         
     }
     public function deleteArtikel($id)
     {
         $artikel = Articel::find($id);
         $artikel->delete();
-        return redirect()->route('admin.artikel')->with('success', 'Artikel berhasil dihapus!!');
+        return redirect()->route('admin.artikel')->with('success', 'Artikel berhasil dihapus!');
     }
 }

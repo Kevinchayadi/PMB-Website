@@ -159,10 +159,11 @@
                             aria-labelledby="rejectModalLabel{{ $data->id }}" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="rejectModalLabel{{ $data->id }}">Tolak Permintaan
+                                    <div class="modal-header bg-primary">
+                                        <h5 class="modal-title text-white" id="rejectModalLabel{{ $data->id }}">Tolak
+                                            Permintaan
                                         </h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
                                     <form method="POST" action="{{ route('admin.request.reject', $data->id) }}">
@@ -197,7 +198,7 @@
                     <small class="text-muted">
                         Tampilkan {{ $requestList->firstItem() }} sampai {{ $requestList->lastItem() }} dari
                         {{ $requestList->total() }} data
-                        admin
+                        permintaan
                     </small>
                 </div>
                 <nav class="mt-2">

@@ -49,7 +49,7 @@ class kegiatanController extends Controller
         }
 
         Kegiatan::create($validated);
-        return redirect()->route('admin.kegiatan.index')->with('success', 'Kegiatan created successfully.');
+        return redirect()->route('admin.kegiatan.index')->with('success', 'Kegiatan berhasil ditambahkan!');
     }
     public function updateKegiatan($id){
         $kegiatan = Kegiatan::find($id);
@@ -90,13 +90,13 @@ class kegiatanController extends Controller
             $validated['path'] = $filePath;
         }
         $kegiatan->update($validated);
-        return redirect()->route('admin.kegiatan.index')->with('success', 'Kegiatan updated successfully.');
+        return redirect()->route('admin.kegiatan.index')->with('success', 'Kegiatan berhasil diperbarui!');
     }
     public function deleteKegiatan($id){
         $kegiatan = Kegiatan::find($id);
         $kegiatan->delete();
 
-        return redirect()->route('admin.kegiatan.index')->with('success', 'Kegiatan deleted successfully.');
+        return redirect()->route('admin.kegiatan.index')->with('success', 'Kegiatan berhasil dihapus!');
     }
 
 }

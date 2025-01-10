@@ -37,7 +37,7 @@
                                         id="nama_acara" name="nama_acara"
                                         value="{{ old('nama_acara', $acara->nama_acara) }}" required>
                                     @error('nama_acara')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -49,7 +49,7 @@
                                         id="tipe_acara" name="tipe_acara"
                                         value="{{ old('tipe_acara', $acara->tipe_acara) }}" required>
                                     @error('tipe_acara')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -60,7 +60,7 @@
                                     <textarea class="form-control @error('deskripsi_acara') is-invalid @enderror" id="desc" name="deskripsi_acara"
                                         rows="5" required>{{ old('deskripsi_acara', $acara->deskripsi_acara) }}</textarea>
                                     @error('deskripsi_acara')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -80,7 +80,7 @@
                                         id="foto" name="foto" placeholder="Edit gambar"
                                         onchange="previewImage(event)">
                                     @error('foto')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 

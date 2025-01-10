@@ -55,7 +55,7 @@
                                         id="judul" name="judul" value="{{ old('judul', $event->judul) }}"
                                         placeholder="Masukkan Judul Acara" required>
                                     @error('judul')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -75,7 +75,7 @@
                                         @endforeach
                                     </select>
                                     @error('id_romo')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -94,7 +94,7 @@
                                         @endforeach
                                     </select>
                                     @error('id_acara')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -111,7 +111,7 @@
                                         @endforeach
                                     </select>
                                     @error('id_seksi')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -129,7 +129,7 @@
                                         @endforeach
                                     </select>
                                     @error('id_doa')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -143,7 +143,7 @@
                                         value="{{ old('jadwal_transaction', $event->jadwal_transaction ? $event->jadwal_transaction->format('Y-m-d\TH:i') : now()->addDay()->format('Y-m-d\TH:i')) }}"
                                         required>
                                     @error('jadwal_transaction')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -160,7 +160,7 @@
                                         @endforeach
                                     </select>
                                     @error('id_umat')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -170,7 +170,7 @@
                                     <textarea class="form-control @error('deskripsi_transaksi') is-invalid @enderror" id="deskripsi_transaksi"
                                         name="deskripsi_transaksi" rows="4">{{ old('deskripsi_transaksi', $event->transactionDetails->deskripsi_transaksi) }}</textarea>
                                     @error('deskripsi_transaksi')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -247,6 +247,6 @@
         value="{{ old('jadwal_transaction', $transaction->jadwal_transaction ? $transaction->jadwal_transaction->format('Y-m-d\TH:i') : now()->addDay()->format('Y-m-d\TH:i')) }}"
         required>
     @error('jadwal_transaction')
-        <div class="invalid-feedback">{{ $message }}</div>
+        <div class="invalid-feedback text-danger">{{ $message }}</div>
     @enderror
 </div> --}}

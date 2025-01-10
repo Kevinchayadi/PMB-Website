@@ -12,12 +12,21 @@
 </head>
 
 <body>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="w-75 mx-auto">
         <div class="container-fluid row justify-content-center align-content-center shadow-lg bg-white rounded-3">
             <div class="title fs-4 fw-bolder text-center text-primary">Ayo Masuk ke Website PMB</div>
             <div class="col-lg-6 col-12">
-                <div class="image h-100 p-3 rounded-3 bg-primary">
-                    <img class="img-fluid h-100 rounded-3 shadow-lg w-100" src="{{ asset('picture/Gereja.jpg') }}"
+                <div class="image p-3 rounded-3 h-100 bg-primary">
+                    <img class="img-fluid rounded-3 shadow-lg w-100 h-100" src="{{ asset('picture/Gereja.jpg') }}"
                         alt="">
                 </div>
             </div>
@@ -39,15 +48,6 @@
                         <p class="text-center fw-bold mx-3 mb-0">Or</p>
                     </div>
                     <div class="card-body">
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
                         <form method="POST" action="/login">
                             @csrf
                             <div class="form-group mb-3">
@@ -56,7 +56,7 @@
                                     class="form-control @error('email_umat') is-invalid @enderror" id="email_umat"
                                     required autofocus>
                                 @error('email_umat')
-                                    <div class="invalid-feedback text-white">{{ $message }}</div>
+                                    <div class="invalid-feedback text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -66,7 +66,7 @@
                                     class="form-control @error('password') is-invalid @enderror" id="password"
                                     required>
                                 @error('password')
-                                    <div class="invalid-feedback text-white">{{ $message }}</div>
+                                    <div class="invalid-feedback text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
 
