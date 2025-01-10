@@ -66,10 +66,11 @@
                             aria-labelledby="detailModalLabel{{ $data->id }}" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="detailModalLabel{{ $data->id }}">Detail Permintaan
+                                    <div class="modal-header bg-primary">
+                                        <h5 class="modal-title text-white" id="detailModalLabel{{ $data->id }}">Detail
+                                            Permintaan
                                         </h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
@@ -130,7 +131,7 @@
                 <small class="text-muted">
                     Tampilkan {{ $requestList->firstItem() }} sampai {{ $requestList->lastItem() }} dari
                     {{ $requestList->total() }} data
-                    admin
+                    permintaan
                 </small>
             </div>
             <nav class="mt-2">
@@ -150,7 +151,7 @@
 
                     <!-- Page Numbers -->
                     @for ($i = 1; $i <= $requestList->lastPage(); $i++)
-                        <li class="page-item {{ $event->currentPage() == $i ? 'active' : '' }}">
+                        <li class="page-item {{ $requestList->currentPage() == $i ? 'active' : '' }}">
                             <a class="page-link" href="{{ $requestList->url($i) }}">{{ $i }}</a>
                         </li>
                     @endfor

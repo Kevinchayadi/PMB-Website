@@ -53,7 +53,7 @@ class doaController extends Controller
         }
 
         Doa::create($input);
-        return redirect()->route('admin.doa')->with('success', 'Data Doa Berhasil Ditambahkan!');
+        return redirect()->route('admin.doa')->with('success', 'Doa berhasil ditambahkan!');
 
     }
     public function updateDoa($id){
@@ -96,9 +96,9 @@ class doaController extends Controller
         try {
             $doa->update($input);
             
-            return redirect()->route('admin.doa')->with('success', 'Data Doa Berhasil Diubah!');
+            return redirect()->route('admin.doa')->with('success', 'Doa berhasil diperbarui!');
         } catch (\Throwable $th) { 
-             return redirect()->route('admin.doa')->with('error', 'Data Doa Gagal Diubah!');
+             return redirect()->route('admin.doa')->with('error', 'Doa gagal diperbarui!');
          
         }
         
@@ -106,7 +106,7 @@ class doaController extends Controller
     public function deleteDoa($id){
         $doa = Doa::find($id);
         $doa->delete();
-        return redirect()->route('admin.doa')->with('success', 'Data Doa Berhasil Dihapus!');
+        return redirect()->route('admin.doa')->with('success', 'Doa berhasil dihapus!');
     }
 
 }

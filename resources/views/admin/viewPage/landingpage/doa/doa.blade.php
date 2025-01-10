@@ -60,48 +60,48 @@
                     </tbody>
                 </table>
                 @if ($doa->total() > 0)
-            <div class="mt-1 text-center">
-                <small class="text-muted">
-                    Tampilkan {{ $doa->firstItem() }} sampai {{ $doa->lastItem() }} dari {{ $doa->total() }} data
-                    admin
-                </small>
-            </div>
-            <nav class="mt-2">
-                <ul class="pagination justify-content-center mb-0" id="pagination">
-                    <!-- Previous Button -->
-                    @if ($doa->onFirstPage())
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#">
-                                < </a>
-                        </li>
-                    @else
-                        <li class="page-item">
-                            <a class="page-link" href="{{ $doa->previousPageUrl() }}">
-                                << /a>
-                        </li>
-                    @endif
+                    <div class="mt-1 text-center">
+                        <small class="text-muted">
+                            Tampilkan {{ $doa->firstItem() }} sampai {{ $doa->lastItem() }} dari {{ $doa->total() }} data
+                            doa
+                        </small>
+                    </div>
+                    <nav class="mt-2">
+                        <ul class="pagination justify-content-center mb-0" id="pagination">
+                            <!-- Previous Button -->
+                            @if ($doa->onFirstPage())
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#">
+                                        < </a>
+                                </li>
+                            @else
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ $doa->previousPageUrl() }}">
+                                        << /a>
+                                </li>
+                            @endif
 
-                    <!-- Page Numbers -->
-                    @for ($i = 1; $i <= $doa->lastPage(); $i++)
-                        <li class="page-item {{ $doa->currentPage() == $i ? 'active' : '' }}">
-                            <a class="page-link" href="{{ $doa->url($i) }}">{{ $i }}</a>
-                        </li>
-                    @endfor
+                            <!-- Page Numbers -->
+                            @for ($i = 1; $i <= $doa->lastPage(); $i++)
+                                <li class="page-item {{ $doa->currentPage() == $i ? 'active' : '' }}">
+                                    <a class="page-link" href="{{ $doa->url($i) }}">{{ $i }}</a>
+                                </li>
+                            @endfor
 
-                    <!-- Next Button -->
-                    @if ($doa->hasMorePages())
-                        <li class="page-item">
-                            <a class="page-link" href="{{ $doa->nextPageUrl() }}">></a>
-                        </li>
-                    @else
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#">></a>
-                        </li>
-                    @endif
-                </ul>
-            </nav>
+                            <!-- Next Button -->
+                            @if ($doa->hasMorePages())
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ $doa->nextPageUrl() }}">></a>
+                                </li>
+                            @else
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#">></a>
+                                </li>
+                            @endif
+                        </ul>
+                    </nav>
 
-        @endif
+                @endif
             </div>
         @endif()
     </div>

@@ -66,7 +66,7 @@ class AcaraController extends Controller
             return back()->with('error', 'Gagal menambahkan acara!');
         }
 
-        return redirect()->route('admin.acara')->with('success', 'Acara dan dokumentasi berhasil ditambahkan');
+        return redirect()->route('admin.acara')->with('success', 'Layanan berhasil ditambahkan!');
     }
 
     public function updateAcara($slug)
@@ -109,7 +109,7 @@ class AcaraController extends Controller
         // Update acara
         $acara->update($input);
         DB::commit();
-        return redirect()->route('admin.acara')->with('success', 'Acara dan dokumentasi berhasil diubah!');
+        return redirect()->route('admin.acara')->with('success', 'Layanan berhasil diperbarui!');
     }
 
     public function deleteAcara($slug)
@@ -129,6 +129,6 @@ class AcaraController extends Controller
             return back()->with('error', 'Gagal menghapus acara!');
         }
 
-        return redirect()->route('admin.acara')->with('success', 'Acara dan dokumentasi berhasil dihapus');
+        return redirect()->route('admin.acara')->with('success', 'Layanan berhasil dihapus!');
     }
 }

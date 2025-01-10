@@ -46,7 +46,7 @@
                 {{-- Kegiatan --}}
                 <li class="nav-item">
                     <a class="nav-link {{ Route::is('kegiatan') ? 'text-primary text-decoration-underline decoration-secondary' : 'text-primary hvr-push' }}"
-                        href="/profile/kegiatan">Kegiatan</a>
+                        href="/profil/kegiatan">Kegiatan</a>
                 </li>
         </div>
     </div>

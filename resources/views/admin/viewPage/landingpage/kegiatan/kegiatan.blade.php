@@ -62,48 +62,49 @@
             </table>
 
             @if ($kegiatan->total() > 0)
-            <div class="mt-1 text-center">
-                <small class="text-muted">
-                    Tampilkan {{ $kegiatan->firstItem() }} sampai {{ $kegiatan->lastItem() }} dari {{ $kegiatan->total() }} data
-                    admin
-                </small>
-            </div>
-            <nav class="mt-2">
-                <ul class="pagination justify-content-center mb-0" id="pagination">
-                    <!-- Previous Button -->
-                    @if ($kegiatan->onFirstPage())
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#">
-                                < </a>
-                        </li>
-                    @else
-                        <li class="page-item">
-                            <a class="page-link" href="{{ $kegiatan->previousPageUrl() }}">
-                                << /a>
-                        </li>
-                    @endif
+                <div class="mt-1 text-center">
+                    <small class="text-muted">
+                        Tampilkan {{ $kegiatan->firstItem() }} sampai {{ $kegiatan->lastItem() }} dari
+                        {{ $kegiatan->total() }} data
+                        kegiatan
+                    </small>
+                </div>
+                <nav class="mt-2">
+                    <ul class="pagination justify-content-center mb-0" id="pagination">
+                        <!-- Previous Button -->
+                        @if ($kegiatan->onFirstPage())
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#">
+                                    < </a>
+                            </li>
+                        @else
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $kegiatan->previousPageUrl() }}">
+                                    << /a>
+                            </li>
+                        @endif
 
-                    <!-- Page Numbers -->
-                    @for ($i = 1; $i <= $kegiatan->lastPage(); $i++)
-                        <li class="page-item {{ $kegiatan->currentPage() == $i ? 'active' : '' }}">
-                            <a class="page-link" href="{{ $kegiatan->url($i) }}">{{ $i }}</a>
-                        </li>
-                    @endfor
+                        <!-- Page Numbers -->
+                        @for ($i = 1; $i <= $kegiatan->lastPage(); $i++)
+                            <li class="page-item {{ $kegiatan->currentPage() == $i ? 'active' : '' }}">
+                                <a class="page-link" href="{{ $kegiatan->url($i) }}">{{ $i }}</a>
+                            </li>
+                        @endfor
 
-                    <!-- Next Button -->
-                    @if ($kegiatan->hasMorePages())
-                        <li class="page-item">
-                            <a class="page-link" href="{{ $kegiatan->nextPageUrl() }}">></a>
-                        </li>
-                    @else
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#">></a>
-                        </li>
-                    @endif
-                </ul>
-            </nav>
+                        <!-- Next Button -->
+                        @if ($kegiatan->hasMorePages())
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $kegiatan->nextPageUrl() }}">></a>
+                            </li>
+                        @else
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#">></a>
+                            </li>
+                        @endif
+                    </ul>
+                </nav>
 
-        @endif
+            @endif
         </div>
     </div>
 @endsection

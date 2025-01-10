@@ -89,7 +89,6 @@ class LoginController extends Controller
         // Cek apakah pengguna ingin menggunakan fitur "Remember Me"
         $remember = $request->filled('remember');
         
-        // dd($remember);
         // Coba untuk login dengan kredensial yang telah divalidasi
         if (Auth::guard('web')->attempt($credentials, $remember)) {
             // Jika login berhasil, arahkan ke halaman dashboard
@@ -98,7 +97,7 @@ class LoginController extends Controller
     
         // Jika login gagal, kembalikan dengan pesan error
         return back()->withErrors([
-            'email_umat' => 'Gagal login, pastikan email dan password Anda benar.'
+            'email_umat' => 'Gagal masuk, pastikan alamat email dan kata sandi Anda benar.'
         ]);
     }
 }

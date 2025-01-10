@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+<link rel="stylesheet" href="{{ asset('css/image.css') }}">
 @extends('user.Layout.profileTemplate')
 @section('title', 'Profile')
 @section('content')
@@ -20,17 +21,20 @@
         </div>
         <div class="col-lg-6 col-12 px-2 mb-2">
             <div class="bg-primary p-2 rounded-3 shadow-lg mb-4">
-                <img src="{{ asset('picture/Gereja.jpg') }}" class="img-fluid rounded-2" alt="">
+                <img src="{{ asset('picture/RuangDoa.jpeg') }}" class="img-fluid rounded-2" alt=""
+                    style="max-height: 250px; min-height: 250px; width: 100%">
             </div>
             <div class="bg-primary p-2 rounded-3 shadow-lg">
-                <img src="{{ asset('picture/Gereja.jpg') }}" class="img-fluid rounded-2" alt="">
+                <img src="{{ asset('picture/RuangKegiatan.jpg') }}" class="img-fluid rounded-2" alt=""
+                    style="max-height: 230px; min-height: 230px; width: 100%">
             </div>
         </div>
     </div>
     <div class="row mx-auto mb-3 justify-content-center">
         <div class="col-lg-6 col-12 px-2 mb-2 hvr-shrink">
             <div class="card bg-primary rounded-3 shadow-lg" data-bs-toggle="collapse" data-bs-target="#collapse-sejarah-1">
-                <img src="{{ asset('picture/Gereja.jpg') }}" class="card-img-top h-100" alt="...">
+                <img src="{{ asset('picture/Gereja-1.jpg') }}" class="card-img-top" alt="..."
+                    style="min-height: 200px; max-height: 200px; width: 100%">
                 <div class="card-body">
                     <div class="text-center">
                         <div class="fs-4 fw-bolder text-white">1940</div>
@@ -47,7 +51,8 @@
         </div>
         <div class="col-lg-6 col-12 px-2 mb-2 hvr-shrink">
             <div class="card bg-primary rounded-3 shadow-lg" data-bs-toggle="collapse" data-bs-target="#collapse-sejarah-2">
-                <img src="{{ asset('picture/Gereja.jpg') }}" class="card-img-top h-100" alt="...">
+                <img src="{{ asset('picture/Gereja-2.jpg') }}" class="card-img-top h-100" alt="..."
+                    style="min-height: 200px; max-height: 200px; width: 100%">
                 <div class="card-body">
                     <div class="text-center">
                         <div class="fs-4 fw-bolder text-white">1941 - 2025</div>
@@ -66,7 +71,8 @@
         </div>
         <div class="col-lg-6 col-12 px-2 mb-2 hvr-shrink">
             <div class="card bg-primary rounded-3 shadow-lg" data-bs-toggle="collapse" data-bs-target="#collapse-sejarah-3">
-                <img src="{{ asset('picture/Gereja.jpg') }}" class="card-img-top h-100" alt="...">
+                <img src="{{ asset('picture/Gereja.jpg') }}" class="card-img-top h-100" alt="..."
+                    style="min-height: 200px; max-height: 200px; width: 100%">
                 <div class="card-body">
                     <div class="text-center">
                         <div class="fs-4 fw-bolder text-white">2025</div>
@@ -86,10 +92,10 @@
     <div class="fs-4 fw-bolder ps-2 text-primary">Visi & Misi Gereja</div>
     <div class="row mb-3 mx-auto">
         <div class="left col-lg-6 col-12 p-2 hvr-shrink">
-            <div class="bg-primary rounded-3 shadow-lg p-2" data-bs-toggle="collapse" data-bs-target="#collapse-visi"
+            <div class="bg-primary rounded-3 shadow-lg p-5" data-bs-toggle="collapse" data-bs-target="#collapse-visi"
                 aria-expanded="false" aria-controls="collapse">
-                <img src="{{ asset('picture/Gereja.jpg') }}" alt="" class="img-thumbnail">
-                <div class="title fw-bolder fs-5 text-white text-center">Visi</div>
+                {{-- <img src="{{ asset('picture/Gereja.jpg') }}" alt="" class="img-thumbnail"> --}}
+                <div class="title fw-bolder fs-4 text-white text-center">Visi</div>
                 <div class="collapse text-white text-justify fs-5" id="collapse-visi">
                     Menjadi komunitas umat yang hidup dalam kasih Kristus, berkomitmen untuk berbagi berita baik dan
                     melayani sesama, serta menjadi garam dan terang di tengah masyarakat.
@@ -98,10 +104,10 @@
         </div>
 
         <div class="right col-lg-6 col-12 p-2 hvr-shrink">
-            <div class="bg-primary rounded-3 shadow-lg p-2" data-bs-toggle="collapse" data-bs-target="#collapse-misi"
+            <div class="bg-primary rounded-3 shadow-lg p-5" data-bs-toggle="collapse" data-bs-target="#collapse-misi"
                 aria-expanded="false" aria-controls="collapse">
-                <img src="{{ asset('picture/Gereja.jpg') }}" alt="" class="img-thumbnail">
-                <div class="title fw-bolder fs-5 text-white text-center">Misi</div>
+                {{-- <img src="{{ asset('picture/Gereja.jpg') }}" alt="" class="img-thumbnail"> --}}
+                <div class="title fw-bolder fs-4 text-white text-center">Misi</div>
                 <div class="collapse text-white fs-5" id="collapse-misi">
                     <ul class="text-justify ps-0">
                         <li class="list-group-item">
