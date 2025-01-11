@@ -80,6 +80,9 @@
                                             class="form-control @error('nama_terlibat_satu') is-invalid @enderror"
                                             id="nama_terlibat_satu" name="nama_terlibat_satu"
                                             placeholder="Contoh: John Smith" required>
+                                        @error('nama_terlibat_satu')
+                                            <div class="invalid-feedback text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                     <div class="mb-3">

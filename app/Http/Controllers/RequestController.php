@@ -164,7 +164,7 @@ class RequestController extends Controller
 
         // dd($data);
         ModelsRequest::create($data);
-        return redirect()->route('home')->with('success', 'Pengajuan baptis berhasil dikirim!');
+        return redirect()->route('home')->with('success', 'Pengajuan layanan berhasil dikirim!');
     }
     public function updateRequest(Request $request, $id)
 {
@@ -186,7 +186,7 @@ class RequestController extends Controller
     // Perbarui data ModelsRequest
     ModelsRequest::where('id', $id)->update($data);
 
-    return redirect()->route('home')->with('success', 'Pengajuan berhasil dikirim!');
+    return redirect()->route('histori')->with('success', 'Permintaan berhasil diperbarui!');
 }
 
 public function cancelRequest($id)
@@ -196,13 +196,13 @@ public function cancelRequest($id)
 
     // Jika tidak ditemukan, kembalikan kembali dengan pesan error
     if (!$requestToCancel) {
-        return redirect()->route('home')->with('error', 'Permintaan tidak ditemukan.');
+        return redirect()->route('histori')->with('error', 'Permintaan tidak ditemukan.');
     }
 
     // Perbarui status menjadi canceled
     $requestToCancel->update(['status' => 'canceled']);
 
-    return redirect()->route('home')->with('success', 'Permintaan berhasil dibatalkan!');
+    return redirect()->route('histori')->with('success', 'Permintaan berhasil dibatalkan!');
 }
 
     private function getRequestList($status, $search = null)

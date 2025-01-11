@@ -100,13 +100,16 @@
                             <td>{{ $data->nama_acara }}</td>
                             <td>{{ $data->jadwal_acara }}</td>
                             <td>
-                                <!-- Accept Form -->
-                                <form method="POST" action="{{ route('admin.request.proccess', $data->id) }}"
-                                    class="d-inline">
-                                    @csrf
-                                    @method('PUT')
-                                    <button type="submit" class="btn btn-sm btn-outline-success">Terima</button>
-                                </form>
+                                @if ($data->status == 'process' or $data->status == 'pending')
+                                    <!-- Accept Form -->
+                                    <form method="POST" action="{{ route('admin.request.proccess', $data->id) }}"
+                                        class="d-inline">
+                                        @csrf
+                                        @method('PUT')
+                                        <button type="submit" class="btn btn-sm btn-outline-success">Terima</button>
+                                    </form>
+                                @else()
+                                @endif()
 
                                 <!-- Button to trigger the detail modal -->
                                 <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal"
@@ -114,23 +117,27 @@
                                     Detail
                                 </button>
 
-                                <!-- Button to trigger the reject modal -->
-                                <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
-                                    data-bs-target="#rejectModal{{ $data->id }}">
-                                    Tolak
-                                </button>
+                                @if ($data->status == 'process' or $data->status == 'pending')
+                                    <!-- Button to trigger the reject modal -->
+                                    <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
+                                        data-bs-target="#rejectModal{{ $data->id }}">
+                                        Tolak
+                                    </button>
+                                @else()
+                                @endif()
                             </td>
                         </tr>
 
                         <!-- Modal for Details -->
                         <div class="modal fade" id="detailModal{{ $data->id }}" tabindex="-1"
                             aria-labelledby="detailModalLabel{{ $data->id }}" aria-hidden="true">
-                            <div class="modal-dialog modal-lg">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
                                 <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="detailModalLabel{{ $data->id }}">Detail Permintaan
+                                    <div class="modal-header bg-primary">
+                                        <h5 class="modal-title text-white" id="detailModalLabel{{ $data->id }}">Detail
+                                            Permintaan
                                         </h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
@@ -157,9 +164,9 @@
                         <!-- Modal for Reject -->
                         <div class="modal fade" id="rejectModal{{ $data->id }}" tabindex="-1"
                             aria-labelledby="rejectModalLabel{{ $data->id }}" aria-hidden="true">
-                            <div class="modal-dialog">
+                            <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
-                                    <div class="modal-header bg-primary">
+                                    <div class="modal-header bg-primaryr bg-primary">
                                         <h5 class="modal-title text-white" id="rejectModalLabel{{ $data->id }}">Tolak
                                             Permintaan
                                         </h5>
@@ -242,12 +249,13 @@
     <script>
         // Function to update file name display when a file is selected
         function displayFileName() {
-        var fileInput = document.getElementById("uploadfile");
-        var fileName = fileInput.files[0] ? fileInput.files[0].name : "No file selected"; // Menangani kondisi jika tidak ada file yang dipilih
-        var fileNameDisplay = document.getElementById("fileNameDisplay");
+            var fileInput = document.getElementById("uploadfile");
+            var fileName = fileInput.files[0] ? fileInput.files[0].name :
+                "No file selected"; // Menangani kondisi jika tidak ada file yang dipilih
+            var fileNameDisplay = document.getElementById("fileNameDisplay");
 
-        fileNameDisplay.innerHTML = "<strong>File yang dipilih: </strong>" + fileName;
-    }
+            fileNameDisplay.innerHTML = "<strong>File yang dipilih: </strong>" + fileName;
+        }
 
         // Function to download the template
         function downloadTemplate() {
@@ -261,7 +269,7 @@
             // Show loading indicator
             document.getElementById('upload-loading').style.display = 'block';
             document.getElementById('uploadButton').disabled =
-            true; // Disable button untuk mencegah multiple submit
+                true; // Disable button untuk mencegah multiple submit
             document.getElementById('upload-message').style.display = 'none'; // Hide any previous messages
 
             // Submit form secara manual menggunakan Fetch API
@@ -285,7 +293,7 @@
                     document.getElementById('upload-loading').style.display = 'none'; // Hide loading spinner
                     document.getElementById('uploadButton').disabled = false; // Enable the upload button
                     showMessage('Terjadi kesalahan saat mengirim file. Silakan coba lagi.',
-                    'danger'); // Show error message
+                        'danger'); // Show error message
                     console.error('Error:', error);
                 });
         });
