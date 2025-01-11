@@ -42,7 +42,7 @@ Route::get('/profile/fasilitas', [ProfileController::class, 'fasilitas'])->name(
 Route::get('/profile/pastor', [ProfileController::class, 'pastor'])->name('pastor');
 Route::get('/profile/kegiatan', [ProfileController::class, 'kegiatan'])->name('kegiatan');
 Route::get('/jadwal', [LandingController::class, 'jadwal'])->name('jadwal');
-Route::get('/jadwal/{slug}', [LandingController::class, 'jadwalDetail'])->name('jadwal');
+Route::get('/jadwal/{slug}', [LandingController::class, 'jadwalDetail'])->name('jadwal.detail');
 Route::get('/artikel', [LandingController::class, 'artikel'])->name('artikel');
 Route::get('/artikel/{slug}', [LandingController::class, 'artikeldetail'])->name('artikel');
 Route::get('/layanan', [LandingController::class, 'layanan'])->name('layanan');
