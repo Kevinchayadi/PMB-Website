@@ -1,12 +1,5 @@
 @extends('admin.layout.template')
 @section('title', 'Acara Yang Akan Datang')
-{{-- @section('content')
-<div ></div>
-<div class="" style="min-height: 1000px">
-    <h1>test</h1>
-</div>
-@endsection --}}
-
 
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/admin/dashboard.css') }}">
