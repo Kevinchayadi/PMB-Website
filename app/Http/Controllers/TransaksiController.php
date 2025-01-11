@@ -405,14 +405,32 @@ class TransaksiController extends Controller
         $transaction->forceDelete();
         return redirect()->route('admin.transaksi')->with('success', 'Transaksi berhasil di Delete!');
     }
-    public function moveTransaction($id)
-    {
-        // dd('test');
-        $transaction = TransactionHeader::where('status', 'coming')->find($id);
-        $transaction->update(['status' => 'passed']);
-        // dd($transaction->status);
-        return redirect()->route('admin.transaksi')->with('success', 'Transaksi berhasil di Selesaikan!');
+    public function moveTransaction($id, Request $request)
+{
+    // Validate the incoming request
+    $request->validate([
+        'pendapatan' => "nullable|integer",  // Correct field name and validation rule
+    ]);
+
+    // Find the transaction by its status and ID
+    $transaction = TransactionHeader::where('status', 'coming')->find($id);
+    
+    // Check if the transaction exists
+    if (!$transaction) {
+        return redirect()->route('admin.transaksi')->with('error', 'Transaksi tidak ditemukan!');
     }
+
+    // Update the status of the transaction to 'passed'
+    $transaction->update(['status' => 'passed']);
+    
+    // Update the related transaction detail with 'pendapatan'
+    TransactionDetail::where('id_transaction', $transaction->id_transaction)
+        ->update(['pendapatan' => $request->pendapatan]);
+
+    // Redirect back with a success message
+    return redirect()->route('admin.transaksi')->with('success', 'Transaksi berhasil di Selesaikan!');
+}
+
 
     public function exportTemplate()
     {

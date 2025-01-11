@@ -61,26 +61,21 @@ class HeaderSheet implements FromArray, WithTitle, WithStyles
     public function styles(Worksheet $sheet)
     {
         // Menambahkan wrap text untuk baris kedua
-        $sheet->getStyle('A1:I2')->getAlignment()->setWrapText(true);
-        $sheet->getStyle('A1:I2')->getAlignment()->setHorizontal('center');
+        $sheet->getStyle('A1:J2')->getAlignment()->setWrapText(true);
+
+        $sheet->getStyle('A1:J2')->getAlignment()->setHorizontal('center');
 
         // Mengatur lebar kolom agar mendekati 200 piksel
-        foreach (range('A', 'I') as $col) {
+        foreach (range('A', 'J') as $col) {
             $sheet->getColumnDimension($col)->setWidth(27.57);
         }
-
-        // Menambahkan auto-size untuk semua kolom
-        foreach (range('A', 'I') as $col) {
-            $sheet->getColumnDimension($col)->setAutoSize(true);
-        }
-        $sheet->getStyle('A1:I1')->getFill()->setFillType('solid')->getStartColor()->setRGB('D3D3D3');
+        $sheet->getStyle('A1:J1')->getFill()->setFillType('solid')->getStartColor()->setRGB('D3D3D3');
 
         // Menambahkan warna latar belakang abu-abu lebih muda untuk A2:B2
-        $sheet->getStyle('A2:I2')->getFill()->setFillType('solid')->getStartColor()->setRGB('E8E8E8');
+        $sheet->getStyle('A2:J2')->getFill()->setFillType('solid')->getStartColor()->setRGB('E8E8E8');
 
         // Menambahkan warna tab halaman menjadi hijau
-        $sheet->getTabColor()->setRGB('00FF00');
-
+        $sheet->getTabColor()->setRGB('FFFFFF');
         return [
                 // Menambahkan style tambahan jika dibutuhkan
             ];

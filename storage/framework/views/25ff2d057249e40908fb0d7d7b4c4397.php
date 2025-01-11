@@ -1,4 +1,4 @@
-<?php $__env->startSection('title', 'Dashboard'); ?>
+<?php $__env->startSection('title', 'Dasbor'); ?>
 
 
 
@@ -7,7 +7,7 @@
 
 
     <div class=" my-2 mx-3 d-flex justify-content-between align-items-center">
-        <h1 class="fw-bold text-black">Dashboard</h1>
+        <h1 class="fw-bold text-black">Beranda</h1>
         <p class="text-center"><?php echo e(\Carbon\Carbon::now()->isoFormat('dddd, D MMMM YYYY')); ?></p>
     </div>
     <div class="row d-flex justify-content-between m-1  ">
@@ -22,8 +22,8 @@
                         <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1z" />
                     </svg>
                 </div>
-                <h3 class="fw-bold ">User</h3>
-                <p class="fs-5"><?php echo e($umat); ?> Registered</p>
+                <h3 class="fw-bold ">Pengguna</h3>
+                <p class="fs-5"><?php echo e($umat); ?> Terdaftar</p>
             </div>
         </div>
 
@@ -38,12 +38,12 @@
                         <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1z" />
                     </svg>
                 </div>
-                <h3 class="fw-bold ">Request</h3>
+                <h3 class="fw-bold ">Permintaan</h3>
                 <div class="row d-flex align-items-stretch">
                     <div class="col-4">
                         <a href="/admin/Request-Pending" class="text-decoration-none text-dark">
                             <div class="text-white">
-                                <h5 class="fs-6">Pending Request</h5>
+                                <h5 class="fs-6">Permintaan Yang Tertunda</h5>
                                 <p class="fs-5"><?php echo e($pending); ?></p>
                             </div>
                         </a>
@@ -51,7 +51,7 @@
                     <div class="col-4">
                         <a href="/admin/Request-Processed" class="text-decoration-none text-dark">
                             <div class="text-white">
-                                <h5 class="fs-6">In-Process Request</h5>
+                                <h5 class="fs-6">Permintaan Yang Diproses</h5>
                                 <p class="fs-5"><?php echo e($process); ?></p>
                             </div>
                         </a>
@@ -59,7 +59,7 @@
                     <div class="col-4">
                         <a href="/admin/Request-Accepted" class="text-decoration-none text-dark">
                             <div class="text-white">
-                                <h5 class="fs-6">Accepted Request</h5>
+                                <h5 class="fs-6">Permintaan Yang Disetujui</h5>
                                 <p class="fs-5"><?php echo e($accepted); ?></p>
                             </div>
                         </a>
@@ -79,12 +79,12 @@
                         <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1z" />
                     </svg>
                 </div>
-                <h3 class="fw-bold ">event</h3>
+                <h3 class="fw-bold ">Acara</h3>
                 <div class="row d-flex align-items-stretch">
                     <div class="col-6">
                         <a href="/admin/scheduledEvent" class="text-decoration-none text-dark">
                             <div class="text-white">
-                                <h5 class="fs-6">Scheduled Event</h5>
+                                <h5 class="fs-6">Acara Terjadwal</h5>
                                 <p class="fs-5"><?php echo e($countSheduledEvent); ?></p>
                             </div>
                         </a>
@@ -92,7 +92,7 @@
                     <div class="col-6">
                         <a href="/admin/passEvent" class="text-decoration-none text-dark">
                             <div class="text-white">
-                                <h5 class="fs-6">Passed Event</h5>
+                                <h5 class="fs-6">Acara Yang Berlalu</h5>
                                 <p class="fs-5"><?php echo e($CountPassEvent); ?></p>
                             </div>
                         </a>
@@ -106,29 +106,23 @@
 
     <div class="event mx-3 my-2">
         <div class= "px-5 d-flex justify-content-between align-items-center">
-            <h1 class="fw-bold fs-4">UP COMMING EVENT</h1>
-            <a href="">see all</a>
+            <h1 class="fw-bold fs-4">Acara Yang Akan Datang</h1>
+            <a href="">Lihat Semua</a>
         </div>
+        <?php $__currentLoopData = $jadwal; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <div class="px-4 py-2 my-3 mx-1 card-3d">
-            <h2>nama Event</h2>
+            <h2><?php echo e($data->transactionDetails->acara->nama_acara); ?></h2>
             <div class="d-flex justify-content-between">
-                <p>deskripsi event</p>
+                <p><?php echo e($data->transactionDetails->deskripsi_transaksi); ?></p>
                 <div>
-                    <a href="">Update</a>
-                    <a href="">cancle</a>
+                    <a href="/admin/scheduledEvent">selengkapnya</a>
                 </div>
             </div>
+            <p><?php echo e($data->jadwal_transaction); ?></p>
         </div>
-        <div class="px-4 py-2 my-3 mx-1 card-3d">
-            <h2>nama Event</h2>
-            <div class="d-flex justify-content-between">
-                <p>deskripsi event</p>
-                <div>
-                    <a href="">Update</a>
-                    <a href="">cancle</a>
-                </div>
-            </div>
-        </div>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        
+        
     </div>
 
 

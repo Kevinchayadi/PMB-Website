@@ -63,5 +63,10 @@
     .btn-primary {
         background-color: #0084B5 !important;
     }
+
+    .container-fluid {
+        margin-top: 6rem;
+        min-height: 70vh;
+    }
 </style>
 <?php /**PATH D:\laragon\www\PMB-Website\resources\views/admin/layout/bootstrap.blade.php ENDPATH**/ ?>

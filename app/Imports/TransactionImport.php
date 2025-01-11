@@ -33,17 +33,20 @@ class TransactionImport implements ToCollection, WithHeadingRow
         foreach ($collection as $row) {
             // dd($collection);
             $row['id_umat'] = isset($row['id_umat']) ? strval($row['id_umat']) : '';
-            // dd($collection);
-
+            
             if (isset($row['jadwal_transaction']) && is_numeric($row['jadwal_transaction'])) {
                 // Excel menyimpan tanggal sebagai angka, kita gunakan Carbon untuk konversi
                 $tanggal = Carbon::createFromFormat('Y-m-d', '1900-01-01')
-                    ->addDays($row['jadwal_transaction'] - 2) // Kurangi 2 karena Excel menggunakan 1 Januari 1900 sebagai hari pertama
-                    ->format('Y-m-d');
-                $jam_transaction = $row['jam_transaksi']; // Formatkan menjadi string tanggal dengan jam dan menit
-                $tanggal_waktu = $tanggal . ' ' . $jam_transaction;
+                ->addDays($row['jadwal_transaction'] - 2) // Kurangi 2 karena Excel menggunakan 1 Januari 1900 sebagai hari pertama
+                ->format('Y-m-d');
+                // dd($collection);
+                $jam_transaction = $row['jam_transaction']; // Formatkan menjadi string tanggal dengan jam dan menit
+                $jamphp= ($jam_transaction * 24 * 60 * 60)-(7*60*60);
+                $time = Carbon::createFromTimestamp($jamphp)->format('H:i:s');
+                $tanggal_waktu = $tanggal . ' ' . $time;
                 $waktu = Carbon::createFromFormat('Y-m-d H:i:s', $tanggal_waktu)
-                                    ->format('Y-m-d H:i:s');
+                ->format('Y-m-d H:i:s');
+                // dd($waktu);
             }
             // Validasi data
             $row['id_romo'] = $row['id_romo'] - 100;
@@ -73,6 +76,7 @@ class TransactionImport implements ToCollection, WithHeadingRow
                     'id_doa' => $row['id_doa'] + 700,
                     'id_umat' => $row['id_umat'] + 1000,
                     'jadwal_transaction' => $row['jadwal_transaction'],
+                    'jam_transaction' => $row['jam_transaction'],
                     'deskripsi_transaksi' => $row['deskripsi_transaksi'] ?? null,
                 ];
                 continue; // Jika validasi gagal, lanjutkan ke baris berikutnya
@@ -97,6 +101,7 @@ class TransactionImport implements ToCollection, WithHeadingRow
                             'id_umat' => $row['id_umat'] + 1000,
                             'jadwal_transaction' => $row['jadwal_transaction'],
                             'jam_transaction' => $row['jam_transaction'],
+                            
                             'deskripsi_transaksi' => $row['deskripsi_transaksi'] ?? null,
                         ];
                         $hasError = true; // Set flag ke true jika ada kesalahan
@@ -122,7 +127,7 @@ class TransactionImport implements ToCollection, WithHeadingRow
                             'id_doa' => $row['id_doa'] + 700,
                             'id_umat' => $row['id_umat'] + 1000,
                             'jadwal_transaction' => $row['jadwal_transaction'],
-                            'jam_transaction' => $row['Jam_transaction'],
+                            'jam_transaction' => $row['jam_transaction'],
                             'deskripsi_transaksi' => $row['deskripsi_transaksi'] ?? null,
                         ];
                         $hasError = true; // Set flag ke true jika ada kesalahan
