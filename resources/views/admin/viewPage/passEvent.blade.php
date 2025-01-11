@@ -31,9 +31,44 @@
                         <td>{{ $data->transactionDetails->deskripsi_transaksi }}</td> <!-- Deskripsi -->
                         <td>
                             <!-- Update Button -->
-                            <a href="#" class="btn btn-sm btn-outline-primary">Detail</a>
+                            <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal"
+                            data-bs-target="#detailModal{{ $data->id_transaction }}">
+                            Detail
+                        </button>
                         </td>
                     </tr>
+                    //modal detail
+                    <div class="modal fade" id="detailModal{{ $data->id_transaction }}" tabindex="-1"
+                        aria-labelledby="detailModalLabel{{ $data->id_transaction }}" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="detailModalLabel{{ $data->id_transaction }}">Detail Acara
+                                    </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p><strong>judul:</strong> {{ $data->judul }}</p>
+                                    <p><strong>Romo:</strong> {{ $data->romo->nama_romo }}</p>
+                                    <p><strong>Acara:</strong> {{ $data->transactionDetails->acara->nama_acara }}</p>
+                                    <p><strong>Doa</strong> {{ $data->doa->nama_doa }}</p>
+                                    <p><strong>jadwal Transaksi</strong> {{ $data->jadwal_transaction }}</p>
+                                    <p><strong>Deskripsi:</strong> {{ $data->transactionDetails->deskripsi_transaksi }}</p>
+                                </div>
+                                <div class="modal-footer">
+                                    {{-- <form method="POST" action="{{ route('admin.request.proccess', $data->id_transaction) }}"
+                                        class="d-inline">
+                                        @csrf
+                                        @method('PUT')
+                                        <button type="submit" class="btn btn-sm btn-outline-success">Terima</button>
+                                    </form> --}}
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Kembali</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 @empty
                     <tr>
                         <td colspan="5">Data acara tidak ada</td>
