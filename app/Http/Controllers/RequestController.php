@@ -308,7 +308,7 @@ public function cancelRequest($id)
             'file' => 'required|mimes:xlsx,xls,csv',
         ]);
         $file = $request->file('file');
-        \Log::info('File uploaded: ' . $file->getClientOriginalName());
+        // \Log::info('File uploaded: ' . $file->getClientOriginalName());
 
         try {
             // Ambil file yang diupload
@@ -328,7 +328,7 @@ public function cancelRequest($id)
                 return redirect()->route('home')->with('success', 'Data berhasil diimport');
             }
         } catch (\Exception $e) {
-            \Log::error('Error during file import: ' . $e->getMessage());
+            // \Log::error('Error during file import: ' . $e->getMessage());
 
         return redirect()->route('home')->with('error', 'Terjadi kesalahan saat mengimpor data. Silakan coba lagi.');
         }
