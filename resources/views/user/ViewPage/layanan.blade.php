@@ -72,7 +72,7 @@
                                         placeholder="Contoh: John Smith" value="{{ $layanans->nama_acara }}" hidden>
 
                                     <input type="text" class="form-control @error('nama_acara') is-invalid @enderror"
-                                        id="id_umat"name="id_umat" value="1" hidden>
+                                        id="id_umat"name="id_umat" value="{{ Auth::user()->id_umat }}" hidden>
 
                                     <div class="mb-3">
                                         <label for="nama_terlibat_satu" class="form-label">Nama Terlibat 1</label>

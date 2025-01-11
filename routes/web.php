@@ -35,6 +35,8 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 Route::redirect('/', 'home');
 Route::get('/home', [LandingController::class, 'home'])->name('home');
 Route::get('/histori', [LandingController::class, 'history'])->name('histori')->middleware('auth');
+Route::put('/editHistori', [LandingController::class, 'updateRequest'])->name('updateRequest');
+Route::get('/batalHistori', [LandingController::class, 'updateRequest'])->name('updateRequest');
 Route::get('/profil/sejarahVisiMisi', [ProfileController::class, 'visiMisi'])->name('visiMisi');
 Route::get('/profil/doa', [ProfileController::class, 'doa'])->name('doa');
 Route::get('/profil/fasilitas', [ProfileController::class, 'fasilitas'])->name('fasilitas');
@@ -42,6 +44,7 @@ Route::get('/profil/pastor', [ProfileController::class, 'pastor'])->name('pastor
 Route::get('/profil/kegiatan', [ProfileController::class, 'Kegiatan'])->name('kegiatan');
 Route::get('/jadwal', [LandingController::class, 'jadwal'])->name('jadwal');
 Route::get('/jadwal/{slug}', [LandingController::class, 'jadwalDetail'])->name('jadwal');
+Route::put('/registerJadwal/{slug}', [LandingController::class, 'registerJadwal'])->name('registerJadwal');
 Route::get('/artikel', [LandingController::class, 'artikel'])->name('artikel');
 Route::get('/artikel/{slug}', [LandingController::class, 'artikeldetail'])->name('artikel');
 Route::get('/layanan', [LandingController::class, 'layanan'])->name('layanan');

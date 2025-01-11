@@ -11,15 +11,36 @@
                         <th scope="col">Nama Permintaan</th>
                         <th scope="col">Tanggal Permintaan</th>
                         <th scope="col">Status</th>
+                        <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse($jadwal_acara as $history)
                         <tr>
-                            <th scope="row">$loop->iteration</th>
-                            <td>$history->judul</td>
-                            <td>$history->jadwal_transaction</td>
-                            <td>$history->status</td>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td>{{ $history->nama_acara }}</td>
+                            <td>{{ $history->jadwal_acara }}</td>
+                            <td>{{ $history->status }}</td>
+                            <td>
+                                <!-- Accept Form -->
+                                <form method="POST" action="{{ route('history.process', $history->id) }}" class="d-inline">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit" class="btn btn-sm btn-outline-success">Terima</button>
+                                </form>
+
+                                <!-- Button to trigger the detail modal -->
+                                <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal"
+                                    data-bs-target="#detailModal{{ $history->id }}">
+                                    Detail
+                                </button>
+
+                                <!-- Button to trigger the reject modal -->
+                                <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
+                                    data-bs-target="#rejectModal{{ $history->id }}">
+                                    Tolak
+                                </button>
+                            </td>
                         </tr>
                     @empty
                         <tr>

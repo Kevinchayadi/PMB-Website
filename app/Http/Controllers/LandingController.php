@@ -7,11 +7,14 @@ use App\Models\Articel;
 use App\Models\Hightlight;
 use Illuminate\Http\Request;
 use App\Models\TransactionHeader;
+use App\Models\TransactionDetail;
 use App\Models\Umat;
+use App\Models\Request as ModelsRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+
 
 class LandingController extends Controller
 {
@@ -22,31 +25,19 @@ class LandingController extends Controller
             $artikel->body = Str::limit($artikel->body, 50);
             return $artikel;
         });
-        return view('user.ViewPage.home', compact('highlight', 'artikel'));
+        $jadwal = TransactionHeader::with(['romo', 'seksis', 'doa', 'transactionDetails' => function ($query) {
+            $query->with('umats', 'acara', 'admin');
+        }])->where('status', 'coming')->take(3)->get();
+        return view('user.ViewPage.home', compact('highlight', 'artikel', 'jadwal'));
     }
 
     public function history(){
-        $jadwal_acara = TransactionHeader::with([
-            'romo',
-            'seksis',
-            'doa',
-            'transactionDetails.umats',
-            'transactionDetails.acara',
-            'transactionDetails.admin'
-        ])
-        ->whereHas('transactionDetails.umats', function ($query) {
-            $query->where('relation_transaction_umats.id_umat', Auth::guard('web')->user()->id);
-        })
-        ->latest()->paginate(20)->withQueryString();
-    
+        $jadwal_acara = ModelsRequest::where('id_umat', Auth::user()->id_umat)->latest()->paginate(20)->withQueryString();
         return view('user.ViewPage.history', compact('jadwal_acara'));
     }
 
     public function jadwal()
     {
-        // $transactions = TransactionHeader::with(['romo', 'seksis', 'doa', 'transactionDetails' => function ($query) {
-        //     $query->with('umats', 'acara', 'admin')->where('umat_id', Auth::guard('web')->user()->umat_id);
-        // }])->where('status', 'coming')->get();
         $transactions = TransactionHeader::with(['romo', 'seksis', 'doa', 'transactionDetails' => function ($query) {
             $query->with('umats', 'acara', 'admin');
         }])->where('status', 'coming')->get();
@@ -64,7 +55,21 @@ class LandingController extends Controller
             ->where('id_transaction', $id)
             ->firstOrFail();
 
-        return view('user.ViewPage.jadwalDetail', ['transactions' => $transaction]);
+        $highlight = Hightlight::get();
+
+        $isRegister = TransactionDetail::where('id_transaction', $id)->whereHas('umats', function ($query) {
+            $query->where('umats.id_umat', Auth::user()->id_umat);
+        })->exists();
+
+
+        $moreTransaction = TransactionHeader::with(['romo', 'seksis', 'doa', 'transactionDetails' => function ($query) {
+            $query->with('umats', 'acara', 'admin');
+        }])->where('status', 'coming')->where('id_transaction', '!=', $id)->inRandomOrder()->take(2)->get()->map(function ($moreTransaction) {
+            $moreTransaction->transactionDetails->deskripsi_transaksi = Str::limit($moreTransaction->body, 50);
+            return $moreTransaction;
+        });;
+        
+        return view('user.ViewPage.jadwalDetail', compact('transaction', 'highlight', 'moreTransaction', 'isRegister'));
     }
 
     public function artikel()
@@ -185,5 +190,22 @@ class LandingController extends Controller
             DB::rollBack();
             return redirect()->back()->withErrors('Gagal memperbarui data: ' . $e->getMessage());
         }
+    }
+
+    public function registerJadwal($slug){
+        $transactionDetail = TransactionDetail::with('umats')->where('id_transaction', $slug)->first();
+
+        // Jika tidak kosong, kita akan periksa dan tambahkan ke tabel pivot
+        if ($transactionDetail) {
+            // Ambil id_umat yang terhubung dengan transactionDetail
+            $existingUmats = $transactionDetail->umats->pluck('id')->toArray();
+
+            // Periksa apakah id_umat pengguna sudah ada di pivot
+            if (!in_array(Auth::user()->id_umat, $existingUmats)) {
+                // Jika belum ada, tambahkan ke pivot
+                $transactionDetail->umats()->attach(Auth::user()->id_umat);
+            }
+        }
+        return back()->with('success', 'Sukses ikut acara!');
     }
 }

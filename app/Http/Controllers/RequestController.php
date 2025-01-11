@@ -139,7 +139,6 @@ class RequestController extends Controller
     }
     public function storeRequest(Request $request)
     {
-        // dd($request->all());
         $data = [];
         if ($request->nama_acara == 'pernikahan') {
             $data = $request->validate([
