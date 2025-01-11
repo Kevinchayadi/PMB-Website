@@ -22,6 +22,7 @@
                             <td>{{ $history->jadwal_acara }}</td>
                             <td>{{ $history->status }}</td>
                             <td>
+                                {{-- Tes --}}
                                 <!-- Accept Form -->
                                 <form method="POST" action="{{ route('history.process', $history->id) }}" class="d-inline">
                                     @csrf
