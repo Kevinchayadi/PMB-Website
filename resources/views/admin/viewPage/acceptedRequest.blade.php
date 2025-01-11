@@ -64,7 +64,7 @@
                         <!-- Modal for Details -->
                         <div class="modal fade" id="detailModal{{ $data->id }}" tabindex="-1"
                             aria-labelledby="detailModalLabel{{ $data->id }}" aria-hidden="true">
-                            <div class="modal-dialog modal-lg">
+                            <div class="modal-dialog modal-lg modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header bg-primary">
                                         <h5 class="modal-title text-white" id="detailModalLabel{{ $data->id }}">Detail
