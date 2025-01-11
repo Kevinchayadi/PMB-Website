@@ -1,5 +1,5 @@
 @extends('admin.layout.template')
-@section('title', 'TabeLl Admin')
+@section('title', 'Tabel Admin')
 
 @section('content')
     <div class="d-flex justify-content-start  align-items-center mb-3  text-center">
@@ -45,14 +45,15 @@
                             <td>
                                 <a href="/admin/admin-detail/{{ $admin->username }}"
                                     class="btn btn-sm btn-outline-primary">Edit</a>
-                                    <form action="{{secure_url('/admin/remove-admin/'.$admin->username) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-outline-danger"
-                                            onclick="return confirm('Apakah Anda yakin ingin menghapus admin ini?');">
-                                            Hapus
-                                        </button>
-                                    </form>
+                                <form action="{{ secure_url('/admin/remove-admin/' . $admin->username) }}" method="POST"
+                                    class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-outline-danger"
+                                        onclick="return confirm('Apakah Anda yakin ingin menghapus admin ini?');">
+                                        Hapus
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @empty
