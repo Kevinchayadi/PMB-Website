@@ -39,7 +39,7 @@ class ProfileController extends Controller
 
     public function Kegiatan()
     {
-        $kegiatan = Acara::with('dokumentations')->where('tipe_acara', 'kegiatan')->get();
+        $kegiatan = Acara::where('tipe_acara', 'kegiatan')->get();
         return view('user.ViewPage.kegiatan', ['kegiatan' => $kegiatan]);
     }
 }

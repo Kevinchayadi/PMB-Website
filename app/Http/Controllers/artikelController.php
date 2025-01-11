@@ -8,10 +8,21 @@ use Illuminate\Support\Facades\Storage;
 
 class artikelController extends Controller
 {
-    public function artikelIndex()
+    public function artikelIndex(Request $request)
     {
-        $artikel = Articel::get();
-        return view('admin.viewPage.landingpage.artikel.artikel', compact('artikel'));
+        // Ambil parameter pencarian dari request
+        $search = $request->input('search');
+    
+        // Query data artikel berdasarkan pencarian title
+        $artikel = Articel::when($search, function ($query, $search) {
+            return $query->where('title', 'like', "%{$search}%");
+        })
+        ->latest()
+            ->paginate(20)
+            ->withQueryString();
+    
+        // Return view dengan data artikel dan pencarian
+        return view('admin.viewPage.landingpage.artikel.artikel', compact('artikel', 'search'));
     }
     public function addArtikel()
     {
@@ -24,6 +35,15 @@ class artikelController extends Controller
             'body' => 'required|string|min:10',
             'foto' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:2048',             
             'additionalLink' => 'nullable|url',             
+        ], [
+            'title.required' => 'Kolom Judul harus diisi.',
+            'title.max' => 'Judul tidak boleh lebih dari :max karakter.',
+            'body.required' => 'Kolom Isi harus diisi.',
+            'body.min' => 'Isi harus memiliki minimal :min karakter.',
+            'foto.file' => 'Field foto harus berupa file.',
+            'foto.mimes' => 'File foto harus dalam format: jpeg, png, jpg, gif, svg.',
+            'foto.max' => 'Ukuran file foto tidak boleh lebih dari :max kilobyte.',
+            'additionalLink.url' => 'Link tambahan harus berupa URL yang valid.',
         ]);
         // $artikel = Articel::find($id);
         $foto = str_replace([' ', '.'], '-', $input['title']);
@@ -42,7 +62,7 @@ class artikelController extends Controller
         
         
         Articel::create($input);
-        return redirect()->route('admin.artikel')->with('success', 'Artikel berhasil ditambahkan');
+        return redirect()->route('admin.artikel')->with('success', 'Artikel berhasil ditambahkan!');
     }
     public function updateArtikel($id)
     {
@@ -58,6 +78,15 @@ class artikelController extends Controller
             'body' => 'required|string|min:10',
             'foto' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:2048',             
             'additionalLink' => 'nullable|url',             
+        ], [
+            'title.required' => 'Kolom Judul harus diisi.',
+            'title.max' => 'Judul tidak boleh lebih dari :max karakter.',
+            'body.required' => 'Kolom Isi harus diisi.',
+            'body.min' => 'Isi harus memiliki minimal :min karakter.',
+            'foto.file' => 'Field foto harus berupa file.',
+            'foto.mimes' => 'File foto harus dalam format: jpeg, png, jpg, gif, svg.',
+            'foto.max' => 'Ukuran file foto tidak boleh lebih dari :max kilobyte.',
+            'additionalLink.url' => 'Link tambahan harus berupa URL yang valid.',
         ]);
         $artikel = Articel::find($id);
         $foto = str_replace([' ', '.'], '-', $input['title']);
@@ -75,13 +104,13 @@ class artikelController extends Controller
         }
         
         $artikel->update($input);
-        return redirect()->route('admin.artikel')->with('success', 'Artikel berhasil diupdate!!');
+        return redirect()->route('admin.artikel')->with('success', 'Artikel berhasil diperbarui!');
         
     }
     public function deleteArtikel($id)
     {
         $artikel = Articel::find($id);
         $artikel->delete();
-        return redirect()->route('admin.artikel')->with('success', 'Artikel berhasil dihapus!!');
+        return redirect()->route('admin.artikel')->with('success', 'Artikel berhasil dihapus!');
     }
 }

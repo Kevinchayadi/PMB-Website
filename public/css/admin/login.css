@@ -1,3 +1,8 @@
+body {
+    background: rgb(138, 135, 181);
+    background: radial-gradient(circle, rgba(138, 135, 181, 1) 0%, rgba(91, 91, 189, 1) 39%, rgba(84, 215, 248, 1) 96%, rgba(0, 212, 255, 1) 100%);
+}
+
 .divider:after,
 .divider:before {
     content: "";

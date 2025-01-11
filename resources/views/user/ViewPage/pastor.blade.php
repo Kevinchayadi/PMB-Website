@@ -1,14 +1,16 @@
 <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+<link rel="stylesheet" href="{{ asset('css/image.css') }}">
 @extends('user.Layout.profileTemplate')
 @section('title', 'Pastor')
 @section('content')
-    <div class="row mx-auto mb-2">
-        @foreach ($romo as $romos)
-            <div class="col-lg-6 col-12 p-2">
+    <div class="row mx-auto mb-2 justify-content-center">
+        @forelse ($romo as $romos)
+            <div class="col-lg-4 col-12 p-2 d-flex justify-content-center align-items-center">
                 <div class="bg-primary rounded-3 shadow-lg p-2 hvr-shrink" data-bs-toggle="modal"
                     data-bs-target="#{{ str_replace([' ', '.', ','], '-', $romos->nama_romo) }}">
-                    <img src="{{ $romos->path }}" alt="{{ str_replace([' ', '.', ','], '-', $romos->nama_romo) }}"
-                        class="img-fluid rounded-3">
+                    <img src="{{ asset('storage/' . $romos->path) }}"
+                        alt="{{ str_replace([' ', '.', ','], '-', $romos->nama_romo) }}"
+                        class="img-fluid custom-img-2 rounded-3">
                     <div class="fs-6">
                         <div class="w-50 mx-auto fw-bolder text-center text-white">{{ $romos->nama_romo }}</div>
                     </div>
@@ -28,8 +30,8 @@
                             </div>
                             <div class="modal-body">
                                 <div class="image mb-2">
-                                    <img src="{{ asset('picture/Gereja.jpg') }}" alt=""
-                                        class="img-fluid rounded-3 shadow-lg">
+                                    <img src="{{ asset('storage/' . $romos->path) }}" alt=""
+                                        class="img-fluid custom-img-2 rounded-3 shadow-lg">
                                 </div>
                                 <div class="biodata mb-2">
                                     <div class="head fs-5 fw-bolder">Biodata</div>
@@ -66,6 +68,8 @@
                     </div>
                 </div>
             </div>
-        @endforeach
+        @empty
+            <div class="fs-5 text-center fw-bolder">Romo tidak ada</div>
+        @endforelse
     </div>
 @endsection

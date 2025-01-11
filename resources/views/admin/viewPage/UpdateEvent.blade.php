@@ -1,5 +1,5 @@
 @extends('admin.layout.template')
-@section('title', 'Admin - Update Event')
+@section('title', 'Form Pembaruan Data Acara')
 
 @section('content')
     <style>
@@ -41,20 +41,21 @@
                 <div class="col-10 col-md-8">
                     <div class="card bg-primary shadow-lg rounded-4">
                         <div class="card-body text-white">
-                            <h2 class="card-title text-center mb-4 fw-bolder">Update Event</h2>
+                            <h2 class="card-title text-center mb-4 fw-bolder">Perbarui Data Acara</h2>
 
                             <!-- Form Start -->
-                           {{-- {{ dd($event->id_transaction)}} --}}
+                            {{-- {{ dd($event->id_transaction)}} --}}
                             <form action="/admin/updateEvent/{{ $event->id_transaction }}" method="POST">
                                 @csrf <!-- Laravel CSRF Token -->
                                 @method('PUT') <!-- Laravel method spoofing for PUT request -->
                                 <div class="mb-3">
                                     <label for="judul" class="form-label">Judul <span
-                                        class="text-danger">*</span></label>
+                                            class="text-danger">*</span></label>
                                     <input type="text" class="form-control @error('judul') is-invalid @enderror"
-                                           id="judul" name="judul" value="{{ old('judul', $event->judul) }}" placeholder="Masukkan Judul Acara" required>
+                                        id="judul" name="judul" value="{{ old('judul', $event->judul) }}"
+                                        placeholder="Masukkan Judul Acara" required>
                                     @error('judul')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -67,13 +68,14 @@
                                         name="id_romo" required>
                                         <option value="" disabled>Pilih Romo</option>
                                         @foreach ($romos as $romo)
-                                            <option value="{{ $romo->id_romo }}" {{ old('id_romo', $event->id_romo) == $romo->id_romo ? 'selected' : '' }}>
+                                            <option value="{{ $romo->id_romo }}"
+                                                {{ old('id_romo', $event->id_romo) == $romo->id_romo ? 'selected' : '' }}>
                                                 {{ $romo->nama_romo }}
                                             </option>
                                         @endforeach
                                     </select>
                                     @error('id_romo')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -85,13 +87,14 @@
                                         name="id_acara" required>
                                         <option value="" disabled>Pilih Acara</option>
                                         @foreach ($acaras as $acara)
-                                            <option value="{{ $acara->id_acara }}" {{ old('id_acara', $event->id_acara) == $acara->id_acara ? 'selected' : '' }}>
+                                            <option value="{{ $acara->id_acara }}"
+                                                {{ old('id_acara', $event->id_acara) == $acara->id_acara ? 'selected' : '' }}>
                                                 {{ $acara->nama_acara }}
                                             </option>
                                         @endforeach
                                     </select>
                                     @error('id_acara')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -108,7 +111,7 @@
                                         @endforeach
                                     </select>
                                     @error('id_seksi')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -119,13 +122,14 @@
                                         name="id_doa" required>
                                         <option value="" disabled>Pilih Doa</option>
                                         @foreach ($doas as $doa)
-                                            <option value="{{ $doa->id_doa }}" {{ old('id_doa', $event->id_doa) == $doa->id_doa ? 'selected' : '' }}>
+                                            <option value="{{ $doa->id_doa }}"
+                                                {{ old('id_doa', $event->id_doa) == $doa->id_doa ? 'selected' : '' }}>
                                                 {{ $doa->nama_doa }}
                                             </option>
                                         @endforeach
                                     </select>
                                     @error('id_doa')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -139,7 +143,7 @@
                                         value="{{ old('jadwal_transaction', $event->jadwal_transaction ? $event->jadwal_transaction->format('Y-m-d\TH:i') : now()->addDay()->format('Y-m-d\TH:i')) }}"
                                         required>
                                     @error('jadwal_transaction')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -156,7 +160,7 @@
                                         @endforeach
                                     </select>
                                     @error('id_umat')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -166,14 +170,14 @@
                                     <textarea class="form-control @error('deskripsi_transaksi') is-invalid @enderror" id="deskripsi_transaksi"
                                         name="deskripsi_transaksi" rows="4">{{ old('deskripsi_transaksi', $event->transactionDetails->deskripsi_transaksi) }}</textarea>
                                     @error('deskripsi_transaksi')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
                                 <!-- Tombol Submit -->
                                 <div class="d-grid">
-                                    <button type="submit" class="btn btn-success">Update</button>
-                                    <a class="btn btn-danger rounded-none mt-2" href="/admin/admin-list">Cancel</a>
+                                    <button type="submit" class="btn btn-success">Perbarui Data</button>
+                                    <a class="btn btn-danger rounded-none mt-2" href="/admin/admin-list">Batal</a>
                                 </div>
                             </form>
                             <!-- Form End -->
@@ -243,6 +247,6 @@
         value="{{ old('jadwal_transaction', $transaction->jadwal_transaction ? $transaction->jadwal_transaction->format('Y-m-d\TH:i') : now()->addDay()->format('Y-m-d\TH:i')) }}"
         required>
     @error('jadwal_transaction')
-        <div class="invalid-feedback">{{ $message }}</div>
+        <div class="invalid-feedback text-danger">{{ $message }}</div>
     @enderror
 </div> --}}

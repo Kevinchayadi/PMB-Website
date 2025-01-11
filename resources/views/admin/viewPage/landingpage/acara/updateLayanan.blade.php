@@ -1,6 +1,5 @@
-
 @extends('admin.layout.template')
-@section('title', 'Layanan - Edit Form')
+@section('title', 'Perbarui Data Layanan')
 
 @section('content')
     @if ($errors->any())
@@ -15,17 +14,17 @@
         </div>
     @endif
 
-    <div class="container-fluid">
+    <div class="container-fluid my-3">
         <div class="min-vh-100 d-flex flex-column align-items-center justify-content-center">
             <div class="row w-100 justify-content-center">
                 <div class="col-10 col-md-8">
                     <div class="card bg-primary shadow-lg rounded-4">
                         <div class="card-body text-white">
 
-                            <h2 class="card-title text-center mb-4 fw-bolder">Edit Layanan</h2>
+                            <h2 class="card-title text-center mb-4 fw-bolder">Perbarui Data Layanan</h2>
 
                             <!-- Form Edit Layanan -->
-                            <form action="{{ route('admin.updateAcara', $acara->slug) }}" method="POST"
+                            <form action="{{ secure_url('/admin/edit-layanan/'. $acara->slug) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
@@ -38,7 +37,7 @@
                                         id="nama_acara" name="nama_acara"
                                         value="{{ old('nama_acara', $acara->nama_acara) }}" required>
                                     @error('nama_acara')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -50,7 +49,7 @@
                                         id="tipe_acara" name="tipe_acara"
                                         value="{{ old('tipe_acara', $acara->tipe_acara) }}" required>
                                     @error('tipe_acara')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -61,14 +60,13 @@
                                     <textarea class="form-control @error('deskripsi_acara') is-invalid @enderror" id="desc" name="deskripsi_acara"
                                         rows="5" required>{{ old('deskripsi_acara', $acara->deskripsi_acara) }}</textarea>
                                     @error('deskripsi_acara')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
                                 <!-- Gambar -->
                                 <div class="mb-3">
-                                    <label for="foto" class="form-label">Gambar<span
-                                            class="text-danger">*</span></label>
+                                    <label for="foto" class="form-label">Gambar Layanan</label>
 
                                     <!-- Menampilkan gambar yang ada -->
                                     <div>
@@ -80,17 +78,16 @@
                                     <!-- Input file untuk mengganti gambar -->
                                     <input type="file" class="form-control @error('foto') is-invalid @enderror"
                                         id="foto" name="foto" placeholder="Edit gambar"
-                                        onchange="previewImage(event)" >
+                                        onchange="previewImage(event)">
                                     @error('foto')
-                                        <div class="invalid-feedback text-white">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
                                 <!-- Tombol Submit -->
                                 <div class="d-grid">
-                                    <button type="submit" class="btn btn-success">Update</button>
-                                    <a href="{{ route('admin.acara') }}"
-                                        class="btn btn-danger rounded-none mt-2">Cancel</a>
+                                    <button type="submit" class="btn btn-success">Perbarui Data Layanan</button>
+                                    <a href="{{ route('admin.acara') }}" class="btn btn-danger rounded-none mt-2">Batal</a>
                                 </div>
                             </form>
                         </div>

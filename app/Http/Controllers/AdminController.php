@@ -6,20 +6,25 @@ use App\Models\Admin;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class AdminController extends Controller
 {
     public function index(Request $request)
     {
-        $search = $request->input('search');
-        
-        $admins = Admin::with('roles')->when($search, function ($query, $search) {
-            $query->where('username', 'like', '%' . $search . '%')
-                  ->orWhereHas('roles', function ($query) use ($search) {
-                      $query->where('role', 'like', '%' . $search . '%');
-                  });
-        })->latest()->paginate(20
-        )->withQueryString();
+        $search = $request->validate([
+            'search' => 'nullable|string|max:255'
+        ]);
+
+        $admins = Admin::with('roles')
+            ->when($search, function ($query, $search) {
+                $query->where('username', 'like', '%' . $search . '%')->orWhereHas('roles', function ($query) use ($search) {
+                    $query->where('role', 'like', '%' . $search . '%');
+                });
+            })
+            ->latest()
+            ->paginate(20)
+            ->withQueryString();
 
         return view('admin.viewPage.adminlist', ['admins' => $admins]);
     }
@@ -36,8 +41,13 @@ class AdminController extends Controller
             'username' => 'required|unique:admins',
             'password' => 'required|string|min:8|confirmed',
             'id_role' => 'required',
+        ], [
+            'username.required' => 'Kolom Nama Pengguna harus diisi.',
+            'username.unique' => 'Nama Pengguna sudah digunakan oleh admin lain.',
+            'password.min' => 'Kata Sandi harus memiliki minimal :min karakter.',
+            'password.confirmed' => 'Konfirmasi Kata Sandi tidak cocok.',
+            'id_role.required' => 'Kolom Role harus diisi.',
         ]);
-        // dd($request);
 
         try {
             Admin::create([
@@ -46,20 +56,18 @@ class AdminController extends Controller
                 'id_role' => $request->id_role,
             ]);
         } catch (\Throwable $th) {
-            return redirect()->route('admin.admin-list')->with('error', 'Admin Gagal Ditambahkan');
+            return redirect()->route('admin.admin-list')->with('error', 'Admin gagal ditambahkan!');
         }
 
-        return redirect()->route('admin.admin-list')->with('success', 'Admin Berhasil ditambahkan');
+        return redirect()->route('admin.admin-list')->with('success', 'Admin berhasil ditambahkan!');
     }
 
     public function detailAdmin($slug)
     {
-        
         $roles = Role::get();
         $admin = Admin::with('roles')->where('username', $slug)->first();
         // dd($admin);
         return view('admin.viewPage.adminUpdate', ['admin' => $admin, 'roles' => $roles]);
-        
     }
 
     public function updateAdmin(Request $request, $slug)
@@ -68,9 +76,15 @@ class AdminController extends Controller
         $admin = Admin::where('username', $slug)->firstOrFail();
 
         $request->validate([
-            'username' => 'required|unique:admins',
+            'username' => ['required', Rule::unique('admins')->ignore($slug, 'username')],
             'password' => 'nullable|string|min:8|confirmed',
             'role' => 'required',
+        ], [
+            'username.required' => 'Kolom Nama Pengguna harus diisi.',
+            'username.unique' => 'Nama Pengguna sudah digunakan oleh admin lain.',
+            'password.min' => 'Kata Sandi harus memiliki minimal :min karakter.',
+            'password.confirmed' => 'Konfirmasi Kata Sandi tidak cocok.',
+            'role.required' => 'Kolom Role harus diisi.',
         ]);
         try {
             $admin->slug = null;
@@ -81,18 +95,18 @@ class AdminController extends Controller
             $admin->id_role = $request->role;
             $admin->save();
         } catch (\Throwable $th) {
-            return redirect()->route('admin.admin-list')->with('Error', 'Admin gagal diUpdate!!');
+            return redirect()->route('admin.admin-list')->with('Error', 'Admin gagal diperbarui!');
         }
 
-        return redirect()->route('admin.admin-list')->with('success', 'Admin berhasil diUpdate!!');
+        return redirect()->route('admin.admin-list')->with('success', 'Admin berhasil diperbarui!');
     }
 
     public function removeAdmin($slug)
     {
         $admin = Admin::where('username', $slug)->firstOrFail();
-        $admin->delete();
+        $admin->forceDelete();
 
-        return redirect()->route('admin.admin-list')->with('success', 'Admin removed successfully');
+        return redirect()->route('admin.admin-list')->with('success', 'Admin berhasil dihapus!');
     }
 
     public function adminRemoved()
@@ -106,6 +120,6 @@ class AdminController extends Controller
         $admin = Admin::onlyTrashed()->where('username', $slug)->firstOrFail();
         $admin->restore();
 
-        return redirect()->route('admin.removedList')->with('success', 'Admin restored successfully');
+        return redirect()->route('admin.removedList')->with('success', 'Admin berhasil dikembalikan!');
     }
 }

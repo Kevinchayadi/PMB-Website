@@ -1,5 +1,5 @@
 @extends('admin.layout.template')
-@section('title', 'Kegiatan - List')
+@section('title', 'Tabel Kegiatan')
 
 @section('content')
     @if (session()->has('success'))
@@ -9,7 +9,7 @@
         </div>
     @endif
     <div class="d-flex justify-content-start align-items-center mb-3 text-center">
-        <h1 class="mb-0 fw-bold  p-2 text-white bg-primary shadow rounded-end-2">Kegiatan List</h1>
+        <h1 class="mb-0 fw-bold  p-2 text-white bg-primary shadow rounded-end-2">Tabel Kegiatan</h1>
     </div>
 
     <div class="px-4">
@@ -18,9 +18,9 @@
             <form action="/admin/layanan" method="GET" class="d-flex">
                 <input type="text" id="searchInput" name="search" class="form-control me-2"
                     value="{{ request('search') }}" placeholder="Search...">
-                <button type="submit" class="btn btn-outline-primary">Search</button>
+                <button type="submit" class="btn btn-outline-primary">Cari</button>
             </form>
-            <a href="/admin/add-kegiatan" class="btn btn-primary ">Add New Kegiatan</a>
+            <a href="/admin/add-kegiatan" class="btn btn-primary ">Tambah Kegiatan Baru</a>
         </div>
         <div class="rounded overflow-hidden shadow-sm">
             <table class="table table-hover table-striped mb-0 text-center">
@@ -30,7 +30,7 @@
                         <th scope="col">Nama Kegiatan</th>
                         <th scope="col">Deskripsi</th>
                         <th scope="col">Tanggal Kegiatan</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,20 +44,67 @@
                             <td>
                                 <button class="btn btn-sm btn-outline-primary"><a
                                         href="/admin/edit-kegiatan/{{ $kegiatans->id }}" class="nav-link">Edit</a></button>
-                                <button class="btn btn-sm btn-outline-danger"><a
-                                        href="/admin/delete-kegiatan/{{ $kegiatans->id }}"
-                                        class="nav-link">Delete</a></button>
-                                <button class="btn btn-sm btn-outline-success"
-                                    data-bs-target="#{{ $kegiatans->slug }}"></button>
+                                <form action="/admin/delete-kegiatan/{{ $kegiatans->id }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-outline-danger"
+                                        onclick="return confirm('Apa kamu yakin untuk menghapus kegiatan ini?')">Hapus</button>
+                                </form>
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5">No data available.</td>
+                            <td colspan="5">Data kegiatan tidak ada
+                            </td>
                         </tr>
                     @endforelse
                 </tbody>
             </table>
+
+            @if ($kegiatan->total() > 0)
+                <div class="mt-1 text-center">
+                    <small class="text-muted">
+                        Tampilkan {{ $kegiatan->firstItem() }} sampai {{ $kegiatan->lastItem() }} dari
+                        {{ $kegiatan->total() }} data
+                        kegiatan
+                    </small>
+                </div>
+                <nav class="mt-2">
+                    <ul class="pagination justify-content-center mb-0" id="pagination">
+                        <!-- Previous Button -->
+                        @if ($kegiatan->onFirstPage())
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#">
+                                    < </a>
+                            </li>
+                        @else
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $kegiatan->previousPageUrl() }}">
+                                    << /a>
+                            </li>
+                        @endif
+
+                        <!-- Page Numbers -->
+                        @for ($i = 1; $i <= $kegiatan->lastPage(); $i++)
+                            <li class="page-item {{ $kegiatan->currentPage() == $i ? 'active' : '' }}">
+                                <a class="page-link" href="{{ $kegiatan->url($i) }}">{{ $i }}</a>
+                            </li>
+                        @endfor
+
+                        <!-- Next Button -->
+                        @if ($kegiatan->hasMorePages())
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $kegiatan->nextPageUrl() }}">></a>
+                            </li>
+                        @else
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#">></a>
+                            </li>
+                        @endif
+                    </ul>
+                </nav>
+
+            @endif
         </div>
     </div>
 @endsection

@@ -11,10 +11,21 @@ use Illuminate\Support\Facades\Storage;
 
 class AcaraController extends Controller
 {
-    public function acaraIndex()
+    public function acaraIndex(Request $request)
     {
-        $acara = Acara::get();
-        return view('admin.viewPage.landingpage.acara.layanan', ['acara' => $acara]);
+        // Ambil parameter pencarian dari request
+        $search = $request->input('search');
+
+        // Query data berdasarkan pencarian (jika ada)
+        $acara = Acara::when($search, function ($query, $search) {
+            return $query->where('nama_acara', 'like', "%{$search}%");
+        })
+            ->latest()
+            ->paginate(20)
+            ->withQueryString();
+
+        // Return view dengan data acara
+        return view('admin.viewPage.landingpage.acara.layanan', ['acara' => $acara, 'search' => $search]);
     }
 
     public function addAcara()
@@ -26,25 +37,33 @@ class AcaraController extends Controller
     {
         // dd($request->all());
         $input = $request->validate([
-            'nama_acara' => 'required',
+            'nama_acara' => 'required|min:5',
             'deskripsi_acara' => 'required',
             'tipe_acara' => 'required',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ], [
+            'nama_acara.required' => 'Kolom Nama Acara harus diisi.',
+            'nama_acara.min' => 'Kolom Nama Acara harus memiliki minimal :min karakter.',
+            'deskripsi_acara.required' => 'Kolom Deskripsi Acara harus diisi.',
+            'tipe_acara.required' => 'Kolom Tipe Acara harus diisi.',
+            'foto.image' => 'Kolom Foto harus berupa gambar.',
+            'foto.mimes' => 'Kolom Foto harus dalam format: jpeg, png, jpg, gif, svg.',
+            'foto.max' => 'Ukuran file Foto tidak boleh lebih dari :max kilobyte.',
         ]);
-        
+
         try {
             DB::beginTransaction();
             $foto = str_replace([' ', '.'], '-', $input['nama_acara']);
             if ($request->hasFile('foto')) {
                 // dd($request);
-            $file = $request->file('foto');
+                $file = $request->file('foto');
 
-            $fileName = $foto . '.' . $file->getClientOriginalExtension();
+                $fileName = $foto . '.' . $file->getClientOriginalExtension();
 
-            $filePath = $file->storeAs('acara', $fileName, 'public');
+                $filePath = $file->storeAs('acara', $fileName, 'public');
 
-            $input['path'] = $filePath;
-        }
+                $input['path'] = $filePath;
+            }
             // Simpan acara
             Acara::create($input);
 
@@ -55,33 +74,39 @@ class AcaraController extends Controller
             return back()->with('error', 'Gagal menambahkan acara!');
         }
 
-        return redirect()->route('admin.acara')->with('success', 'Acara dan dokumentasi berhasil ditambahkan');
+        return redirect()->route('admin.acara')->with('success', 'Layanan berhasil ditambahkan!');
     }
 
     public function updateAcara($slug)
     {
         //Ambil acara berdasarkan slug beserta dokumentasinya
-        $acara = Acara::with('documentations')->where('slug', $slug)->first();
+        $acara = Acara::get()->where('slug', $slug)->first();
         // dd($acara);
         return view('admin.viewPage.landingpage.acara.updateLayanan', compact('acara'));
     }
 
     public function updatedAcara(Request $request, $slug)
     {
-        $acara = Acara::with('documentations')->where('slug', $slug)->firstOrFail();
-        
+        $acara = Acara::get()->where('slug', $slug)->firstOrFail();
+
         $input = $request->validate([
-            'nama_acara' => 'required',
-            'deskripsi_acara' => 'required',
-            'tipe_acara' => 'required',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'nama_acara' => 'required|string|max:255', // Menambahkan aturan string dan batasan karakter
+            'deskripsi_acara' => 'required|string', // Menambahkan aturan string
+            'tipe_acara' => 'required|string', // Menambahkan aturan string
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validasi untuk foto
+        ], [
+            'nama_acara.required' => 'Kolom Nama Acara harus diisi.',
+            'deskripsi_acara.required' => 'Kolom Deskripsi Acara harus diisi.',
+            'tipe_acara.required' => 'Kolom Tipe Acara harus diisi.',
+            'foto.image' => 'Kolom Foto harus berupa gambar.',
+            'foto.mimes' => 'Kolom Foto harus dalam format: jpeg, png, jpg, gif, svg.',
+            'foto.max' => 'Ukuran file Foto tidak boleh lebih dari :max kilobyte.',
         ]);
         // dd($request->all());
 
         // try {
-            DB::beginTransaction();
-            $foto= str_replace([' ', '.'], '-', $input['nama_acara']);
-
+        DB::beginTransaction();
+        $foto = str_replace([' ', '.'], '-', $input['nama_acara']);
 
         if ($request->hasFile('foto')) {
             if ($acara->path) {
@@ -95,33 +120,19 @@ class AcaraController extends Controller
             $filePath = $file->storeAs('acara', $fileName, 'public');
 
             $input['path'] = $filePath;
-            
         }
-            // Update acara
-            $acara->update($input);
-            DB::commit();
-            return redirect()->route('admin.acara')->with('success', 'Acara dan dokumentasi berhasil diubah!');
-        // } catch (\Throwable $th) {
-        //     DB::rollBack();
-        //     Log::error('Gagal melakukan update acara: ' . $th->getMessage());
-        //     return back()->with('error', 'Gagal melakukan update acara!');
-        // }
-
-       
+        // Update acara
+        $acara->update($input);
+        DB::commit();
+        return redirect()->route('admin.acara')->with('success', 'Layanan berhasil diperbarui!');
     }
 
     public function deleteAcara($slug)
     {
-        $acara = Acara::with('documentations')->where('slug', $slug)->firstOrFail();
+        $acara = Acara::where('slug', $slug)->firstOrFail();
 
         try {
             DB::beginTransaction();
-
-            // Hapus dokumentasi
-            foreach ($acara->documentations as $dokumentasi) {
-                Storage::delete('dokumentasi/' . $dokumentasi->nama_dokumentasi);
-                $dokumentasi->delete();
-            }
 
             // Hapus acara
             $acara->delete();
@@ -133,6 +144,6 @@ class AcaraController extends Controller
             return back()->with('error', 'Gagal menghapus acara!');
         }
 
-        return redirect()->route('admin.acara')->with('success', 'Acara dan dokumentasi berhasil dihapus');
+        return redirect()->route('admin.acara')->with('success', 'Layanan berhasil dihapus!');
     }
 }

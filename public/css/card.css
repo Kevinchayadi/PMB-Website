@@ -7,8 +7,9 @@ a .nav-link:hover {
     text-decoration-color: #F6AF00 !important;
 }
 
+/* 
 @media screen and (max-width: 600px) {
     .nav {
         justify-content: center;
     }
-}
+} */

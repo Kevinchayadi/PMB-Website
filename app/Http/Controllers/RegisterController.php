@@ -42,37 +42,40 @@ class RegisterController extends Controller
 
     public function umatRegister(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         // Validasi data input dari form
         $request->validate([
             'nama_umat' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email_umat' => 'required|string|email|max:255|unique:umats,email_umat',
             'password' => 'required|string|min:8|confirmed',
+            'ttl_umat' => 'nullable|date',
             'wilayah' => 'required|string|max:255',
             'lingkungan' => 'required|string|max:255',
-            'nomohp_umat' => 'required|string|max:15',
+            'nomorhp_umat' => 'required|string|max:15',
             'alamat' => 'required|string|max:255',
             'status' => 'required|string',
-            'pekerjaan' => 'required|string|max:255',
+            'Pekerjaan' => 'required|string|max:255',
         ]);
 
         // Membuat user baru dan menyimpan ke database
+        // dd($request->email_umat);
         $umat = Umat::create([
             'nama_umat' => $request->nama_umat,
-            'email' => $request->email,
+            'email_umat' => $request->email_umat,
             'password' => Hash::make($request->password), // Enkripsi password
+            'ttl_umat' => $request->ttl_umat,
             'wilayah' => $request->wilayah,
             'lingkungan' => $request->lingkungan,
-            'nomohp_umat' => $request->nomohp_umat,
+            'nomorhp_umat' => $request->nomorhp_umat,
             'alamat' => $request->alamat,
             'status' => $request->status,
-            'pekerjaan' => $request->pekerjaan,
+            'Pekerjaan' => $request->Pekerjaan,
         ]);
 
         // Login otomatis setelah registrasi berhasil
         Auth::guard('web')->login($umat);
 
         // Redirect ke halaman home atau dashboard setelah login berhasil
-        return redirect()->route('home')->with('success', 'Registrasi berhasil! Anda telah login.');
+        return redirect()->route('home')->with('success', 'Registrasi berhasil! Anda telah masuk.');
     }
 }

@@ -34,13 +34,12 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 Route::redirect('/', 'home');
 Route::get('/home', [LandingController::class, 'home'])->name('home');
-Route::get('/dashboard', [LandingController::class, 'Dashboard'])->name('dashboard');
-Route::get('/profile/visiMisi', [ProfileController::class, 'visiMisi'])->name('visiMisi');
-Route::get('/profile/sejarah', [ProfileController::class, 'sejarah'])->name('sejarah');
-Route::get('/profile/doa', [ProfileController::class, 'doa'])->name('doa');
-Route::get('/profile/fasilitas', [ProfileController::class, 'fasilitas'])->name('fasilitas');
-Route::get('/profile/pastor', [ProfileController::class, 'pastor'])->name('pastor');
-Route::get('/profile/kegiatan', [ProfileController::class, 'kegiatan'])->name('kegiatan');
+Route::get('/histori', [LandingController::class, 'history'])->name('histori')->middleware('auth');
+Route::get('/profil/sejarahVisiMisi', [ProfileController::class, 'visiMisi'])->name('visiMisi');
+Route::get('/profil/doa', [ProfileController::class, 'doa'])->name('doa');
+Route::get('/profil/fasilitas', [ProfileController::class, 'fasilitas'])->name('fasilitas');
+Route::get('/profil/pastor', [ProfileController::class, 'pastor'])->name('pastor');
+Route::get('/profil/kegiatan', [ProfileController::class, 'Kegiatan'])->name('kegiatan');
 Route::get('/jadwal', [LandingController::class, 'jadwal'])->name('jadwal');
 Route::get('/jadwal/{slug}', [LandingController::class, 'jadwalDetail'])->name('jadwal.detail');
 Route::get('/artikel', [LandingController::class, 'artikel'])->name('artikel');
@@ -48,11 +47,13 @@ Route::get('/artikel/{slug}', [LandingController::class, 'artikeldetail'])->name
 Route::get('/layanan', [LandingController::class, 'layanan'])->name('layanan');
 Route::post('/request', [RequestController::class, 'storeRequest'])->name('request');
 Route::get('/hubungi', [hubungiController::class, 'hubungi'])->name('hubungi');
+Route::put('/updateProfile/{slug}', [LandingController::class, 'updateProfile'])->name('updateProfile');
 
 Route::middleware(['guest:web'])->group(function () {
     Route::get('/login', [LoginController::class, 'umatIndex'])->name('umat.login');
     Route::post('/login', [LoginController::class, 'umatLogin'])->name('umat.login');
     Route::get('/register', [RegisterController::class, 'umatIndex'])->name('umat.register');
+    Route::post('/register', [RegisterController::class, 'umatRegister'])->name('umat.register');
 });
 
 Route::prefix('admin')
@@ -119,41 +120,6 @@ Route::prefix('admin')
         Route::delete('/deleteEvent/{id}', [TransaksiController::class, 'deleteTransaction'])->name('admin.delete.transaksi');
         Route::get('/selesaiEvent/{id}', [TransaksiController::class, 'moveTransaction'])->name('admin.selesai.transaksi');
 
-
-
-
-        // Route::get('/add-misa', [TransaksiController::class,'addMisa'])->name('admin.Add.Misa');
-        // Route::get('/add-sakramen-baptis', [TransaksiController::class,'addSakramenBaptis'])->name('admin.Add.SakramenBaptis');
-        // Route::get('/add-sakramen-Tobat',[TransaksiController::class,'addSakramenTobat'])->name('admin.add.SakramenTobat');
-        // Route::get('/add-komuni-pertama',[TransaksiController::class,'addKomuniPertama'])->name('admin.add.KomuniPertama');
-        // Route::get('/add-krisma',[TransaksiController::class,'addKrisma'])->name('admin.add.Krisma');
-        // Route::get('/add-pernikahan',[TransaksiController::class,'addPernikahan'])->name('admin.add.Pernikahan');
-        // Route::get('/add-pengurapan-sakit',[TransaksiController::class,'addPengurapan'])->name('admin.add.Pengurapan');
-
-        // Route::post('/add-misa', [TransaksiController::class,'storeMisa'])->name('admin.store.Misa');
-        // Route::post('/add-sakramen-baptis', [TransaksiController::class,'storeSakramenBaptis'])->name('admin.store.SakramenBaptis');
-        // Route::post('/add-sakramen-Tobat',[TransaksiController::class,'storeSakramenTobat'])->name('admin.store.SakramenTobat');
-        // Route::post('/add-komuni-pertama',[TransaksiController::class,'storeKomuniPertama'])->name('admin.store.KomuniPertama');
-        // Route::post('/add-krisma',[TransaksiController::class,'storeKrisma'])->name('admin.store.Krisma');
-        // Route::post('/add-pernikahan',[TransaksiController::class,'storePernikahan'])->name('admin.store.Pernikahan');
-        // Route::post('/add-pengurapan-sakit',[TransaksiController::class,'storePengurapan'])->name('admin.store.Pengurapan');
-
-        // Route::get('/update-misa/{slug}', [TransaksiController::class,'updateMisa'])->name('admin.update.Misa');
-        // Route::get('/update-sakramen-baptis/{slug}', [TransaksiController::class,'updateSakramenBaptis'])->name('admin.update.SakramenBaptis');
-        // Route::get('/update-sakramen-Tobat/{slug}', [TransaksiController::class,'updateSakramenTobat'])->name('admin.update.SakramenTobat');
-        // Route::get('/update-komuni-pertama/{slug}', [TransaksiController::class,'updateKomuniPertama'])->name('admin.update.KomuniPertama');
-        // Route::get('/update-krisma/{slug}', [TransaksiController::class,'updateKrisma'])->name('admin.update.Krisma');
-        // Route::get('/update-pernikahan/{slug}', [TransaksiController::class,'updatePernikahan'])->name('admin.update.Pernikahan');
-        // Route::get('/update-pengurapan-sakit/{slug}', [TransaksiController::class,'updatePengurapan'])->name('admin.update.Pengurapan');
-
-        // Route::put('/update-misa/{slug}', [TransaksiController::class,'updatedMisa'])->name('admin.updated.Misa');
-        // Route::put('/update-sakramen-baptis/{slug}', [TransaksiController::class,'updatedSakramenBaptis'])->name('admin.updated.SakramenBaptis');
-        // Route::put('/update-sakramen-Tobat/{slug}', [TransaksiController::class,'updatedSakramenTobat'])->name('admin.updated.SakramenTobat');
-        // Route::put('/update-komuni-pertama/{slug}', [TransaksiController::class,'updatedKomuniPertama'])->name('admin.updated.KomuniPertama');
-        // Route::put('/update-krisma/{slug}', [TransaksiController::class,'updatedKrisma'])->name('admin.updated.Krisma');
-        // Route::put('/update-pernikahan/{slug}', [TransaksiController::class,'updatedPernikahan'])->name('admin.updated.Pernikahan');
-        // Route::put('/update-pengurapan-sakit/{slug}', [TransaksiController::class,'updatedPengurapan'])->name('admin.updated.Pengurapan');
-
         Route::get('/Request-Pending', [RequestController::class,'pendingListRequest'])->name('admin.request.pending');
         Route::put('/datacomplete/{id}', [RequestController::class,'acceptedRequest'])->name('admin.request.proccess');
         Route::get('/Request-Processed', [RequestController::class,'processListRequest'])->name('admin.update.Proccessed');
@@ -169,6 +135,12 @@ Route::prefix('admin')
         Route::get('export/request/{status}', [ExcelController::class, 'exportRequest'])->name('export.request');
         Route::get('logout', [LogoutController::class, 'adminLogout'])->name('admin.logout');
 
+
+        Route::get('/exportEventTemplate', [TransaksiController::class, 'exportTemplate'])->name('export.event.template');
+        Route::post('/ImportEvent', [TransaksiController::class, 'importEvent'])->name('admin.ImportEvent');
+        
+        Route::get('/exportRequestTemplate', [RequestController::class, 'exportTemplate'])->name('export.Request.template');
+        Route::post('/ImportRequest', [RequestController::class, 'importRequest'])->name('admin.ImportRequest');
     });
 
     // use Laravel\Socialite\Facades\Socialite;

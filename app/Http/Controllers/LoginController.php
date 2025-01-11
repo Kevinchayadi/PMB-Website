@@ -20,6 +20,9 @@ class LoginController extends Controller
         $credentials = $request->validate([
             'username' => ['required', 'string'],
             'password' => ['required', 'string', 'min:8'],
+        ], [
+            'password.required' => 'Kolom kata sandi harus diisi.',
+            'password.min' => 'Kolom kata sandi harus memiliki minimal :min karakter.',
         ]);
 
         if (
@@ -34,7 +37,7 @@ class LoginController extends Controller
             return redirect()->route('admin.dashboard');
         }
 
-        return back()->with('error', 'gagal login, tolong untuk dicek kembali email dan password!');
+        return back()->withErrors('Gagal masuk, mohon cek kembali alamat email dan kata sandi!');
     }
 
     function socialitePage()
@@ -44,9 +47,9 @@ class LoginController extends Controller
 
     public function googleLogin()
     {
+        $googleUser = Socialite::driver('google')->user();
         try {
             $googleUser = Socialite::driver('google')->user();
-            // dd();
     
             // Update or create user record based on google_id
             $user = Umat::updateOrCreate(
@@ -58,19 +61,18 @@ class LoginController extends Controller
                     'google_refresh_token' => $googleUser->refreshToken,
                 ]
             );
-    
+            
             // Login the user
             Auth::guard('web')->login($user);
     
             // Redirect to dashboard or other page
-            return redirect('/dashboard');
+            return redirect('/home');
             
         } catch (\Exception $e) {
             // Log exception or handle error gracefully
-            return redirect()->route('login')->with('error', 'There was an error during the login process.');
+            return redirect()->route('umat.login')->with('error', 'Terjadi kesalahan saat masuk');
         }
     }
-    
 
     function umatIndex()
     {
@@ -90,7 +92,6 @@ class LoginController extends Controller
         // Cek apakah pengguna ingin menggunakan fitur "Remember Me"
         $remember = $request->filled('remember');
         
-        // dd($remember);
         // Coba untuk login dengan kredensial yang telah divalidasi
         if (Auth::guard('web')->attempt($credentials, $remember)) {
             // Jika login berhasil, arahkan ke halaman dashboard
@@ -98,8 +99,6 @@ class LoginController extends Controller
         }
     
         // Jika login gagal, kembalikan dengan pesan error
-        return back()->withErrors([
-            'email_umat' => 'Gagal login, pastikan email dan password Anda benar.'
-        ]);
+        return back()->withErrors('Gagal masuk, pastikan alamat email dan kata sandi Anda benar.');
     }
 }

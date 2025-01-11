@@ -1,14 +1,15 @@
 <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+<link rel="stylesheet" href="{{ asset('css/image.css') }}">
 @extends('user.Layout.profileTemplate')
 @section('title', 'Doa')
 @section('content')
     <div class="row mx-auto mb-2">
-        @foreach ($doa as $doas)
+        @forelse ($doa as $doas)
             <div class="col-lg-6 col-12 p-2">
                 <div class="bg-primary rounded p-2 hvr-shrink" data-bs-toggle="modal"
                     data-bs-target="#{{ str_replace(' ', '-', $doas->nama_doa) }}">
-                    <img src="{{ $doas->path }}" alt="{{ str_replace(' ', '-', $doas->nama_doa) }}"
-                        class="img-fluid rounded">
+                    <img src="{{ asset('storage/' . $doas->path) }}" alt="{{ str_replace(' ', '-', $doas->nama_doa) }}"
+                        class="img-fluid custom-img rounded">
                     {{-- Doa --}}
                     <div class="fs-6">
                         <div class="w-50 mx-auto fw-bolder text-center text-white">{{ $doas->nama_doa }}</div>
@@ -44,6 +45,8 @@
                     </div>
                 </div>
             </div>
-        @endforeach
+        @empty
+            <div class="fs-5 text-center fw-bolder">Doa tidak ada</div>
+        @endforelse
     </div>
 @endsection

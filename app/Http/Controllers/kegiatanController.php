@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\Storage;
 class kegiatanController extends Controller
 {
     public function kegiatanIndex(){
-        $kegiatan = Kegiatan::all();
+        $kegiatan = Kegiatan::latest()
+        ->paginate(20)
+        ->withQueryString();;
         return view('admin.viewPage.landingpage.kegiatan.kegiatan', compact('kegiatan'));
     }
     public function addKegiatan(){
@@ -22,6 +24,17 @@ class kegiatanController extends Controller
             'location' => 'required|string|max:255',
             'date' => 'required|date',
             'foto' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ], [
+            'title.required' => 'Kolom Judul harus diisi.',
+            'title.max' => 'Judul tidak boleh lebih dari :max karakter.',
+            'description.required' => 'Kolom Deskripsi harus diisi.',
+            'location.required' => 'Kolom Lokasi harus diisi.',
+            'location.max' => 'Lokasi tidak boleh lebih dari :max karakter.',
+            'date.required' => 'Tanggal harus diisi.',
+            'date.date' => 'Format tanggal tidak valid.',
+            'foto.file' => 'Field foto harus berupa file.',
+            'foto.mimes' => 'File foto harus dalam format: jpeg, png, jpg, gif, svg.',
+            'foto.max' => 'Ukuran file foto tidak boleh lebih dari :max kilobyte.',
         ]);
         $foto = str_replace([' ', '.'], '-', $validated['title']);
         if ($request->hasFile('foto')) {
@@ -36,7 +49,7 @@ class kegiatanController extends Controller
         }
 
         Kegiatan::create($validated);
-        return redirect()->route('admin.kegiatan.index')->with('success', 'Kegiatan created successfully.');
+        return redirect()->route('admin.kegiatan.index')->with('success', 'Kegiatan berhasil ditambahkan!');
     }
     public function updateKegiatan($id){
         $kegiatan = Kegiatan::find($id);
@@ -49,6 +62,17 @@ class kegiatanController extends Controller
             'location' => 'required|string|max:255',
             'date' => 'required|date',
             'foto' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ], [
+            'title.required' => 'Kolom Judul harus diisi.',
+            'title.max' => 'Judul tidak boleh lebih dari :max karakter.',
+            'description.required' => 'Kolom Deskripsi harus diisi.',
+            'location.required' => 'Kolom Lokasi harus diisi.',
+            'location.max' => 'Lokasi tidak boleh lebih dari :max karakter.',
+            'date.required' => 'Tanggal harus diisi.',
+            'date.date' => 'Format tanggal tidak valid.',
+            'foto.file' => 'Field foto harus berupa file.',
+            'foto.mimes' => 'File foto harus dalam format: jpeg, png, jpg, gif, svg.',
+            'foto.max' => 'Ukuran file foto tidak boleh lebih dari :max kilobyte.',
         ]);
         // dd($validated);
         $kegiatan = Kegiatan::find($id);
@@ -66,13 +90,13 @@ class kegiatanController extends Controller
             $validated['path'] = $filePath;
         }
         $kegiatan->update($validated);
-        return redirect()->route('admin.kegiatan.index')->with('success', 'Kegiatan updated successfully.');
+        return redirect()->route('admin.kegiatan.index')->with('success', 'Kegiatan berhasil diperbarui!');
     }
     public function deleteKegiatan($id){
         $kegiatan = Kegiatan::find($id);
         $kegiatan->delete();
 
-        return redirect()->route('admin.kegiatan.index')->with('success', 'Kegiatan deleted successfully.');
+        return redirect()->route('admin.kegiatan.index')->with('success', 'Kegiatan berhasil dihapus!');
     }
 
 }

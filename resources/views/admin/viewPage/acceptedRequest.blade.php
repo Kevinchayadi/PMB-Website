@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="d-flex justify-content-start align-items-center mb-3 text-center">
-        <h1 class="mb-0 fw-bold  p-2 text-white bg-primary shadow rounded-end-2">Pending Request</h1>
+        <h1 class="mb-0 fw-bold  p-2 text-white bg-primary shadow rounded-end-2">Permintaan Yang Disetujui</h1>
     </div>
 
     <div class="px-4">
@@ -13,7 +13,7 @@
                 <input type="text" id="searchInput" class="form-control w-50" placeholder="Search Request..."
                     aria-label="Search Request">
                 <button class="btn btn-outline-primary ms-2" type="button">
-                    Search
+                    Cari
                 </button>
             </div>
         </div>
@@ -24,10 +24,10 @@
                 <thead class="table-primary">
                     <tr>
                         <th scope="col">No.</th>
-                        <th scope="col">Nama Request</th>
-                        <th scope="col">Tipe Request</th>
-                        <th scope="col">Tanggal Request</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">Nama Permintaan</th>
+                        <th scope="col">Tipe Permintaan</th>
+                        <th scope="col">Tanggal Permintaan</th>
+                        <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,9 +46,7 @@
                                 </form> --}}
 
                                 <!-- Button to trigger the detail modal -->
-                                <button 
-                                    class="btn btn-sm btn-outline-info" 
-                                    data-bs-toggle="modal" 
+                                <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal"
                                     data-bs-target="#detailModal{{ $data->id }}">
                                     Detail
                                 </button>
@@ -64,12 +62,16 @@
                         </tr>
 
                         <!-- Modal for Details -->
-                        <div class="modal fade" id="detailModal{{ $data->id }}" tabindex="-1" aria-labelledby="detailModalLabel{{ $data->id }}" aria-hidden="true">
+                        <div class="modal fade" id="detailModal{{ $data->id }}" tabindex="-1"
+                            aria-labelledby="detailModalLabel{{ $data->id }}" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="detailModalLabel{{ $data->id }}">Request Details</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <div class="modal-header bg-primary">
+                                        <h5 class="modal-title text-white" id="detailModalLabel{{ $data->id }}">Detail
+                                            Permintaan
+                                        </h5>
+                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
                                         <p><strong>Nama Terlibat Satu:</strong> {{ $data->nama_terlibat_satu }}</p>
@@ -84,14 +86,15 @@
                                             @method('PUT')
                                             <button type="submit" class="btn btn-sm btn-outline-success">Accept</button>
                                         </form> --}}
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
-                                    </div>
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Kembali</button>
                                 </div>
                             </div>
                         </div>
+        </div>
 
-                        <!-- Modal for Reject -->
-                        {{-- <div class="modal fade" id="rejectModal{{ $data->id }}" tabindex="-1" aria-labelledby="rejectModalLabel{{ $data->id }}" aria-hidden="true">
+        <!-- Modal for Reject -->
+        {{-- <div class="modal fade" id="rejectModal{{ $data->id }}" tabindex="-1" aria-labelledby="rejectModalLabel{{ $data->id }}" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -115,13 +118,58 @@
                                 </div>
                             </div>
                         </div> --}}
-                    @empty
-                        <tr>
-                            <td colspan="5">No data available.</td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
+    @empty
+        <tr>
+            <td colspan="5">Data permintaan tidak ada</td>
+        </tr>
+        @endforelse
+        </tbody>
+        </table>
+
+        @if ($requestList->total() > 0)
+            <div class="mt-1 text-center">
+                <small class="text-muted">
+                    Tampilkan {{ $requestList->firstItem() }} sampai {{ $requestList->lastItem() }} dari
+                    {{ $requestList->total() }} data
+                    permintaan
+                </small>
+            </div>
+            <nav class="mt-2">
+                <ul class="pagination justify-content-center mb-0" id="pagination">
+                    <!-- Previous Button -->
+                    @if ($requestList->onFirstPage())
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#">
+                                < </a>
+                        </li>
+                    @else
+                        <li class="page-item">
+                            <a class="page-link" href="{{ $requestList->previousPageUrl() }}">
+                                << /a>
+                        </li>
+                    @endif
+
+                    <!-- Page Numbers -->
+                    @for ($i = 1; $i <= $requestList->lastPage(); $i++)
+                        <li class="page-item {{ $requestList->currentPage() == $i ? 'active' : '' }}">
+                            <a class="page-link" href="{{ $requestList->url($i) }}">{{ $i }}</a>
+                        </li>
+                    @endfor
+
+                    <!-- Next Button -->
+                    @if ($requestList->hasMorePages())
+                        <li class="page-item">
+                            <a class="page-link" href="{{ $requestList->nextPageUrl() }}">></a>
+                        </li>
+                    @else
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#">></a>
+                        </li>
+                    @endif
+                </ul>
+            </nav>
+
+        @endif
+    </div>
     </div>
 @endsection

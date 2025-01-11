@@ -1,5 +1,5 @@
 @extends('admin.layout.template')
-@section('title', 'Admin - Form')
+@section('title', 'Form Tambah Acara Baru')
 
 @section('content')
     <style>
@@ -42,7 +42,7 @@
                 <div class="col-10 col-md-8">
                     <div class="card bg-primary shadow-lg rounded-4">
                         <div class="card-body text-white">
-                            <h2 class="card-title text-center mb-4 fw-bolder">Create New Event</h2>
+                            <h2 class="card-title text-center mb-4 fw-bolder">Tambah Acara Baru</h2>
 
                             <!-- Global Error Notification -->
                             @if ($errors->any())
@@ -68,7 +68,7 @@
                                         id="judul" name="judul" value="{{ old('judul') }}"
                                         placeholder="Masukkan Judul Acara" required>
                                     @error('judul')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -79,7 +79,7 @@
                                 <!-- Dropdown Romo -->
                                 <div class="mb-3">
                                     <label for="id_romo" class="form-label">Romo</label>
-                                    <select class="form-control @error('id_romo') is-invalid @enderror" id="id_romo"
+                                    <select class="form-select @error('id_romo') is-invalid @enderror" id="id_romo"
                                         name="id_romo" required>
                                         <option value="" disabled selected>Pilih Romo</option>
                                         @foreach ($romos as $romo)
@@ -89,7 +89,7 @@
                                         @endforeach
                                     </select>
                                     @error('id_romo')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -97,7 +97,7 @@
                                 <div class="mb-3">
                                     <label for="id_acara" class="form-label">Acara <span
                                             class="text-danger">*</span></label>
-                                    <select class="form-control @error('id_acara') is-invalid @enderror" id="id_acara"
+                                    <select class="form-select @error('id_acara') is-invalid @enderror" id="id_acara"
                                         name="id_acara" required>
                                         <option value="" disabled selected>Pilih Acara</option>
                                         @foreach ($acaras as $acara)
@@ -107,14 +107,14 @@
                                         @endforeach
                                     </select>
                                     @error('id_acara')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
                                 <!-- Dropdown Seksi -->
                                 <div class="mb-3">
                                     <label for="id_seksi" class="form-label">Seksi</label>
-                                    <select class="form-control select2 @error('id_seksi') is-invalid @enderror"
+                                    <select class="form-select select2 @error('id_seksi') is-invalid @enderror"
                                         id="id_seksi" name="id_seksi[]" multiple="multiple">
                                         @foreach ($seksis as $seksi)
                                             <option value="{{ $seksi->id }}"
@@ -124,14 +124,14 @@
                                         @endforeach
                                     </select>
                                     @error('id_seksi')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
                                 <!-- Dropdown Doa -->
                                 <div class="mb-3">
                                     <label for="id_doa" class="form-label">Doa <span class="text-danger">*</span></label>
-                                    <select class="form-control @error('id_doa') is-invalid @enderror" id="id_doa"
+                                    <select class="form-select @error('id_doa') is-invalid @enderror" id="id_doa"
                                         name="id_doa" required>
                                         <option value="" disabled selected>Pilih Doa</option>
                                         @foreach ($doas as $doa)
@@ -141,7 +141,7 @@
                                         @endforeach
                                     </select>
                                     @error('id_doa')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -155,7 +155,7 @@
                                         value="{{ old('jadwal_transaction', now()->addDay()->format('Y-m-d\TH:i')) }}"
                                         min="{{ now()->addDay()->format('Y-m-d\TH:i') }}" required>
                                     @error('jadwal_transaction')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -163,17 +163,17 @@
                                 <!-- Dropdown Umat -->
                                 <div class="mb-3">
                                     <label for="id_umat" class="form-label">Umat</label>
-                                    <select class="form-control select2 @error('id_umat') is-invalid @enderror"
+                                    <select class="form-select select2 @error('id_umat') is-invalid @enderror"
                                         id="id_umat" name="id_umat[]" multiple="multiple">
                                         @foreach ($umats as $umat)
                                             <option value="{{ $umat->id_umat }}"
                                                 {{ collect(old('id_umat'))->contains($umat->id_umat) ? 'selected' : '' }}>
                                                 {{ $umat->nama_umat }}
-                                            </option>
+                                            </option>x
                                         @endforeach
                                     </select>
                                     @error('id_umat')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -183,14 +183,14 @@
                                     <textarea class="form-control @error('deskripsi_transaksi') is-invalid @enderror" id="deskripsi_transaksi"
                                         name="deskripsi_transaksi" rows="4">{{ old('deskripsi_transaksi') }}</textarea>
                                     @error('deskripsi_transaksi')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
                                 <!-- Tombol Submit -->
                                 <div class="d-grid">
-                                    <button type="submit" class="btn btn-success">Submit</button>
-                                    <a class="btn btn-danger rounded-none mt-2" href="/admin/admin-list">Cancel</a>
+                                    <button type="submit" class="btn btn-success">Tambah Acara</button>
+                                    <a class="btn btn-danger rounded-none mt-2" href="/admin/admin-list">Batal</a>
                                 </div>
                             </form>
                             <!-- Form End -->
