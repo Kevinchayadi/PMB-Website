@@ -76,7 +76,7 @@
 
     <div class="rounded overflow-hidden shadow-sm mx-5">
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <form action="{{ route('admin.transaksi') }}" method="GET" class="d-flex">
+            <form action="{{ secure_url('/admin/scheduledEvent') }}" method="GET" class="d-flex">
                 <input type="text" id="searchInput" name="search" class="form-control me-2" value="{{ request('search') }}"
                     placeholder="Search...">
                 <button type="submit" class="btn btn-outline-primary">Cari</button>

@@ -12,7 +12,7 @@
     <div class="rounded overflow-hidden shadow-sm mx-5">
         {{-- @if ($event->count() > 0) --}}
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <form action="{{ route('admin.transaksiSelsai') }}" method="GET" class="d-flex">
+            <form action="{{ secure_url('/admin/passEvent') }}" method="GET" class="d-flex">
                 <input type="text" id="searchInput" name="search" class="form-control me-2" value="{{ request('search') }}"
                     placeholder="Search...">
                 <button type="submit" class="btn btn-outline-primary">Cari</button>
