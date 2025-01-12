@@ -9,6 +9,7 @@
             <h1 class="fw-bold fs-4">Acara Yang Akan Datang</h1>
         </div>
         <div class="px-4 py-2 my-3 mx-1 card-3d">
+            
             <h2>Nama Acara</h2>
             <div class="d-flex justify-content-between">
                 <p>Deskripsi Acara</p>

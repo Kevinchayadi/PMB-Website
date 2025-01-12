@@ -224,6 +224,7 @@ public function cancelRequest($id)
 
     public function pendingListRequest(Request $request)
     {
+        // dd($request);
         $search = $request->input('search');
         $requestList = $this->getRequestList('pending', $search);
         return view('admin.viewPage.pendingRequest', ['requestList' => $requestList, 'search' => $search]);

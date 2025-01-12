@@ -21,28 +21,51 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class TransaksiController extends Controller
 {
-    public function index()
-    {
-        $jadwal_acara = TransactionHeader::with([
-            'romo',
-            'seksis',
-            'doa',
-            'transactionDetails' => function ($query) {
-                $query->with('umats', 'acara', 'admin');
-            },
-        ])
-            ->where('status', 'coming')
-            ->latest()
-            ->paginate(20)
-            ->withQueryString();
-        // $jadwal_acara = TransactionHeader::with('romo', 'seksis', 'doa')->where('status', 'coming')->get();
-        // dd($jadwal_acara->map(function ($transactionHeader) {
-        //     return $transactionHeader->transactionDetails->acara->nama_acara;
-        // }));
+    public function index(Request $request)
+{
+    // Validate the search input
+    $search = $request->validate([
+        'search' => 'nullable|string|max:255'
+    ])['search'] ?? null;
+    // dd($request);
 
-        // dd($jadwal_acara->all());
-        return view('admin.viewPage.eventList', ['event' => $jadwal_acara]);
-    }
+    // Fetch records with optional search filtering
+    $jadwal_acara = TransactionHeader::with([
+        'romo',
+        'seksis',
+        'doa',
+        'transactionDetails' => function ($query) {
+            $query->with('umats', 'acara', 'admin');
+        },
+    ])
+        ->when($search, function ($query, $search) {
+            $query->where('judul', 'like', '%' . $search . '%') // Replace 'name' with the relevant column
+                ->orWhereHas('romo', function ($query) use ($search) {
+                    $query->where('nama_romo', 'like', '%' . $search . '%'); // Adjust column name if needed
+                })
+                ->orWhereHas('transactionDetails', function ($query) use ($search) {
+                    $query->whereHas('umats', function ($subQuery) use ($search) {
+                        $subQuery->where('nama_umat', 'like', '%' . $search . '%'); // Adjust column name if needed
+                    });
+                })
+                ->orWhereHas('transactionDetails', function ($query) use ($search) {
+                    $query->whereHas('acara', function ($subQuery) use ($search) {
+                        $subQuery->where('nama_acara', 'like', '%' . $search . '%'); // Adjust column name if needed
+                    });
+                });
+        })
+        ->where('status', 'coming')
+        ->latest()
+        ->paginate(20)
+        ->withQueryString();
+
+    // Pass the search query back to the view for persistence in the UI
+    return view('admin.viewPage.eventList', [
+        'event' => $jadwal_acara,
+        'search' => $search
+    ]);
+}
+
 
     public function getdata($id)
     {
@@ -86,8 +109,11 @@ class TransaksiController extends Controller
         return back()->with('success', "Umat berhasil diambil dari request data!");
     }
 
-    public function index2()
+    public function index2(Request $request)
     {
+        $search = $request->validate([
+            'search' => 'nullable|string|max:255'
+        ])['search'] ?? null;
         $jadwal_acara = TransactionHeader::with([
             'romo',
             'seksis',
@@ -96,6 +122,22 @@ class TransaksiController extends Controller
                 $query->with('umats', 'acara', 'admin');
             },
         ])
+        ->when($search, function ($query, $search) {
+            $query->where('judul', 'like', '%' . $search . '%') // Replace 'name' with the relevant column
+                ->orWhereHas('romo', function ($query) use ($search) {
+                    $query->where('nama_romo', 'like', '%' . $search . '%'); // Adjust column name if needed
+                })
+                ->orWhereHas('transactionDetails', function ($query) use ($search) {
+                    $query->whereHas('umats', function ($subQuery) use ($search) {
+                        $subQuery->where('nama_umat', 'like', '%' . $search . '%'); // Adjust column name if needed
+                    });
+                })
+                ->orWhereHas('transactionDetails', function ($query) use ($search) {
+                    $query->whereHas('acara', function ($subQuery) use ($search) {
+                        $subQuery->where('nama_acara', 'like', '%' . $search . '%'); // Adjust column name if needed
+                    });
+                });
+        })
             ->where('status', 'passed')
             ->latest()
             ->paginate(20)

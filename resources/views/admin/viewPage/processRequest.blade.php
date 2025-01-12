@@ -7,16 +7,14 @@
     </div>
 
     <div class="px-4">
-        <!-- Pagination and Search -->
-        <div class="d-flex justify-content-between align-items-center mb-4 p-3 bg-light rounded shadow-sm">
-            <div class="d-flex align-items-center">
-                <input type="text" id="searchInput" class="form-control w-50" placeholder="Search Request..."
-                    aria-label="Search Request">
-                <button class="btn btn-outline-primary ms-2" type="button">
-                    Cari
-                </button>
-            </div>
-        </div>
+    
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <form action="{{ route('admin.update.Proccessed') }}" method="GET" class="d-flex">
+            <input type="text" id="searchInput" name="search" class="form-control me-2" value="{{ request('search') }}"
+                placeholder="Search...">
+            <button type="submit" class="btn btn-outline-primary">Cari</button>
+        </form>
+    </div>
 
         <!-- Table -->
         <div class="rounded overflow-hidden shadow-sm">
