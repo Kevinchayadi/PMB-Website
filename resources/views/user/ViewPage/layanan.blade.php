@@ -71,8 +71,10 @@
                                     <input type="text" class="form-control" id="nama_acara" name="nama_acara"
                                         placeholder="Contoh: John Smith" value="{{ $layanans->nama_acara }}" hidden>
 
-                                    <input type="text" class="form-control @error('nama_acara') is-invalid @enderror"
-                                        id="id_umat"name="id_umat" value="{{ Auth::user()->id_umat }}" hidden>
+                                    @if (!(Auth::user()->id_umat === null))
+                                        <input type="text" class="form-control @error('nama_acara') is-invalid @enderror"
+                                            id="id_umat"name="id_umat" value="{{ Auth::user()->id_umat }}" hidden>
+                                    @endif
 
                                     <div class="mb-3">
                                         <label for="nama_terlibat_satu" class="form-label">Nama Terlibat 1</label>
