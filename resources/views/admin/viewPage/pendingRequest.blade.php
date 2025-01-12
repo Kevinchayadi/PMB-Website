@@ -32,7 +32,7 @@
                 </div>
                 <div class="modal-body">
                     <!-- Form untuk Upload -->
-                    <form action="{{ route('admin.ImportRequest') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ secure_url('/admin/ImportRequest') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="btn btn-outline-primary upload-area w-100 p-5 mb-3"
                             style="border: 2px dashed !important">

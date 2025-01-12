@@ -37,7 +37,7 @@
                         </button>
                         </td>
                     </tr>
-                    //modal detail
+                    {{-- //modal detail --}}
                     <div class="modal fade" id="detailModal{{ $data->id_transaction }}" tabindex="-1"
                         aria-labelledby="detailModalLabel{{ $data->id_transaction }}" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
@@ -54,6 +54,7 @@
                                     <p><strong>Acara:</strong> {{ $data->transactionDetails->acara->nama_acara }}</p>
                                     <p><strong>Doa</strong> {{ $data->doa->nama_doa }}</p>
                                     <p><strong>jadwal Transaksi</strong> {{ $data->jadwal_transaction }}</p>
+                                    <p><strong>Pendapatan Acara</strong> Rp. {{ $data->transactionDetails->pendapatan??0.00 }}</p>
                                     <p><strong>Deskripsi:</strong> {{ $data->transactionDetails->deskripsi_transaksi }}</p>
                                 </div>
                                 <div class="modal-footer">

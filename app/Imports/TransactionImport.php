@@ -32,6 +32,8 @@ class TransactionImport implements ToCollection, WithHeadingRow
         $collection = $collection->slice(1);
         foreach ($collection as $row) {
             // dd($collection);
+            // dd((string)$row['id_umat']);
+
             $row['id_umat'] = isset($row['id_umat']) ? strval($row['id_umat']) : '';
             
             if (isset($row['jadwal_transaction']) && is_numeric($row['jadwal_transaction'])) {
@@ -39,6 +41,7 @@ class TransactionImport implements ToCollection, WithHeadingRow
                 $tanggal = Carbon::createFromFormat('Y-m-d', '1900-01-01')
                 ->addDays($row['jadwal_transaction'] - 2) // Kurangi 2 karena Excel menggunakan 1 Januari 1900 sebagai hari pertama
                 ->format('Y-m-d');
+                $row['jadwal_transaction']=$tanggal;
                 // dd($collection);
                 $jam_transaction = $row['jam_transaction']; // Formatkan menjadi string tanggal dengan jam dan menit
                 $jamphp= ($jam_transaction * 24 * 60 * 60)-(7*60*60);
@@ -57,7 +60,7 @@ class TransactionImport implements ToCollection, WithHeadingRow
             $validator = Validator::make($row->toArray(), [
                 'judul' => 'required|string|max:255',
                 'id_romo' => 'required|exists:romos,id_romo',
-                'id_seksi' => 'nullable|string',
+                // 'id_seksi' => 'nullable|string',
                 'id_acara' => 'required|exists:acaras,id_acara',
                 'id_doa' => 'required|exists:doas,id_doa',
                 'id_umat' => 'nullable|string', // id_umat akan diproses sebagai string yang berisi banyak ID
@@ -74,7 +77,7 @@ class TransactionImport implements ToCollection, WithHeadingRow
                     'id_seksi' => $row['id_seksi'],
                     'id_acara' => $row['id_acara'] + 230,
                     'id_doa' => $row['id_doa'] + 700,
-                    'id_umat' => $row['id_umat'] + 1000,
+                    'id_umat' => $row['id_umat'] ,
                     'jadwal_transaction' => $row['jadwal_transaction'],
                     'jam_transaction' => $row['jam_transaction'],
                     'deskripsi_transaksi' => $row['deskripsi_transaksi'] ?? null,
@@ -84,10 +87,22 @@ class TransactionImport implements ToCollection, WithHeadingRow
             $hasError = false;
             if (isset($row['id_umat'])) {
                 $idUmatArray = preg_split('/[,;]\s*/', $row['id_umat']);
-                $idUmatArray = array_map(function ($id) {
-                    return $id - 1000;
-                }, $idUmatArray); //
+                $idUmatArray = array_filter($idUmatArray, function ($id) {
+                    return !empty($id);  // Hanya simpan yang tidak kosong
+                });
+                // dd($idUmatArray);
+                try {
+                    $idUmatArray = array_map(function ($id) {
+                        return $id - 1000;
+                    }, $idUmatArray);
+                } catch (\Throwable $th) {
+                    dd('test');
+                    $hasError = true;
+                    break;
+                }
+                //
                 foreach ($idUmatArray as $idUmat) {
+                    // dd(!Umat::where('id_umat', $idUmat)->exists());
                     // dd(!Umat::where('id_umat', $idUmat)->exists());
                     // Validasi jika ID Umat tidak ada dalam tabel 'umats'
                     if (!Umat::where('id_umat', $idUmat)->exists()) {
@@ -98,7 +113,7 @@ class TransactionImport implements ToCollection, WithHeadingRow
                             'id_seksi' => $row['id_seksi'],
                             'id_acara' => $row['id_acara'] + 230,
                             'id_doa' => $row['id_doa'] + 700,
-                            'id_umat' => $row['id_umat'] + 1000,
+                            'id_umat' => $row['id_umat'] ,
                             'jadwal_transaction' => $row['jadwal_transaction'],
                             'jam_transaction' => $row['jam_transaction'],
                             
@@ -110,32 +125,44 @@ class TransactionImport implements ToCollection, WithHeadingRow
                 }
             }
 
-            if (isset($row['id_seksi'])) {
-                $idSeksiArray = preg_split('/[,;]\s*/', $row['id_seksi']); // Pisahkan berdasarkan , atau
-                $idSeksiArray = array_map(function ($id) {
-                    return $id - 540;
-                }, $idSeksiArray);
-                foreach ($idSeksiArray as $idSeksi) {
-                    // Validasi jika ID Umat tidak ada dalam tabel 'umats'
-                    if (!Seksi::where('id_seksi', $idSeksi)->exists()) {
-                        $this->failedRows[] = [
-                            'status' => 'Id seksi yang dipilih Tidak Valid',
-                            'judul' => $row['judul'],
-                            'id_romo' => $row['id_romo'] + 100,
-                            'id_seksi' => $row['id_seksi'],
-                            'id_acara' => $row['id_acara'] + 230,
-                            'id_doa' => $row['id_doa'] + 700,
-                            'id_umat' => $row['id_umat'] + 1000,
-                            'jadwal_transaction' => $row['jadwal_transaction'],
-                            'jam_transaction' => $row['jam_transaction'],
-                            'deskripsi_transaksi' => $row['deskripsi_transaksi'] ?? null,
-                        ];
-                        $hasError = true; // Set flag ke true jika ada kesalahan
-                        break; // Jika ada ID Umat yang tidak valid, lanjutkan ke baris berikutnya
-                    }
-                }
-            }
+            // if (isset($row['id_seksi'])) {
+            //     $idSeksiArray = preg_split('/[,;]\s*/', $row['id_seksi']); // Pisahkan berdasarkan , atau
+            //     $idSeksiArray = array_map(function ($id) {
+            //         return $id - 540;
+            //     }, $idSeksiArray);
+            //     foreach ($idSeksiArray as $idSeksi) {
+            //         // Validasi jika ID Umat tidak ada dalam tabel 'umats'
+            //         if (!Seksi::where('id_seksi', $idSeksi)->exists()) {
+            //             $this->failedRows[] = [
+            //                 'status' => 'Id seksi yang dipilih Tidak Valid',
+            //                 'judul' => $row['judul'],
+            //                 'id_romo' => $row['id_romo'] + 100,
+            //                 'id_seksi' => $row['id_seksi'],
+            //                 'id_acara' => $row['id_acara'] + 230,
+            //                 'id_doa' => $row['id_doa'] + 700,
+            //                 'id_umat' => $row['id_umat'] ,
+            //                 'jadwal_transaction' => $row['jadwal_transaction'],
+            //                 'jam_transaction' => $row['jam_transaction'],
+            //                 'deskripsi_transaksi' => $row['deskripsi_transaksi'] ?? null,
+            //             ];
+            //             $hasError = true; // Set flag ke true jika ada kesalahan
+            //             break; // Jika ada ID Umat yang tidak valid, lanjutkan ke baris berikutnya
+            //         }
+            //     }
+            // }
             if ($hasError) {
+                // $this->failedRows[] = [
+                //     'status' => "Format id umat tidak sesuai dengan format yang ditentukan!!",
+                //     'judul' => $row['judul'],
+                //     'id_romo' => $row['id_romo'] + 100,
+                //     'id_seksi' => $row['id_seksi'],
+                //     'id_acara' => $row['id_acara'] + 230,
+                //     'id_doa' => $row['id_doa'] + 700,
+                //     'id_umat' => $row['id_umat'] ,
+                //     'jadwal_transaction' => $row['jadwal_transaction'],
+                //     'jam_transaction' => $row['jam_transaction'],
+                //     'deskripsi_transaksi' => $row['deskripsi_transaksi'] ?? null,
+                // ];
                 continue;
             }
 
@@ -175,7 +202,7 @@ class TransactionImport implements ToCollection, WithHeadingRow
                     'id_seksi' => $row['id_seksi'],
                     'id_acara' => $row['id_acara'] + 230,
                     'id_doa' => $row['id_doa'] + 700,
-                    'id_umat' => $row['id_umat'] + 1000,
+                    'id_umat' => $row['id_umat'] ,
                     'jadwal_transaction' => $row['jadwal_transaction'],
                     'jam_transaction' => $row['jam_transaction'],
                     'deskripsi_transaksi' => $row['deskripsi_transaksi'] ?? null,
@@ -200,7 +227,7 @@ class TransactionImport implements ToCollection, WithHeadingRow
                         'id_seksi' => $row['id_seksi'],
                         'id_acara' => $row['id_acara'] + 230,
                         'id_doa' => $row['id_doa'] + 700,
-                        'id_umat' => $row['id_umat'] + 1000,
+                        'id_umat' => $row['id_umat'] ,
                         'jadwal_transaction' => $row['jadwal_transaction'],
                         'jam_transaction' => $row['jam_transaction'],
                         'deskripsi_transaksi' => $row['deskripsi_transaksi'] ?? null,
@@ -225,7 +252,7 @@ class TransactionImport implements ToCollection, WithHeadingRow
                         'id_seksi' => $row['id_seksi'],
                         'id_acara' => $row['id_acara'] + 230,
                         'id_doa' => $row['id_doa'] + 700,
-                        'id_umat' => $row['id_umat'] + 1000,
+                        'id_umat' => $row['id_umat'] ,
                         'jadwal_transaction' => $row['jadwal_transaction'],
                         'jam_transaction' => $row['jam_transaction'],
                         'deskripsi_transaksi' => $row['deskripsi_transaksi'] ?? null,
@@ -265,7 +292,7 @@ class TransactionImport implements ToCollection, WithHeadingRow
                     'id_seksi' => $row['id_seksi'],
                     'id_acara' => $row['id_acara'] + 230,
                     'id_doa' => $row['id_doa'] + 700,
-                    'id_umat' => $row['id_umat'] + 1000,
+                    'id_umat' => $row['id_umat'] ,
                     'jadwal_transaction' => $row['jadwal_transaction'],
                     'jam_transaction' => $row['jam_transaction'],
                     'deskripsi_transaksi' => $row['deskripsi_transaksi'] ?? null,

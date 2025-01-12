@@ -48,29 +48,31 @@ class TransaksiController extends Controller
     {
         // Ambil jadwal berdasarkan id_transaction
         $jadwal = TransactionDetail::where('id_transaction', $id)->first();
-    
+        
         if (!$jadwal) {
             return back()->with('error', "Jadwal tidak ditemukan.");
         }
-    
+        
         // Ambil acara yang sesuai
         $acara = Acara::find($jadwal->id_acara);
         
         if (!$acara) {
             return back()->with('error', "Acara tidak ditemukan.");
         }
-    
+        
         // Ambil id_umat dari ModelsRequest berdasarkan nama acara dan status
         $getUmat = ModelsRequest::where('nama_acara', 'like', '%' . $acara->nama_acara . '%')
-                                 ->where('status', 'process')
-                                 ->pluck('id_umat')
-                                 ->toArray();
-    
+        ->whereIn('status',  ['process', 'pending'])
+        // ->get();
+        ->pluck('id_umat')
+        ->toArray();
+        
+        // dd($getUmat);
         // Jika tidak kosong, kita akan periksa dan tambahkan ke tabel pivot
         if (!empty($getUmat)) {
             foreach ($getUmat as $idUmat) {
                 // Periksa apakah id_umat sudah ada di pivot
-                if (!$jadwal->umats()->where('id_umat', $idUmat)->exists()) {
+                if (!$jadwal->umats()->where('relation_transaction_umats.id_umat', $idUmat)->exists()) {
                     // Jika belum ada, tambahkan ke pivot
                     $jadwal->umats()->attach($idUmat);
                 }
@@ -405,8 +407,20 @@ class TransaksiController extends Controller
         $transaction->forceDelete();
         return redirect()->route('admin.transaksi')->with('success', 'Transaksi berhasil di Delete!');
     }
+
+    // public function getUmats($id)
+    // {
+    //     $transaction = TransactionHeader::with('transactiondetails')->where('status', 'coming')->find($id);
+    //     $getAcara = Acara::where('id_acara',$transaction->transactionDetails->id_acara)->first();
+    //     $getUmat = ModelsRequest::where('nama_acara','like','%'.$getAcara->nama_acara.'%')->pluck('id_umat')->toArray();
+
+
+        
+    //     return redirect()->route('admin.transaksi')->with('success', 'Transaksi berhasil di Delete!');
+    // }
     public function moveTransaction($id, Request $request)
 {
+    // dd($id);
     // Validate the incoming request
     $request->validate([
         'pendapatan' => "nullable|integer",  // Correct field name and validation rule

@@ -121,7 +121,8 @@ Route::prefix('admin')
         Route::get('/updateEvent/{id}', [TransaksiController::class, 'updateTransaction'])->name('admin.update.transaksi');
         Route::put('/updateEvent/{id}', [TransaksiController::class, 'updatedTransaction'])->name('admin.updateTransaction');
         Route::delete('/deleteEvent/{id}', [TransaksiController::class, 'deleteTransaction'])->name('admin.delete.transaksi');
-        Route::get('/selesaiEvent/{id}', [TransaksiController::class, 'moveTransaction'])->name('admin.selesai.transaksi');
+        Route::post('/selesaiEvent/{id}', [TransaksiController::class, 'moveTransaction'])->name('admin.selesai.transaksi');
+        Route::get('/getdata/{id}', [TransaksiController::class, 'getdata'])->name('admin.selesai.transaksi');
 
         Route::get('/Request-Pending', [RequestController::class,'pendingListRequest'])->name('admin.request.pending');
         Route::put('/datacomplete/{id}', [RequestController::class,'acceptedRequest'])->name('admin.request.proccess');

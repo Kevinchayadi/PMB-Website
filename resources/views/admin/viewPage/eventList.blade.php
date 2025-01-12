@@ -39,7 +39,7 @@
                 </div>
                 <div class="modal-body">
                     <!-- Form untuk Upload -->
-                    <form action="{{ route('admin.ImportEvent') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ secure_url('/admin/ImportEvent') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="btn btn-outline-primary upload-area w-100 p-5 mb-3"
                             style="border: 2px dashed !important">
@@ -99,9 +99,16 @@
                             <!-- Update Button -->
                             <a href="/admin/updateEvent/{{ $data->id_transaction }}"
                                 class="btn btn-sm btn-outline-primary">Perbarui</a>
-                            <a href="/admin/selesaiEvent/{{ $data->id_transaction }}"
+                            <a href="/admin/getdata/{{ $data->id_transaction }}"
+                                onclick="return confirm('Apakah Anda yakin mengambil semua permintaan umat yang sedang pending ataupun process?');"
+                                class="btn btn-sm btn-outline-success">Permintaan</a>
+                            {{-- <a href="/admin/selesaiEvent/{{ $data->id_transaction }}"
                                 onclick="return confirm('Apakah Anda yakin ingin menyelesaikan event ini?');"
-                                class="btn btn-sm btn-outline-success">Selesai</a>
+                                class="btn btn-sm btn-outline-success">Selesai</a> --}}
+                                <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal"
+                            data-bs-target="#detailModal{{ $data->id_transaction }}">
+                            Selesai
+                        </button>
 
                             <!-- Delete Button with confirmation -->
                             <form action="{{ route('admin.delete.transaksi', $data->id_transaction) }}" method="POST"
@@ -117,6 +124,50 @@
                             <!-- Selesai Button -->
                         </td>
                     </tr>
+                    <div class="modal fade" id="detailModal{{ $data->id_transaction }}" tabindex="-1"
+                        aria-labelledby="detailModalLabel{{ $data->id_transaction }}" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content p-3">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="detailModalLabel{{ $data->id_transaction }}">Detail Acara
+                                    </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <form action="/admin/selesaiEvent/{{ $data->id_transaction }}" method="POST"
+                                    class="d-inline">
+                                    @csrf
+                                    <div class="m-3 p-3">
+                                        <label for="pendapatan" class="form-label">Pendapatan Acara ini (isi dengan 0 jika tidak ada!)</label>
+                                        <input type="integer"
+                                            class="form-control @error('pendapatan') is-invalid @enderror"
+                                            id="pendapatan" name="pendapatan"
+                                            placeholder="" required>
+                                        @error('pendapatan')
+                                            <div class="invalid-feedback text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="m-2 d-flex justify-content-end">
+                                        <button type="submit" class="btn mx-1 btn-outline-success"
+                                           >
+                                            submit
+                                        </button>
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Kembali</button>
+                                    </div>
+                                </form>
+                                <div class="modal-footer">
+                                    {{-- <form method="POST" action="{{ route('admin.request.proccess', $data->id_transaction) }}"
+                                        class="d-inline">
+                                        @csrf
+                                        @method('PUT')
+                                        <button type="submit" class="btn btn-sm btn-outline-success">Terima</button>
+                                    </form> --}}
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 @empty
                     <tr>
                         <td colspan="5">Data acara tidak ada</td>
