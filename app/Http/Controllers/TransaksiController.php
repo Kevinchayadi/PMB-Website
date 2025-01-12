@@ -514,11 +514,11 @@ class TransaksiController extends Controller
                 return Excel::download(new errorTransaction(), 'transaction_error.xlsx');
             } else {
                 // Jika tidak ada error, arahkan ke halaman utama
-                return redirect()->route('home')->with('success', 'Data berhasil diimport');
+                return  back()->with('success', 'Data berhasil diimport');
             }
         } catch (\Exception $e) {
             // Jika terjadi kesalahan, kembalikan error
-            return redirect()->route('home')->with('error', 'Terjadi kesalahan saat mengimpor data');
+            return back()->with('error', 'Terjadi kesalahan saat mengimpor data');
         }
     }
 }

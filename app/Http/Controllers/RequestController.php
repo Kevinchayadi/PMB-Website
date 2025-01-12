@@ -325,12 +325,12 @@ public function cancelRequest($id)
                 return Excel::download(new errorRequest(), 'transaction_error.xlsx');
             } else {
                 // Jika tidak ada error, arahkan ke halaman utama
-                return redirect()->route('home')->with('success', 'Data berhasil diimport');
+                return  back()->with('success', 'Data berhasil diimport');
             }
         } catch (\Exception $e) {
             // \Log::error('Error during file import: ' . $e->getMessage());
 
-        return redirect()->route('home')->with('error', 'Terjadi kesalahan saat mengimpor data. Silakan coba lagi.');
+        return  back()->with('error', 'Terjadi kesalahan saat mengimpor data. Silakan coba lagi.');
         }
     }
 
