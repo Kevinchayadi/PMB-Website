@@ -47,20 +47,23 @@ class LoginController extends Controller
 
     public function googleLogin()
     {
-        $googleUser = Socialite::driver('google')->user();
+        
+        // $googleUser = Socialite::driver('google')->user();
         try {
             $googleUser = Socialite::driver('google')->user();
-    
+            
             // Update or create user record based on google_id
             $user = Umat::updateOrCreate(
                 ['google_id' => $googleUser->getId()],
                 [
-                    'name' => $googleUser->getName(),
-                    'email' => $googleUser->getEmail(),
+                    'nama_umat' => $googleUser->getName(),
+                    'email_umat' => $googleUser->getEmail(),
                     'google_token' => $googleUser->token,
                     'google_refresh_token' => $googleUser->refreshToken,
-                ]
-            );
+                    ]
+                );
+            //     dd('test');
+            // dd($user);
             
             // Login the user
             Auth::guard('web')->login($user);
