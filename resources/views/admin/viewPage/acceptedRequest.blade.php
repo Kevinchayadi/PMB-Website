@@ -11,7 +11,7 @@
         <div class="d-flex justify-content-between align-items-center mb-3">
             <form action="{{ secure_url('/admin/Request-Accepted') }}" method="GET" class="d-flex">
                 <input type="text" id="searchInput" name="search" class="form-control me-2" value="{{ request('search') }}"
-                    placeholder="Search...">
+                    placeholder="Cari...">
                 <button type="submit" class="btn btn-outline-primary">Cari</button>
             </form>
         </div>

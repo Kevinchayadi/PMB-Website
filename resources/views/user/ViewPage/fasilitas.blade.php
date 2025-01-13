@@ -6,9 +6,9 @@
     <div class="row mb-2 mx-auto justify-content-center">
         {{-- Gereja --}}
         <div class="col-lg-6 col-12 p-2">
-            <div class="rounded-3 bg-primary shadow-lg p-2 hvr-shrink h-100" data-bs-toggle="modal"
+            <div class="rounded-3 bg-primary shadow-lg p-2 hvr-shrink h-100 w-100" data-bs-toggle="modal"
                 data-bs-target="#fasilitas-a">
-                <img src="{{ asset('picture/Gereja.jpg') }}" alt="" class="img-fluid custom-img rounded">
+                <img src="{{ asset('picture/Gereja.jpg') }}" alt="" class="img-fluid custom-img rounded w-100">
                 <div class="fs-6">
                     <div class="w-50 mx-auto fw-bolder text-center text-white">Gereja</div>
                 </div>
