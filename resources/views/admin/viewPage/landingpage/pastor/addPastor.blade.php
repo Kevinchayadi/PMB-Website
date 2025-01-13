@@ -19,7 +19,7 @@
                     <div class="card bg-primary shadow-lg rounded-4">
                         <div class="card-body text-white">
                             <h2 class="card-title text-center mb-4 fw-bolder">Tambah Pastor Baru</h2>
-                            <form action="{{secure_url('/admin/add-pastor')}}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ secure_url('/admin/add-pastor') }}" method="POST" enctype="multipart/form-data">
                                 @csrf <!-- Laravel CSRF Token -->
 
                                 <!-- Nama -->
@@ -103,7 +103,7 @@
                                             class="text-danger">*</span></label>
                                     <div>
                                         <img src="{{ asset('picture/Gereja.jpg') }}" alt="Gambar Default"
-                                            class="img-fluid rounded-3 mb-2" id="current-image">
+                                            class="img-fluid rounded-3 mb-2 w-100" id="current-image">
                                     </div>
                                     <input type="file" class="form-control @error('foto') is-invalid @enderror"
                                         id="foto" name="foto" placeholder="Masukkan gambar"

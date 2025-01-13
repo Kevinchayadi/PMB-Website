@@ -17,13 +17,16 @@
         <div id="carouselforhighlight" class="carousel slide w-100 mx-auto mb-3" data-bs-ride="carousel">
             <div class="carousel-inner rounded-3 shadow-lg">
                 <div class="carousel-item active">
-                    <img src="{{ $highlight[0]->path }}" class="d-block w-100" alt="Highlight-Image-1">
+                    <img src="{{ $highlight[0]->path }}" class="d-block w-100" alt="Highlight-Image-1"
+                        style="max-height: 500px; min-height: 500px;">
                 </div>
                 <div class="carousel-item">
-                    <img src="{{ $highlight[1]->path }}" class="d-block w-100" alt="Highlight-Image-2">
+                    <img src="{{ $highlight[1]->path }}" class="d-block w-100" alt="Highlight-Image-2"
+                        style="max-height: 500px; min-height: 500px;">
                 </div>
                 <div class="carousel-item">
-                    <img src="{{ $highlight[2]->path }}" class="d-block w-100" alt="Highlight-Image-3">
+                    <img src="{{ $highlight[2]->path }}" class="d-block w-100" alt="Highlight-Image-3"
+                        style="max-height: 500px; min-height: 500px;">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselforhighlight"
@@ -82,19 +85,6 @@
             {{-- Content --}}
             @forelse($jadwal as $jadwals)
                 <div class="ms-3 row me-0">
-                    {{-- <div class="left-content text-gray px-2 align-self-center col-lg-2 col-4 flex-start">
-                    <div class="d-flex justify-content-center">
-                        <div class="align-self-center d-lg-block d-none">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#7A7A7A"
-                                class="bi bi-calendar align-self-center fs-xl-3" viewBox="0 0 16 16">
-                                <path
-                                    d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
-                            </svg>
-                        </div>
-                        <div class="h4 mt-lg-2 ms-lg-2 align-self-center"></div>
-                    </div>
-                    <div class="h5 text-center">Januari</div>
-                </div> --}}
                     <div class="pe-2 border-gray col-12 row">
                         <div class="text align-self-center col-lg-9 col-12">
                             <div class="head fs-4 fw-bolder">{{ $jadwals->judul }}</div>
@@ -147,7 +137,8 @@
             {{-- Banner bawah --}}
             <div class="banner-bottom my-4 rounded-3 shadow-lg w-100 mx-auto">
                 <a href= "https://www.youtube.com/@parokimanggabesarjakarta4023">
-                    <img class="object-fit-contain w-100 rounded-3" src="{{ $highlight[3]->path }}" alt="">
+                    <img class="object-fit-contain w-100 rounded-3" src="{{ $highlight[3]->path }}"
+                        alt="Banner-Promosi">
                 </a>
             </div>
         </div>

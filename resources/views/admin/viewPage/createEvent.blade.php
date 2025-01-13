@@ -111,7 +111,7 @@
                                     @enderror
                                 </div>
 
-                                <!-- Dropdown Seksi -->
+                                {{-- <!-- Dropdown Seksi -->
                                 <div class="mb-3">
                                     <label for="id_seksi" class="form-label">Seksi</label>
                                     <select class="form-select select2 @error('id_seksi') is-invalid @enderror"
@@ -126,7 +126,7 @@
                                     @error('id_seksi')
                                         <div class="invalid-feedback text-danger">{{ $message }}</div>
                                     @enderror
-                                </div>
+                                </div> --}}
 
                                 <!-- Dropdown Doa -->
                                 <div class="mb-3">

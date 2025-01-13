@@ -48,7 +48,8 @@
                                         data-bs-target="#daftar-{{ $layanans->slug }}" aria-disabled="true">Daftar
                                         Sekarang</a>
                                 </div>
-                                <div class="fs-6 text-center text-danger">Anda harus login untuk melakukan pendaftaran
+                                <div class="fs-6 text-center text-danger">Anda harus masuk terlebih dahulu untuk melakukan
+                                    pendaftaran
                                 </div>
                             @endif
                         </div>
@@ -71,10 +72,11 @@
                                     <input type="text" class="form-control" id="nama_acara" name="nama_acara"
                                         placeholder="Contoh: John Smith" value="{{ $layanans->nama_acara }}" hidden>
 
-                                    @if (!(Auth::user()->id_umat === null))
-                                        <input type="text" class="form-control @error('nama_acara') is-invalid @enderror"
-                                            id="id_umat"name="id_umat" value="{{ Auth::user()->id_umat }}" hidden>
-                                    @endif
+
+                                    <input type="text" class="form-control @error('nama_acara') is-invalid @enderror"
+                                        id="id_umat"name="id_umat"
+                                        value="{{ Auth::check() ? Auth::user()->id_umat : 0 }}" hidden>
+
 
                                     <div class="mb-3">
                                         <label for="nama_terlibat_satu" class="form-label">Nama Terlibat 1</label>

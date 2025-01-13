@@ -86,7 +86,7 @@
                                             class="text-danger">*</span></label>
                                     <div>
                                         <img id="current-image" src="{{ asset('picture/Gereja.jpg') }}" alt="Gambar Doa"
-                                            class="img-fluid rounded-3 mb-2">
+                                            class="img-fluid rounded-3 mb-2 w-100">
                                     </div>
                                     <input type="file" class="form-control @error('foto') is-invalid @enderror"
                                         id="foto" name="foto" onchange="previewImage(event)" required>

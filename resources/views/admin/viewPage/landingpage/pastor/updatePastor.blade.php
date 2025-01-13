@@ -20,7 +20,7 @@
                         <div class="card-body text-white">
 
                             <h2 class="card-title text-center mb-4 fw-bolder">Perbarui Data Pastor</h2>
-                            <form action="{{ secure_url('/admin/edit-pastor/'. $pastor->id_romo) }}" method="POST"
+                            <form action="{{ secure_url('/admin/edit-pastor/' . $pastor->id_romo) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT') <!-- Method spoofing for PUT request -->
@@ -113,7 +113,7 @@
 
                                     <div>
                                         <img src="{{ asset('storage/' . $pastor->path) }}" alt="Foto Pastor"
-                                            class="img-fluid rounded-3 mb-2" id="current-image">
+                                            class="img-fluid rounded-3 mb-2 w-100" id="current-image">
                                     </div>
 
                                     <!-- Input file untuk mengganti gambar -->
