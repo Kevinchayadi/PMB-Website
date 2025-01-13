@@ -41,6 +41,7 @@ class ProfileController extends Controller
     public function Kegiatan()
     {
         $kegiatan = Kegiatan::get();
+        dd($kegiatan);
         return view('user.ViewPage.kegiatan', ['kegiatan' => $kegiatan]);
     }
 }
