@@ -7,7 +7,7 @@
             {{-- Jadwal misa head --}}
             <div class="px-4">
                 <div class="head-section d-flex justify-content-between">
-                    <div class="align-self-center fs-5 fw-bolder">Jadwal Misa</div>
+                    <div class="align-self-center fs-4 fw-bolder text-primary">Jadwal Misa</div>
                 </div>
                 <hr>
             </div>

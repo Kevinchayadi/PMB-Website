@@ -64,7 +64,7 @@
                                     <div>
                                         <!-- Menampilkan gambar yang ada -->
                                         <img src="{{ asset('picture/Gereja.jpg') }}" alt="Gambar Default"
-                                            class="img-fluid rounded-3 mb-2" id="current-image">
+                                            class="img-fluid rounded-3 mb-2" id="current-image w-100">
                                     </div>
 
                                     <!-- Input file untuk mengganti gambar -->

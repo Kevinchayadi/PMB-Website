@@ -24,7 +24,7 @@
                             <h2 class="card-title text-center mb-4 fw-bolder">Perbarui Data Layanan</h2>
 
                             <!-- Form Edit Layanan -->
-                            <form action="{{ secure_url('/admin/edit-layanan/'. $acara->slug) }}" method="POST"
+                            <form action="{{ secure_url('/admin/edit-layanan/' . $acara->slug) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
@@ -71,7 +71,7 @@
                                     <!-- Menampilkan gambar yang ada -->
                                     <div>
                                         <img src="{{ asset('storage/' . $acara->path) }}" alt="Gambar_Layanan"
-                                            class="img-fluid rounded-3 mb-2" id="current-image">
+                                            class="img-fluid rounded-3 mb-2 w-100" id="current-image">
                                     </div>
 
 

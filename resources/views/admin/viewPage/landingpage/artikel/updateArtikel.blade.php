@@ -66,7 +66,7 @@
                                     <!-- Menampilkan gambar yang ada -->
                                     <div>
                                         <img src="{{ asset('storage/' . $artikel->path) }}" alt="Gambar-Artikel"
-                                            class="img-fluid rounded-3 mb-2" id="current-image">
+                                            class="img-fluid rounded-3 mb-2 w-100" id="current-image">
                                     </div>
 
                                     <!-- Input file untuk mengganti gambar -->

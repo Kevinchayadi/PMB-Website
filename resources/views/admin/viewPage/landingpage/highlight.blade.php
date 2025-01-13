@@ -30,7 +30,8 @@
                 <div class="row">
                     <div class="col-4">
                         <img id="preview-highlight1" src="{{ asset($highlight[0]->path) }}"
-                            class="img-fluid custom-img-3 rounded-3 shadow-lg mb-2" alt="Carousel 1">
+                            class="img-fluid rounded-3 shadow-lg mb-2" alt="Carousel 1"
+                            style="max-height: 200px; min-height: 200px; min-width: 100%; max-width: 100%;">
                         <input type="file" id="highlight1" name="highlight1"
                             class="form-control btn btn-primary rounded-3 w-100 @error('highlight1') is-invalid @enderror"
                             onchange="previewImage(this, 'preview-highlight1')">
@@ -41,7 +42,8 @@
 
                     <div class="col-4">
                         <img id="preview-highlight2" src="{{ asset($highlight[1]->path) }}"
-                            class="img-fluid custom-img-3 rounded-3 shadow-lg mb-2" alt="Carousel 2">
+                            class="img-fluid rounded-3 shadow-lg mb-2" alt="Carousel 2"
+                            style="max-height: 200px; min-height: 200px; min-width: 100%; max-width: 100%;">
                         <input type="file" id="highlight2" name="highlight2"
                             class="form-control btn btn-primary rounded-3 w-100 @error('highlight2') is-invalid @enderror"
                             onchange="previewImage(this, 'preview-highlight2')">
@@ -52,7 +54,8 @@
 
                     <div class="col-4">
                         <img id="preview-highlight3" src="{{ asset($highlight[2]->path) }}"
-                            class="img-fluid custom-img-3 rounded-3 shadow-lg mb-2" alt="Carousel 3">
+                            class="img-fluid rounded-3 shadow-lg mb-2" alt="Carousel 3"
+                            style="max-height: 200px; min-height: 200px; min-width: 100%; max-width: 100%;">
                         <input type="file" id="highlight3" name="highlight3"
                             class="form-control btn btn-primary rounded-3 w-100 @error('highlight3') is-invalid @enderror"
                             onchange="previewImage(this, 'preview-highlight3')">
@@ -95,7 +98,8 @@
                 {{-- Banner Bawah --}}
                 <div class="banner-bottom my-4 rounded-3 shadow-lg w-75 mx-auto">
                     <img id="preview-promosi" class="object-fit-contain w-100 rounded-3"
-                        src="{{ asset($highlight[3]->path) }}" alt="Banner Bawah">
+                        src="{{ asset($highlight[3]->path) }}" alt="Banner Bawah"
+                        style="max-height: 400px; min-height: 300px; min-width: 100%; max-width: 100%;">
                     <input type="file" id="promosi" name="promosi"
                         class="form-control btn btn-primary rounded-3 w-100 @error('promosi') is-invalid @enderror"
                         onchange="previewImage(this, 'preview-promosi')">

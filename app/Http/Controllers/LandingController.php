@@ -57,9 +57,14 @@ class LandingController extends Controller
 
         $highlight = Hightlight::get();
 
-        $isRegister = TransactionDetail::where('id_transaction', $id)->whereHas('umats', function ($query) {
+        if(!Auth::check()){
+            $isRegister = FALSE;
+        }
+        else{
+            $isRegister = TransactionDetail::where('id_transaction', $id)->whereHas('umats', function ($query) {
             $query->where('umats.id_umat', Auth::user()->id_umat);
         })->exists();
+        };
 
 
         $moreTransaction = TransactionHeader::with(['romo', 'seksis', 'doa', 'transactionDetails' => function ($query) {
