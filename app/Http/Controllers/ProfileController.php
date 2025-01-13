@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Acara;
 use App\Models\Doa;
+use App\Models\Kegiatan;
 use App\Models\Romo;
 use Illuminate\Http\Request;
 
@@ -39,7 +40,7 @@ class ProfileController extends Controller
 
     public function Kegiatan()
     {
-        $kegiatan = Acara::where('tipe_acara', 'kegiatan')->get();
+        $kegiatan = Kegiatan::get();
         return view('user.ViewPage.kegiatan', ['kegiatan' => $kegiatan]);
     }
 }
