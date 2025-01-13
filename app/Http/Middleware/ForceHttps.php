@@ -15,11 +15,12 @@ class ForceHttps
      */
     public function handle(Request $request, Closure $next): Response
     {
+        // Periksa apakah HTTPS tidak digunakan
         if (!$request->isSecure() && config('app.env') !== 'local') {
-            // Redirect ke versi HTTPS
-            return redirect()->secure($request->getRequestUri());
+            // Redirect ke HTTPS
+            return redirect()->secure($request->getRequestUri(), 301);
         }
 
-        return $next($request); // Lanjutkan ke proses berikutnya
+        return $next($request);
     }
 }
