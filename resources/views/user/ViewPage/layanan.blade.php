@@ -17,7 +17,7 @@
                 <div class="bg-primary rounded p-2 hvr-shrink w-100" data-bs-toggle="modal"
                     data-bs-target="#{{ $layanans->slug }}">
                     {{-- Gambar --}}
-                    <img class="img-fluid custom-img rounded-3 mb-2" src="{{ asset('storage/' . $layanans->path) }}"
+                    <img class="img-fluid custom-img rounded-3 mb-2 w-100" src="{{ asset('storage/' . $layanans->path) }}"
                         alt="{{ $layanans->slug }}">
                     {{-- Description --}}
                     <div class="fs-5">
