@@ -55,7 +55,7 @@ class pastorController extends Controller
             'foto.max' => 'Maksimal ukuran file foto adalah :max kilobyte.',
         ]);
 
-        $foto = str_replace([' ', '.'], '-', $input['nama_romo']);
+        $foto = str_replace('/[^a-zA-Z0-9]/', '-', $input['nama_romo']);
 
         if ($request->hasFile('foto')) {
             $file = $request->file('foto');
@@ -100,7 +100,7 @@ class pastorController extends Controller
             'foto.max' => 'Maksimal ukuran file foto adalah :max kilobyte.',
         ]);
 
-        $foto= str_replace([' ', '.'], '-', $input['nama_romo']);
+        $foto= str_replace('/[^a-zA-Z0-9]/', '-', $input['nama_romo']);
 
         $romo = Romo::findOrFail($id);
 

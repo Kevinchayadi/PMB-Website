@@ -49,7 +49,7 @@ class doaController extends Controller
             'foto.mimes' => 'File foto harus dalam format jpg, jpeg, png, gif atau svg.',
             'foto.max' => 'Ukuran file foto tidak boleh lebih dari 2MB.',
         ]);
-        $foto = str_replace([' ', '.'], '-', $input['nama_doa']);
+        $foto = str_replace('/[^a-zA-Z0-9]/', '-', $input['nama_doa']);
         
         if ($request->hasFile('foto')) {
             $file = $request->file('foto');
@@ -88,7 +88,7 @@ class doaController extends Controller
             'foto.mimes' => 'File foto harus dalam format jpg, jpeg, png, gif atau svg.',
             'foto.max' => 'Ukuran file foto tidak boleh lebih dari 2MB.',
         ]);
-        $foto= str_replace([' ', '.'], '-', $input['nama_doa']);
+        $foto= str_replace('/[^a-zA-Z0-9]/', '-', $input['nama_doa']);
 
         $doa = Doa::findOrFail($id);
         

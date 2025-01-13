@@ -36,7 +36,7 @@ class kegiatanController extends Controller
             'foto.mimes' => 'File foto harus dalam format: jpeg, png, jpg, gif, svg.',
             'foto.max' => 'Ukuran file foto tidak boleh lebih dari :max kilobyte.',
         ]);
-        $foto = str_replace([' ', '.'], '-', $validated['title']);
+        $foto = str_replace('/[^a-zA-Z0-9]/', '-', $validated['title']);
         if ($request->hasFile('foto')) {
             
             $file = $request->file('foto');
@@ -76,7 +76,7 @@ class kegiatanController extends Controller
         ]);
         // dd($validated);
         $kegiatan = Kegiatan::find($id);
-        $foto = str_replace([' ', '.'], '-', $validated['title']);
+        $foto = str_replace('/[^a-zA-Z0-9]/', '-', $validated['title']);
         if ($request->hasFile('foto')) {
             if ($kegiatan->path) {
                 Storage::disk('public')->delete($kegiatan->path);

@@ -53,7 +53,7 @@ class AcaraController extends Controller
 
         try {
             DB::beginTransaction();
-            $foto = str_replace([' ', '.'], '-', $input['nama_acara']);
+            $foto = str_replace('/[^a-zA-Z0-9]/', '-', $input['nama_acara']);
             if ($request->hasFile('foto')) {
                 // dd($request);
                 $file = $request->file('foto');
@@ -106,7 +106,7 @@ class AcaraController extends Controller
 
         // try {
         DB::beginTransaction();
-        $foto = str_replace([' ', '.'], '-', $input['nama_acara']);
+        $foto = str_replace('/[^a-zA-Z0-9]/', '-', $input['nama_acara']);
 
         if ($request->hasFile('foto')) {
             if ($acara->path) {
