@@ -8,10 +8,11 @@
                 {{-- Gambar --}}
                 <div class="content bg-primary rounded p-2 mb-2" data-bs-toggle="collapse"
                     data-bs-target="#{{ str_replace(' ', '-', $kegiatans->nama_acara) }}">
-                    <img class="img-fluid custom-img rounded-3 mb-1" src="{{ $kegiatan->path }}" alt="">
-                    <div class="fs-6 text-center text-white fw-bolder">{{ $kegiatan->title }}</div>
+                    <img class="img-fluid custom-img rounded-3 mb-1" src="{{ asset('storage/' . $kegiatans->path) }}"
+                        alt="">
+                    <div class="fs-6 text-center text-white fw-bolder">{{ $kegiatans->title }}</div>
                     <div class="collapse text-white" id="{{ str_replace(' ', '-', $kegiatans->nama_acara) }}">
-                        {{ $kegiatan->description }}
+                        {{ $kegiatans->description }}
                     </div>
                 </div>
             </div>
