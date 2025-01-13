@@ -28,6 +28,7 @@ class artikelController extends Controller
     {
         return view('admin.viewPage.landingpage.artikel.addArtikel');
     }
+    
     public function storeArtikel(Request $request)
     {
         $input = $request->validate([

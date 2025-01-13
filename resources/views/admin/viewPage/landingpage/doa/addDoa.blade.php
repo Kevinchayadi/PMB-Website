@@ -3,6 +3,17 @@
 
 @section('content')
     <div class="container-fluid my-3">
+        <!-- Tampilkan Error Global -->
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <div class="min-vh-100 d-flex flex-column align-items-center justify-content-center">
             <div class="row w-100 justify-content-center">
                 <div class="col-10 col-md-8">
@@ -10,17 +21,6 @@
                         <div class="card-body text-white">
 
                             <h2 class="card-title text-center mb-4 fw-bolder">Tambah Doa Baru</h2>
-
-                            <!-- Tampilkan Error Global -->
-                            @if ($errors->any())
-                                <div class="alert alert-danger">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
 
                             <form action="/admin/add-doa" method="POST" enctype="multipart/form-data">
                                 @csrf <!-- Laravel CSRF Token -->

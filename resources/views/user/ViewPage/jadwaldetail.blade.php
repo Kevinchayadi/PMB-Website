@@ -3,7 +3,15 @@
 
 @section('content')
     <div class="container-fluid row">
-        <div class="mid col-lg-10 col-12 ps-4 mb-4">
+        {{-- Pesan Sukses --}}
+        @if (session()->has('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Sukses!</strong> {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
+        <div class="mid col-lg-10 col-12 ps-4 mb-4 mx-auto">
             {{-- Judul --}}
             <div class="head fs-4 fw-bolder mb-2">{{ $transaction->judul }}</div>
 
@@ -11,15 +19,15 @@
             <div id="carouselforhighlight" class="carousel slide w-100 mx-auto mb-3" data-bs-ride="carousel">
                 <div class="carousel-inner rounded-3 shadow-lg">
                     <div class="carousel-item active">
-                        <img src="{{ $highlight[0]->path }}" class="d-block w-100" alt="Highlight-Image-1"
+                        <img src="{{ asset($highlight[0]->path) }}" class="d-block w-100" alt="Highlight-Image-1"
                             style="max-height: 500px; min-height: 500px;">
                     </div>
                     <div class="carousel-item">
-                        <img src="{{ $highlight[1]->path }}" class="d-block w-100" alt="Highlight-Image-2"
+                        <img src="{{ asset($highlight[1]->path) }}" class="d-block w-100" alt="Highlight-Image-2"
                             style="max-height: 500px; min-height: 500px;">
                     </div>
                     <div class="carousel-item">
-                        <img src="{{ $highlight[2]->path }}" class="d-block w-100" alt="Highlight-Image-3"
+                        <img src="{{ asset($highlight[2]->path) }}" class="d-block w-100" alt="Highlight-Image-3"
                             style="max-height: 500px; min-height: 500px;">
                     </div>
                 </div>
@@ -43,7 +51,7 @@
             {{-- Waktu dan tempat --}}
             <div class="description fs-5 fw-bolder">Waktu dan Tempat</div>
             <div class="waktu fs-6">{{ $transaction->jadwal_transaction }}</div>
-            <div class="tempat fs-6 ms-4">Di Gereja Santo Petrus dan Paulus</div>
+            <div class="tempat fs-6">Di Gereja Santo Petrus dan Paulus</div>
 
             {{-- Tombol daftar --}}
             <form action="/registerJadwal/{{ $transaction->id_transaction }}" method="POST">

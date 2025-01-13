@@ -28,6 +28,7 @@
                         </div>
                     </div>
                 </div>
+                <hr>
             @empty
                 <div class="fs-5 fw-bolder text-center">Jadwal tidak ada</div>
             @endforelse
