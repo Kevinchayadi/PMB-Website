@@ -6,11 +6,11 @@
     <div class="row mx-auto mb-2 justify-content-center">
         @forelse ($romo as $romos)
             <div class="col-lg-4 col-12 p-2 d-flex justify-content-center align-items-center">
-                <div class="bg-primary rounded-3 shadow-lg p-2 hvr-shrink" data-bs-toggle="modal"
+                <div class="bg-primary rounded-3 shadow-lg p-2 hvr-shrink w-100" data-bs-toggle="modal"
                     data-bs-target="#{{ str_replace([' ', '.', ','], '-', $romos->nama_romo) }}">
                     <img src="{{ asset('storage/' . $romos->path) }}"
                         alt="{{ str_replace([' ', '.', ','], '-', $romos->nama_romo) }}"
-                        class="img-fluid custom-img-2 rounded-3">
+                        class="img-fluid custom-img-2 rounded-3 w-100">
                     <div class="fs-6">
                         <div class="w-50 mx-auto fw-bolder text-center text-white">{{ $romos->nama_romo }}</div>
                     </div>

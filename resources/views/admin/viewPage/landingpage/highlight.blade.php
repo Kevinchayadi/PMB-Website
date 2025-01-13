@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="{{ asset('css/image.css') }}">
 @extends('admin.layout.template')
 @section('title', 'Admin - Highlight')
 @section('content')

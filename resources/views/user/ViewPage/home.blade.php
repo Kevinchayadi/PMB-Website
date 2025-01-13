@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="{{ asset('css/home.css') }}">
-<link rel="stylesheet" href="{{ asset('css/image.css') }}">
 @extends('user.Layout.template')
 @section('title', 'Home')
 @section('content')

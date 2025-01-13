@@ -17,7 +17,7 @@
         <div class="d-flex justify-content-between align-items-center mb-3">
             <form action="/admin/pastor" method="GET" class="d-flex">
                 <input type="text" id="searchInput" name="search" class="form-control me-2"
-                    value="{{ request('search') }}" placeholder="Search...">
+                    value="{{ request('search') }}" placeholder="Cari...">
                 <button type="submit" class="btn btn-outline-primary">Cari</button>
             </form>
             <a href="/admin/add-pastor" class="btn btn-primary ">Tambah Pastor Baru</a>

@@ -14,7 +14,8 @@
         @endif
         @forelse ($layanan as $layanans)
             <div class="col-lg-4 col-12 p-2 d-flex justify-content-center align-items-center">
-                <div class="bg-primary rounded p-2 hvr-shrink" data-bs-toggle="modal" data-bs-target="#{{ $layanans->slug }}">
+                <div class="bg-primary rounded p-2 hvr-shrink w-100" data-bs-toggle="modal"
+                    data-bs-target="#{{ $layanans->slug }}">
                     {{-- Gambar --}}
                     <img class="img-fluid custom-img rounded-3 mb-2" src="{{ asset('storage/' . $layanans->path) }}"
                         alt="{{ $layanans->slug }}">
