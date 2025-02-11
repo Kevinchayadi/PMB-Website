@@ -394,10 +394,17 @@ class TransaksiController extends Controller
 
             $input['id_romo'] = $romoAvailable->id_romo;
         } else {
+            // dd($input['id_romo']);
+            // $romo = Romo::with(['transactionHeaders' => function ($query) use ($startRange, $endRange, $id) {
+            //     $query->whereBetween('jadwal_transaction', [$startRange, $endRange])
+            //           ->where('id_transaction', '!=', $id);
+            // }])
+            // ->where('id_romo', $input['id_romo'])
+            // ->first();
             $romo = Romo::whereHas('transactionHeaders', function ($query) use ($startRange, $endRange, $id) {
-                $query->whereBetween('jadwal_transaction', [$startRange, $endRange])->where('id_transaction', '!=', $id);
+                $query->whereBetween('jadwal_transaction', [$startRange, $endRange])->where('id_transaction', '!=', $id)->where('status', 'coming');
             })->find($input['id_romo']);
-
+            // dd($romo);
             if ($romo) {
                 return redirect()
                     ->back()
