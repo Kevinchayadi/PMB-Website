@@ -190,7 +190,7 @@
                                 <!-- Tombol Submit -->
                                 <div class="d-grid">
                                     <button type="submit" class="btn btn-success">Tambah Acara</button>
-                                    <a class="btn btn-danger rounded-none mt-2" href="/admin/admin-list">Batal</a>
+                                    <a class="btn btn-danger rounded-none mt-2" href="/admin/scheduledEvent">Batal</a>
                                 </div>
                             </form>
                             <!-- Form End -->
