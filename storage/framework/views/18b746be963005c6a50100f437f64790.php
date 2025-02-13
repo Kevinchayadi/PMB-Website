@@ -18,13 +18,16 @@
         <div id="carouselforhighlight" class="carousel slide w-100 mx-auto mb-3" data-bs-ride="carousel">
             <div class="carousel-inner rounded-3 shadow-lg">
                 <div class="carousel-item active">
-                    <img src="<?php echo e($highlight[0]->path); ?>" class="d-block w-100" alt="Highlight-Image-1">
+                    <img src="<?php echo e($highlight[0]->path); ?>" class="d-block w-100" alt="Highlight-Image-1"
+                        style="max-height: 500px; min-height: 500px;">
                 </div>
                 <div class="carousel-item">
-                    <img src="<?php echo e($highlight[1]->path); ?>" class="d-block w-100" alt="Highlight-Image-2">
+                    <img src="<?php echo e($highlight[1]->path); ?>" class="d-block w-100" alt="Highlight-Image-2"
+                        style="max-height: 500px; min-height: 500px;">
                 </div>
                 <div class="carousel-item">
-                    <img src="<?php echo e($highlight[2]->path); ?>" class="d-block w-100" alt="Highlight-Image-3">
+                    <img src="<?php echo e($highlight[2]->path); ?>" class="d-block w-100" alt="Highlight-Image-3"
+                        style="max-height: 500px; min-height: 500px;">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselforhighlight"
@@ -83,7 +86,6 @@
             
             <?php $__empty_1 = true; $__currentLoopData = $jadwal; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $jadwals): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                 <div class="ms-3 row me-0">
-                    
                     <div class="pe-2 border-gray col-12 row">
                         <div class="text align-self-center col-lg-9 col-12">
                             <div class="head fs-4 fw-bolder"><?php echo e($jadwals->judul); ?></div>
@@ -137,7 +139,8 @@
             
             <div class="banner-bottom my-4 rounded-3 shadow-lg w-100 mx-auto">
                 <a href= "https://www.youtube.com/@parokimanggabesarjakarta4023">
-                    <img class="object-fit-contain w-100 rounded-3" src="<?php echo e($highlight[3]->path); ?>" alt="">
+                    <img class="object-fit-contain w-100 rounded-3" src="<?php echo e($highlight[3]->path); ?>"
+                        alt="Banner-Promosi">
                 </a>
             </div>
         </div>

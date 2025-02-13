@@ -26,7 +26,7 @@ class DashboardController extends Controller
         $pending = ModelsRequest::where('status', 'pending')->count();
         $process = ModelsRequest::where('status', 'process')->count();
         $accepted = ModelsRequest::where('status', 'accepted')->count();
-        $countScheduledEvent = $jadwal_acara->count();
+        $countScheduledEvent = TransactionHeader::where('status', 'coming')->count();
         $countPassEvent = TransactionHeader::with(['romo', 'seksi', 'doa', 'transactionDetails' => function ($query) {
             $query->with('umats', 'acara', 'admin');
         }])->where('status', 'pass')->count();
