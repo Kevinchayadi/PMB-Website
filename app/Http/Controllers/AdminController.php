@@ -38,20 +38,19 @@ class AdminController extends Controller
         $request->validate([
             'username' => 'required|unique:admins',
             'password' => 'required|string|min:8|confirmed',
-            'id_role' => 'required',
+            
         ], [
             'username.required' => 'Kolom Nama Pengguna harus diisi.',
             'username.unique' => 'Nama Pengguna sudah digunakan oleh admin lain.',
             'password.min' => 'Kata Sandi harus memiliki minimal :min karakter.',
             'password.confirmed' => 'Konfirmasi Kata Sandi tidak cocok.',
-            'id_role.required' => 'Kolom Role harus diisi.',
         ]);
 
         try {
             Admin::create([
                 'username' => $request->username,
                 'password' => Hash::make($request->password),
-                'id_role' => $request->id_role,
+                'id_role' => 1,
             ]);
         } catch (\Throwable $th) {
             return redirect()->route('admin.admin-list')->with('error', 'Admin gagal ditambahkan!');
@@ -76,13 +75,13 @@ class AdminController extends Controller
         $request->validate([
             'username' => ['required', Rule::unique('admins')->ignore($slug, 'username')],
             'password' => 'nullable|string|min:8|confirmed',
-            'role' => 'required',
+            
         ], [
             'username.required' => 'Kolom Nama Pengguna harus diisi.',
             'username.unique' => 'Nama Pengguna sudah digunakan oleh admin lain.',
             'password.min' => 'Kata Sandi harus memiliki minimal :min karakter.',
             'password.confirmed' => 'Konfirmasi Kata Sandi tidak cocok.',
-            'role.required' => 'Kolom Role harus diisi.',
+            
         ]);
         try {
             $admin->slug = null;
@@ -90,7 +89,7 @@ class AdminController extends Controller
             if ($request->password) {
                 $admin->password = Hash::make($request->password);
             }
-            $admin->id_role = $request->role;
+            
             $admin->save();
         } catch (\Throwable $th) {
             return redirect()->route('admin.admin-list')->with('Error', 'Admin gagal diperbarui!');

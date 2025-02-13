@@ -53,23 +53,7 @@
                                     name="password_confirmation" required>
                             </div>
 
-                            <!-- Role -->
-                            <div class="mb-3">
-                                <label for="id_role" class="form-label text-white">Peran</label>
-                                <select class="form-select @error('id_role') is-invalid @enderror" id="id_role"
-                                    name="id_role" required>
-                                    <option value="" disabled>Pilih Peran</option>
-                                    @foreach ($roles as $role)
-                                        <option value="{{ $role->id_role }}"
-                                            {{ old('id_role') == $role->id ? 'selected' : '' }}>
-                                            {{ $role->role }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('id_role')
-                                    <div class="invalid-feedback text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
+
 
                             <!-- Tombol Submit -->
                             <div class="d-grid">
