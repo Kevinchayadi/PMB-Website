@@ -211,7 +211,7 @@ class TransaksiController extends Controller
         // Atur default 'judul' jika tidak ada
         $input['judul'] = $input['judul'] ?? 'tidak ada judul';
 
-        // Parsing tanggal transaksi dan menentukan rentang waktu
+        // Parsing tanggal transaksi dan menentukan rentang waktu (untuk menjaga format tetap date)
         $jadwalTransaction = Carbon::parse($input['jadwal_transaction']);
         $startRange = $jadwalTransaction->copy()->subHours(4);
         $endRange = $jadwalTransaction->copy()->addHours(4);
