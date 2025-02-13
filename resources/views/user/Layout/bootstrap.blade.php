@@ -92,6 +92,11 @@
         max-height: 500px;
     }
 
+    .article-img {
+        min-height: 350px;
+        max-height: 350px;
+    }
+
     @media(max-width: 768px) {
         .sticky-top {
             top: 75;
@@ -100,6 +105,11 @@
         .carousel-img {
             max-height: 200px;
             min-height: 200px;
+        }
+
+        .article-img {
+            min-height: 200px;
+            max-height: 200px;
         }
     }
 </style>

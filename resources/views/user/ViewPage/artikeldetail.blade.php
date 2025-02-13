@@ -5,7 +5,7 @@
         <div class="mid col-12">
             <div class="head fs-4 fw-bolder mb-2 text-center">{{ $artikel->title }}</div>
 
-            <div class="image mb-4 w-50 mx-auto">
+            <div class="image mb-4 article-img d-flex justify-content-center">
                 <img class="img-fluid rounded-3 shadow-lg" src="{{ asset('storage/' . $artikel->path) }}" alt="">
             </div>
 
