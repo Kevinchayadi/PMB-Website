@@ -2,17 +2,17 @@
 @section('title', 'Tambah Layanan Baru')
 
 @section('content')
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
     <div class="container-fluid my-3">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <div class=" min-vh-100 d-flex flex-column align-items-center justify-content-center ">
             <div class="row w-100 justify-content-center">
                 <div class="col-10 col-md-8">

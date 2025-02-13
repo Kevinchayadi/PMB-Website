@@ -7,14 +7,14 @@
         <h1 class="mb-0 fw-bold  p-2 text-white bg-primary shadow rounded-end-2">Acara Yang Telah Berlalu</h1>
 
     </div>
-    
+
 
     <div class="rounded overflow-hidden shadow-sm mx-5">
         {{-- @if ($event->count() > 0) --}}
         <div class="d-flex justify-content-between align-items-center mb-3">
             <form action="{{ secure_url('/admin/passEvent') }}" method="GET" class="d-flex">
-                <input type="text" id="searchInput" name="search" class="form-control me-2" value="{{ request('search') }}"
-                    placeholder="Search...">
+                <input type="text" id="searchInput" name="search" class="form-control me-2"
+                    value="{{ request('search') }}" placeholder="Cari...">
                 <button type="submit" class="btn btn-outline-primary">Cari</button>
             </form>
         </div>
@@ -40,9 +40,9 @@
                         <td>
                             <!-- Update Button -->
                             <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal"
-                            data-bs-target="#detailModal{{ $data->id_transaction }}">
-                            Detail
-                        </button>
+                                data-bs-target="#detailModal{{ $data->id_transaction }}">
+                                Detail
+                            </button>
                         </td>
                     </tr>
                     {{-- //modal detail --}}
@@ -62,7 +62,8 @@
                                     <p><strong>Acara:</strong> {{ $data->transactionDetails->acara->nama_acara }}</p>
                                     <p><strong>Doa</strong> {{ $data->doa->nama_doa }}</p>
                                     <p><strong>jadwal Transaksi</strong> {{ $data->jadwal_transaction }}</p>
-                                    <p><strong>Pendapatan Acara</strong> Rp. {{ $data->transactionDetails->pendapatan??0.00 }}</p>
+                                    <p><strong>Pendapatan Acara</strong> Rp.
+                                        {{ $data->transactionDetails->pendapatan ?? 0.0 }}</p>
                                     <p><strong>Deskripsi:</strong> {{ $data->transactionDetails->deskripsi_transaksi }}</p>
                                 </div>
                                 <div class="modal-footer">

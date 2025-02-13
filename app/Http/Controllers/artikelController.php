@@ -28,6 +28,7 @@ class artikelController extends Controller
     {
         return view('admin.viewPage.landingpage.artikel.addArtikel');
     }
+    
     public function storeArtikel(Request $request)
     {
         $input = $request->validate([
@@ -46,7 +47,7 @@ class artikelController extends Controller
             'additionalLink.url' => 'Link tambahan harus berupa URL yang valid.',
         ]);
         // $artikel = Articel::find($id);
-        $foto = str_replace([' ', '.'], '-', $input['title']);
+        $foto = preg_replace('/[^a-zA-Z0-9]/', '-', $input['title']);
         if ($request->hasFile('foto')) {
             // if ($artikel->path) {
             //     Storage::disk('public')->delete($artikel->path);
@@ -89,7 +90,7 @@ class artikelController extends Controller
             'additionalLink.url' => 'Link tambahan harus berupa URL yang valid.',
         ]);
         $artikel = Articel::find($id);
-        $foto = str_replace([' ', '.'], '-', $input['title']);
+        $foto = preg_replace('/[^a-zA-Z0-9]/', '-', $input['title']);
         if ($request->hasFile('foto')) {
             if ($artikel->path) {
                 Storage::disk('public')->delete($artikel->path);

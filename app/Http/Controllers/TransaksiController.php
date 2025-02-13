@@ -211,7 +211,7 @@ class TransaksiController extends Controller
         // Atur default 'judul' jika tidak ada
         $input['judul'] = $input['judul'] ?? 'tidak ada judul';
 
-        // Parsing tanggal transaksi dan menentukan rentang waktu
+        // Parsing tanggal transaksi dan menentukan rentang waktu (untuk menjaga format tetap date)
         $jadwalTransaction = Carbon::parse($input['jadwal_transaction']);
         $startRange = $jadwalTransaction->copy()->subHours(4);
         $endRange = $jadwalTransaction->copy()->addHours(4);
@@ -394,10 +394,17 @@ class TransaksiController extends Controller
 
             $input['id_romo'] = $romoAvailable->id_romo;
         } else {
+            // dd($input['id_romo']);
+            // $romo = Romo::with(['transactionHeaders' => function ($query) use ($startRange, $endRange, $id) {
+            //     $query->whereBetween('jadwal_transaction', [$startRange, $endRange])
+            //           ->where('id_transaction', '!=', $id);
+            // }])
+            // ->where('id_romo', $input['id_romo'])
+            // ->first();
             $romo = Romo::whereHas('transactionHeaders', function ($query) use ($startRange, $endRange, $id) {
-                $query->whereBetween('jadwal_transaction', [$startRange, $endRange])->where('id_transaction', '!=', $id);
+                $query->whereBetween('jadwal_transaction', [$startRange, $endRange])->where('id_transaction', '!=', $id)->where('status', 'coming');
             })->find($input['id_romo']);
-
+            // dd($romo);
             if ($romo) {
                 return redirect()
                     ->back()

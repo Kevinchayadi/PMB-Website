@@ -74,7 +74,7 @@ class LandingController extends Controller
             return $moreTransaction;
         });;
         
-        return view('user.ViewPage.jadwalDetail', compact('transaction', 'highlight', 'moreTransaction', 'isRegister'));
+        return view('user.ViewPage.jadwaldetail', compact('transaction', 'highlight', 'moreTransaction', 'isRegister'));
     }
 
     public function artikel()

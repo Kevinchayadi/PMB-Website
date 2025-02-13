@@ -77,8 +77,8 @@
     <div class="rounded overflow-hidden shadow-sm mx-5">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <form action="{{ secure_url('/admin/scheduledEvent') }}" method="GET" class="d-flex">
-                <input type="text" id="searchInput" name="search" class="form-control me-2" value="{{ request('search') }}"
-                    placeholder="Search...">
+                <input type="text" id="searchInput" name="search" class="form-control me-2"
+                    value="{{ request('search') }}" placeholder="Cari...">
                 <button type="submit" class="btn btn-outline-primary">Cari</button>
             </form>
         </div>
@@ -112,10 +112,10 @@
                             {{-- <a href="/admin/selesaiEvent/{{ $data->id_transaction }}"
                                 onclick="return confirm('Apakah Anda yakin ingin menyelesaikan event ini?');"
                                 class="btn btn-sm btn-outline-success">Selesai</a> --}}
-                                <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal"
-                            data-bs-target="#detailModal{{ $data->id_transaction }}">
-                            Selesai
-                        </button>
+                            <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal"
+                                data-bs-target="#detailModal{{ $data->id_transaction }}">
+                                Selesai
+                            </button>
 
                             <!-- Delete Button with confirmation -->
                             <form action="{{ route('admin.delete.transaksi', $data->id_transaction) }}" method="POST"
@@ -145,18 +145,17 @@
                                     class="d-inline">
                                     @csrf
                                     <div class="m-3 p-3">
-                                        <label for="pendapatan" class="form-label">Pendapatan Acara ini (isi dengan 0 jika tidak ada!)</label>
+                                        <label for="pendapatan" class="form-label">Pendapatan Acara ini (isi dengan 0 jika
+                                            tidak ada!)</label>
                                         <input type="integer"
-                                            class="form-control @error('pendapatan') is-invalid @enderror"
-                                            id="pendapatan" name="pendapatan"
-                                            placeholder="" required>
+                                            class="form-control @error('pendapatan') is-invalid @enderror" id="pendapatan"
+                                            name="pendapatan" placeholder="" required>
                                         @error('pendapatan')
                                             <div class="invalid-feedback text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="m-2 d-flex justify-content-end">
-                                        <button type="submit" class="btn mx-1 btn-outline-success"
-                                           >
+                                        <button type="submit" class="btn mx-1 btn-outline-success">
                                             submit
                                         </button>
                                         <button type="button" class="btn btn-secondary"
@@ -170,7 +169,7 @@
                                         @method('PUT')
                                         <button type="submit" class="btn btn-sm btn-outline-success">Terima</button>
                                     </form> --}}
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -235,13 +234,15 @@
         function downloadTemplate() {
             window.location.href = "/admin/exportEventTemplate";
         }
-        function displayFileName() {
-        var fileInput = document.getElementById("uploadfile");
-        var fileName = fileInput.files[0] ? fileInput.files[0].name : "No file selected"; // Menangani kondisi jika tidak ada file yang dipilih
-        var fileNameDisplay = document.getElementById("fileNameDisplay");
 
-        fileNameDisplay.innerHTML = "<strong>File yang dipilih: </strong>" + fileName;
-    }
+        function displayFileName() {
+            var fileInput = document.getElementById("uploadfile");
+            var fileName = fileInput.files[0] ? fileInput.files[0].name :
+            "No file selected"; // Menangani kondisi jika tidak ada file yang dipilih
+            var fileNameDisplay = document.getElementById("fileNameDisplay");
+
+            fileNameDisplay.innerHTML = "<strong>File yang dipilih: </strong>" + fileName;
+        }
 
         function submitExcel() {
             let fileInput = document.getElementById('uploadfile');

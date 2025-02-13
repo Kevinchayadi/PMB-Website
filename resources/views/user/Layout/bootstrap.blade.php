@@ -87,9 +87,19 @@
         text-align: justify;
     }
 
+    .carousel-img {
+        min-height: 500px;
+        max-height: 500px;
+    }
+
     @media(max-width: 768px) {
         .sticky-top {
             top: 75;
+        }
+
+        .carousel-img {
+            max-height: 200px;
+            min-height: 200px;
         }
     }
 </style>
