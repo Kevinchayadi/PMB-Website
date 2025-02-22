@@ -19,6 +19,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
+
 class TransaksiController extends Controller
 {
     public function index(Request $request)
@@ -453,7 +454,7 @@ class TransaksiController extends Controller
     public function deleteTransaction($id)
     {
         $transaction = TransactionHeader::where('status', 'coming')->find($id);
-        $transaction->forceDelete();
+        $transaction->delete();
         return redirect()->route('admin.transaksi')->with('success', 'Transaksi berhasil di Delete!');
     }
 
